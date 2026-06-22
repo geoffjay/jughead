@@ -1,0 +1,17 @@
+version: "3.9"
+
+services:
+  jughead:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    ports:
+      - "9000:9000"
+    environment:
+      BACKEND_PORT: 9000
+    networks:
+      - jughead_network
+
+networks:
+  jughead_network:
