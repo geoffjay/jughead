@@ -11,6 +11,18 @@
       ]
     },
   },
+  "mcp": {
+    "overmind": {
+      "type": "local",
+      "command": [
+        "uvx",
+        "--from",
+        "git+https://github.com/geoffjay/mcp-servers#subdirectory=overmind",
+        "mcp-server-overmind",
+      ],
+      "enabled": true,
+    },
+  },
   "provider": {
     "ollama": {
       "npm": "@ai-sdk/openai-compatible",

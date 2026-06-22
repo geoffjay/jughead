@@ -1,103 +1,109 @@
 package middleware
 
 import (
-	"bytes"
-	"fmt"
-	"io"
 	"log"
 	"net/http"
-
-	"context"
+	"net/http/httputil"
+	"net/url"
+	"strings"
 
 	"github.com/gin-gonic/gin"
 )
 
-func ReverseProxy(domains map[string]string) gin.HandlerFunc {
+// ReverseProxy routes incoming requests to per-site upstream targets based on
+// the request's effective host. Hosts not present in `targets` fall through to
+// the next handler (so localhost:9000 reaches the app's own routes).
+//
+// The effective host is taken from, in order of preference:
+//  1. the `X-Forwarded-Host` header — lets you test in a browser via a
+//     header-modifying extension (e.g. "Modify Header Value") without editing
+//     /etc/hosts;
+//  2. the request's `Host` field (what a browser sends after DNS resolution).
+//
+// `targets` maps host (with port) -> full upstream URL, e.g.
+//
+//	"domain1.tld:9000": "http://localhost:9000/sites/domain1.tld"
+//
+// The reverse proxy preserves the incoming request path, so
+// `http://domain1.tld:9000/foo` is forwarded to
+// `http://localhost:9000/sites/domain1.tld/foo`.
+func ReverseProxy(targets map[string]string) gin.HandlerFunc {
+	parsed := make(map[string]*url.URL, len(targets))
+	for host, target := range targets {
+		u, err := url.Parse(target)
+		if err != nil {
+			panic("middleware.ReverseProxy: invalid target for " + host + ": " + err.Error())
+		}
+		parsed[host] = u
+	}
+
 	return func(c *gin.Context) {
-		log.Println("host: " + c.Request.Host)
+		host := effectiveHost(c.Request)
+		log.Println("host:", host)
 
-		if c.Request.Host == "localhost:9000" {
-			log.Println("continue for next")
+		target, ok := parsed[host]
+		if !ok {
 			c.Next()
-		} else {
-			log.Println("continue for proxy")
-		}
-
-		// buffer the body to read it here and send it in the request
-		body, err := io.ReadAll(c.Request.Body)
-		if err != nil {
-			http.Error(c.Writer, err.Error(), http.StatusInternalServerError)
 			return
 		}
 
-		// you can reassign the body if you need to parse it as multipart
-		c.Request.Body = io.NopCloser(bytes.NewReader(body))
-
-		// create a new url from the raw RequestURI sent by the client
-		url := fmt.Sprintf("%s://%s%s", "http", domains[c.Request.Host], c.Request.RequestURI)
-
-		proxyReq, err := func() (*http.Request, error) {
-			var (
-				method = c.Request.Method
-				body   = bytes.NewReader(body)
-			)
-			return http.NewRequestWithContext(context.Background(), method, url, body)
-		}()
-
-		if err != nil {
-			http.Error(c.Writer, err.Error(), http.StatusBadGateway)
+		// Shared assets (styles.css, scripts.js, manifest.json, favicons, etc.)
+		// are served by the core app at /static and are common to every site.
+		// Pass them straight through to the app root instead of prepending the
+		// site path, otherwise the browser's request for /static/styles.css on
+		// a proxied host becomes /sites/<domain>/static/styles.css and 404s.
+		if strings.HasPrefix(c.Request.URL.Path, "/static/") || c.Request.URL.Path == "/static" {
+			c.Next()
 			return
 		}
 
-		// We may want to filter some headers, otherwise we could just use a shallow copy
-		// proxyReq.Header = c.Request.Header
-		proxyReq.Header = make(http.Header)
-		for h, val := range c.Request.Header {
-			proxyReq.Header[h] = val
+		proxy := httputil.NewSingleHostReverseProxy(target)
+		original := proxy.Director
+		proxy.Director = func(req *http.Request) {
+			original(req)
+			req.Host = target.Host
+			// NewSingleHostReverseProxy concatenates target.Path with the
+			// incoming path, producing "/sites/domain1.tld/" (trailing slash)
+			// when the client hit "/". Normalise so the inner router sees the
+			// exact site path and doesn't issue a 301 redirect.
+			req.URL.Path = normalisePath(target.Path, req.URL.Path)
+			// Prevent re-entry: the inner request hits this same middleware on
+			// localhost:9000, so it must not look like a forwarded-host request
+			// again, otherwise we loop forever.
+			req.Header.Del("X-Forwarded-Host")
 		}
-
-		client := &http.Client{}
-		resp, err := client.Do(proxyReq)
-
-		if err != nil {
-			http.Error(c.Writer, err.Error(), http.StatusBadGateway)
-			return
+		proxy.ErrorHandler = func(w http.ResponseWriter, r *http.Request, err error) {
+			log.Printf("proxy: %s -> %s: %v", host, target.String(), err)
+			http.Error(w, "Bad Gateway", http.StatusBadGateway)
 		}
-
-		defer resp.Body.Close()
-
-		bodyContent, _ := io.ReadAll(resp.Body)
-		c.Writer.Write(bodyContent)
-
-		for h, val := range resp.Header {
-			c.Writer.Header()[h] = val
-		}
-
+		proxy.ServeHTTP(c.Writer, c.Request)
 		c.Abort()
 	}
 }
 
-// func ReverseProxyV2() gin.HandlerFunc {
-// 	return func(c *gin.Context) {
-// 		originalHost := c.Request.Host
-// 		targetPath := "/sites/" + originalHost
-//
-// 		targetURL, err := url.Parse("http://localhost:9000" + targetPath)
-// 		if err != nil {
-// 			c.JSON(http.StatusInternalServerError, gin.H{"error": "Internal server error"})
-// 			c.Abort()
-// 			return
-// 		}
-//
-// 		proxy := httputil.NewSingleHostReverseProxy(targetURL)
-// 		proxy.Director = func(req *http.Request) {
-// 			req.URL.Scheme = targetURL.Scheme
-// 			req.URL.Host = targetURL.Host
-// 			req.URL.Path = targetURL.Path
-// 			req.Host = targetURL.Host
-// 		}
-//
-// 		proxy.ServeHTTP(c.Writer, c.Request)
-// 		c.Abort()
-// 	}
-// }
+// effectiveHost returns the host that should drive routing. X-Forwarded-Host
+// (if present) takes precedence over the request's Host field so the proxy
+// can be exercised without real DNS entries for the target domains.
+func effectiveHost(r *http.Request) string {
+	if xfh := strings.TrimSpace(r.Header.Get("X-Forwarded-Host")); xfh != "" {
+		return xfh
+	}
+	return r.Host
+}
+
+// normalisePath collapses the join of target.Path and the request path so the
+// inner router receives a clean site path. NewSingleHostReverseProxy sets
+// req.URL.Path = target.Path + originalPath, so for target.Path
+// "/sites/domain1.tld" and a request for "/" we get "/sites/domain1.tld/" —
+// strip the duplicate slash so gin doesn't respond with a 301.
+func normalisePath(targetPath, joined string) string {
+	if !strings.HasPrefix(joined, targetPath) {
+		return joined
+	}
+	rest := strings.TrimPrefix(joined, targetPath)
+	// rest is the part after the site path; "" or "/" means the site root.
+	if rest == "" || rest == "/" {
+		return targetPath
+	}
+	return targetPath + rest
+}

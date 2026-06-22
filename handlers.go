@@ -48,8 +48,11 @@ func siteViewHandler(c *gin.Context) {
 	// 2. get the meta, body, and template from the site manager implementation
 	// 3. render the template with the meta and body
 
-	path := c.FullPath()
-	site := sites.GetSiteManager().GetSite(path)
+	site := sites.GetSiteManager().GetSite(c.Request.URL.Path)
+	if site == nil {
+		c.AbortWithStatus(http.StatusNotFound)
+		return
+	}
 
 	metaTags := pages.MetaTags(
 		"testing a site",

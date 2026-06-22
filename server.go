@@ -62,8 +62,8 @@ func runServer() error {
 	router := gin.Default()
 
 	router.Use(middleware.ReverseProxy(map[string]string{
-		"domain1.tld:9000": "localhost:9000/sites/domain1.tld",
-		"domain2.tld:9000": "localhost:9000/sites/domain2.tld",
+		"domain1.tld:9000": "http://localhost:9000/sites/domain1.tld",
+		"domain2.tld:9000": "http://localhost:9000/sites/domain2.tld",
 	}))
 
 	router.HTMLRender = &TemplRender{}
