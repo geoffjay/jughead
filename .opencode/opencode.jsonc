@@ -22,6 +22,11 @@
       ],
       "enabled": true,
     },
+    "daisyui-gitmcp": {
+      "type": "remote",
+      "url": "https://gitmcp.io/saadeghi/daisyui",
+      "enabled": true
+    },
   },
   "provider": {
     "ollama": {
