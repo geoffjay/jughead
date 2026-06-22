@@ -9,6 +9,7 @@ import (
 	"time"
 
 	"github.com/geoffjay/jughead/middleware"
+	"github.com/geoffjay/jughead/sessions"
 	"github.com/geoffjay/jughead/sites"
 
 	"github.com/a-h/templ"
@@ -61,6 +62,8 @@ func runServer() error {
 
 	router := gin.Default()
 
+	store := sessions.NewStore()
+
 	router.Use(middleware.ReverseProxy(map[string]string{
 		"domain1.tld:9000": "http://localhost:9000/sites/domain1.tld",
 		"domain2.tld:9000": "http://localhost:9000/sites/domain2.tld",
@@ -72,6 +75,16 @@ func runServer() error {
 	router.GET("/", indexViewHandler)
 	router.GET("/sites/:site", siteViewHandler)
 	router.GET("/api/hello-world", showContentAPIHandler)
+
+	// Auth routes. /login is public; /admin (and anything added to its group)
+	// requires a valid session and redirects to /login otherwise.
+	router.GET("/login", loginViewHandler)
+	router.POST("/login", loginSubmitHandler(store))
+	router.GET("/logout", logoutHandler(store))
+
+	admin := router.Group("/admin", middleware.AuthRequired(store))
+	admin.GET("", adminViewHandler)
+	admin.GET("/", adminViewHandler)
 
 	// siteManager := sites.GetSiteManager()
 	// for _, site := range siteManager.Sites() {

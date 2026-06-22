@@ -1,0 +1,26 @@
+package pages
+
+// LoginContent renders the login form. `redirect` is the target to return to
+// after a successful login; `error` is shown when non-empty (e.g. bad creds).
+templ LoginContent(redirect, errorMessage string) {
+	<div id="login">
+		<h1>Login</h1>
+		if errorMessage != "" {
+			<p class="login-error">{ errorMessage }</p>
+		}
+		<form method="POST" action="/login">
+			if redirect != "" {
+				<input type="hidden" name="redirect" value={ redirect }/>
+			}
+			<label>
+				Username
+				<input type="text" name="username" required autocomplete="username"/>
+			</label>
+			<label>
+				Password
+				<input type="password" name="password" required autocomplete="current-password"/>
+			</label>
+			<button type="submit">Sign in</button>
+		</form>
+	</div>
+}
