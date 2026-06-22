@@ -6,7 +6,7 @@
   "browserslist": "> 0.5%, last 2 versions, not dead",
   "source": [
     "./assets/scripts.js",
-    "./assets/styles.scss"
+    "./assets/styles.css"
   ],
   "targets": {
     "default": {
@@ -18,18 +18,20 @@
     "fmt": "prettier --write .",
     "dev": "parcel build --no-optimize",
     "build": "parcel build",
-    "css": "tailwindcss -i ./assets/styles.scss -o ./static/styles.css -c ./tailwind.config.js --watch"
+    "css": "tailwindcss -i ./assets/styles.css -o ./static/styles.css --watch"
   },
   "dependencies": {
-    "@tailwindcss/typography": "latest",
-    "tailwindcss": "latest",
-    "daisyui": "latest",
-    "hyperscript.org": "latest",
-    "htmx.org": "latest"
+    "@tailwindcss/cli": "4.3.1",
+    "@tailwindcss/postcss": "4.3.1",
+    "@tailwindcss/typography": "0.5.20",
+    "tailwindcss": "4.3.1",
+    "daisyui": "5.5.23",
+    "hyperscript.org": "0.9.91",
+    "htmx.org": "2.0.10"
   },
   "devDependencies": {
-    "@parcel/transformer-sass": "latest",
-    "parcel": "latest",
-    "prettier": "latest"
+    "parcel": "2.16.4",
+    "postcss": "^8.5.15",
+    "prettier": "3.8.4"
   }
 }
