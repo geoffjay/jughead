@@ -1,0 +1,49 @@
+package quux
+
+import "strconv"
+
+templ BodyContent(current string, count int) {
+	<div id="app">
+		<header>
+			<h1>quux.geoffjay.com</h1>
+			<nav>
+				<a href="/sites/quux.geoffjay.com/">Home</a>
+				|
+				<a href="/sites/quux.geoffjay.com/about">About</a>
+				|
+				<a href="/sites/quux.geoffjay.com/counter">Counter</a>
+			</nav>
+		</header>
+		<main>
+			if current == "about" {
+				<h2>About</h2>
+				<p>
+					quux is a sample site published under the geoffjay.com domain for
+					testing routing, linking, and the published flag in the site manager.
+				</p>
+				<p>
+					<a href="/sites/quux.geoffjay.com/">&larr; Back home</a>
+				</p>
+			} else if current == "counter" {
+				<h2>Counter</h2>
+				<p>Current count: <strong>{ strconv.Itoa(count) }</strong></p>
+				<p>
+					<a href={ "/sites/quux.geoffjay.com/counter?n=" + strconv.Itoa(count + 1) }>+1</a>
+				</p>
+				<p>
+					<a href="/sites/quux.geoffjay.com/">Reset &amp; go home</a>
+				</p>
+			} else {
+				<h2>Home</h2>
+				<p>Welcome to the quux site.</p>
+				<ul>
+					<li><a href="/sites/quux.geoffjay.com/about">About page</a></li>
+					<li><a href="/sites/quux.geoffjay.com/counter">Counter page</a></li>
+				</ul>
+			}
+		</main>
+		<footer>
+			<small>Published site &mdash; served in all environments.</small>
+		</footer>
+	</div>
+}

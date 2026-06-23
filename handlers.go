@@ -4,6 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"net/http"
+	"strings"
 
 	"github.com/geoffjay/jughead/sites"
 	"github.com/geoffjay/jughead/templates"
@@ -48,7 +49,7 @@ func siteViewHandler(c *gin.Context) {
 	// 2. get the meta, body, and template from the site manager implementation
 	// 3. render the template with the meta and body
 
-	site := sites.GetSiteManager().GetSite(c.Request.URL.Path)
+	site := sites.GetSiteManager().GetSite(strings.TrimRight(c.Request.URL.Path, "/"))
 	if site == nil {
 		c.AbortWithStatus(http.StatusNotFound)
 		return

@@ -65,16 +65,30 @@ func runServer() error {
 	store := sessions.NewStore()
 
 	router.Use(middleware.ReverseProxy(map[string]string{
-		"domain1.tld:9000": "http://localhost:9000/sites/domain1.tld",
-		"domain2.tld:9000": "http://localhost:9000/sites/domain2.tld",
+		"domain1.tld:9000":          "http://localhost:9000/sites/domain1.tld",
+		"domain2.tld:9000":          "http://localhost:9000/sites/domain2.tld",
+		"quux.geoffjay.com:9000":    "http://localhost:9000/sites/quux.geoffjay.com",
 	}))
 
 	router.HTMLRender = &TemplRender{}
 	router.Static("/static", "./static")
 
 	router.GET("/", indexViewHandler)
-	router.GET("/sites/:site", siteViewHandler)
 	router.GET("/api/hello-world", showContentAPIHandler)
+
+	// Register each loaded site under its own path so sites can own their
+	// subpages. Sites without a Routes callback get a default handler that
+	// renders the site's template.
+	sm := sites.GetSiteManager()
+	for _, site := range sm.Sites() {
+		group := router.Group(site.Path)
+		if site.Routes != nil {
+			site.Routes(group)
+		} else {
+			group.GET("", siteViewHandler)
+			group.GET("/", siteViewHandler)
+		}
+	}
 
 	// Auth routes. /login is public; /admin (and anything added to its group)
 	// requires a valid session and redirects to /login otherwise.
@@ -85,12 +99,6 @@ func runServer() error {
 	admin := router.Group("/admin", middleware.AuthRequired(store))
 	admin.GET("", adminViewHandler)
 	admin.GET("/", adminViewHandler)
-
-	// siteManager := sites.GetSiteManager()
-	// for _, site := range siteManager.Sites() {
-	// 	fmt.Printf("Registering site: %s\n", site.Url)
-	// 	router.Any("/*proxyPath", site.Proxy)
-	// }
 
 	server := &http.Server{
 		Addr:         fmt.Sprintf(":%d", port),
