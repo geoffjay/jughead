@@ -13,12 +13,24 @@ type Site struct {
 	Path      string
 	Url       string
 	Published bool
+	Theme     string
 	Template  templ.Component
 	Proxy     func(ctx *gin.Context)
 	// Routes, when set, registers site-specific routes (e.g. subpages) on the
 	// provided router. The callback is invoked once during server startup for
-	// every loaded site.
-	Routes func(router *gin.RouterGroup)
+	// every loaded site, receiving the site's configured daisyUI theme so
+	// handlers can pass it through to templates.Layout.
+	Routes func(router *gin.RouterGroup, theme string)
+}
+
+// ThemeValue returns the configured daisyUI theme for the site, defaulting to
+// "light" when unset. daisyUI 5 ships 35 built-in themes that can be assigned
+// via the Theme field (e.g. "dark", "cupcake", "nord", "dracula", ...).
+func (s *Site) ThemeValue() string {
+	if s == nil || s.Theme == "" {
+		return "light"
+	}
+	return s.Theme
 }
 
 // TODO: Read from a configuration file
@@ -27,6 +39,7 @@ var sites = map[string]*Site{
 		Path:      "/sites/domain1.tld",
 		Url:       "http://domain1.tld",
 		Published: false,
+		Theme:     "light",
 		Template:  domain1.BodyContent(),
 		Proxy:     domain1.Proxy,
 	},
@@ -34,6 +47,7 @@ var sites = map[string]*Site{
 		Path:      "/sites/domain2.tld",
 		Url:       "http://domain2.tld",
 		Published: false,
+		Theme:     "dark",
 		Template:  domain2.BodyContent(),
 		Proxy:     domain2.Proxy,
 	},
@@ -41,6 +55,7 @@ var sites = map[string]*Site{
 		Path:      "/sites/quux.geoffjay.com",
 		Url:       "https://quux.geoffjay.com",
 		Published: true,
+		Theme:     "coffee",
 		Template:  quux.BodyContent("", 0),
 		Proxy:     quux.Proxy,
 		Routes:    quux.Routes,

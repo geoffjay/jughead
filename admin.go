@@ -58,7 +58,7 @@ func logoutHandler(store *sessions.Store) gin.HandlerFunc {
 func adminViewHandler(c *gin.Context) {
 	metaTags := pages.MetaTags("jughead admin", "Admin section")
 	body := pages.AdminContent()
-	tmpl := templates.Layout("Admin", metaTags, body)
+	tmpl := templates.Layout("Admin", "light", metaTags, body)
 
 	if err := htmx.NewResponse().RenderTempl(c.Request.Context(), c.Writer, tmpl); err != nil {
 		c.AbortWithStatus(http.StatusInternalServerError)
@@ -70,7 +70,7 @@ func adminViewHandler(c *gin.Context) {
 func renderLogin(c *gin.Context, redirect, errorMessage string) {
 	metaTags := pages.MetaTags("jughead login", "Sign in")
 	body := pages.LoginContent(redirect, errorMessage)
-	tmpl := templates.Layout("Login", metaTags, body)
+	tmpl := templates.Layout("Login", "light", metaTags, body)
 
 	if err := htmx.NewResponse().RenderTempl(c.Request.Context(), c.Writer, tmpl); err != nil {
 		c.AbortWithStatus(http.StatusInternalServerError)

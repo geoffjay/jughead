@@ -1,9 +1,68 @@
 package domain1
 
+import "github.com/geoffjay/jughead/templates/components/daisyui"
+
 templ BodyContent() {
-	<div id="app">
-		<div>
-			<h1>domain1.tld</h1>
+	<div class="min-h-screen bg-base-200 text-base-content p-8">
+		<div class="mx-auto max-w-2xl space-y-8">
+			<h1 class="text-4xl font-bold text-primary">domain1.tld</h1>
+			<p class="text-base-content/70">Reusable daisyUI accordion component examples.</p>
+
+			<section class="space-y-4">
+				<h2 class="text-2xl font-semibold">Accordion using radio inputs</h2>
+				@daisyui.Accordion(
+					"my-accordion-1",
+					[]daisyui.AccordionItem{
+						{Title: "How do I create an account?", Content: "Click the \"Sign Up\" button in the top right corner and follow the registration process.", Open: true},
+						{Title: "I forgot my password. What should I do?", Content: "Click on \"Forgot Password\" on the login page and follow the instructions sent to your email."},
+						{Title: "How do I update my profile information?", Content: "Go to \"My Account\" settings and select \"Edit Profile\" to make changes."},
+					},
+					"",
+					false,
+				)
+			</section>
+
+			<section class="space-y-4">
+				<h2 class="text-2xl font-semibold">Accordion with arrow icon</h2>
+				@daisyui.Accordion(
+					"my-accordion-2",
+					[]daisyui.AccordionItem{
+						{Title: "How do I create an account?", Content: "Click the \"Sign Up\" button in the top right corner and follow the registration process.", Open: true},
+						{Title: "I forgot my password. What should I do?", Content: "Click on \"Forgot Password\" on the login page and follow the instructions sent to your email."},
+						{Title: "How do I update my profile information?", Content: "Go to \"My Account\" settings and select \"Edit Profile\" to make changes."},
+					},
+					"arrow",
+					false,
+				)
+			</section>
+
+			<section class="space-y-4">
+				<h2 class="text-2xl font-semibold">Accordion with plus/minus icon</h2>
+				@daisyui.Accordion(
+					"my-accordion-3",
+					[]daisyui.AccordionItem{
+						{Title: "How do I create an account?", Content: "Click the \"Sign Up\" button in the top right corner and follow the registration process.", Open: true},
+						{Title: "I forgot my password. What should I do?", Content: "Click on \"Forgot Password\" on the login page and follow the instructions sent to your email."},
+						{Title: "How do I update my profile information?", Content: "Go to \"My Account\" settings and select \"Edit Profile\" to make changes."},
+					},
+					"plus",
+					false,
+				)
+			</section>
+
+			<section class="space-y-4">
+				<h2 class="text-2xl font-semibold">Accordion joined</h2>
+				@daisyui.Accordion(
+					"my-accordion-4",
+					[]daisyui.AccordionItem{
+						{Title: "How do I create an account?", Content: "Click the \"Sign Up\" button in the top right corner and follow the registration process.", Open: true},
+						{Title: "I forgot my password. What should I do?", Content: "Click on \"Forgot Password\" on the login page and follow the instructions sent to your email."},
+						{Title: "How do I update my profile information?", Content: "Go to \"My Account\" settings and select \"Edit Profile\" to make changes."},
+					},
+					"arrow",
+					true,
+				)
+			</section>
 		</div>
 	</div>
 }

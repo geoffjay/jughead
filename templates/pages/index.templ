@@ -7,40 +7,34 @@ templ MetaTags(keywords, description string) {
 	<meta name="description" content={ description }/>
 }
 
-// styledTextStyles defines CSS styles for component.
-
-css styledTextStyles() {
-	color: #02BF87;
-}
-
 // BodyContent defines HTML content.
 
 templ BodyContent(h1, text string) {
-	<div id="app">
-		<div>
+	<div class="min-h-screen bg-base-200 text-base-content flex items-center justify-center p-8">
+		<div class="max-w-2xl w-full text-center space-y-6">
 			<a href="https://gowebly.org" target="_blank">
-				<img src="/static/images/gowebly.svg" class="gowebly logo" alt="Gowebly logo"/>
+				<img src="/static/images/gowebly.svg" class="h-48 inline" alt="Gowebly logo"/>
 			</a>
-			<h1>Go + Templ + htmx</h1>
-			<p class={ styledTextStyles() }>
+			<h1 class="text-4xl font-bold">Go + Templ + htmx</h1>
+			<p class="text-success">
 				You're using <strong>Templ</strong> package to generate HTML content!
 				<br/>
 				Edit this styled text in the <code>./templates/pages/index.templ</code> file.
 			</p>
-			<div class="content">
-				<button hx-get="/api/hello-world" hx-target="#htmx-result">Hello, World!</button>
+			<div class="py-4 space-y-4">
+				<button class="btn btn-primary" hx-get="/api/hello-world" hx-target="#htmx-result">Hello, World!</button>
 				<div id="htmx-result"></div>
 			</div>
-			<p class="read-the-docs">
+			<p class="text-base-content/60 text-sm">
 				The Gowebly project is a next-generation CLI tool that makes it easy to create
 				<br/>
 				amazing web applications with Go on the backend, using htmx & hyperscript
 				<br/>
 				and the most popular CSS frameworks on the frontend.
 			</p>
-			<p class="read-the-docs">
-				<a href="https://gowebly.org" target="_blank">Documentation</a> &sdot;
-				<a href="https://github.com/gowebly/gowebly" target="_blank">GitHub</a>
+			<p class="text-base-content/60 text-sm">
+				<a href="https://gowebly.org" target="_blank" class="link link-hover">Documentation</a> &sdot;
+				<a href="https://github.com/gowebly/gowebly" target="_blank" class="link link-hover">GitHub</a>
 			</p>
 		</div>
 	</div>

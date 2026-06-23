@@ -83,7 +83,7 @@ func runServer() error {
 	for _, site := range sm.Sites() {
 		group := router.Group(site.Path)
 		if site.Routes != nil {
-			site.Routes(group)
+			site.Routes(group, site.ThemeValue())
 		} else {
 			group.GET("", siteViewHandler)
 			group.GET("/", siteViewHandler)

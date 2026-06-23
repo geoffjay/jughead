@@ -28,6 +28,7 @@ func indexViewHandler(c *gin.Context) {
 
 	indexTemplate := templates.Layout(
 		"Welcome to example!",
+		"light",
 		metaTags,
 		bodyContent,
 	)
@@ -62,6 +63,7 @@ func siteViewHandler(c *gin.Context) {
 
 	siteTemplate := templates.Layout(
 		fmt.Sprintf("Welcome to %s", site.Url),
+		site.ThemeValue(),
 		metaTags,
 		site.Template,
 	)
