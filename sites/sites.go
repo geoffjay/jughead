@@ -2,6 +2,7 @@ package sites
 
 import (
 	"github.com/geoffjay/jughead/sites/com/geoffjay/quux"
+	"github.com/geoffjay/jughead/sites/links"
 	"github.com/geoffjay/jughead/sites/tld/domain1"
 	"github.com/geoffjay/jughead/sites/tld/domain2"
 	"github.com/gin-gonic/gin"
@@ -40,7 +41,7 @@ var sites = map[string]*Site{
 		Url:       "http://domain1.tld",
 		Published: false,
 		Theme:     "light",
-		Template:  domain1.Home(),
+		Template:  domain1.Home(links.NewDirectResolver("/sites/domain1.tld")),
 		Proxy:     domain1.Proxy,
 		Routes:    domain1.Routes,
 	},

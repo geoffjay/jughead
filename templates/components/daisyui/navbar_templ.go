@@ -8,7 +8,13 @@ package daisyui
 import "github.com/a-h/templ"
 import templruntime "github.com/a-h/templ/runtime"
 
-import "strings"
+// URLResolver resolves site-relative paths to browser-facing URLs. It is
+// satisfied by sites.LinkResolver, which prefixes links with the site path
+// (e.g. /sites/domain1.tld) when accessed directly, or returns root-relative
+// paths when accessed via the FQDN reverse proxy.
+type URLResolver interface {
+	Resolve(href string) string
+}
 
 // NavItem describes a single entry in a navbar menu or dropdown.
 type NavItem struct {
@@ -25,7 +31,8 @@ type NavDropdown struct {
 // NavbarData configures a Navbar. Title is rendered as the brand button on
 // the start side. Start, Center, and End are optional menu items/dropdowns
 // placed in the corresponding navbar regions. SearchPlaceholder, when set,
-// renders a search input in the navbar-end region.
+// renders a search input in the navbar-end region. Resolver, when set, is used
+// to build all hrefs; without it hrefs are rendered as-is.
 type NavbarData struct {
 	Title             string
 	TitleHref         string
@@ -36,6 +43,7 @@ type NavbarData struct {
 	End               []NavItem
 	EndDropdowns      []NavDropdown
 	SearchPlaceholder string
+	Resolver          URLResolver
 }
 
 func Navbar(data NavbarData) templ.Component {
@@ -115,9 +123,9 @@ func navbarStart(data NavbarData) templ.Component {
 					return templ_7745c5c3_Err
 				}
 				var templ_7745c5c3_Var3 templ.SafeURL
-				templ_7745c5c3_Var3, templ_7745c5c3_Err = templ.JoinURLErrs(safeURL(data.TitleHref))
+				templ_7745c5c3_Var3, templ_7745c5c3_Err = templ.JoinURLErrs(resolveHref(data.Resolver, data.TitleHref))
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/navbar.templ`, Line: 45, Col: 37}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/navbar.templ`, Line: 53, Col: 56}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var3))
 				if templ_7745c5c3_Err != nil {
@@ -130,7 +138,7 @@ func navbarStart(data NavbarData) templ.Component {
 				var templ_7745c5c3_Var4 string
 				templ_7745c5c3_Var4, templ_7745c5c3_Err = templ.JoinStringErrs(data.Title)
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/navbar.templ`, Line: 45, Col: 82}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/navbar.templ`, Line: 53, Col: 101}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var4))
 				if templ_7745c5c3_Err != nil {
@@ -152,9 +160,9 @@ func navbarStart(data NavbarData) templ.Component {
 						return templ_7745c5c3_Err
 					}
 					var templ_7745c5c3_Var5 templ.SafeURL
-					templ_7745c5c3_Var5, templ_7745c5c3_Err = templ.JoinURLErrs(safeURL(item.Href))
+					templ_7745c5c3_Var5, templ_7745c5c3_Err = templ.JoinURLErrs(resolveHref(data.Resolver, item.Href))
 					if templ_7745c5c3_Err != nil {
-						return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/navbar.templ`, Line: 50, Col: 38}
+						return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/navbar.templ`, Line: 58, Col: 57}
 					}
 					_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var5))
 					if templ_7745c5c3_Err != nil {
@@ -167,7 +175,7 @@ func navbarStart(data NavbarData) templ.Component {
 					var templ_7745c5c3_Var6 string
 					templ_7745c5c3_Var6, templ_7745c5c3_Err = templ.JoinStringErrs(item.Label)
 					if templ_7745c5c3_Err != nil {
-						return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/navbar.templ`, Line: 50, Col: 53}
+						return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/navbar.templ`, Line: 58, Col: 72}
 					}
 					_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var6))
 					if templ_7745c5c3_Err != nil {
@@ -186,7 +194,7 @@ func navbarStart(data NavbarData) templ.Component {
 					var templ_7745c5c3_Var7 string
 					templ_7745c5c3_Var7, templ_7745c5c3_Err = templ.JoinStringErrs(dd.Label)
 					if templ_7745c5c3_Err != nil {
-						return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/navbar.templ`, Line: 55, Col: 27}
+						return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/navbar.templ`, Line: 63, Col: 27}
 					}
 					_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var7))
 					if templ_7745c5c3_Err != nil {
@@ -202,9 +210,9 @@ func navbarStart(data NavbarData) templ.Component {
 							return templ_7745c5c3_Err
 						}
 						var templ_7745c5c3_Var8 templ.SafeURL
-						templ_7745c5c3_Var8, templ_7745c5c3_Err = templ.JoinURLErrs(safeURL(item.Href))
+						templ_7745c5c3_Var8, templ_7745c5c3_Err = templ.JoinURLErrs(resolveHref(data.Resolver, item.Href))
 						if templ_7745c5c3_Err != nil {
-							return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/navbar.templ`, Line: 58, Col: 42}
+							return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/navbar.templ`, Line: 66, Col: 61}
 						}
 						_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var8))
 						if templ_7745c5c3_Err != nil {
@@ -217,7 +225,7 @@ func navbarStart(data NavbarData) templ.Component {
 						var templ_7745c5c3_Var9 string
 						templ_7745c5c3_Var9, templ_7745c5c3_Err = templ.JoinStringErrs(item.Label)
 						if templ_7745c5c3_Err != nil {
-							return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/navbar.templ`, Line: 58, Col: 57}
+							return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/navbar.templ`, Line: 66, Col: 76}
 						}
 						_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var9))
 						if templ_7745c5c3_Err != nil {
@@ -279,9 +287,9 @@ func navbarCenter(data NavbarData) templ.Component {
 					return templ_7745c5c3_Err
 				}
 				var templ_7745c5c3_Var11 templ.SafeURL
-				templ_7745c5c3_Var11, templ_7745c5c3_Err = templ.JoinURLErrs(safeURL(item.Href))
+				templ_7745c5c3_Var11, templ_7745c5c3_Err = templ.JoinURLErrs(resolveHref(data.Resolver, item.Href))
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/navbar.templ`, Line: 75, Col: 37}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/navbar.templ`, Line: 83, Col: 56}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var11))
 				if templ_7745c5c3_Err != nil {
@@ -294,7 +302,7 @@ func navbarCenter(data NavbarData) templ.Component {
 				var templ_7745c5c3_Var12 string
 				templ_7745c5c3_Var12, templ_7745c5c3_Err = templ.JoinStringErrs(item.Label)
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/navbar.templ`, Line: 75, Col: 52}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/navbar.templ`, Line: 83, Col: 71}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var12))
 				if templ_7745c5c3_Err != nil {
@@ -313,7 +321,7 @@ func navbarCenter(data NavbarData) templ.Component {
 				var templ_7745c5c3_Var13 string
 				templ_7745c5c3_Var13, templ_7745c5c3_Err = templ.JoinStringErrs(dd.Label)
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/navbar.templ`, Line: 80, Col: 26}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/navbar.templ`, Line: 88, Col: 26}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var13))
 				if templ_7745c5c3_Err != nil {
@@ -329,9 +337,9 @@ func navbarCenter(data NavbarData) templ.Component {
 						return templ_7745c5c3_Err
 					}
 					var templ_7745c5c3_Var14 templ.SafeURL
-					templ_7745c5c3_Var14, templ_7745c5c3_Err = templ.JoinURLErrs(safeURL(item.Href))
+					templ_7745c5c3_Var14, templ_7745c5c3_Err = templ.JoinURLErrs(resolveHref(data.Resolver, item.Href))
 					if templ_7745c5c3_Err != nil {
-						return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/navbar.templ`, Line: 83, Col: 41}
+						return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/navbar.templ`, Line: 91, Col: 60}
 					}
 					_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var14))
 					if templ_7745c5c3_Err != nil {
@@ -344,7 +352,7 @@ func navbarCenter(data NavbarData) templ.Component {
 					var templ_7745c5c3_Var15 string
 					templ_7745c5c3_Var15, templ_7745c5c3_Err = templ.JoinStringErrs(item.Label)
 					if templ_7745c5c3_Err != nil {
-						return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/navbar.templ`, Line: 83, Col: 56}
+						return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/navbar.templ`, Line: 91, Col: 75}
 					}
 					_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var15))
 					if templ_7745c5c3_Err != nil {
@@ -403,7 +411,7 @@ func navbarEnd(data NavbarData) templ.Component {
 				var templ_7745c5c3_Var17 string
 				templ_7745c5c3_Var17, templ_7745c5c3_Err = templ.ResolveAttributeValue(data.SearchPlaceholder)
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/navbar.templ`, Line: 98, Col: 59}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/navbar.templ`, Line: 106, Col: 59}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var17)
 				if templ_7745c5c3_Err != nil {
@@ -425,9 +433,9 @@ func navbarEnd(data NavbarData) templ.Component {
 						return templ_7745c5c3_Err
 					}
 					var templ_7745c5c3_Var18 templ.SafeURL
-					templ_7745c5c3_Var18, templ_7745c5c3_Err = templ.JoinURLErrs(safeURL(item.Href))
+					templ_7745c5c3_Var18, templ_7745c5c3_Err = templ.JoinURLErrs(resolveHref(data.Resolver, item.Href))
 					if templ_7745c5c3_Err != nil {
-						return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/navbar.templ`, Line: 103, Col: 38}
+						return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/navbar.templ`, Line: 111, Col: 57}
 					}
 					_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var18))
 					if templ_7745c5c3_Err != nil {
@@ -440,7 +448,7 @@ func navbarEnd(data NavbarData) templ.Component {
 					var templ_7745c5c3_Var19 string
 					templ_7745c5c3_Var19, templ_7745c5c3_Err = templ.JoinStringErrs(item.Label)
 					if templ_7745c5c3_Err != nil {
-						return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/navbar.templ`, Line: 103, Col: 53}
+						return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/navbar.templ`, Line: 111, Col: 72}
 					}
 					_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var19))
 					if templ_7745c5c3_Err != nil {
@@ -459,7 +467,7 @@ func navbarEnd(data NavbarData) templ.Component {
 					var templ_7745c5c3_Var20 string
 					templ_7745c5c3_Var20, templ_7745c5c3_Err = templ.JoinStringErrs(dd.Label)
 					if templ_7745c5c3_Err != nil {
-						return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/navbar.templ`, Line: 108, Col: 27}
+						return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/navbar.templ`, Line: 116, Col: 27}
 					}
 					_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var20))
 					if templ_7745c5c3_Err != nil {
@@ -475,9 +483,9 @@ func navbarEnd(data NavbarData) templ.Component {
 							return templ_7745c5c3_Err
 						}
 						var templ_7745c5c3_Var21 templ.SafeURL
-						templ_7745c5c3_Var21, templ_7745c5c3_Err = templ.JoinURLErrs(safeURL(item.Href))
+						templ_7745c5c3_Var21, templ_7745c5c3_Err = templ.JoinURLErrs(resolveHref(data.Resolver, item.Href))
 						if templ_7745c5c3_Err != nil {
-							return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/navbar.templ`, Line: 111, Col: 42}
+							return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/navbar.templ`, Line: 119, Col: 61}
 						}
 						_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var21))
 						if templ_7745c5c3_Err != nil {
@@ -490,7 +498,7 @@ func navbarEnd(data NavbarData) templ.Component {
 						var templ_7745c5c3_Var22 string
 						templ_7745c5c3_Var22, templ_7745c5c3_Err = templ.JoinStringErrs(item.Label)
 						if templ_7745c5c3_Err != nil {
-							return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/navbar.templ`, Line: 111, Col: 57}
+							return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/navbar.templ`, Line: 119, Col: 76}
 						}
 						_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var22))
 						if templ_7745c5c3_Err != nil {
@@ -520,11 +528,16 @@ func navbarEnd(data NavbarData) templ.Component {
 	})
 }
 
-func safeURL(href string) templ.SafeURL {
-	if strings.TrimSpace(href) == "" {
-		return templ.SafeURL("#")
+// resolveHref renders an href using the resolver when present, falling back to
+// "#" for empty values.
+func resolveHref(r URLResolver, href string) templ.SafeURL {
+	if r == nil {
+		if href == "" {
+			return templ.SafeURL("#")
+		}
+		return templ.SafeURL(href)
 	}
-	return templ.SafeURL(href)
+	return templ.SafeURL(r.Resolve(href))
 }
 
 var _ = templruntime.GeneratedTemplate

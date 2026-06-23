@@ -1,26 +1,33 @@
 package domain1
 
-import "github.com/geoffjay/jughead/templates/components/daisyui"
+import (
+	"github.com/geoffjay/jughead/sites/links"
+	"github.com/geoffjay/jughead/templates/components/daisyui"
+)
 
-// navbarData is the shared navbar used across all domain1 pages. The
-// "Components" dropdown links to each component example page.
-var navbarData = daisyui.NavbarData{
-	Title:     "domain1.tld",
-	TitleHref: "/sites/domain1.tld",
-	EndDropdowns: []daisyui.NavDropdown{
-		{
-			Label: "Components",
-			Items: []daisyui.NavItem{
-				{Label: "Accordion", Href: "/sites/domain1.tld/components/accordion"},
-				{Label: "Navbar", Href: "/sites/domain1.tld/components/navbar"},
+// navbarData builds the shared navbar configuration. The "Components" dropdown
+// links to each component example page. Hrefs are site-relative and resolved
+// at render time via the per-request LinkResolver.
+func navbarData(r links.LinkResolver) daisyui.NavbarData {
+	return daisyui.NavbarData{
+		Title:     "domain1.tld",
+		TitleHref: "",
+		Resolver:  r,
+		EndDropdowns: []daisyui.NavDropdown{
+			{
+				Label: "Components",
+				Items: []daisyui.NavItem{
+					{Label: "Accordion", Href: "/components/accordion"},
+					{Label: "Navbar", Href: "/components/navbar"},
+				},
 			},
 		},
-	},
+	}
 }
 
-templ Home() {
+templ Home(r links.LinkResolver) {
 	<div class="min-h-screen bg-base-200 text-base-content">
-		@daisyui.Navbar(navbarData)
+		@daisyui.Navbar(navbarData(r))
 		<main class="p-8 max-w-2xl mx-auto space-y-4">
 			<h1 class="text-4xl font-bold text-primary">domain1.tld</h1>
 			<p class="text-base-content/70">
@@ -28,16 +35,16 @@ templ Home() {
 				the navbar to browse each component.
 			</p>
 			<ul class="menu bg-base-100 rounded-box w-56 shadow">
-				<li><a href="/sites/domain1.tld/components/accordion" class="link link-hover">Accordion</a></li>
-				<li><a href="/sites/domain1.tld/components/navbar" class="link link-hover">Navbar</a></li>
+				<li><a href={ r.SafeURL("/components/accordion") } class="link link-hover">Accordion</a></li>
+				<li><a href={ r.SafeURL("/components/navbar") } class="link link-hover">Navbar</a></li>
 			</ul>
 		</main>
 	</div>
 }
 
-templ AccordionPage() {
+templ AccordionPage(r links.LinkResolver) {
 	<div class="min-h-screen bg-base-200 text-base-content">
-		@daisyui.Navbar(navbarData)
+		@daisyui.Navbar(navbarData(r))
 		<main class="p-8 max-w-2xl mx-auto space-y-8">
 			<h1 class="text-3xl font-bold text-primary">Accordion</h1>
 			<p class="text-base-content/70">
@@ -104,9 +111,9 @@ templ AccordionPage() {
 	</div>
 }
 
-templ NavbarPage() {
+templ NavbarPage(r links.LinkResolver) {
 	<div class="min-h-screen bg-base-200 text-base-content">
-		@daisyui.Navbar(navbarData)
+		@daisyui.Navbar(navbarData(r))
 		<main class="p-8 max-w-2xl mx-auto space-y-8">
 			<h1 class="text-3xl font-bold text-primary">Navbar</h1>
 			<p class="text-base-content/70">

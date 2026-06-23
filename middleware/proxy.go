@@ -72,6 +72,11 @@ func ReverseProxy(targets map[string]string) gin.HandlerFunc {
 			// localhost:9000, so it must not look like a forwarded-host request
 			// again, otherwise we loop forever.
 			req.Header.Del("X-Forwarded-Host")
+			// Tell downstream handlers that the browser's base URL has no
+			// site-path prefix, so links should be rendered root-relative
+			// (e.g. "/components/accordion") instead of prefixed with the site
+			// path (e.g. "/sites/domain1.tld/components/accordion").
+			req.Header.Set("X-Site-Base", "")
 		}
 		proxy.ErrorHandler = func(w http.ResponseWriter, r *http.Request, err error) {
 			log.Printf("proxy: %s -> %s: %v", host, target.String(), err)
