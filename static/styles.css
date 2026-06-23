@@ -8183,6 +8183,9 @@
   .text-teal-800 {
     color: var(--color-teal-800);
   }
+  .lowercase {
+    text-transform: lowercase;
+  }
   .btn-link {
     @layer daisyui.l1 {
       text-decoration-line: underline;
