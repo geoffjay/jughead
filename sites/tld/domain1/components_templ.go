@@ -1278,18 +1278,6 @@ func swapBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Activate using class name instead of checkbox", templ.Raw(`
-		<div class="swap text-6xl">
-			<div class="swap-on">&#129397;</div>
-			<div class="swap-off">&#129398;</div>
-		</div>
-		<div class="swap swap-active text-6xl">
-			<div class="swap-on">&#129321;</div>
-			<div class="swap-off">&#128557;</div>
-		</div>`)).Render(ctx, templ_7745c5c3_Buffer)
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
 		return nil
 	})
 }
