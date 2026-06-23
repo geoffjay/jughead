@@ -24,6 +24,11 @@ type TemplRender struct {
 	Data templ.Component
 }
 
+const (
+	serverReadTimeout  = 5 * time.Second
+	serverWriteTimeout = 10 * time.Second
+)
+
 // Render implements the render.Render interface.
 func (t TemplRender) Render(w http.ResponseWriter) error {
 	t.WriteContentType(w)
@@ -40,7 +45,7 @@ func (t TemplRender) WriteContentType(w http.ResponseWriter) {
 }
 
 // Instance implements the render.Render interface.
-func (t *TemplRender) Instance(name string, data any) render.Render {
+func (t *TemplRender) Instance(_ string, data any) render.Render {
 	if templData, ok := data.(templ.Component); ok {
 		return &TemplRender{
 			Code: http.StatusOK,
@@ -55,7 +60,6 @@ func runServer() error {
 	sites.Initialize()
 
 	port, err := strconv.Atoi(gowebly.Getenv("BACKEND_PORT", "9000"))
-
 	if err != nil {
 		return err
 	}
@@ -65,9 +69,9 @@ func runServer() error {
 	store := sessions.NewStore()
 
 	router.Use(middleware.ReverseProxy(map[string]string{
-		"domain1.tld":            fmt.Sprintf("http://localhost:%d/sites/domain1.tld", port),
-		"domain2.tld":            fmt.Sprintf("http://localhost:%d/sites/domain2.tld", port),
-		"quux.geoffjay.com":      fmt.Sprintf("http://localhost:%d/sites/quux.geoffjay.com", port),
+		"domain1.tld":       fmt.Sprintf("http://localhost:%d/sites/domain1.tld", port),
+		"domain2.tld":       fmt.Sprintf("http://localhost:%d/sites/domain2.tld", port),
+		"quux.geoffjay.com": fmt.Sprintf("http://localhost:%d/sites/quux.geoffjay.com", port),
 	}))
 
 	router.HTMLRender = &TemplRender{}
@@ -102,8 +106,8 @@ func runServer() error {
 
 	server := &http.Server{
 		Addr:         fmt.Sprintf(":%d", port),
-		ReadTimeout:  5 * time.Second,
-		WriteTimeout: 10 * time.Second,
+		ReadTimeout:  serverReadTimeout,
+		WriteTimeout: serverWriteTimeout,
 		Handler:      router,
 	}
 

@@ -78,7 +78,7 @@ func ReverseProxy(targets map[string]string) gin.HandlerFunc {
 			// path (e.g. "/sites/domain1.tld/components/accordion").
 			req.Header.Set("X-Site-Base", "")
 		}
-		proxy.ErrorHandler = func(w http.ResponseWriter, r *http.Request, err error) {
+		proxy.ErrorHandler = func(w http.ResponseWriter, _ *http.Request, err error) {
 			log.Printf("proxy: %s -> %s: %v", host, target.String(), err)
 			http.Error(w, "Bad Gateway", http.StatusBadGateway)
 		}

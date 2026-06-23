@@ -14,7 +14,7 @@ import (
 // browser sees root-relative paths.
 //
 // The resolver inspects the X-Site-Base request header. The proxy sets this
-// header to an empty value when it strips the site prefix, signalling that
+// header to an empty value when it strips the site prefix, signaling that
 // links should be root-relative. When the header is absent the site is being
 // accessed directly under its site path, so links are prefixed with that path.
 type LinkResolver struct {

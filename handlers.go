@@ -80,14 +80,20 @@ func showContentAPIHandler(c *gin.Context) {
 	// For more information, see https://htmx.org/docs/#request-headers
 	if !htmx.IsHTMX(c.Request) {
 		// If not, return HTTP 400 error.
-		c.AbortWithError(http.StatusBadRequest, errors.New("non-htmx request"))
+		_ = c.AbortWithError(http.StatusBadRequest, errors.New("non-htmx request"))
 
 		return
 	}
 
 	// Write HTML content.
-	c.Writer.Write([]byte("<p>🎉 Yes, <strong>htmx</strong> is ready to use! (<code>GET /api/hello-world</code>)</p>"))
+	if _, err := c.Writer.WriteString("<p>🎉 Yes, <strong>htmx</strong> is ready to use! (<code>GET /api/hello-world</code>)</p>"); err != nil {
+		_ = c.AbortWithError(http.StatusInternalServerError, fmt.Errorf("write response: %w", err))
+		return
+	}
 
 	// Send htmx response.
-	htmx.NewResponse().Write(c.Writer)
+	if err := htmx.NewResponse().Write(c.Writer); err != nil {
+		_ = c.AbortWithError(http.StatusInternalServerError, fmt.Errorf("write htmx response: %w", err))
+		return
+	}
 }
