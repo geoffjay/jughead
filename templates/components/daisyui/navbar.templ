@@ -1,0 +1,128 @@
+package daisyui
+
+import "strings"
+
+// NavItem describes a single entry in a navbar menu or dropdown.
+type NavItem struct {
+	Label string
+	Href  string
+}
+
+// NavDropdown describes a labelled group of NavItems rendered as a submenu.
+type NavDropdown struct {
+	Label string
+	Items []NavItem
+}
+
+// NavbarData configures a Navbar. Title is rendered as the brand button on
+// the start side. Start, Center, and End are optional menu items/dropdowns
+// placed in the corresponding navbar regions. SearchPlaceholder, when set,
+// renders a search input in the navbar-end region.
+type NavbarData struct {
+	Title           string
+	TitleHref       string
+	Start           []NavItem
+	StartDropdowns  []NavDropdown
+	Center          []NavItem
+	CenterDropdowns []NavDropdown
+	End             []NavItem
+	EndDropdowns    []NavDropdown
+	SearchPlaceholder string
+}
+
+templ Navbar(data NavbarData) {
+	<div class="navbar bg-base-100 shadow-sm">
+		@navbarStart(data)
+		@navbarCenter(data)
+		@navbarEnd(data)
+	</div>
+}
+
+templ navbarStart(data NavbarData) {
+	if len(data.Start) > 0 || len(data.StartDropdowns) > 0 || data.Title != "" {
+		<div class="navbar-start">
+			if data.Title != "" {
+				<a href={ safeURL(data.TitleHref) } class="btn btn-ghost text-xl">{ data.Title }</a>
+			}
+			if len(data.Start) > 0 || len(data.StartDropdowns) > 0 {
+				<ul class="menu menu-horizontal px-1 hidden lg:flex">
+					for _, item := range data.Start {
+						<li><a href={ safeURL(item.Href) }>{ item.Label }</a></li>
+					}
+					for _, dd := range data.StartDropdowns {
+						<li>
+							<details>
+								<summary>{ dd.Label }</summary>
+								<ul class="p-2 bg-base-100 rounded-t-none">
+									for _, item := range dd.Items {
+										<li><a href={ safeURL(item.Href) }>{ item.Label }</a></li>
+									}
+								</ul>
+							</details>
+						</li>
+					}
+				</ul>
+			}
+		</div>
+	}
+}
+
+templ navbarCenter(data NavbarData) {
+	if len(data.Center) > 0 || len(data.CenterDropdowns) > 0 {
+		<div class="navbar-center hidden lg:flex">
+			<ul class="menu menu-horizontal px-1">
+				for _, item := range data.Center {
+					<li><a href={ safeURL(item.Href) }>{ item.Label }</a></li>
+				}
+				for _, dd := range data.CenterDropdowns {
+					<li>
+						<details>
+							<summary>{ dd.Label }</summary>
+							<ul class="p-2 bg-base-100 w-40 z-1">
+								for _, item := range dd.Items {
+									<li><a href={ safeURL(item.Href) }>{ item.Label }</a></li>
+								}
+							</ul>
+						</details>
+					</li>
+				}
+			</ul>
+		</div>
+	}
+}
+
+templ navbarEnd(data NavbarData) {
+	if len(data.End) > 0 || len(data.EndDropdowns) > 0 || data.SearchPlaceholder != "" {
+		<div class="navbar-end">
+			if data.SearchPlaceholder != "" {
+				<input type="text" placeholder={ data.SearchPlaceholder } class="input input-bordered w-24 md:w-auto"/>
+			}
+			if len(data.End) > 0 || len(data.EndDropdowns) > 0 {
+				<ul class="menu menu-horizontal px-1">
+					for _, item := range data.End {
+						<li><a href={ safeURL(item.Href) }>{ item.Label }</a></li>
+					}
+					for _, dd := range data.EndDropdowns {
+						<li>
+							<details>
+								<summary>{ dd.Label }</summary>
+								<ul class="p-2 bg-base-100 rounded-t-none">
+									for _, item := range dd.Items {
+										<li><a href={ safeURL(item.Href) }>{ item.Label }</a></li>
+									}
+								</ul>
+							</details>
+						</li>
+					}
+				</ul>
+			}
+		</div>
+	}
+}
+
+func safeURL(href string) templ.SafeURL {
+	if strings.TrimSpace(href) == "" {
+		return templ.SafeURL("#")
+	}
+	return templ.SafeURL(href)
+}

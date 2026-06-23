@@ -10,7 +10,23 @@ import templruntime "github.com/a-h/templ/runtime"
 
 import "github.com/geoffjay/jughead/templates/components/daisyui"
 
-func BodyContent() templ.Component {
+// navbarData is the shared navbar used across all domain1 pages. The
+// "Components" dropdown links to each component example page.
+var navbarData = daisyui.NavbarData{
+	Title:     "domain1.tld",
+	TitleHref: "/sites/domain1.tld",
+	EndDropdowns: []daisyui.NavDropdown{
+		{
+			Label: "Components",
+			Items: []daisyui.NavItem{
+				{Label: "Accordion", Href: "/sites/domain1.tld/components/accordion"},
+				{Label: "Navbar", Href: "/sites/domain1.tld/components/navbar"},
+			},
+		},
+	},
+}
+
+func Home() templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -31,7 +47,52 @@ func BodyContent() templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<div class=\"min-h-screen bg-base-200 text-base-content p-8\"><div class=\"mx-auto max-w-2xl space-y-8\"><h1 class=\"text-4xl font-bold text-primary\">domain1.tld</h1><p class=\"text-base-content/70\">Reusable daisyUI accordion component examples.</p><section class=\"space-y-4\"><h2 class=\"text-2xl font-semibold\">Accordion using radio inputs</h2>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<div class=\"min-h-screen bg-base-200 text-base-content\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Navbar(navbarData).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "<main class=\"p-8 max-w-2xl mx-auto space-y-4\"><h1 class=\"text-4xl font-bold text-primary\">domain1.tld</h1><p class=\"text-base-content/70\">Reusable daisyUI component examples. Use the \"Components\" dropdown in the navbar to browse each component.</p><ul class=\"menu bg-base-100 rounded-box w-56 shadow\"><li><a href=\"/sites/domain1.tld/components/accordion\" class=\"link link-hover\">Accordion</a></li><li><a href=\"/sites/domain1.tld/components/navbar\" class=\"link link-hover\">Navbar</a></li></ul></main></div>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
+func AccordionPage() templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var2 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var2 == nil {
+			templ_7745c5c3_Var2 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "<div class=\"min-h-screen bg-base-200 text-base-content\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Navbar(navbarData).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "<main class=\"p-8 max-w-2xl mx-auto space-y-8\"><h1 class=\"text-3xl font-bold text-primary\">Accordion</h1><p class=\"text-base-content/70\">Accordion is used for showing and hiding content but only one item can stay open at a time.</p><section class=\"space-y-4\"><h2 class=\"text-2xl font-semibold\">Accordion using radio inputs</h2>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -48,7 +109,7 @@ func BodyContent() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "</section><section class=\"space-y-4\"><h2 class=\"text-2xl font-semibold\">Accordion with arrow icon</h2>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "</section><section class=\"space-y-4\"><h2 class=\"text-2xl font-semibold\">Accordion with arrow icon</h2>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -65,7 +126,7 @@ func BodyContent() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "</section><section class=\"space-y-4\"><h2 class=\"text-2xl font-semibold\">Accordion with plus/minus icon</h2>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "</section><section class=\"space-y-4\"><h2 class=\"text-2xl font-semibold\">Accordion with plus/minus icon</h2>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -82,7 +143,7 @@ func BodyContent() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "</section><section class=\"space-y-4\"><h2 class=\"text-2xl font-semibold\">Accordion joined</h2>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "</section><section class=\"space-y-4\"><h2 class=\"text-2xl font-semibold\">Accordion joined</h2>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -99,7 +160,92 @@ func BodyContent() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "</section></div></div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 8, "</section></main></div>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
+func NavbarPage() templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var3 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var3 == nil {
+			templ_7745c5c3_Var3 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 9, "<div class=\"min-h-screen bg-base-200 text-base-content\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Navbar(navbarData).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 10, "<main class=\"p-8 max-w-2xl mx-auto space-y-8\"><h1 class=\"text-3xl font-bold text-primary\">Navbar</h1><p class=\"text-base-content/70\">Navbar is used to show a navigation bar on the top of the page.</p><section class=\"space-y-4\"><h2 class=\"text-2xl font-semibold\">Navbar with title only</h2>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Navbar(daisyui.NavbarData{Title: "daisyUI"}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 11, "</section><section class=\"space-y-4\"><h2 class=\"text-2xl font-semibold\">Navbar with title and icon</h2><div class=\"navbar bg-base-100 shadow-sm\"><div class=\"flex-1\"><button class=\"btn btn-ghost text-xl\">daisyUI</button></div><div class=\"flex-none\"><button class=\"btn btn-square btn-ghost\"><svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewBox=\"0 0 24 24\" class=\"inline-block w-5 h-5 stroke-current\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z\"></path></svg></button></div></div></section><section class=\"space-y-4\"><h2 class=\"text-2xl font-semibold\">Navbar with menu and submenu</h2>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Navbar(daisyui.NavbarData{
+			Title: "daisyUI",
+			EndDropdowns: []daisyui.NavDropdown{
+				{
+					Label: "Parent",
+					Items: []daisyui.NavItem{
+						{Label: "Link 1", Href: "#"},
+						{Label: "Link 2", Href: "#"},
+					},
+				},
+			},
+			End: []daisyui.NavItem{{Label: "Link", Href: "#"}},
+		}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 12, "</section><section class=\"space-y-4\"><h2 class=\"text-2xl font-semibold\">Navbar with search input and dropdown</h2>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Navbar(daisyui.NavbarData{
+			Title:             "daisyUI",
+			SearchPlaceholder: "Search",
+			EndDropdowns: []daisyui.NavDropdown{
+				{
+					Label: "Profile",
+					Items: []daisyui.NavItem{
+						{Label: "Settings", Href: "#"},
+						{Label: "Logout", Href: "#"},
+					},
+				},
+			},
+		}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 13, "</section><section class=\"space-y-4\"><h2 class=\"text-2xl font-semibold\">Navbar with colors</h2><div class=\"navbar bg-neutral text-neutral-content\"><button class=\"btn btn-ghost text-xl\">daisyUI</button></div><div class=\"navbar bg-base-300\"><button class=\"btn btn-ghost text-xl\">daisyUI</button></div><div class=\"navbar bg-primary text-primary-content\"><button class=\"btn btn-ghost text-xl\">daisyUI</button></div></section></main></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

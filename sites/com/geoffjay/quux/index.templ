@@ -1,19 +1,28 @@
 package quux
 
-import "strconv"
+import (
+  "strconv"
+
+  "github.com/geoffjay/jughead/templates/components/daisyui"
+)
+
+var navbarData = daisyui.NavbarData{
+	Title:     "Quux",
+	TitleHref: "/sites/quux.geoffjay.com",
+	EndDropdowns: []daisyui.NavDropdown{
+		{
+			Label: "Items",
+			Items: []daisyui.NavItem{
+				{Label: "Counter", Href: "/counter"},
+				{Label: "About", Href: "/about"},
+			},
+		},
+	},
+}
 
 templ BodyContent(current string, count int) {
 	<div class="min-h-screen bg-base-200 text-base-content flex flex-col">
-		<header class="navbar bg-base-100 shadow-sm px-8">
-			<h1 class="text-xl font-bold text-primary flex-1">quux.geoffjay.com</h1>
-			<nav class="flex gap-2">
-				<a href="./" class="link link-hover">Home</a>
-				<span class="text-base-content/30">|</span>
-				<a href="./about" class="link link-hover">About</a>
-				<span class="text-base-content/30">|</span>
-				<a href="./counter" class="link link-hover">Counter</a>
-			</nav>
-		</header>
+		@daisyui.Navbar(navbarData)
 		<main class="flex-1 p-8 max-w-2xl mx-auto w-full">
 			if current == "about" {
 				<h2 class="text-2xl font-semibold mb-4">About</h2>

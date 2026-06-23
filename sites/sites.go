@@ -40,8 +40,9 @@ var sites = map[string]*Site{
 		Url:       "http://domain1.tld",
 		Published: false,
 		Theme:     "light",
-		Template:  domain1.BodyContent(),
+		Template:  domain1.Home(),
 		Proxy:     domain1.Proxy,
+		Routes:    domain1.Routes,
 	},
 	"/sites/domain2.tld": {
 		Path:      "/sites/domain2.tld",
