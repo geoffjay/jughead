@@ -51,3 +51,6 @@ lerna-debug.log*
 *.test
 *.tmp
 *.out
+
+templates/components/daisyui/component-plan.md
+templates/components/daisyui/docs/
