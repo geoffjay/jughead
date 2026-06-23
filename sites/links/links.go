@@ -72,6 +72,9 @@ func (l LinkResolver) Base() string {
 func (l LinkResolver) Resolve(href string) string {
 	href = strings.TrimSpace(href)
 	if href == "" {
+		if l.base == "" {
+			return "/"
+		}
 		return l.base
 	}
 	if !strings.HasPrefix(href, "/") {
