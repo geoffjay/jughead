@@ -1,0 +1,541 @@
+package domain1
+
+import (
+	"github.com/geoffjay/jughead/sites/links"
+	"github.com/geoffjay/jughead/templates/components/daisyui"
+)
+
+// pageShell wraps body content in the shared navbar + main container used by
+// every component example page.
+templ pageShell(r links.LinkResolver, title, description string, body templ.Component) {
+	<div class="min-h-screen bg-base-200 text-base-content">
+		@daisyui.Navbar(navbarData(r))
+		<main class="p-8 max-w-4xl mx-auto space-y-8">
+			<h1 class="text-3xl font-bold text-primary">{ title }</h1>
+			<p class="text-base-content/70">{ description }</p>
+			@body
+		</main>
+	</div>
+}
+
+templ section(title string, body templ.Component) {
+	<section class="space-y-4">
+		<h2 class="text-2xl font-semibold">{ title }</h2>
+		@body
+	</section>
+}
+
+templ JoinPage(r links.LinkResolver) {
+	@pageShell(r, "Join", "Join is a container for grouping multiple items, it can be used to group buttons, inputs, etc. Join applies border radius to the first and last item.", joinBody(r))
+}
+
+templ joinBody(r links.LinkResolver) {
+	@section("Join", templ.Raw(`
+		<div class="join">
+			<button class="btn join-item">Button</button>
+			<button class="btn join-item">Button</button>
+			<button class="btn join-item">Button</button>
+		</div>`))
+
+	@section("Group items vertically", daisyui.Join(
+		[]templ.Component{
+			templ.Raw(`<button class="btn join-item">Button</button>`),
+			templ.Raw(`<button class="btn join-item">Button</button>`),
+			templ.Raw(`<button class="btn join-item">Button</button>`),
+		},
+		"vertical",
+		"",
+	))
+
+	@section("Responsive: vertical on small, horizontal on large", daisyui.Join(
+		[]templ.Component{
+			templ.Raw(`<button class="btn join-item">Button</button>`),
+			templ.Raw(`<button class="btn join-item">Button</button>`),
+			templ.Raw(`<button class="btn join-item">Button</button>`),
+		},
+		"vertical lg:join-horizontal",
+		"",
+	))
+
+	@section("With extra elements in the group", templ.Raw(`
+		<div class="join">
+			<div>
+				<div>
+					<input class="input join-item w-[5.3rem] md:w-52" placeholder="Search"/>
+				</div>
+			</div>
+			<select class="select join-item w-[5.8rem] md:w-auto">
+				<option disabled selected>Filter</option>
+				<option>Sci-fi</option>
+				<option>Drama</option>
+				<option>Action</option>
+			</select>
+			<div class="indicator">
+				<span class="indicator-item badge badge-secondary">new</span>
+				<button class="btn join-item">Search</button>
+			</div>
+		</div>`))
+
+	@section("Custom border radius", templ.Raw(`
+		<div class="join">
+			<input class="input join-item w-36 lg:w-52" placeholder="Email"/>
+			<button class="btn join-item rounded-r-full">Subscribe</button>
+		</div>`))
+
+	@section("Join radio inputs with btn style", templ.Raw(`
+		<div class="join">
+			<input class="join-item btn" type="radio" name="options" autocomplete="off" aria-label="Radio 1"/>
+			<input class="join-item btn" type="radio" name="options" autocomplete="off" aria-label="Radio 2"/>
+			<input class="join-item btn" type="radio" name="options" autocomplete="off" aria-label="Radio 3"/>
+		</div>`))
+}
+
+templ StackPage(r links.LinkResolver) {
+	@pageShell(r, "Stack", "Stack visually puts elements on top of each other.", stackBody(r))
+}
+
+templ stackBody(r links.LinkResolver) {
+	@section("3 divs in a stack", daisyui.Stack(
+		[]templ.Component{
+			templ.Raw(`<div class="grid rounded-box bg-primary text-primary-content place-content-center">1</div>`),
+			templ.Raw(`<div class="grid rounded-box bg-accent text-accent-content place-content-center">2</div>`),
+			templ.Raw(`<div class="grid rounded-box bg-secondary text-secondary-content place-content-center">3</div>`),
+		},
+		"",
+		"h-20 w-32",
+	))
+
+	@section("Stacked images", daisyui.Stack(
+		[]templ.Component{
+			templ.Raw(`<img src="https://img.daisyui.com/images/stock/photo-1572635148818-ef6fd45eb394.webp" alt="Stack image 1" class="rounded-box"/>`),
+			templ.Raw(`<img src="https://img.daisyui.com/images/stock/photo-1565098772267-60af42b81ef2.webp" alt="Stack image 2" class="rounded-box"/>`),
+			templ.Raw(`<img src="https://img.daisyui.com/images/stock/photo-1559703248-dcaaec9fab78.webp" alt="Stack image 3" class="rounded-box"/>`),
+		},
+		"",
+		"mb-4 w-48",
+	))
+
+	@section("Stacked cards", daisyui.Stack(
+		[]templ.Component{
+			templ.Raw(`<div class="text-center border border-base-content card bg-base-100"><div class="card-body">A</div></div>`),
+			templ.Raw(`<div class="text-center border border-base-content card bg-base-100"><div class="card-body">B</div></div>`),
+			templ.Raw(`<div class="text-center border border-base-content card bg-base-100"><div class="card-body">C</div></div>`),
+		},
+		"",
+		"mb-4 size-28",
+	))
+
+	@section("Stacked cards (top direction)", daisyui.Stack(
+		[]templ.Component{
+			templ.Raw(`<div class="text-center border border-base-content card bg-base-100"><div class="card-body">A</div></div>`),
+			templ.Raw(`<div class="text-center border border-base-content card bg-base-100"><div class="card-body">B</div></div>`),
+			templ.Raw(`<div class="text-center border border-base-content card bg-base-100"><div class="card-body">C</div></div>`),
+		},
+		"top",
+		"mb-4 size-28",
+	))
+
+	@section("Stacked cards (start direction)", daisyui.Stack(
+		[]templ.Component{
+			templ.Raw(`<div class="text-center border border-base-content card bg-base-100"><div class="card-body">A</div></div>`),
+			templ.Raw(`<div class="text-center border border-base-content card bg-base-100"><div class="card-body">B</div></div>`),
+			templ.Raw(`<div class="text-center border border-base-content card bg-base-100"><div class="card-body">C</div></div>`),
+		},
+		"start",
+		"mb-4 size-28",
+	))
+
+	@section("Stacked cards (end direction)", daisyui.Stack(
+		[]templ.Component{
+			templ.Raw(`<div class="text-center border border-base-content card bg-base-100"><div class="card-body">A</div></div>`),
+			templ.Raw(`<div class="text-center border border-base-content card bg-base-100"><div class="card-body">B</div></div>`),
+			templ.Raw(`<div class="text-center border border-base-content card bg-base-100"><div class="card-body">C</div></div>`),
+		},
+		"end",
+		"mb-4 size-28",
+	))
+
+	@section("Stacked cards with shadow", daisyui.Stack(
+		[]templ.Component{
+			templ.Raw(`<div class="text-center shadow-md card bg-base-200"><div class="card-body">A</div></div>`),
+			templ.Raw(`<div class="text-center shadow card bg-base-200"><div class="card-body">B</div></div>`),
+			templ.Raw(`<div class="text-center shadow-sm card bg-base-200"><div class="card-body">C</div></div>`),
+		},
+		"",
+		"mb-4",
+	))
+}
+
+templ DividerPage(r links.LinkResolver) {
+	@pageShell(r, "Divider", "Divider will be used to separate content vertically or horizontally.", dividerBody(r))
+}
+
+templ dividerBody(r links.LinkResolver) {
+	@section("Divider", templ.Raw(`
+		<div class="flex flex-col w-full">
+			<div class="grid h-20 card bg-base-300 rounded-box place-items-center">content</div>
+			<div class="divider">OR</div>
+			<div class="grid h-20 card bg-base-300 rounded-box place-items-center">content</div>
+		</div>`))
+
+	@section("Divider horizontal", templ.Raw(`
+		<div class="flex w-full">
+			<div class="grid h-20 grow card bg-base-300 rounded-box place-items-center">content</div>
+			<div class="divider divider-horizontal">OR</div>
+			<div class="grid h-20 grow card bg-base-300 rounded-box place-items-center">content</div>
+		</div>`))
+
+	@section("Divider with no text", templ.Raw(`
+		<div class="flex flex-col w-full">
+			<div class="grid h-20 card bg-base-300 rounded-box place-items-center">content</div>
+			<div class="divider"></div>
+			<div class="grid h-20 card bg-base-300 rounded-box place-items-center">content</div>
+		</div>`))
+
+	@section("Responsive (lg:divider-horizontal)", templ.Raw(`
+		<div class="flex flex-col w-full lg:flex-row">
+			<div class="grid grow h-32 card bg-base-300 rounded-box place-items-center">content</div>
+			<div class="divider lg:divider-horizontal">OR</div>
+			<div class="grid grow h-32 card bg-base-300 rounded-box place-items-center">content</div>
+		</div>`))
+
+	@section("Divider with colors", templ.Raw(`
+		<div class="flex flex-col w-full">
+			<div class="divider">Default</div>
+			<div class="divider divider-neutral">Neutral</div>
+			<div class="divider divider-primary">Primary</div>
+			<div class="divider divider-secondary">Secondary</div>
+			<div class="divider divider-accent">Accent</div>
+			<div class="divider divider-success">Success</div>
+			<div class="divider divider-warning">Warning</div>
+			<div class="divider divider-info">Info</div>
+			<div class="divider divider-error">Error</div>
+		</div>`))
+
+	@section("Divider in different positions", templ.Raw(`
+		<div class="flex flex-col w-full">
+			<div class="divider divider-start">Start</div>
+			<div class="divider">Default</div>
+			<div class="divider divider-end">End</div>
+		</div>`))
+
+	@section("Divider in different positions (horizontal)", templ.Raw(`
+		<div class="flex w-full justify-center h-52">
+			<div class="divider divider-horizontal divider-start">Start</div>
+			<div class="divider divider-horizontal">Default</div>
+			<div class="divider divider-horizontal divider-end">End</div>
+		</div>`))
+}
+
+templ MaskPage(r links.LinkResolver) {
+	@pageShell(r, "Mask", "Mask crops the content of the element to common shapes.", maskBody(r))
+}
+
+const maskImgURL = "https://img.daisyui.com/images/stock/photo-1567653418876-5bb0e566e1c2.webp"
+
+templ maskBody(r links.LinkResolver) {
+	@section("Squircle", daisyui.MaskImage(maskImgURL, "Squircle CSS mask", "squircle", "", "w-40 h-40"))
+	@section("Heart", daisyui.MaskImage(maskImgURL, "Heart CSS mask", "heart", "", "w-40 h-40"))
+	@section("Hexagon", daisyui.MaskImage(maskImgURL, "Hexagon CSS mask", "hexagon", "", "w-40 h-40"))
+	@section("Hexagon-2 (horizontal hexagon)", daisyui.MaskImage(maskImgURL, "Hexagon-2 CSS mask", "hexagon-2", "", "w-40 h-40"))
+	@section("Decagon", daisyui.MaskImage(maskImgURL, "Decagon CSS mask", "decagon", "", "w-40 h-40"))
+	@section("Pentagon", daisyui.MaskImage(maskImgURL, "Pentagon CSS mask", "pentagon", "", "w-40 h-40"))
+	@section("Diamond", daisyui.MaskImage(maskImgURL, "Diamond CSS mask", "diamond", "", "w-40 h-40"))
+	@section("Square", daisyui.MaskImage(maskImgURL, "Square CSS mask", "square", "", "w-40 h-40"))
+	@section("Circle", daisyui.MaskImage(maskImgURL, "Circle CSS mask", "circle", "", "w-40 h-40"))
+	@section("Star", daisyui.MaskImage(maskImgURL, "Star CSS mask", "star", "", "w-40 h-40"))
+	@section("Star-2 (bold star)", daisyui.MaskImage(maskImgURL, "Star-2 CSS mask", "star-2", "", "w-40 h-40"))
+	@section("Triangle (pointing top)", daisyui.MaskImage(maskImgURL, "Triangle CSS mask", "triangle", "", "w-40 h-40"))
+	@section("Triangle-2 (pointing down)", daisyui.MaskImage(maskImgURL, "Triangle-2 CSS mask", "triangle-2", "", "w-40 h-40"))
+	@section("Triangle-3 (pointing left)", daisyui.MaskImage(maskImgURL, "Triangle-3 CSS mask", "triangle-3", "", "w-40 h-40"))
+	@section("Triangle-4 (pointing right)", daisyui.MaskImage(maskImgURL, "Triangle-4 CSS mask", "triangle-4", "", "w-40 h-40"))
+}
+
+templ LinkPage(r links.LinkResolver) {
+	@pageShell(r, "Link", "Link adds the missing underline style to links.", linkBody(r))
+}
+
+templ linkBody(r links.LinkResolver) {
+	@section("Link", daisyui.Link("", "Click me", "", "", "", nil))
+	@section("Primary color", daisyui.Link("", "Click me", "primary", "", "", nil))
+	@section("Secondary color", daisyui.Link("", "Click me", "secondary", "", "", nil))
+	@section("Accent color", daisyui.Link("", "Click me", "accent", "", "", nil))
+	@section("Success color", daisyui.Link("", "Click me", "success", "", "", nil))
+	@section("Info color", daisyui.Link("", "Click me", "info", "", "", nil))
+	@section("Warning color", daisyui.Link("", "Click me", "warning", "", "", nil))
+	@section("Error color", daisyui.Link("", "Click me", "error", "", "", nil))
+	@section("Show underline only on hover", daisyui.Link("", "Click me", "", "hover", "", nil))
+}
+
+templ KbdPage(r links.LinkResolver) {
+	@pageShell(r, "Kbd", "Kbd is used to display keyboard shortcuts.", kbdBody(r))
+}
+
+templ kbdBody(r links.LinkResolver) {
+	@section("Kbd", daisyui.Kbd("K", "", ""))
+
+	@section("Kbd sizes", templ.Raw(`
+		<kbd class="kbd kbd-xs">Xsmall</kbd>
+		<kbd class="kbd kbd-sm">Small</kbd>
+		<kbd class="kbd kbd-md">Medium</kbd>
+		<kbd class="kbd kbd-lg">Large</kbd>
+		<kbd class="kbd kbd-xl">Xlarge</kbd>`))
+
+	@section("In text", templ.Raw(`<span>Press <kbd class="kbd kbd-sm">F</kbd> to pay respects.</span>`))
+
+	@section("Key combination", daisyui.KbdCombo([]string{"ctrl", "shift", "del"}, "", ""))
+
+	@section("Function keys", templ.Raw(`
+		<kbd class="kbd">&#8984;</kbd>
+		<kbd class="kbd">&#8997;</kbd>
+		<kbd class="kbd">&#8679;</kbd>
+		<kbd class="kbd">&#8963;</kbd>`))
+
+	@section("A full keyboard", templ.Raw(`
+		<div class="overflow-x-auto">
+			<div class="flex justify-center gap-1 w-full mb-1">
+				<kbd class="kbd">q</kbd><kbd class="kbd">w</kbd><kbd class="kbd">e</kbd><kbd class="kbd">r</kbd>
+				<kbd class="kbd">t</kbd><kbd class="kbd">y</kbd><kbd class="kbd">u</kbd><kbd class="kbd">i</kbd>
+				<kbd class="kbd">o</kbd><kbd class="kbd">p</kbd>
+			</div>
+			<div class="flex justify-center gap-1 w-full mb-1">
+				<kbd class="kbd">a</kbd><kbd class="kbd">s</kbd><kbd class="kbd">d</kbd><kbd class="kbd">f</kbd>
+				<kbd class="kbd">g</kbd><kbd class="kbd">h</kbd><kbd class="kbd">j</kbd><kbd class="kbd">k</kbd>
+				<kbd class="kbd">l</kbd>
+			</div>
+			<div class="flex justify-center gap-1 w-full mb-1">
+				<kbd class="kbd">z</kbd><kbd class="kbd">x</kbd><kbd class="kbd">c</kbd><kbd class="kbd">v</kbd>
+				<kbd class="kbd">b</kbd><kbd class="kbd">n</kbd><kbd class="kbd">m</kbd><kbd class="kbd">/</kbd>
+			</div>
+		</div>`))
+
+	@section("Arrow keys", templ.Raw(`
+		<div class="flex justify-center w-full"><kbd class="kbd">&#9650;</kbd></div>
+		<div class="flex justify-center gap-12 w-full"><kbd class="kbd">&#9664;&#65038;</kbd><kbd class="kbd">&#9654;&#65038;</kbd></div>
+		<div class="flex justify-center w-full"><kbd class="kbd">&#9660;</kbd></div>`))
+}
+
+templ StatusPage(r links.LinkResolver) {
+	@pageShell(r, "Status", "Status is a really small icon to visually show the current status of an element, like online, offline, error, etc.", statusBody(r))
+}
+
+templ statusBody(r links.LinkResolver) {
+	@section("Status", daisyui.Status("", "", "", "", ""))
+
+	@section("Status sizes", templ.Raw(`
+		<div aria-label="status" class="status status-xs"></div>
+		<div aria-label="status" class="status status-sm"></div>
+		<div aria-label="status" class="status status-md"></div>
+		<div aria-label="status" class="status status-lg"></div>
+		<div aria-label="status" class="status status-xl"></div>`))
+
+	@section("Status with colors", templ.Raw(`
+		<div aria-label="status" class="status status-primary"></div>
+		<div aria-label="status" class="status status-secondary"></div>
+		<div aria-label="status" class="status status-accent"></div>
+		<div aria-label="status" class="status status-neutral"></div>
+		<div aria-label="info" class="status status-info"></div>
+		<div aria-label="success" class="status status-success"></div>
+		<div aria-label="warning" class="status status-warning"></div>
+		<div aria-label="error" class="status status-error"></div>`))
+
+	@section("Status with ping animation", daisyui.Status("error", "", "animate-ping", "status", ""))
+
+	@section("Status with bounce animation", daisyui.Status("info", "", "animate-bounce", "status", ""))
+}
+
+templ LoadingPage(r links.LinkResolver) {
+	@pageShell(r, "Loading", "Loading shows an animation to indicate that something is loading.", loadingBody(r))
+}
+
+templ loadingBody(r links.LinkResolver) {
+	@section("Loading spinner", loadingRow("spinner"))
+	@section("Loading dots", loadingRow("dots"))
+	@section("Loading ring", loadingRow("ring"))
+	@section("Loading ball", loadingRow("ball"))
+	@section("Loading bars", loadingRow("bars"))
+	@section("Loading infinity", loadingRow("infinity"))
+
+	@section("Loading with colors", templ.Raw(`
+		<span class="loading loading-spinner text-primary"></span>
+		<span class="loading loading-spinner text-secondary"></span>
+		<span class="loading loading-spinner text-accent"></span>
+		<span class="loading loading-spinner text-neutral"></span>
+		<span class="loading loading-spinner text-info"></span>
+		<span class="loading loading-spinner text-success"></span>
+		<span class="loading loading-spinner text-warning"></span>
+		<span class="loading loading-spinner text-error"></span>`))
+}
+
+templ loadingRow(shape string) {
+	<div class="flex items-center gap-2">
+		@daisyui.Loading(shape, "xs", "", "")
+		@daisyui.Loading(shape, "sm", "", "")
+		@daisyui.Loading(shape, "md", "", "")
+		@daisyui.Loading(shape, "lg", "", "")
+		@daisyui.Loading(shape, "xl", "", "")
+	</div>
+}
+
+templ CollapsePage(r links.LinkResolver) {
+	@pageShell(r, "Collapse", "Collapse is used for showing and hiding content.", collapseBody(r))
+}
+
+templ collapseBody(r links.LinkResolver) {
+	@section("Collapse with focus", daisyui.Collapse(
+		daisyui.CollapseConfig{Class: "bg-base-100 border border-base-300"},
+		"How do I create an account?",
+		`Click the "Sign Up" button in the top right corner and follow the registration process.`,
+	))
+
+	@section("Collapse with checkbox", daisyui.Collapse(
+		daisyui.CollapseConfig{Mode: "checkbox", Class: "bg-base-100 border border-base-300"},
+		"How do I create an account?",
+		`Click the "Sign Up" button in the top right corner and follow the registration process.`,
+	))
+
+	@section("Collapse using details and summary tag", daisyui.Collapse(
+		daisyui.CollapseConfig{Mode: "details", Class: "bg-base-100 border border-base-300"},
+		"How do I create an account?",
+		`Click the "Sign Up" button in the top right corner and follow the registration process.`,
+	))
+
+	@section("Without border and background color", daisyui.Collapse(
+		daisyui.CollapseConfig{},
+		"How do I create an account?",
+		`Click the "Sign Up" button in the top right corner and follow the registration process.`,
+	))
+
+	@section("With arrow icon", daisyui.Collapse(
+		daisyui.CollapseConfig{Icon: "arrow", Class: "bg-base-100 border border-base-300"},
+		"How do I create an account?",
+		`Click the "Sign Up" button in the top right corner and follow the registration process.`,
+	))
+
+	@section("With arrow plus/minus icon", daisyui.Collapse(
+		daisyui.CollapseConfig{Icon: "plus", Class: "bg-base-100 border border-base-300"},
+		"How do I create an account?",
+		`Click the "Sign Up" button in the top right corner and follow the registration process.`,
+	))
+
+	@section("Force open", daisyui.Collapse(
+		daisyui.CollapseConfig{Open: true, Class: "bg-base-100 border border-base-300"},
+		"I have collapse-open class",
+		`Click the "Sign Up" button in the top right corner and follow the registration process.`,
+	))
+
+	@section("Force close", daisyui.Collapse(
+		daisyui.CollapseConfig{Close: true, Class: "bg-base-100 border border-base-300"},
+		"I have collapse-close class",
+		`Click the "Sign Up" button in the top right corner and follow the registration process.`,
+	))
+
+	@section("Custom colors for collapse that works with focus", daisyui.Collapse(
+		daisyui.CollapseConfig{Class: "bg-primary text-primary-content focus:bg-secondary focus:text-secondary-content"},
+		"How do I create an account?",
+		`Click the "Sign Up" button in the top right corner and follow the registration process.`,
+	))
+}
+
+templ SwapPage(r links.LinkResolver) {
+	@pageShell(r, "Swap", "Swap allows you to toggle the visibility of two elements using a checkbox or a class name.", swapBody(r))
+}
+
+templ swapBody(r links.LinkResolver) {
+	@section("Swap text", daisyui.Swap(
+		daisyui.SwapConfig{},
+		templ.Raw("ON"),
+		templ.Raw("OFF"),
+	))
+
+	@section("Swap volume icons", daisyui.Swap(
+		daisyui.SwapConfig{},
+		templ.Raw(`<svg class="fill-current" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24"><path d="M14,3.23V5.29C16.89,6.15 19,8.83 19,12C19,15.17 16.89,17.84 14,18.7V20.77C18,19.86 21,16.28 21,12C21,7.72 18,4.14 14,3.23M16.5,12C16.5,10.23 15.5,8.71 14,7.97V16C15.5,15.29 16.5,13.76 16.5,12M3,9V15H7L12,20V4L7,9H3Z"/></svg>`),
+		templ.Raw(`<svg class="fill-current" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24"><path d="M3,9H7L12,4V20L7,15H3V9M16.59,12L14,9.41L15.41,8L18,10.59L20.59,8L22,9.41L19.41,12L22,14.59L20.59,16L18,13.41L15.41,16L14,14.59L16.59,12Z"/></svg>`),
+	))
+
+	@section("Swap icons with rotate effect", daisyui.Swap(
+		daisyui.SwapConfig{Effect: "rotate"},
+		templ.Raw(`<svg class="swap-on fill-current w-10 h-10" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5.64,17l-.71.71a1,1,0,0,0,0,1.41,1,1,0,0,0,1.41,0l.71-.71A1,1,0,0,0,5.64,17ZM5,12a1,1,0,0,0-1-1H3a1,1,0,0,0,0,2H4A1,1,0,0,0,5,12Zm7-7a1,1,0,0,0,1-1V3a1,1,0,0,0-2,0V4A1,1,0,0,0,12,5ZM5.64,7.05a1,1,0,0,0,.7.29,1,1,0,0,0,.71-.29,1,1,0,0,0,0-1.41l-.71-.71A1,1,0,0,0,4.93,6.34Zm12,.29a1,1,0,0,0,.7-.29l.71-.71a1,1,0,1,0-1.41-1.41L17,5.64a1,1,0,0,0,0,1.41A1,1,0,0,0,17.66,7.34ZM21,11H20a1,1,0,0,0,0,2h1a1,1,0,0,0,0-2Zm-9,8a1,1,0,0,0-1,1v1a1,1,0,0,0,2,0V20A1,1,0,0,0,12,19ZM18.36,17A1,1,0,0,0,17,18.36l.71.71a1,1,0,0,0,1.41,0,1,1,0,0,0,0-1.41ZM12,6.5A5.5,5.5,0,1,0,17.5,12,5.51,5.51,0,0,0,12,6.5Zm0,9A3.5,3.5,0,1,1,15.5,12,3.5,3.5,0,0,1,12,15.5Z"/></svg>`),
+		templ.Raw(`<svg class="swap-off fill-current w-10 h-10" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21.64,13a1,1,0,0,0-1.05-.14,8.05,8.05,0,0,1-3.37.73A8.15,8.15,0,0,1,9.08,5.49a8.59,8.59,0,0,1,.25-2A1,1,0,0,0,8,2.36,10.14,10.14,0,1,0,22,14.05,1,1,0,0,0,21.64,13Zm-9.5,6.69A8.14,8.14,0,0,1,7.08,5.22v.27A10.15,10.15,0,0,0,17.22,15.63a9.79,9.79,0,0,0,2.1-.22A8.11,8.11,0,0,1,12.14,19.73Z"/></svg>`),
+	))
+
+	@section("Swap icons with flip effect", daisyui.Swap(
+		daisyui.SwapConfig{Effect: "flip", Class: "text-9xl"},
+		templ.Raw("&#128520;"),
+		templ.Raw("&#128519;"),
+	))
+
+	@section("Activate using class name instead of checkbox", templ.Raw(`
+		<div class="swap text-6xl">
+			<div class="swap-on">&#129397;</div>
+			<div class="swap-off">&#129398;</div>
+		</div>
+		<div class="swap swap-active text-6xl">
+			<div class="swap-on">&#129321;</div>
+			<div class="swap-off">&#128557;</div>
+		</div>`))
+}
+
+templ ThemeControllerPage(r links.LinkResolver) {
+	@pageShell(r, "Theme Controller", "If a checked checkbox input or a checked radio input with theme-controller class exists in the page, The page will have the same theme as that input's value.", themeControllerBody(r))
+}
+
+templ themeControllerBody(r links.LinkResolver) {
+	@section("Theme Controller using a toggle", daisyui.ThemeController(daisyui.ThemeControllerConfig{
+		InputClass: "toggle",
+		Value:      "synthwave",
+	}))
+
+	@section("Theme Controller using a checkbox", daisyui.ThemeController(daisyui.ThemeControllerConfig{
+		InputClass: "checkbox",
+		Value:      "synthwave",
+	}))
+
+	@section("Theme Controller using a toggle with text", templ.Raw(`
+		<label class="flex cursor-pointer gap-2">
+			<span class="label-text">Default</span>
+			<input type="checkbox" autocomplete="off" value="synthwave" class="toggle theme-controller"/>
+			<span class="label-text">Synthwave</span>
+		</label>`))
+
+	@section("Theme Controller using a toggle with icons", templ.Raw(`
+		<label class="flex cursor-pointer gap-2">
+			<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/></svg>
+			<input type="checkbox" autocomplete="off" value="synthwave" class="toggle theme-controller"/>
+			<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+		</label>`))
+
+	@section("Theme Controller using a radio input", templ.Raw(`
+		<fieldset class="fieldset">
+			<label class="flex gap-2 cursor-pointer items-center">
+				<input type="radio" name="theme-radios" autocomplete="off" class="radio radio-sm theme-controller" value="default"/>
+				Default
+			</label>
+			<label class="flex gap-2 cursor-pointer items-center">
+				<input type="radio" name="theme-radios" autocomplete="off" class="radio radio-sm theme-controller" value="retro"/>
+				Retro
+			</label>
+			<label class="flex gap-2 cursor-pointer items-center">
+				<input type="radio" name="theme-radios" autocomplete="off" class="radio radio-sm theme-controller" value="cyberpunk"/>
+				Cyberpunk
+			</label>
+			<label class="flex gap-2 cursor-pointer items-center">
+				<input type="radio" name="theme-radios" autocomplete="off" class="radio radio-sm theme-controller" value="valentine"/>
+				Valentine
+			</label>
+			<label class="flex gap-2 cursor-pointer items-center">
+				<input type="radio" name="theme-radios" autocomplete="off" class="radio radio-sm theme-controller" value="aqua"/>
+				Aqua
+			</label>
+		</fieldset>`))
+
+	@section("Theme Controller using a radio button", templ.Raw(`
+		<div class="join join-vertical">
+			<input type="radio" name="theme-buttons" autocomplete="off" class="btn theme-controller join-item" aria-label="Default" value="default"/>
+			<input type="radio" name="theme-buttons" autocomplete="off" class="btn theme-controller join-item" aria-label="Retro" value="retro"/>
+			<input type="radio" name="theme-buttons" autocomplete="off" class="btn theme-controller join-item" aria-label="Cyberpunk" value="cyberpunk"/>
+			<input type="radio" name="theme-buttons" autocomplete="off" class="btn theme-controller join-item" aria-label="Valentine" value="valentine"/>
+			<input type="radio" name="theme-buttons" autocomplete="off" class="btn theme-controller join-item" aria-label="Aqua" value="aqua"/>
+		</div>`))
+}

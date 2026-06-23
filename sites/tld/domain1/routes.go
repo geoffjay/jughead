@@ -32,6 +32,39 @@ func Routes(router *gin.RouterGroup, theme string) {
 	router.GET("/components/navbar", func(c *gin.Context) {
 		render(c, theme, "Navbar - domain1.tld", NavbarPage(resolver(c)))
 	})
+	router.GET("/components/join", func(c *gin.Context) {
+		render(c, theme, "Join - domain1.tld", JoinPage(resolver(c)))
+	})
+	router.GET("/components/stack", func(c *gin.Context) {
+		render(c, theme, "Stack - domain1.tld", StackPage(resolver(c)))
+	})
+	router.GET("/components/divider", func(c *gin.Context) {
+		render(c, theme, "Divider - domain1.tld", DividerPage(resolver(c)))
+	})
+	router.GET("/components/mask", func(c *gin.Context) {
+		render(c, theme, "Mask - domain1.tld", MaskPage(resolver(c)))
+	})
+	router.GET("/components/link", func(c *gin.Context) {
+		render(c, theme, "Link - domain1.tld", LinkPage(resolver(c)))
+	})
+	router.GET("/components/kbd", func(c *gin.Context) {
+		render(c, theme, "Kbd - domain1.tld", KbdPage(resolver(c)))
+	})
+	router.GET("/components/status", func(c *gin.Context) {
+		render(c, theme, "Status - domain1.tld", StatusPage(resolver(c)))
+	})
+	router.GET("/components/loading", func(c *gin.Context) {
+		render(c, theme, "Loading - domain1.tld", LoadingPage(resolver(c)))
+	})
+	router.GET("/components/collapse", func(c *gin.Context) {
+		render(c, theme, "Collapse - domain1.tld", CollapsePage(resolver(c)))
+	})
+	router.GET("/components/swap", func(c *gin.Context) {
+		render(c, theme, "Swap - domain1.tld", SwapPage(resolver(c)))
+	})
+	router.GET("/components/theme-controller", func(c *gin.Context) {
+		render(c, theme, "Theme Controller - domain1.tld", ThemeControllerPage(resolver(c)))
+	})
 }
 
 func resolver(c *gin.Context) links.LinkResolver {

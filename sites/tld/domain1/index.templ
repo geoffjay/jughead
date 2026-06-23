@@ -19,6 +19,17 @@ func navbarData(r links.LinkResolver) daisyui.NavbarData {
 				Items: []daisyui.NavItem{
 					{Label: "Accordion", Href: "/components/accordion"},
 					{Label: "Navbar", Href: "/components/navbar"},
+					{Label: "Join", Href: "/components/join"},
+					{Label: "Stack", Href: "/components/stack"},
+					{Label: "Divider", Href: "/components/divider"},
+					{Label: "Mask", Href: "/components/mask"},
+					{Label: "Link", Href: "/components/link"},
+					{Label: "Kbd", Href: "/components/kbd"},
+					{Label: "Status", Href: "/components/status"},
+					{Label: "Loading", Href: "/components/loading"},
+					{Label: "Collapse", Href: "/components/collapse"},
+					{Label: "Swap", Href: "/components/swap"},
+					{Label: "Theme Controller", Href: "/components/theme-controller"},
 				},
 			},
 		},
@@ -37,6 +48,17 @@ templ Home(r links.LinkResolver) {
 			<ul class="menu bg-base-100 rounded-box w-56 shadow">
 				<li><a href={ r.SafeURL("/components/accordion") } class="link link-hover">Accordion</a></li>
 				<li><a href={ r.SafeURL("/components/navbar") } class="link link-hover">Navbar</a></li>
+				<li><a href={ r.SafeURL("/components/join") } class="link link-hover">Join</a></li>
+				<li><a href={ r.SafeURL("/components/stack") } class="link link-hover">Stack</a></li>
+				<li><a href={ r.SafeURL("/components/divider") } class="link link-hover">Divider</a></li>
+				<li><a href={ r.SafeURL("/components/mask") } class="link link-hover">Mask</a></li>
+				<li><a href={ r.SafeURL("/components/link") } class="link link-hover">Link</a></li>
+				<li><a href={ r.SafeURL("/components/kbd") } class="link link-hover">Kbd</a></li>
+				<li><a href={ r.SafeURL("/components/status") } class="link link-hover">Status</a></li>
+				<li><a href={ r.SafeURL("/components/loading") } class="link link-hover">Loading</a></li>
+				<li><a href={ r.SafeURL("/components/collapse") } class="link link-hover">Collapse</a></li>
+				<li><a href={ r.SafeURL("/components/swap") } class="link link-hover">Swap</a></li>
+				<li><a href={ r.SafeURL("/components/theme-controller") } class="link link-hover">Theme Controller</a></li>
 			</ul>
 		</main>
 	</div>
