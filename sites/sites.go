@@ -9,25 +9,28 @@ import (
 )
 
 type Site struct {
-	Path     string
-	Url      string
-	Template templ.Component
-	Proxy    func(ctx *gin.Context)
+	Path      string
+	Url       string
+	Published bool
+	Template  templ.Component
+	Proxy     func(ctx *gin.Context)
 }
 
 // TODO: Read from a configuration file
 var sites = map[string]*Site{
 	"/sites/domain1.tld": {
-		Path:     "/sites/domain1.tld",
-		Url:      "http://domain1.tld",
-		Template: domain1.BodyContent(),
-		Proxy:    domain1.Proxy,
+		Path:      "/sites/domain1.tld",
+		Url:       "http://domain1.tld",
+		Published: false,
+		Template:  domain1.BodyContent(),
+		Proxy:     domain1.Proxy,
 	},
 	"/sites/domain2.tld": {
-		Path:     "/sites/domain2.tld",
-		Url:      "http://domain2.tld",
-		Template: domain2.BodyContent(),
-		Proxy:    domain2.Proxy,
+		Path:      "/sites/domain2.tld",
+		Url:       "http://domain2.tld",
+		Published: false,
+		Template:  domain2.BodyContent(),
+		Proxy:     domain2.Proxy,
 	},
 }
 
@@ -35,6 +38,9 @@ func Initialize() {
 	sm := GetSiteManager()
 
 	for _, site := range sites {
+		if !ShouldLoad(site.Published) {
+			continue
+		}
 		sm.RegisterSite(site.Path, site)
 	}
 }
