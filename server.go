@@ -65,9 +65,9 @@ func runServer() error {
 	store := sessions.NewStore()
 
 	router.Use(middleware.ReverseProxy(map[string]string{
-		"domain1.tld:9000":          "http://localhost:9000/sites/domain1.tld",
-		"domain2.tld:9000":          "http://localhost:9000/sites/domain2.tld",
-		"quux.geoffjay.com:9000":    "http://localhost:9000/sites/quux.geoffjay.com",
+		"domain1.tld":            fmt.Sprintf("http://localhost:%d/sites/domain1.tld", port),
+		"domain2.tld":            fmt.Sprintf("http://localhost:%d/sites/domain2.tld", port),
+		"quux.geoffjay.com":      fmt.Sprintf("http://localhost:%d/sites/quux.geoffjay.com", port),
 	}))
 
 	router.HTMLRender = &TemplRender{}

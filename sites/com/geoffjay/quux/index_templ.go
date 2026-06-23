@@ -31,12 +31,12 @@ func BodyContent(current string, count int) templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<div id=\"app\"><header><h1>quux.geoffjay.com</h1><nav><a href=\"/sites/quux.geoffjay.com/\">Home</a> | <a href=\"/sites/quux.geoffjay.com/about\">About</a> | <a href=\"/sites/quux.geoffjay.com/counter\">Counter</a></nav></header><main>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<div id=\"app\"><header><h1>quux.geoffjay.com</h1><nav><a href=\"./\">Home</a> | <a href=\"./about\">About</a> | <a href=\"./counter\">Counter</a></nav></header><main>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		if current == "about" {
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "<h2>About</h2><p>quux is a sample site published under the geoffjay.com domain for testing routing, linking, and the published flag in the site manager.</p><p><a href=\"/sites/quux.geoffjay.com/\">&larr; Back home</a></p>")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "<h2>About</h2><p>quux is a sample site published under the geoffjay.com domain for testing routing, linking, and the published flag in the site manager.</p><p><a href=\"./\">&larr; Back home</a></p>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -48,7 +48,7 @@ func BodyContent(current string, count int) templ.Component {
 			var templ_7745c5c3_Var2 string
 			templ_7745c5c3_Var2, templ_7745c5c3_Err = templ.JoinStringErrs(strconv.Itoa(count))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/com/geoffjay/quux/index.templ`, Line: 29, Col: 51}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/com/geoffjay/quux/index.templ`, Line: 29, Col: 50}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var2))
 			if templ_7745c5c3_Err != nil {
@@ -59,20 +59,20 @@ func BodyContent(current string, count int) templ.Component {
 				return templ_7745c5c3_Err
 			}
 			var templ_7745c5c3_Var3 templ.SafeURL
-			templ_7745c5c3_Var3, templ_7745c5c3_Err = templ.JoinURLErrs("/sites/quux.geoffjay.com/counter?n=" + strconv.Itoa(count+1))
+			templ_7745c5c3_Var3, templ_7745c5c3_Err = templ.JoinURLErrs(templ.SafeURL("./counter?n=" + strconv.Itoa(count+1)))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/com/geoffjay/quux/index.templ`, Line: 31, Col: 78}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/com/geoffjay/quux/index.templ`, Line: 31, Col: 69}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var3))
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "\">+1</a></p><p><a href=\"/sites/quux.geoffjay.com/\">Reset &amp; go home</a></p>")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "\">+1</a></p><p><a href=\"./\">Reset &amp; go home</a></p>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 		} else {
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "<h2>Home</h2><p>Welcome to the quux site.</p><ul><li><a href=\"/sites/quux.geoffjay.com/about\">About page</a></li><li><a href=\"/sites/quux.geoffjay.com/counter\">Counter page</a></li></ul>")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "<h2>Home</h2><p>Welcome to the quux site.</p><ul><li><a href=\"./about\">About page</a></li><li><a href=\"./counter\">Counter page</a></li></ul>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}

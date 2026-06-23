@@ -2,6 +2,7 @@ package middleware
 
 import (
 	"log"
+	"net"
 	"net/http"
 	"net/http/httputil"
 	"net/url"
@@ -81,14 +82,21 @@ func ReverseProxy(targets map[string]string) gin.HandlerFunc {
 	}
 }
 
-// effectiveHost returns the host that should drive routing. X-Forwarded-Host
-// (if present) takes precedence over the request's Host field so the proxy
-// can be exercised without real DNS entries for the target domains.
+// effectiveHost returns the host (without port) that should drive routing.
+// X-Forwarded-Host (if present) takes precedence over the request's Host field
+// so the proxy can be exercised without real DNS entries for the target
+// domains. The port is stripped because Fly's edge terminates TLS on 443 and
+// forwards to the app on an arbitrary internal port; the browser therefore
+// sends "quux.geoffjay.com" (no port), never "quux.geoffjay.com:8080".
 func effectiveHost(r *http.Request) string {
+	host := r.Host
 	if xfh := strings.TrimSpace(r.Header.Get("X-Forwarded-Host")); xfh != "" {
-		return xfh
+		host = xfh
 	}
-	return r.Host
+	if h, _, err := net.SplitHostPort(host); err == nil {
+		return h
+	}
+	return host
 }
 
 // normalisePath collapses the join of target.Path and the request path so the

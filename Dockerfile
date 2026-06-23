@@ -1,4 +1,4 @@
-FROM golang:1.22-alpine AS builder
+FROM golang:1.26-alpine AS builder
 
 # Move to working directory (/build).
 WORKDIR /build
@@ -20,6 +20,8 @@ FROM scratch
 COPY --from=builder /build/jughead /
 COPY --from=builder /build/static /static
 
+# Set runtime environment variables.
+ENV BACKEND_PORT=8080
 
 # Set entry point.
 ENTRYPOINT ["/jughead"]
