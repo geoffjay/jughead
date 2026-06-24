@@ -45,6 +45,16 @@ func navbarData(r links.LinkResolver) daisyui.NavbarData {
 					{Label: "Label", Href: "/components/label"},
 					{Label: "Fieldset", Href: "/components/fieldset"},
 					{Label: "Validator", Href: "/components/validator"},
+					{Label: "Alert", Href: "/components/alert"},
+					{Label: "Badge", Href: "/components/badge"},
+					{Label: "Progress", Href: "/components/progress"},
+					{Label: "Radial progress", Href: "/components/radial-progress"},
+					{Label: "Countdown", Href: "/components/countdown"},
+					{Label: "Skeleton", Href: "/components/skeleton"},
+					{Label: "Toast", Href: "/components/toast"},
+					{Label: "Tooltip", Href: "/components/tooltip"},
+					{Label: "Indicator", Href: "/components/indicator"},
+					{Label: "Chat bubble", Href: "/components/chat-bubble"},
 				},
 			},
 		},
@@ -106,6 +116,16 @@ templ Home(r links.LinkResolver) {
 				<li><a href={ r.SafeURL("/components/label") } class="link link-hover">Label</a></li>
 				<li><a href={ r.SafeURL("/components/fieldset") } class="link link-hover">Fieldset</a></li>
 				<li><a href={ r.SafeURL("/components/validator") } class="link link-hover">Validator</a></li>
+				<li><a href={ r.SafeURL("/components/alert") } class="link link-hover">Alert</a></li>
+				<li><a href={ r.SafeURL("/components/badge") } class="link link-hover">Badge</a></li>
+				<li><a href={ r.SafeURL("/components/progress") } class="link link-hover">Progress</a></li>
+				<li><a href={ r.SafeURL("/components/radial-progress") } class="link link-hover">Radial progress</a></li>
+				<li><a href={ r.SafeURL("/components/countdown") } class="link link-hover">Countdown</a></li>
+				<li><a href={ r.SafeURL("/components/skeleton") } class="link link-hover">Skeleton</a></li>
+				<li><a href={ r.SafeURL("/components/toast") } class="link link-hover">Toast</a></li>
+				<li><a href={ r.SafeURL("/components/tooltip") } class="link link-hover">Tooltip</a></li>
+				<li><a href={ r.SafeURL("/components/indicator") } class="link link-hover">Indicator</a></li>
+				<li><a href={ r.SafeURL("/components/chat-bubble") } class="link link-hover">Chat bubble</a></li>
 			</ul>
 		</main>
 	</div>
