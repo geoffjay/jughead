@@ -6784,9 +6784,21 @@
       height: var(--size);
     }
   }
+  .size-4 {
+    width: calc(var(--spacing) * 4);
+    height: calc(var(--spacing) * 4);
+  }
+  .size-6 {
+    width: calc(var(--spacing) * 6);
+    height: calc(var(--spacing) * 6);
+  }
   .size-28 {
     width: calc(var(--spacing) * 28);
     height: calc(var(--spacing) * 28);
+  }
+  .size-\[1\.2em\] {
+    width: 1.2em;
+    height: 1.2em;
   }
   .status-lg {
     @layer daisyui.l1.l2 {
@@ -9725,6 +9737,15 @@
       }
     }
   }
+  .sm\:btn-sm {
+    @media (width >= 40rem) {
+      @layer daisyui.l1.l2 {
+        --fontsize: 0.75rem;
+        --btn-p: 0.75rem;
+        --size: calc(var(--size-field, 0.25rem) * 8);
+      }
+    }
+  }
   .md\:w-52 {
     @media (width >= 48rem) {
       width: calc(var(--spacing) * 52);
@@ -9733,6 +9754,15 @@
   .md\:w-auto {
     @media (width >= 48rem) {
       width: auto;
+    }
+  }
+  .md\:btn-md {
+    @media (width >= 48rem) {
+      @layer daisyui.l1.l2 {
+        --fontsize: 0.875rem;
+        --btn-p: 1rem;
+        --size: calc(var(--size-field, 0.25rem) * 10);
+      }
     }
   }
   .lg\:drawer-open {
@@ -9923,6 +9953,24 @@
   .lg\:flex-row {
     @media (width >= 64rem) {
       flex-direction: row;
+    }
+  }
+  .lg\:btn-lg {
+    @media (width >= 64rem) {
+      @layer daisyui.l1.l2 {
+        --fontsize: 1.125rem;
+        --btn-p: 1.25rem;
+        --size: calc(var(--size-field, 0.25rem) * 12);
+      }
+    }
+  }
+  .xl\:btn-xl {
+    @media (width >= 80rem) {
+      @layer daisyui.l1.l2 {
+        --fontsize: 1.375rem;
+        --btn-p: 1.5rem;
+        --size: calc(var(--size-field, 0.25rem) * 14);
+      }
     }
   }
   .is-drawer-close\:tooltip {

@@ -1,14 +1,12 @@
 package pages
 
 // MetaTags defines meta tags.
-
 templ MetaTags(keywords, description string) {
 	<meta name="keywords" content={ keywords }/>
 	<meta name="description" content={ description }/>
 }
 
 // BodyContent defines HTML content.
-
 templ BodyContent(h1, text string) {
 	<div class="min-h-screen bg-base-200 text-base-content flex items-center justify-center p-8">
 		<div class="max-w-2xl w-full text-center space-y-6">

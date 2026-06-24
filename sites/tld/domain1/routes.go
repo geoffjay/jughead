@@ -65,6 +65,12 @@ func Routes(router *gin.RouterGroup, theme string) {
 	router.GET("/components/theme-controller", func(c *gin.Context) {
 		render(c, theme, "Theme Controller - domain1.tld", ThemeControllerPage(resolver(c)))
 	})
+	router.GET("/components/button", func(c *gin.Context) {
+		render(c, theme, "Button - domain1.tld", ButtonPage(resolver(c)))
+	})
+	router.GET("/components/floating-action-button", func(c *gin.Context) {
+		render(c, theme, "FAB / Speed Dial - domain1.tld", FABPage(resolver(c)))
+	})
 }
 
 func resolver(c *gin.Context) links.LinkResolver {

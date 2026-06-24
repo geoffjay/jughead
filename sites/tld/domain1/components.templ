@@ -36,7 +36,6 @@ templ joinBody(r links.LinkResolver) {
 			<button class="btn join-item">Button</button>
 			<button class="btn join-item">Button</button>
 		</div>`))
-
 	@section("Group items vertically", daisyui.Join(
 		[]templ.Component{
 			templ.Raw(`<button class="btn join-item">Button</button>`),
@@ -46,7 +45,6 @@ templ joinBody(r links.LinkResolver) {
 		"vertical",
 		"",
 	))
-
 	@section("Responsive: vertical on small, horizontal on large", daisyui.Join(
 		[]templ.Component{
 			templ.Raw(`<button class="btn join-item">Button</button>`),
@@ -56,7 +54,6 @@ templ joinBody(r links.LinkResolver) {
 		"vertical lg:join-horizontal",
 		"",
 	))
-
 	@section("With extra elements in the group", templ.Raw(`
 		<div class="join">
 			<div>
@@ -75,13 +72,11 @@ templ joinBody(r links.LinkResolver) {
 				<button class="btn join-item">Search</button>
 			</div>
 		</div>`))
-
 	@section("Custom border radius", templ.Raw(`
 		<div class="join">
 			<input class="input join-item w-36 lg:w-52" placeholder="Email"/>
 			<button class="btn join-item rounded-r-full">Subscribe</button>
 		</div>`))
-
 	@section("Join radio inputs with btn style", templ.Raw(`
 		<div class="join">
 			<input class="join-item btn" type="radio" name="options" autocomplete="off" aria-label="Radio 1"/>
@@ -104,7 +99,6 @@ templ stackBody(r links.LinkResolver) {
 		"",
 		"h-20 w-32",
 	))
-
 	@section("Stacked images", daisyui.Stack(
 		[]templ.Component{
 			templ.Raw(`<img src="https://img.daisyui.com/images/stock/photo-1572635148818-ef6fd45eb394.webp" alt="Stack image 1" class="rounded-box"/>`),
@@ -114,7 +108,6 @@ templ stackBody(r links.LinkResolver) {
 		"",
 		"mb-4 w-48",
 	))
-
 	@section("Stacked cards", daisyui.Stack(
 		[]templ.Component{
 			templ.Raw(`<div class="text-center border border-base-content card bg-base-100"><div class="card-body">A</div></div>`),
@@ -124,7 +117,6 @@ templ stackBody(r links.LinkResolver) {
 		"",
 		"mb-4 size-28",
 	))
-
 	@section("Stacked cards (top direction)", daisyui.Stack(
 		[]templ.Component{
 			templ.Raw(`<div class="text-center border border-base-content card bg-base-100"><div class="card-body">A</div></div>`),
@@ -134,7 +126,6 @@ templ stackBody(r links.LinkResolver) {
 		"top",
 		"mb-4 size-28",
 	))
-
 	@section("Stacked cards (start direction)", daisyui.Stack(
 		[]templ.Component{
 			templ.Raw(`<div class="text-center border border-base-content card bg-base-100"><div class="card-body">A</div></div>`),
@@ -144,7 +135,6 @@ templ stackBody(r links.LinkResolver) {
 		"start",
 		"mb-4 size-28",
 	))
-
 	@section("Stacked cards (end direction)", daisyui.Stack(
 		[]templ.Component{
 			templ.Raw(`<div class="text-center border border-base-content card bg-base-100"><div class="card-body">A</div></div>`),
@@ -154,7 +144,6 @@ templ stackBody(r links.LinkResolver) {
 		"end",
 		"mb-4 size-28",
 	))
-
 	@section("Stacked cards with shadow", daisyui.Stack(
 		[]templ.Component{
 			templ.Raw(`<div class="text-center shadow-md card bg-base-200"><div class="card-body">A</div></div>`),
@@ -177,28 +166,24 @@ templ dividerBody(r links.LinkResolver) {
 			<div class="divider">OR</div>
 			<div class="grid h-20 card bg-base-300 rounded-box place-items-center">content</div>
 		</div>`))
-
 	@section("Divider horizontal", templ.Raw(`
 		<div class="flex w-full">
 			<div class="grid h-20 grow card bg-base-300 rounded-box place-items-center">content</div>
 			<div class="divider divider-horizontal">OR</div>
 			<div class="grid h-20 grow card bg-base-300 rounded-box place-items-center">content</div>
 		</div>`))
-
 	@section("Divider with no text", templ.Raw(`
 		<div class="flex flex-col w-full">
 			<div class="grid h-20 card bg-base-300 rounded-box place-items-center">content</div>
 			<div class="divider"></div>
 			<div class="grid h-20 card bg-base-300 rounded-box place-items-center">content</div>
 		</div>`))
-
 	@section("Responsive (lg:divider-horizontal)", templ.Raw(`
 		<div class="flex flex-col w-full lg:flex-row">
 			<div class="grid grow h-32 card bg-base-300 rounded-box place-items-center">content</div>
 			<div class="divider lg:divider-horizontal">OR</div>
 			<div class="grid grow h-32 card bg-base-300 rounded-box place-items-center">content</div>
 		</div>`))
-
 	@section("Divider with colors", templ.Raw(`
 		<div class="flex flex-col w-full">
 			<div class="divider">Default</div>
@@ -211,14 +196,12 @@ templ dividerBody(r links.LinkResolver) {
 			<div class="divider divider-info">Info</div>
 			<div class="divider divider-error">Error</div>
 		</div>`))
-
 	@section("Divider in different positions", templ.Raw(`
 		<div class="flex flex-col w-full">
 			<div class="divider divider-start">Start</div>
 			<div class="divider">Default</div>
 			<div class="divider divider-end">End</div>
 		</div>`))
-
 	@section("Divider in different positions (horizontal)", templ.Raw(`
 		<div class="flex w-full justify-center h-52">
 			<div class="divider divider-horizontal divider-start">Start</div>
@@ -273,24 +256,19 @@ templ KbdPage(r links.LinkResolver) {
 
 templ kbdBody(r links.LinkResolver) {
 	@section("Kbd", daisyui.Kbd("K", "", ""))
-
 	@section("Kbd sizes", templ.Raw(`
 		<kbd class="kbd kbd-xs">Xsmall</kbd>
 		<kbd class="kbd kbd-sm">Small</kbd>
 		<kbd class="kbd kbd-md">Medium</kbd>
 		<kbd class="kbd kbd-lg">Large</kbd>
 		<kbd class="kbd kbd-xl">Xlarge</kbd>`))
-
 	@section("In text", templ.Raw(`<span>Press <kbd class="kbd kbd-sm">F</kbd> to pay respects.</span>`))
-
 	@section("Key combination", daisyui.KbdCombo([]string{"ctrl", "shift", "del"}, "", ""))
-
 	@section("Function keys", templ.Raw(`
 		<kbd class="kbd">&#8984;</kbd>
 		<kbd class="kbd">&#8997;</kbd>
 		<kbd class="kbd">&#8679;</kbd>
 		<kbd class="kbd">&#8963;</kbd>`))
-
 	@section("A full keyboard", templ.Raw(`
 		<div class="overflow-x-auto">
 			<div class="flex justify-center gap-1 w-full mb-1">
@@ -308,7 +286,6 @@ templ kbdBody(r links.LinkResolver) {
 				<kbd class="kbd">b</kbd><kbd class="kbd">n</kbd><kbd class="kbd">m</kbd><kbd class="kbd">/</kbd>
 			</div>
 		</div>`))
-
 	@section("Arrow keys", templ.Raw(`
 		<div class="flex justify-center w-full"><kbd class="kbd">&#9650;</kbd></div>
 		<div class="flex justify-center gap-12 w-full"><kbd class="kbd">&#9664;&#65038;</kbd><kbd class="kbd">&#9654;&#65038;</kbd></div>
@@ -321,14 +298,12 @@ templ StatusPage(r links.LinkResolver) {
 
 templ statusBody(r links.LinkResolver) {
 	@section("Status", daisyui.Status("", "", "", "", ""))
-
 	@section("Status sizes", templ.Raw(`
 		<div aria-label="status" class="status status-xs"></div>
 		<div aria-label="status" class="status status-sm"></div>
 		<div aria-label="status" class="status status-md"></div>
 		<div aria-label="status" class="status status-lg"></div>
 		<div aria-label="status" class="status status-xl"></div>`))
-
 	@section("Status with colors", templ.Raw(`
 		<div aria-label="status" class="status status-primary"></div>
 		<div aria-label="status" class="status status-secondary"></div>
@@ -338,9 +313,7 @@ templ statusBody(r links.LinkResolver) {
 		<div aria-label="success" class="status status-success"></div>
 		<div aria-label="warning" class="status status-warning"></div>
 		<div aria-label="error" class="status status-error"></div>`))
-
 	@section("Status with ping animation", daisyui.Status("error", "", "animate-ping", "status", ""))
-
 	@section("Status with bounce animation", daisyui.Status("info", "", "animate-bounce", "status", ""))
 }
 
@@ -355,7 +328,6 @@ templ loadingBody(r links.LinkResolver) {
 	@section("Loading ball", loadingRow("ball"))
 	@section("Loading bars", loadingRow("bars"))
 	@section("Loading infinity", loadingRow("infinity"))
-
 	@section("Loading with colors", templ.Raw(`
 		<span class="loading loading-spinner text-primary"></span>
 		<span class="loading loading-spinner text-secondary"></span>
@@ -387,49 +359,41 @@ templ collapseBody(r links.LinkResolver) {
 		"How do I create an account?",
 		`Click the "Sign Up" button in the top right corner and follow the registration process.`,
 	))
-
 	@section("Collapse with checkbox", daisyui.Collapse(
 		daisyui.CollapseConfig{Mode: "checkbox", Class: "bg-base-100 border border-base-300"},
 		"How do I create an account?",
 		`Click the "Sign Up" button in the top right corner and follow the registration process.`,
 	))
-
 	@section("Collapse using details and summary tag", daisyui.Collapse(
 		daisyui.CollapseConfig{Mode: "details", Class: "bg-base-100 border border-base-300"},
 		"How do I create an account?",
 		`Click the "Sign Up" button in the top right corner and follow the registration process.`,
 	))
-
 	@section("Without border and background color", daisyui.Collapse(
 		daisyui.CollapseConfig{},
 		"How do I create an account?",
 		`Click the "Sign Up" button in the top right corner and follow the registration process.`,
 	))
-
 	@section("With arrow icon", daisyui.Collapse(
 		daisyui.CollapseConfig{Icon: "arrow", Class: "bg-base-100 border border-base-300"},
 		"How do I create an account?",
 		`Click the "Sign Up" button in the top right corner and follow the registration process.`,
 	))
-
 	@section("With arrow plus/minus icon", daisyui.Collapse(
 		daisyui.CollapseConfig{Icon: "plus", Class: "bg-base-100 border border-base-300"},
 		"How do I create an account?",
 		`Click the "Sign Up" button in the top right corner and follow the registration process.`,
 	))
-
 	@section("Force open", daisyui.Collapse(
 		daisyui.CollapseConfig{Open: true, Class: "bg-base-100 border border-base-300"},
 		"I have collapse-open class",
 		`Click the "Sign Up" button in the top right corner and follow the registration process.`,
 	))
-
 	@section("Force close", daisyui.Collapse(
 		daisyui.CollapseConfig{Close: true, Class: "bg-base-100 border border-base-300"},
 		"I have collapse-close class",
 		`Click the "Sign Up" button in the top right corner and follow the registration process.`,
 	))
-
 	@section("Custom colors for collapse that works with focus", daisyui.Collapse(
 		daisyui.CollapseConfig{Class: "bg-primary text-primary-content focus:bg-secondary focus:text-secondary-content"},
 		"How do I create an account?",
@@ -447,19 +411,16 @@ templ swapBody(r links.LinkResolver) {
 		templ.Raw("ON"),
 		templ.Raw("OFF"),
 	))
-
 	@section("Swap volume icons", daisyui.Swap(
 		daisyui.SwapConfig{},
 		templ.Raw(`<svg class="fill-current" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24"><path d="M14,3.23V5.29C16.89,6.15 19,8.83 19,12C19,15.17 16.89,17.84 14,18.7V20.77C18,19.86 21,16.28 21,12C21,7.72 18,4.14 14,3.23M16.5,12C16.5,10.23 15.5,8.71 14,7.97V16C15.5,15.29 16.5,13.76 16.5,12M3,9V15H7L12,20V4L7,9H3Z"/></svg>`),
 		templ.Raw(`<svg class="fill-current" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24"><path d="M3,9H7L12,4V20L7,15H3V9M16.59,12L14,9.41L15.41,8L18,10.59L20.59,8L22,9.41L19.41,12L22,14.59L20.59,16L18,13.41L15.41,16L14,14.59L16.59,12Z"/></svg>`),
 	))
-
 	@section("Swap icons with rotate effect", daisyui.Swap(
 		daisyui.SwapConfig{Effect: "rotate"},
 		templ.Raw(`<svg class="swap-on fill-current w-10 h-10" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5.64,17l-.71.71a1,1,0,0,0,0,1.41,1,1,0,0,0,1.41,0l.71-.71A1,1,0,0,0,5.64,17ZM5,12a1,1,0,0,0-1-1H3a1,1,0,0,0,0,2H4A1,1,0,0,0,5,12Zm7-7a1,1,0,0,0,1-1V3a1,1,0,0,0-2,0V4A1,1,0,0,0,12,5ZM5.64,7.05a1,1,0,0,0,.7.29,1,1,0,0,0,.71-.29,1,1,0,0,0,0-1.41l-.71-.71A1,1,0,0,0,4.93,6.34Zm12,.29a1,1,0,0,0,.7-.29l.71-.71a1,1,0,1,0-1.41-1.41L17,5.64a1,1,0,0,0,0,1.41A1,1,0,0,0,17.66,7.34ZM21,11H20a1,1,0,0,0,0,2h1a1,1,0,0,0,0-2Zm-9,8a1,1,0,0,0-1,1v1a1,1,0,0,0,2,0V20A1,1,0,0,0,12,19ZM18.36,17A1,1,0,0,0,17,18.36l.71.71a1,1,0,0,0,1.41,0,1,1,0,0,0,0-1.41ZM12,6.5A5.5,5.5,0,1,0,17.5,12,5.51,5.51,0,0,0,12,6.5Zm0,9A3.5,3.5,0,1,1,15.5,12,3.5,3.5,0,0,1,12,15.5Z"/></svg>`),
 		templ.Raw(`<svg class="swap-off fill-current w-10 h-10" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21.64,13a1,1,0,0,0-1.05-.14,8.05,8.05,0,0,1-3.37.73A8.15,8.15,0,0,1,9.08,5.49a8.59,8.59,0,0,1,.25-2A1,1,0,0,0,8,2.36,10.14,10.14,0,1,0,22,14.05,1,1,0,0,0,21.64,13Zm-9.5,6.69A8.14,8.14,0,0,1,7.08,5.22v.27A10.15,10.15,0,0,0,17.22,15.63a9.79,9.79,0,0,0,2.1-.22A8.11,8.11,0,0,1,12.14,19.73Z"/></svg>`),
 	))
-
 	@section("Swap icons with flip effect", daisyui.Swap(
 		daisyui.SwapConfig{Effect: "flip", Class: "text-9xl"},
 		templ.Raw("&#128520;"),
@@ -476,26 +437,22 @@ templ themeControllerBody(r links.LinkResolver) {
 		InputClass: "toggle",
 		Value:      "synthwave",
 	}))
-
 	@section("Theme Controller using a checkbox", daisyui.ThemeController(daisyui.ThemeControllerConfig{
 		InputClass: "checkbox",
 		Value:      "synthwave",
 	}))
-
 	@section("Theme Controller using a toggle with text", templ.Raw(`
 		<label class="flex cursor-pointer gap-2">
 			<span class="label-text">Default</span>
 			<input type="checkbox" autocomplete="off" value="synthwave" class="toggle theme-controller"/>
 			<span class="label-text">Synthwave</span>
 		</label>`))
-
 	@section("Theme Controller using a toggle with icons", templ.Raw(`
 		<label class="flex cursor-pointer gap-2">
 			<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/></svg>
 			<input type="checkbox" autocomplete="off" value="synthwave" class="toggle theme-controller"/>
 			<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
 		</label>`))
-
 	@section("Theme Controller using a radio input", templ.Raw(`
 		<fieldset class="fieldset">
 			<label class="flex gap-2 cursor-pointer items-center">
@@ -519,7 +476,6 @@ templ themeControllerBody(r links.LinkResolver) {
 				Aqua
 			</label>
 		</fieldset>`))
-
 	@section("Theme Controller using a radio button", templ.Raw(`
 		<div class="join join-vertical">
 			<input type="radio" name="theme-buttons" autocomplete="off" class="btn theme-controller join-item" aria-label="Default" value="default"/>
@@ -528,4 +484,223 @@ templ themeControllerBody(r links.LinkResolver) {
 			<input type="radio" name="theme-buttons" autocomplete="off" class="btn theme-controller join-item" aria-label="Valentine" value="valentine"/>
 			<input type="radio" name="theme-buttons" autocomplete="off" class="btn theme-controller join-item" aria-label="Aqua" value="aqua"/>
 		</div>`))
+}
+
+templ ButtonPage(r links.LinkResolver) {
+	@pageShell(r, "Button", "Buttons allow the user to take actions or make choices.", buttonBody(r))
+}
+
+templ buttonBody(r links.LinkResolver) {
+	@section("Button", daisyui.Button(daisyui.ButtonConfig{Label: "Default"}))
+	@section("Button sizes", templ.Raw(`
+		<button class="btn btn-xs">Xsmall</button>
+		<button class="btn btn-sm">Small</button>
+		<button class="btn">Medium</button>
+		<button class="btn btn-lg">Large</button>
+		<button class="btn btn-xl">Xlarge</button>`))
+	@section("Responsive button", daisyui.Button(daisyui.ButtonConfig{
+		Label: "Responsive",
+		Class: "btn-xs sm:btn-sm md:btn-md lg:btn-lg xl:btn-xl",
+	}))
+	@section("Button colors", buttonColorRow())
+	@section("Soft buttons", buttonSoftRow())
+	@section("Outline buttons", buttonOutlineRow())
+	@section("Dash buttons", buttonDashRow())
+	@section("Active buttons", buttonActiveRow())
+	@section("Ghost and link", templ.Raw(`
+		<button class="btn btn-ghost">Ghost</button>
+		<button class="btn btn-link">Link</button>`))
+	@section("Wide button", daisyui.Button(daisyui.ButtonConfig{Label: "Wide", Modifier: "wide"}))
+	@section("Buttons with any HTML tags", templ.Raw(`
+		<a href="/components/button/" role="button" class="btn">Link</a>
+		<button type="submit" class="btn">Button</button>
+		<input type="button" value="Input" class="btn"/>
+		<input type="submit" value="Submit" class="btn"/>
+		<form style="display:contents" autocomplete="off">
+			<input type="radio" aria-label="Radio" class="btn"/>
+			<input type="checkbox" aria-label="Checkbox" class="btn"/>
+			<input type="reset" value="Reset" class="btn"/>
+		</form>`))
+	@section("Disabled buttons", templ.Raw(`
+		<button class="btn" disabled="disabled">Disabled using attribute</button>
+		<button class="btn btn-disabled" tabindex="-1" aria-disabled="true">Disabled using class name</button>`))
+	@section("Square and circle", templ.Raw(`
+		<button class="btn btn-square">
+			<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="size-[1.2em]"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"/></svg>
+		</button>
+		<button class="btn btn-circle">
+			<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="size-[1.2em]"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"/></svg>
+		</button>`))
+	@section("Button with icon", daisyui.Button(daisyui.ButtonConfig{
+		Label:    "Like",
+		Children: templ.Raw(`<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="size-[1.2em]"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"/></svg>`),
+	}))
+	@section("Button block", daisyui.Button(daisyui.ButtonConfig{Label: "block", Modifier: "block"}))
+	@section("Button with loading spinner", templ.Raw(`
+		<button class="btn btn-square">
+			<span class="loading loading-spinner"></span>
+		</button>
+		<button class="btn">
+			<span class="loading loading-spinner"></span>
+			loading
+		</button>`))
+}
+
+templ buttonColorRow() {
+	<div class="flex flex-wrap gap-2">
+		@daisyui.Button(daisyui.ButtonConfig{Label: "Neutral", Color: "neutral"})
+		@daisyui.Button(daisyui.ButtonConfig{Label: "Primary", Color: "primary"})
+		@daisyui.Button(daisyui.ButtonConfig{Label: "Secondary", Color: "secondary"})
+		@daisyui.Button(daisyui.ButtonConfig{Label: "Accent", Color: "accent"})
+		@daisyui.Button(daisyui.ButtonConfig{Label: "Info", Color: "info"})
+		@daisyui.Button(daisyui.ButtonConfig{Label: "Success", Color: "success"})
+		@daisyui.Button(daisyui.ButtonConfig{Label: "Warning", Color: "warning"})
+		@daisyui.Button(daisyui.ButtonConfig{Label: "Error", Color: "error"})
+	</div>
+}
+
+templ buttonSoftRow() {
+	<div class="flex flex-wrap gap-2">
+		@daisyui.Button(daisyui.ButtonConfig{Label: "Default", Style: "soft"})
+		@daisyui.Button(daisyui.ButtonConfig{Label: "Primary", Style: "soft", Color: "primary"})
+		@daisyui.Button(daisyui.ButtonConfig{Label: "Secondary", Style: "soft", Color: "secondary"})
+		@daisyui.Button(daisyui.ButtonConfig{Label: "Accent", Style: "soft", Color: "accent"})
+		@daisyui.Button(daisyui.ButtonConfig{Label: "Info", Style: "soft", Color: "info"})
+		@daisyui.Button(daisyui.ButtonConfig{Label: "Success", Style: "soft", Color: "success"})
+		@daisyui.Button(daisyui.ButtonConfig{Label: "Warning", Style: "soft", Color: "warning"})
+		@daisyui.Button(daisyui.ButtonConfig{Label: "Error", Style: "soft", Color: "error"})
+	</div>
+}
+
+templ buttonOutlineRow() {
+	<div class="flex flex-wrap gap-2">
+		@daisyui.Button(daisyui.ButtonConfig{Label: "Default", Style: "outline"})
+		@daisyui.Button(daisyui.ButtonConfig{Label: "Primary", Style: "outline", Color: "primary"})
+		@daisyui.Button(daisyui.ButtonConfig{Label: "Secondary", Style: "outline", Color: "secondary"})
+		@daisyui.Button(daisyui.ButtonConfig{Label: "Accent", Style: "outline", Color: "accent"})
+		@daisyui.Button(daisyui.ButtonConfig{Label: "Info", Style: "outline", Color: "info"})
+		@daisyui.Button(daisyui.ButtonConfig{Label: "Success", Style: "outline", Color: "success"})
+		@daisyui.Button(daisyui.ButtonConfig{Label: "Warning", Style: "outline", Color: "warning"})
+		@daisyui.Button(daisyui.ButtonConfig{Label: "Error", Style: "outline", Color: "error"})
+	</div>
+}
+
+templ buttonDashRow() {
+	<div class="flex flex-wrap gap-2">
+		@daisyui.Button(daisyui.ButtonConfig{Label: "Default", Style: "dash"})
+		@daisyui.Button(daisyui.ButtonConfig{Label: "Primary", Style: "dash", Color: "primary"})
+		@daisyui.Button(daisyui.ButtonConfig{Label: "Secondary", Style: "dash", Color: "secondary"})
+		@daisyui.Button(daisyui.ButtonConfig{Label: "Accent", Style: "dash", Color: "accent"})
+		@daisyui.Button(daisyui.ButtonConfig{Label: "Info", Style: "dash", Color: "info"})
+		@daisyui.Button(daisyui.ButtonConfig{Label: "Success", Style: "dash", Color: "success"})
+		@daisyui.Button(daisyui.ButtonConfig{Label: "Warning", Style: "dash", Color: "warning"})
+		@daisyui.Button(daisyui.ButtonConfig{Label: "Error", Style: "dash", Color: "error"})
+	</div>
+}
+
+templ buttonActiveRow() {
+	<div class="flex flex-wrap gap-2">
+		@daisyui.Button(daisyui.ButtonConfig{Label: "Default", Active: true})
+		@daisyui.Button(daisyui.ButtonConfig{Label: "Primary", Color: "primary", Active: true})
+		@daisyui.Button(daisyui.ButtonConfig{Label: "Secondary", Color: "secondary", Active: true})
+		@daisyui.Button(daisyui.ButtonConfig{Label: "Accent", Color: "accent", Active: true})
+		@daisyui.Button(daisyui.ButtonConfig{Label: "Info", Color: "info", Active: true})
+		@daisyui.Button(daisyui.ButtonConfig{Label: "Success", Color: "success", Active: true})
+		@daisyui.Button(daisyui.ButtonConfig{Label: "Warning", Color: "warning", Active: true})
+		@daisyui.Button(daisyui.ButtonConfig{Label: "Error", Color: "error", Active: true})
+	</div>
+}
+
+templ FABPage(r links.LinkResolver) {
+	@pageShell(r, "FAB / Speed Dial", "FAB (Floating Action Button) stays in the bottom corner of screen. It includes a focusable and accessible element with button role. Clicking or focusing it shows additional buttons (known as Speed Dial buttons) in a vertical arrangement or a flower shape (quarter circle).", fabBody(r))
+}
+
+templ fabBody(r links.LinkResolver) {
+	@section("FAB and Speed Dial (vertical)", daisyui.FAB(daisyui.FABConfig{
+		Trigger: daisyui.FABTrigger{Label: "F", Color: "primary"},
+		Class:   "absolute z-1",
+		Items: []daisyui.FABItem{
+			{Button: templ.Raw(`<button class="btn btn-lg btn-circle">A</button>`)},
+			{Button: templ.Raw(`<button class="btn btn-lg btn-circle">B</button>`)},
+			{Button: templ.Raw(`<button class="btn btn-lg btn-circle">C</button>`)},
+		},
+	}))
+	@section("FAB and Speed Dial with SVG icons", daisyui.FAB(daisyui.FABConfig{
+		Trigger: daisyui.FABTrigger{
+			Color:    "secondary",
+			Children: templ.Raw(`<svg aria-label="New" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="size-6"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg>`),
+		},
+		Class: "absolute z-1",
+		Items: []daisyui.FABItem{
+			{Button: templ.Raw(`<button class="btn btn-lg btn-circle"><svg aria-label="Camera" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6"><path stroke-linecap="round" stroke-linejoin="round" d="M6.827 6.175A2.31 2.31 0 0 1 5.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 0 0-1.134-.175 2.31 2.31 0 0 1-1.64-1.055l-.822-1.316a2.192 2.192 0 0 0-1.736-1.039 48.774 48.774 0 0 0-5.232 0 2.192 2.192 0 0 0-1.736 1.039l-.821 1.316Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 12.75a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0ZM18.75 10.5h.008v.008h-.008V10.5Z"/></svg></button>`)},
+			{Button: templ.Raw(`<button class="btn btn-lg btn-circle"><svg aria-label="Gallery" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6"><path stroke-linecap="round" stroke-linejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"/></svg></button>`)},
+			{Button: templ.Raw(`<button class="btn btn-lg btn-circle"><svg aria-label="Voice" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18.75a6 6 0 0 0 6-6v-1.5m-6 7.5a6 6 0 0 1-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 0 1-3-3V4.5a3 3 0 1 1 6 0v8.25a3 3 0 0 1-3 3Z"/></svg></button>`)},
+		},
+	}))
+	@section("FAB and Speed Dial with labels", daisyui.FAB(daisyui.FABConfig{
+		Trigger: daisyui.FABTrigger{Label: "F", Color: "success"},
+		Class:   "absolute z-1",
+		Items: []daisyui.FABItem{
+			{Label: "Label B", Button: templ.Raw(`<button class="btn btn-lg btn-circle">A</button>`)},
+			{Label: "Label C", Button: templ.Raw(`<button class="btn btn-lg btn-circle">B</button>`)},
+			{Label: "Label D", Button: templ.Raw(`<button class="btn btn-lg btn-circle">C</button>`)},
+		},
+	}))
+	@section("FAB and Speed Dial with rectangle buttons", daisyui.FAB(daisyui.FABConfig{
+		Trigger: daisyui.FABTrigger{Label: "F", Color: "success"},
+		Class:   "absolute z-1",
+		Items: []daisyui.FABItem{
+			{Button: templ.Raw(`<button class="btn btn-lg">Button A</button>`)},
+			{Button: templ.Raw(`<button class="btn btn-lg">Button B</button>`)},
+			{Button: templ.Raw(`<button class="btn btn-lg">Button C</button>`)},
+		},
+	}))
+	@section("FAB and Speed Dial with labels and fab-close button", daisyui.FAB(daisyui.FABConfig{
+		Trigger:     daisyui.FABTrigger{Label: "F", Color: "info"},
+		Class:       "absolute z-1",
+		CloseButton: templ.Raw(`Close <span class="btn btn-circle btn-lg btn-error">✕</span>`),
+		Items: []daisyui.FABItem{
+			{Label: "Label A", Button: templ.Raw(`<button class="btn btn-lg btn-circle">A</button>`)},
+			{Label: "Label B", Button: templ.Raw(`<button class="btn btn-lg btn-circle">B</button>`)},
+			{Label: "Label C", Button: templ.Raw(`<button class="btn btn-lg btn-circle">C</button>`)},
+		},
+	}))
+	@section("FAB and Speed Dial with labels and fab-main-action Button", daisyui.FAB(daisyui.FABConfig{
+		Trigger:    daisyui.FABTrigger{Label: "F", Color: "primary"},
+		Class:      "absolute z-1",
+		MainAction: templ.Raw(`Main Action <button class="btn btn-circle btn-secondary btn-lg">M</button>`),
+		Items: []daisyui.FABItem{
+			{Label: "Label A", Button: templ.Raw(`<button class="btn btn-lg btn-circle">A</button>`)},
+			{Label: "Label B", Button: templ.Raw(`<button class="btn btn-lg btn-circle">B</button>`)},
+			{Label: "Label C", Button: templ.Raw(`<button class="btn btn-lg btn-circle">C</button>`)},
+		},
+	}))
+	@section("A single FAB (Floating Action Button)", daisyui.FAB(daisyui.FABConfig{
+		Trigger: daisyui.FABTrigger{Label: "F", Color: "primary"},
+		Class:   "absolute z-1",
+	}))
+	@section("FAB Flower and Speed Dial", daisyui.FAB(daisyui.FABConfig{
+		Trigger:    daisyui.FABTrigger{Label: "F", Color: "success"},
+		Class:      "absolute z-1",
+		Flower:     true,
+		MainAction: templ.Raw(`<button class="btn btn-circle btn-lg">M</button>`),
+		Items: []daisyui.FABItem{
+			{Button: templ.Raw(`<button class="btn btn-lg btn-circle">A</button>`)},
+			{Button: templ.Raw(`<button class="btn btn-lg btn-circle">B</button>`)},
+			{Button: templ.Raw(`<button class="btn btn-lg btn-circle">C</button>`)},
+			{Button: templ.Raw(`<button class="btn btn-lg btn-circle">D</button>`)},
+		},
+	}))
+	@section("FAB and Flower Speed Dial with tooltip", daisyui.FAB(daisyui.FABConfig{
+		Trigger:    daisyui.FABTrigger{Label: "F", Color: "info"},
+		Class:      "absolute z-1",
+		Flower:     true,
+		MainAction: templ.Raw(`<button class="btn btn-circle btn-lg btn-success">M</button>`),
+		Items: []daisyui.FABItem{
+			{Button: templ.Raw(`<div class="tooltip tooltip-left" data-tip="Label A"><button class="btn btn-lg btn-circle">A</button></div>`)},
+			{Button: templ.Raw(`<div class="tooltip tooltip-left" data-tip="Label B"><button class="btn btn-lg btn-circle">B</button></div>`)},
+			{Button: templ.Raw(`<div class="tooltip" data-tip="Label C"><button class="btn btn-lg btn-circle">C</button></div>`)},
+			{Button: templ.Raw(`<div class="tooltip" data-tip="Label D"><button class="btn btn-lg btn-circle">D</button></div>`)},
+		},
+	}))
 }

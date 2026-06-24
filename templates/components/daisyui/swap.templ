@@ -8,10 +8,10 @@ package daisyui
 // controlling state via the Active flag alone). Class lets callers add extra
 // utility classes (e.g. "btn btn-circle" for the hamburger variant).
 type SwapConfig struct {
-	Effect       string
-	Active       bool
-	NoCheckbox   bool
-	Class        string
+	Effect     string
+	Active     bool
+	NoCheckbox bool
+	Class      string
 }
 
 // Swap renders a labelled swap container with the given on/off children. On
@@ -22,8 +22,12 @@ templ Swap(cfg SwapConfig, on, off templ.Component) {
 		if !cfg.NoCheckbox {
 			<input type="checkbox" autocomplete="off"/>
 		}
-		<div class="swap-on">@on</div>
-		<div class="swap-off">@off</div>
+		<div class="swap-on">
+			@on
+		</div>
+		<div class="swap-off">
+			@off
+		</div>
 	</label>
 }
 
@@ -31,8 +35,12 @@ templ Swap(cfg SwapConfig, on, off templ.Component) {
 // arbitrary children. Use SwapActive to add the swap-active class via JS.
 templ SwapDiv(cfg SwapConfig, on, off templ.Component) {
 	<div class={ joinClasses("swap", swapEffectClass(cfg.Effect), swapActiveClass(cfg.Active), cfg.Class) }>
-		<div class="swap-on">@on</div>
-		<div class="swap-off">@off</div>
+		<div class="swap-on">
+			@on
+		</div>
+		<div class="swap-off">
+			@off
+		</div>
 	</div>
 }
 

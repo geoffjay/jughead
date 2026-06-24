@@ -159,3 +159,97 @@ func TestThemeControllerRadio(t *testing.T) {
 	mustContain(t, got, `class="radio radio-sm theme-controller"`)
 	mustContain(t, got, `checked`)
 }
+
+func TestButton(t *testing.T) {
+	got := render(t, Button(ButtonConfig{Label: "Default"}))
+	mustContain(t, got, `<button type="button" class="btn">`)
+	mustContain(t, got, ">Default<")
+}
+
+func TestButtonColorSizeStyle(t *testing.T) {
+	got := render(t, Button(ButtonConfig{
+		Label:    "Primary",
+		Color:    "primary",
+		Style:    "outline",
+		Size:     "lg",
+		Modifier: "circle",
+	}))
+	mustContain(t, got, `class="btn btn-primary btn-outline btn-lg btn-circle"`)
+	mustContain(t, got, ">Primary<")
+}
+
+func TestButtonLink(t *testing.T) {
+	got := render(t, Button(ButtonConfig{
+		Label: "Home",
+		Href:  "/",
+	}))
+	mustContain(t, got, `<a role="button"`)
+	mustContain(t, got, `href="/"`)
+	mustContain(t, got, `class="btn"`)
+}
+
+func TestButtonDisabled(t *testing.T) {
+	got := render(t, Button(ButtonConfig{Label: "X", Disabled: true}))
+	mustContain(t, got, `disabled`)
+}
+
+func TestButtonLinkDisabled(t *testing.T) {
+	got := render(t, Button(ButtonConfig{Label: "X", Href: "/x", Disabled: true}))
+	mustContain(t, got, `class="btn btn-disabled"`)
+	mustContain(t, got, `tabindex="-1"`)
+	mustContain(t, got, `aria-disabled="true"`)
+}
+
+func TestButtonChildren(t *testing.T) {
+	got := render(t, Button(ButtonConfig{
+		Label:    "Like",
+		Children: templ.Raw(`<svg class="size-4"></svg>`),
+	}))
+	mustContain(t, got, `<svg class="size-4"></svg>`)
+	mustContain(t, got, ">Like<")
+}
+
+func TestFABSingle(t *testing.T) {
+	got := render(t, FAB(FABConfig{
+		Trigger: FABTrigger{Label: "F", Color: "primary"},
+		Class:   "absolute z-1",
+	}))
+	mustContain(t, got, `class="fab absolute z-1"`)
+	mustContain(t, got, `<button class="btn btn-primary btn-lg btn-circle">`)
+	mustContain(t, got, ">F<")
+}
+
+func TestFABSpeedDial(t *testing.T) {
+	got := render(t, FAB(FABConfig{
+		Trigger: FABTrigger{Label: "F", Color: "primary"},
+		Items: []FABItem{
+			{Button: templ.Raw(`<button class="btn btn-lg btn-circle">A</button>`)},
+			{Button: templ.Raw(`<button class="btn btn-lg btn-circle">B</button>`)},
+		},
+	}))
+	mustContain(t, got, `class="fab"`)
+	mustContain(t, got, `tabindex="0" role="button"`)
+	mustContain(t, got, `class="btn btn-primary btn-lg btn-circle"`)
+	mustContain(t, got, `<button class="btn btn-lg btn-circle">A</button>`)
+}
+
+func TestFABFlower(t *testing.T) {
+	got := render(t, FAB(FABConfig{
+		Trigger: FABTrigger{Label: "F", Color: "success"},
+		Flower:  true,
+		Items: []FABItem{
+			{Button: templ.Raw(`<button class="btn btn-lg btn-circle">A</button>`)},
+		},
+	}))
+	mustContain(t, got, `class="fab fab-flower"`)
+	mustContain(t, got, `btn-success`)
+}
+
+func TestFABCloseButton(t *testing.T) {
+	got := render(t, FAB(FABConfig{
+		Trigger:     FABTrigger{Label: "F", Color: "info"},
+		CloseButton: templ.Raw(`<span class="btn btn-circle btn-lg btn-error">✕</span>`),
+	}))
+	mustContain(t, got, `<div class="fab-close">`)
+	mustContain(t, got, `✕`)
+}

@@ -1,9 +1,9 @@
 package quux
 
 import (
-  "strconv"
+	"strconv"
 
-  "github.com/geoffjay/jughead/templates/components/daisyui"
+	"github.com/geoffjay/jughead/templates/components/daisyui"
 )
 
 var navbarData = daisyui.NavbarData{
@@ -37,7 +37,7 @@ templ BodyContent(current string, count int) {
 				<h2 class="text-2xl font-semibold mb-4">Counter</h2>
 				<p class="mb-2">Current count: <strong>{ strconv.Itoa(count) }</strong></p>
 				<p class="mb-2">
-					<a href={ templ.SafeURL("./counter?n=" + strconv.Itoa(count + 1)) } class="btn btn-primary btn-sm">+1</a>
+					<a href={ templ.SafeURL("./counter?n=" + strconv.Itoa(count+1)) } class="btn btn-primary btn-sm">+1</a>
 				</p>
 				<p>
 					<a href="./" class="link link-hover">Reset &amp; go home</a>
