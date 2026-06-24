@@ -16,53 +16,100 @@ templ Home(r links.LinkResolver) {
 				the navbar to browse each component.
 			</p>
 			<ul class="menu bg-base-100 rounded-box w-56 shadow">
-				<li><a href={ r.SafeURL("/components/accordion") } class="link link-hover">Accordion</a></li>
-				<li><a href={ r.SafeURL("/components/navbar") } class="link link-hover">Navbar</a></li>
-				<li><a href={ r.SafeURL("/components/join") } class="link link-hover">Join</a></li>
-				<li><a href={ r.SafeURL("/components/stack") } class="link link-hover">Stack</a></li>
-				<li><a href={ r.SafeURL("/components/divider") } class="link link-hover">Divider</a></li>
-				<li><a href={ r.SafeURL("/components/mask") } class="link link-hover">Mask</a></li>
-				<li><a href={ r.SafeURL("/components/link") } class="link link-hover">Link</a></li>
-				<li><a href={ r.SafeURL("/components/kbd") } class="link link-hover">Kbd</a></li>
-				<li><a href={ r.SafeURL("/components/status") } class="link link-hover">Status</a></li>
-				<li><a href={ r.SafeURL("/components/loading") } class="link link-hover">Loading</a></li>
-				<li><a href={ r.SafeURL("/components/collapse") } class="link link-hover">Collapse</a></li>
-				<li><a href={ r.SafeURL("/components/swap") } class="link link-hover">Swap</a></li>
-				<li><a href={ r.SafeURL("/components/theme-controller") } class="link link-hover">Theme Controller</a></li>
-				<li><a href={ r.SafeURL("/components/button") } class="link link-hover">Button</a></li>
-				<li><a href={ r.SafeURL("/components/floating-action-button") } class="link link-hover">FAB / Speed Dial</a></li>
-				<li><a href={ r.SafeURL("/components/input-field") } class="link link-hover">Text Input</a></li>
-				<li><a href={ r.SafeURL("/components/textarea") } class="link link-hover">Textarea</a></li>
-				<li><a href={ r.SafeURL("/components/select") } class="link link-hover">Select</a></li>
-				<li><a href={ r.SafeURL("/components/checkbox") } class="link link-hover">Checkbox</a></li>
-				<li><a href={ r.SafeURL("/components/radio") } class="link link-hover">Radio</a></li>
-				<li><a href={ r.SafeURL("/components/range") } class="link link-hover">Range slider</a></li>
-				<li><a href={ r.SafeURL("/components/file-input") } class="link link-hover">File Input</a></li>
-				<li><a href={ r.SafeURL("/components/toggle") } class="link link-hover">Toggle</a></li>
-				<li><a href={ r.SafeURL("/components/rating") } class="link link-hover">Rating</a></li>
-				<li><a href={ r.SafeURL("/components/label") } class="link link-hover">Label</a></li>
-				<li><a href={ r.SafeURL("/components/fieldset") } class="link link-hover">Fieldset</a></li>
-				<li><a href={ r.SafeURL("/components/validator") } class="link link-hover">Validator</a></li>
-				<li><a href={ r.SafeURL("/components/alert") } class="link link-hover">Alert</a></li>
-				<li><a href={ r.SafeURL("/components/badge") } class="link link-hover">Badge</a></li>
-				<li><a href={ r.SafeURL("/components/progress") } class="link link-hover">Progress</a></li>
-				<li><a href={ r.SafeURL("/components/radial-progress") } class="link link-hover">Radial progress</a></li>
-				<li><a href={ r.SafeURL("/components/countdown") } class="link link-hover">Countdown</a></li>
-				<li><a href={ r.SafeURL("/components/skeleton") } class="link link-hover">Skeleton</a></li>
-				<li><a href={ r.SafeURL("/components/toast") } class="link link-hover">Toast</a></li>
-				<li><a href={ r.SafeURL("/components/tooltip") } class="link link-hover">Tooltip</a></li>
-				<li><a href={ r.SafeURL("/components/indicator") } class="link link-hover">Indicator</a></li>
-				<li><a href={ r.SafeURL("/components/chat-bubble") } class="link link-hover">Chat bubble</a></li>
-				<li><a href={ r.SafeURL("/components/breadcrumbs") } class="link link-hover">Breadcrumbs</a></li>
-				<li><a href={ r.SafeURL("/components/menu") } class="link link-hover">Menu</a></li>
-				<li><a href={ r.SafeURL("/components/pagination") } class="link link-hover">Pagination</a></li>
-				<li><a href={ r.SafeURL("/components/steps") } class="link link-hover">Steps</a></li>
-				<li><a href={ r.SafeURL("/components/tabs") } class="link link-hover">Tabs</a></li>
-				<li><a href={ r.SafeURL("/components/dock") } class="link link-hover">Dock</a></li>
-				<li><a href={ r.SafeURL("/components/dropdown") } class="link link-hover">Dropdown</a></li>
-				<li><a href={ r.SafeURL("/components/footer") } class="link link-hover">Footer</a></li>
-				<li><a href={ r.SafeURL("/components/drawer-sidebar") } class="link link-hover">Drawer sidebar</a></li>
-				<li><a href={ r.SafeURL("/components/filter") } class="link link-hover">Filter</a></li>
+				<li>@daisyui.Link("/components/accordion", "Accordion", "", "hover", "", r)
+</li>
+				<li>@daisyui.Link("/components/navbar", "Navbar", "", "hover", "", r)
+</li>
+				<li>@daisyui.Link("/components/join", "Join", "", "hover", "", r)
+</li>
+				<li>@daisyui.Link("/components/stack", "Stack", "", "hover", "", r)
+</li>
+				<li>@daisyui.Link("/components/divider", "Divider", "", "hover", "", r)
+</li>
+				<li>@daisyui.Link("/components/mask", "Mask", "", "hover", "", r)
+</li>
+				<li>@daisyui.Link("/components/link", "Link", "", "hover", "", r)
+</li>
+				<li>@daisyui.Link("/components/kbd", "Kbd", "", "hover", "", r)
+</li>
+				<li>@daisyui.Link("/components/status", "Status", "", "hover", "", r)
+</li>
+				<li>@daisyui.Link("/components/loading", "Loading", "", "hover", "", r)
+</li>
+				<li>@daisyui.Link("/components/collapse", "Collapse", "", "hover", "", r)
+</li>
+				<li>@daisyui.Link("/components/swap", "Swap", "", "hover", "", r)
+</li>
+				<li>@daisyui.Link("/components/theme-controller", "Theme Controller", "", "hover", "", r)
+</li>
+				<li>@daisyui.Link("/components/button", "Button", "", "hover", "", r)
+</li>
+				<li>@daisyui.Link("/components/floating-action-button", "FAB / Speed Dial", "", "hover", "", r)
+</li>
+				<li>@daisyui.Link("/components/input-field", "Text Input", "", "hover", "", r)
+</li>
+				<li>@daisyui.Link("/components/textarea", "Textarea", "", "hover", "", r)
+</li>
+				<li>@daisyui.Link("/components/select", "Select", "", "hover", "", r)
+</li>
+				<li>@daisyui.Link("/components/checkbox", "Checkbox", "", "hover", "", r)
+</li>
+				<li>@daisyui.Link("/components/radio", "Radio", "", "hover", "", r)
+</li>
+				<li>@daisyui.Link("/components/range", "Range slider", "", "hover", "", r)
+</li>
+				<li>@daisyui.Link("/components/file-input", "File Input", "", "hover", "", r)
+</li>
+				<li>@daisyui.Link("/components/toggle", "Toggle", "", "hover", "", r)
+</li>
+				<li>@daisyui.Link("/components/rating", "Rating", "", "hover", "", r)
+</li>
+				<li>@daisyui.Link("/components/label", "Label", "", "hover", "", r)
+</li>
+				<li>@daisyui.Link("/components/fieldset", "Fieldset", "", "hover", "", r)
+</li>
+				<li>@daisyui.Link("/components/validator", "Validator", "", "hover", "", r)
+</li>
+				<li>@daisyui.Link("/components/alert", "Alert", "", "hover", "", r)
+</li>
+				<li>@daisyui.Link("/components/badge", "Badge", "", "hover", "", r)
+</li>
+				<li>@daisyui.Link("/components/progress", "Progress", "", "hover", "", r)
+</li>
+				<li>@daisyui.Link("/components/radial-progress", "Radial progress", "", "hover", "", r)
+</li>
+				<li>@daisyui.Link("/components/countdown", "Countdown", "", "hover", "", r)
+</li>
+				<li>@daisyui.Link("/components/skeleton", "Skeleton", "", "hover", "", r)
+</li>
+				<li>@daisyui.Link("/components/toast", "Toast", "", "hover", "", r)
+</li>
+				<li>@daisyui.Link("/components/tooltip", "Tooltip", "", "hover", "", r)
+</li>
+				<li>@daisyui.Link("/components/indicator", "Indicator", "", "hover", "", r)
+</li>
+				<li>@daisyui.Link("/components/chat-bubble", "Chat bubble", "", "hover", "", r)
+</li>
+				<li>@daisyui.Link("/components/breadcrumbs", "Breadcrumbs", "", "hover", "", r)
+</li>
+				<li>@daisyui.Link("/components/menu", "Menu", "", "hover", "", r)
+</li>
+				<li>@daisyui.Link("/components/pagination", "Pagination", "", "hover", "", r)
+</li>
+				<li>@daisyui.Link("/components/steps", "Steps", "", "hover", "", r)
+</li>
+				<li>@daisyui.Link("/components/tabs", "Tabs", "", "hover", "", r)
+</li>
+				<li>@daisyui.Link("/components/dock", "Dock", "", "hover", "", r)
+</li>
+				<li>@daisyui.Link("/components/dropdown", "Dropdown", "", "hover", "", r)
+</li>
+				<li>@daisyui.Link("/components/footer", "Footer", "", "hover", "", r)
+</li>
+				<li>@daisyui.Link("/components/drawer-sidebar", "Drawer sidebar", "", "hover", "", r)
+</li>
+				<li>@daisyui.Link("/components/filter", "Filter", "", "hover", "", r)
+</li>
 			</ul>
 		</main>
 	</div>
