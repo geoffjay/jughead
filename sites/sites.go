@@ -58,7 +58,6 @@ var sites = map[string]*Site{
 		Url:       "https://quux.geoffjay.com",
 		Published: true,
 		Theme:     "kanagawa-dark",
-		Template:  quux.BodyContent("", 0),
 		Proxy:     quux.Proxy,
 		Routes:    quux.Routes,
 	},

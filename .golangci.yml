@@ -85,6 +85,10 @@ linters:
       - linters:
           - mnd
         path: _test\.go
+      - linters:
+          - mnd
+          - goconst
+        path: sites/com/geoffjay/quux/data/fixtures\.go
     paths:
       - third_party$
       - builtin$
