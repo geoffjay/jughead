@@ -10,6 +10,15 @@
         ".md"
       ]
     },
+    "templ": {
+      "command": [
+        "templ",
+        "lsp"
+      ],
+      "extensions": [
+        ".templ"
+      ]
+    },
   },
   "mcp": {
     "overmind": {

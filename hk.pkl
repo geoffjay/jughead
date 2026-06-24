@@ -12,9 +12,14 @@ local linters = new Mapping<String, Step> {
 
   ["biome"] {
     glob = List("**/*.ts", "**/*.js", "**/*.json")
-    dir = "ui"
     check = "bunx biome check ."
     fix = "bunx biome check --write ."
+  }
+
+  ["templ-fmt"] {
+    glob = List("**/*.templ")
+    check = "templ fmt -fail ."
+    fix = "templ fmt ."
   }
 }
 

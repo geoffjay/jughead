@@ -24,7 +24,9 @@ type NavDropdown struct {
 // the start side. Start, Center, and End are optional menu items/dropdowns
 // placed in the corresponding navbar regions. SearchPlaceholder, when set,
 // renders a search input in the navbar-end region. Resolver, when set, is used
-// to build all hrefs; without it hrefs are rendered as-is.
+// to build all hrefs; without it hrefs are rendered as-is. EndExtra, when set,
+// is rendered inside the navbar-end region before the menu — useful for a
+// theme toggle or other action element.
 type NavbarData struct {
 	Title             string
 	TitleHref         string
@@ -35,6 +37,7 @@ type NavbarData struct {
 	End               []NavItem
 	EndDropdowns      []NavDropdown
 	SearchPlaceholder string
+	EndExtra          templ.Component
 	Resolver          URLResolver
 }
 
@@ -100,8 +103,11 @@ templ navbarCenter(data NavbarData) {
 }
 
 templ navbarEnd(data NavbarData) {
-	if len(data.End) > 0 || len(data.EndDropdowns) > 0 || data.SearchPlaceholder != "" {
+	if len(data.End) > 0 || len(data.EndDropdowns) > 0 || data.SearchPlaceholder != "" || data.EndExtra != nil {
 		<div class="navbar-end">
+			if data.EndExtra != nil {
+				@data.EndExtra
+			}
 			if data.SearchPlaceholder != "" {
 				<input type="text" placeholder={ data.SearchPlaceholder } class="input input-bordered w-24 md:w-auto"/>
 			}
