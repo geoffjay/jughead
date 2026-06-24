@@ -1,0 +1,66 @@
+package components
+
+import (
+	"github.com/geoffjay/jughead/sites/links"
+	"github.com/geoffjay/jughead/templates/components/daisyui"
+)
+
+templ TextRotatePage(r links.LinkResolver) {
+	@pageShell(r, "Text Rotate", "Text Rotate shows up to 6 lines of text, one at a time, with an infinite loop animation. The animation pauses on hover.", textRotateBody(r))
+}
+
+templ textRotateBody(r links.LinkResolver) {
+	@section("Rotates through 3 words in 10 seconds", daisyui.TextRotate(daisyui.TextRotateConfig{
+		Lines: []daisyui.TextRotateLine{
+			{Text: "ONE"},
+			{Text: "TWO"},
+			{Text: "THREE"},
+		},
+	}))
+	@section("Rotating 6 words (big, centered)", daisyui.TextRotate(daisyui.TextRotateConfig{
+		Class:      "max-md:text-3xl text-7xl font-title",
+		InnerClass: "justify-items-center",
+		Lines: []daisyui.TextRotateLine{
+			{Text: "DESIGN"},
+			{Text: "DEVELOP"},
+			{Text: "DEPLOY"},
+			{Text: "SCALE"},
+			{Text: "MAINTAIN"},
+			{Text: "REPEAT"},
+		},
+	}))
+	@section("Rotating words in a sentence", textRotateInSentence())
+	@section("Custom duration (6s)", daisyui.TextRotate(daisyui.TextRotateConfig{
+		Class:      "max-md:text-3xl text-7xl font-title duration-6000",
+		InnerClass: "justify-items-center",
+		Lines: []daisyui.TextRotateLine{
+			{Text: "BLAZING"},
+			{Text: "FAST ▶︎▶︎", Class: "font-bold italic px-2"},
+		},
+	}))
+	@section("Custom line height", daisyui.TextRotate(daisyui.TextRotateConfig{
+		Class:      "max-md:text-3xl text-7xl font-title leading-[2]",
+		InnerClass: "justify-items-center",
+		Lines: []daisyui.TextRotateLine{
+			{Text: "📐 DESIGN"},
+			{Text: "⌨️ DEVELOP"},
+			{Text: "🌎 DEPLOY"},
+			{Text: "🌱 SCALE"},
+			{Text: "🔧 MAINTAIN"},
+			{Text: "♻️ REPEAT"},
+		},
+	}))
+}
+
+templ textRotateInSentence() {
+	<div class="text-lg">
+		Providing AI Agents for
+		@daisyui.TextRotate(daisyui.TextRotateConfig{
+			Lines: []daisyui.TextRotateLine{
+				{Text: "Designers", Class: "bg-teal-400 text-teal-800 px-2"},
+				{Text: "Developers", Class: "bg-red-400 text-red-800 px-2"},
+				{Text: "Managers", Class: "bg-blue-400 text-blue-800 px-2"},
+			},
+		})
+	</div>
+}

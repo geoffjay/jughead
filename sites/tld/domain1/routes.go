@@ -101,6 +101,12 @@ func componentRoutes() map[string]componentRoute {
 		"carousel":               {"Carousel - domain1.tld", components.CarouselPage},
 		"hero":                   {"Hero - domain1.tld", components.HeroPage},
 		"calendar":               {"Calendar - domain1.tld", components.CalendarPage},
+		"browser":                {"Browser mockup - domain1.tld", components.BrowserPage},
+		"phone":                  {"Phone mockup - domain1.tld", components.PhonePage},
+		"window":                 {"Window mockup - domain1.tld", components.WindowPage},
+		"hover-3d-card":          {"Hover 3D Card - domain1.tld", components.Hover3DCardPage},
+		"hover-gallery":          {"Hover Gallery - domain1.tld", components.HoverGalleryPage},
+		"text-rotate":            {"Text Rotate - domain1.tld", components.TextRotatePage},
 	}
 }
 
