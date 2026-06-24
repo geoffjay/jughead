@@ -107,6 +107,36 @@ func Routes(router *gin.RouterGroup, theme string) {
 	router.GET("/components/validator", func(c *gin.Context) {
 		render(c, theme, "Validator - domain1.tld", ValidatorPage(resolver(c)))
 	})
+	router.GET("/components/alert", func(c *gin.Context) {
+		render(c, theme, "Alert - domain1.tld", AlertPage(resolver(c)))
+	})
+	router.GET("/components/badge", func(c *gin.Context) {
+		render(c, theme, "Badge - domain1.tld", BadgePage(resolver(c)))
+	})
+	router.GET("/components/progress", func(c *gin.Context) {
+		render(c, theme, "Progress - domain1.tld", ProgressPage(resolver(c)))
+	})
+	router.GET("/components/radial-progress", func(c *gin.Context) {
+		render(c, theme, "Radial progress - domain1.tld", RadialProgressPage(resolver(c)))
+	})
+	router.GET("/components/countdown", func(c *gin.Context) {
+		render(c, theme, "Countdown - domain1.tld", CountdownPage(resolver(c)))
+	})
+	router.GET("/components/skeleton", func(c *gin.Context) {
+		render(c, theme, "Skeleton - domain1.tld", SkeletonPage(resolver(c)))
+	})
+	router.GET("/components/toast", func(c *gin.Context) {
+		render(c, theme, "Toast - domain1.tld", ToastPage(resolver(c)))
+	})
+	router.GET("/components/tooltip", func(c *gin.Context) {
+		render(c, theme, "Tooltip - domain1.tld", TooltipPage(resolver(c)))
+	})
+	router.GET("/components/indicator", func(c *gin.Context) {
+		render(c, theme, "Indicator - domain1.tld", IndicatorPage(resolver(c)))
+	})
+	router.GET("/components/chat-bubble", func(c *gin.Context) {
+		render(c, theme, "Chat bubble - domain1.tld", ChatBubblePage(resolver(c)))
+	})
 }
 
 func resolver(c *gin.Context) links.LinkResolver {
