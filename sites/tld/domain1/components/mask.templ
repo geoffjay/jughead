@@ -1,0 +1,30 @@
+package components
+
+import (
+	"github.com/geoffjay/jughead/sites/links"
+	"github.com/geoffjay/jughead/templates/components/daisyui"
+)
+
+templ MaskPage(r links.LinkResolver) {
+	@pageShell(r, "Mask", "Mask crops the content of the element to common shapes.", maskBody(r))
+}
+
+const maskImgURL = "https://img.daisyui.com/images/stock/photo-1567653418876-5bb0e566e1c2.webp"
+
+templ maskBody(r links.LinkResolver) {
+	@section("Squircle", daisyui.MaskImage(maskImgURL, "Squircle CSS mask", "squircle", "", "w-40 h-40"))
+	@section("Heart", daisyui.MaskImage(maskImgURL, "Heart CSS mask", "heart", "", "w-40 h-40"))
+	@section("Hexagon", daisyui.MaskImage(maskImgURL, "Hexagon CSS mask", "hexagon", "", "w-40 h-40"))
+	@section("Hexagon-2 (horizontal hexagon)", daisyui.MaskImage(maskImgURL, "Hexagon-2 CSS mask", "hexagon-2", "", "w-40 h-40"))
+	@section("Decagon", daisyui.MaskImage(maskImgURL, "Decagon CSS mask", "decagon", "", "w-40 h-40"))
+	@section("Pentagon", daisyui.MaskImage(maskImgURL, "Pentagon CSS mask", "pentagon", "", "w-40 h-40"))
+	@section("Diamond", daisyui.MaskImage(maskImgURL, "Diamond CSS mask", "diamond", "", "w-40 h-40"))
+	@section("Square", daisyui.MaskImage(maskImgURL, "Square CSS mask", "square", "", "w-40 h-40"))
+	@section("Circle", daisyui.MaskImage(maskImgURL, "Circle CSS mask", "circle", "", "w-40 h-40"))
+	@section("Star", daisyui.MaskImage(maskImgURL, "Star CSS mask", "star", "", "w-40 h-40"))
+	@section("Star-2 (bold star)", daisyui.MaskImage(maskImgURL, "Star-2 CSS mask", "star-2", "", "w-40 h-40"))
+	@section("Triangle (pointing top)", daisyui.MaskImage(maskImgURL, "Triangle CSS mask", "triangle", "", "w-40 h-40"))
+	@section("Triangle-2 (pointing down)", daisyui.MaskImage(maskImgURL, "Triangle-2 CSS mask", "triangle-2", "", "w-40 h-40"))
+	@section("Triangle-3 (pointing left)", daisyui.MaskImage(maskImgURL, "Triangle-3 CSS mask", "triangle-3", "", "w-40 h-40"))
+	@section("Triangle-4 (pointing right)", daisyui.MaskImage(maskImgURL, "Triangle-4 CSS mask", "triangle-4", "", "w-40 h-40"))
+}

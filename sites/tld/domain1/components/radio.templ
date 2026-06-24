@@ -1,0 +1,102 @@
+package components
+
+import (
+	"github.com/geoffjay/jughead/sites/links"
+	"github.com/geoffjay/jughead/templates/components/daisyui"
+)
+
+templ RadioPage(r links.LinkResolver) {
+	@pageShell(r, "Radio", "Radio buttons allow the user to select one option from a set.", radioBody(r))
+}
+
+templ radioBody(r links.LinkResolver) {
+	@section("Radio", daisyui.Radio(daisyui.RadioConfig{
+		Name: "radio-1",
+		Options: []daisyui.RadioOption{
+			{Value: "a", Checked: true},
+			{Value: "b"},
+		},
+	}))
+	@section("Radio sizes", templ.Raw(`
+		<div class="flex gap-4">
+			<input type="radio" name="radio-2" class="radio radio-xs" checked="checked" />
+			<input type="radio" name="radio-2.1" class="radio radio-sm" checked="checked" />
+			<input type="radio" name="radio-2.2" class="radio radio-md" checked="checked" />
+			<input type="radio" name="radio-2.3" class="radio radio-lg" checked="checked" />
+			<input type="radio" name="radio-2.4" class="radio radio-xl" checked="checked" />
+		</div>`))
+	@section("Neutral color", daisyui.Radio(daisyui.RadioConfig{
+		Name:  "radio-3",
+		Color: "neutral",
+		Options: []daisyui.RadioOption{
+			{Value: "a", Checked: true},
+			{Value: "b"},
+		},
+	}))
+	@section("Primary color", daisyui.Radio(daisyui.RadioConfig{
+		Name:  "radio-4",
+		Color: "primary",
+		Options: []daisyui.RadioOption{
+			{Value: "a", Checked: true},
+			{Value: "b"},
+		},
+	}))
+	@section("Secondary color", daisyui.Radio(daisyui.RadioConfig{
+		Name:  "radio-5",
+		Color: "secondary",
+		Options: []daisyui.RadioOption{
+			{Value: "a", Checked: true},
+			{Value: "b"},
+		},
+	}))
+	@section("Accent color", daisyui.Radio(daisyui.RadioConfig{
+		Name:  "radio-6",
+		Color: "accent",
+		Options: []daisyui.RadioOption{
+			{Value: "a", Checked: true},
+			{Value: "b"},
+		},
+	}))
+	@section("Success color", daisyui.Radio(daisyui.RadioConfig{
+		Name:  "radio-7",
+		Color: "success",
+		Options: []daisyui.RadioOption{
+			{Value: "a", Checked: true},
+			{Value: "b"},
+		},
+	}))
+	@section("Warning color", daisyui.Radio(daisyui.RadioConfig{
+		Name:  "radio-8",
+		Color: "warning",
+		Options: []daisyui.RadioOption{
+			{Value: "a", Checked: true},
+			{Value: "b"},
+		},
+	}))
+	@section("Info color", daisyui.Radio(daisyui.RadioConfig{
+		Name:  "radio-9",
+		Color: "info",
+		Options: []daisyui.RadioOption{
+			{Value: "a", Checked: true},
+			{Value: "b"},
+		},
+	}))
+	@section("Error color", daisyui.Radio(daisyui.RadioConfig{
+		Name:  "radio-10",
+		Color: "error",
+		Options: []daisyui.RadioOption{
+			{Value: "a", Checked: true},
+			{Value: "b"},
+		},
+	}))
+	@section("Disabled", templ.Raw(`
+		<div class="flex gap-4">
+			<input type="radio" name="radio-11" class="radio" disabled checked="checked" />
+			<input type="radio" name="radio-11" class="radio" disabled />
+		</div>`))
+	@section("Radio with custom colors", templ.Raw(`
+		<div class="flex gap-4">
+			<input type="radio" name="radio-12" class="radio bg-red-100 border-red-300 checked:bg-red-200 checked:text-red-600 checked:border-red-600" checked="checked" />
+			<input type="radio" name="radio-12" class="radio bg-blue-100 border-blue-300 checked:bg-blue-200 checked:text-blue-600 checked:border-blue-600" checked="checked" />
+		</div>`))
+}

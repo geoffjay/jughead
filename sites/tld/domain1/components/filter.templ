@@ -1,0 +1,54 @@
+package components
+
+import (
+	"github.com/geoffjay/jughead/sites/links"
+	"github.com/geoffjay/jughead/templates/components/daisyui"
+)
+
+templ FilterPage(r links.LinkResolver) {
+	@pageShell(r, "Filter", "Filter is a group of radio buttons styled as buttons. Selecting one hides the others.", filterBody(r))
+}
+
+templ filterBody(r links.LinkResolver) {
+	@section("Filter", daisyui.Filter(daisyui.FilterConfig{
+		Name: "filter-1",
+		Options: []daisyui.FilterOption{
+			{Label: "All"},
+			{Label: "Free", Checked: true},
+			{Label: "Paid"},
+		},
+	}))
+	@section("Filter with reset (form)", daisyui.Filter(daisyui.FilterConfig{
+		Name:    "filter-2",
+		Reset:   true,
+		AsForm:  true,
+		Options: []daisyui.FilterOption{{Label: "Latest"}, {Label: "Popular", Checked: true}, {Label: "Trending"}},
+	}))
+	@section("Filter with reset (radio)", daisyui.Filter(daisyui.FilterConfig{
+		Name:    "filter-3",
+		Reset:   true,
+		AsForm:  false,
+		Options: []daisyui.FilterOption{{Label: "A"}, {Label: "B"}, {Label: "C", Checked: true}},
+	}))
+	@section("Filter with one option", daisyui.Filter(daisyui.FilterConfig{
+		Name:    "filter-4",
+		Options: []daisyui.FilterOption{{Label: "Single", Checked: true}},
+	}))
+	@section("Filter with extra class", daisyui.Filter(daisyui.FilterConfig{
+		Name:    "filter-5",
+		Class:   "filter-primary",
+		Options: []daisyui.FilterOption{{Label: "One", Checked: true}, {Label: "Two"}, {Label: "Three"}},
+	}))
+	@section("Filter as <div> (no reset)", daisyui.Filter(daisyui.FilterConfig{
+		Name:    "filter-6",
+		AsForm:  false,
+		Options: []daisyui.FilterOption{{Label: "Red"}, {Label: "Green", Checked: true}, {Label: "Blue"}},
+	}))
+	@section("Filter with icons via aria-label", daisyui.Filter(daisyui.FilterConfig{
+		Name: "filter-icons",
+		Options: []daisyui.FilterOption{
+			{Label: "Grid", Checked: true},
+			{Label: "List"},
+		},
+	}))
+}

@@ -1,0 +1,22 @@
+package components
+
+import (
+	"github.com/geoffjay/jughead/sites/links"
+	"github.com/geoffjay/jughead/templates/components/daisyui"
+)
+
+templ LinkPage(r links.LinkResolver) {
+	@pageShell(r, "Link", "Link adds the missing underline style to links.", linkBody(r))
+}
+
+templ linkBody(r links.LinkResolver) {
+	@section("Link", daisyui.Link("", "Click me", "", "", "", nil))
+	@section("Primary color", daisyui.Link("", "Click me", "primary", "", "", nil))
+	@section("Secondary color", daisyui.Link("", "Click me", "secondary", "", "", nil))
+	@section("Accent color", daisyui.Link("", "Click me", "accent", "", "", nil))
+	@section("Success color", daisyui.Link("", "Click me", "success", "", "", nil))
+	@section("Info color", daisyui.Link("", "Click me", "info", "", "", nil))
+	@section("Warning color", daisyui.Link("", "Click me", "warning", "", "", nil))
+	@section("Error color", daisyui.Link("", "Click me", "error", "", "", nil))
+	@section("Show underline only on hover", daisyui.Link("", "Click me", "", "hover", "", nil))
+}

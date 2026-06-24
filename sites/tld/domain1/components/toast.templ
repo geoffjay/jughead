@@ -1,0 +1,40 @@
+package components
+
+import "github.com/geoffjay/jughead/sites/links"
+
+templ ToastPage(r links.LinkResolver) {
+	@pageShell(r, "Toast", "Toast is a wrapper to stack elements, positioned on the corner of page.", toastBody(r))
+}
+
+templ toastBody(r links.LinkResolver) {
+	@section("toast with alert inside", templ.Raw(`
+		<div class="w-full h-64 relative">
+			<div class="toast absolute">
+				<div class="alert alert-info">
+					<span>New message arrived.</span>
+				</div>
+			</div>
+		</div>`))
+	@section("toast-top toast-start", toastFrame("toast-top toast-start"))
+	@section("toast-top toast-center", toastFrame("toast-top toast-center"))
+	@section("toast-top toast-end", toastFrame("toast-top toast-end"))
+	@section("toast-start toast-middle", toastFrame("toast-start toast-middle"))
+	@section("toast-center toast-middle", toastFrame("toast-center toast-middle"))
+	@section("toast-end toast-middle", toastFrame("toast-end toast-middle"))
+	@section("toast-start toast-bottom (default)", toastFrame("toast-start"))
+	@section("toast-center toast-bottom (default)", toastFrame("toast-center"))
+	@section("toast-end (default) toast-bottom (default)", toastFrame("toast-end"))
+}
+
+templ toastFrame(position string) {
+	<div class="w-full h-64 relative">
+		<div class={ "toast " + position + " absolute" }>
+			<div class="alert alert-info">
+				<span>New mail arrived.</span>
+			</div>
+			<div class="alert alert-success">
+				<span>Message sent successfully.</span>
+			</div>
+		</div>
+	</div>
+}

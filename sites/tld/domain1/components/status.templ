@@ -1,0 +1,31 @@
+package components
+
+import (
+	"github.com/geoffjay/jughead/sites/links"
+	"github.com/geoffjay/jughead/templates/components/daisyui"
+)
+
+templ StatusPage(r links.LinkResolver) {
+	@pageShell(r, "Status", "Status is a really small icon to visually show the current status of an element, like online, offline, error, etc.", statusBody(r))
+}
+
+templ statusBody(r links.LinkResolver) {
+	@section("Status", daisyui.Status("", "", "", "", ""))
+	@section("Status sizes", templ.Raw(`
+		<div aria-label="status" class="status status-xs"></div>
+		<div aria-label="status" class="status status-sm"></div>
+		<div aria-label="status" class="status status-md"></div>
+		<div aria-label="status" class="status status-lg"></div>
+		<div aria-label="status" class="status status-xl"></div>`))
+	@section("Status with colors", templ.Raw(`
+		<div aria-label="status" class="status status-primary"></div>
+		<div aria-label="status" class="status status-secondary"></div>
+		<div aria-label="status" class="status status-accent"></div>
+		<div aria-label="status" class="status status-neutral"></div>
+		<div aria-label="info" class="status status-info"></div>
+		<div aria-label="success" class="status status-success"></div>
+		<div aria-label="warning" class="status status-warning"></div>
+		<div aria-label="error" class="status status-error"></div>`))
+	@section("Status with ping animation", daisyui.Status("error", "", "animate-ping", "status", ""))
+	@section("Status with bounce animation", daisyui.Status("info", "", "animate-bounce", "status", ""))
+}

@@ -1,0 +1,38 @@
+package components
+
+import (
+	"github.com/geoffjay/jughead/sites/links"
+	"github.com/geoffjay/jughead/templates/components/daisyui"
+)
+
+templ LoadingPage(r links.LinkResolver) {
+	@pageShell(r, "Loading", "Loading shows an animation to indicate that something is loading.", loadingBody(r))
+}
+
+templ loadingBody(r links.LinkResolver) {
+	@section("Loading spinner", loadingRow("spinner"))
+	@section("Loading dots", loadingRow("dots"))
+	@section("Loading ring", loadingRow("ring"))
+	@section("Loading ball", loadingRow("ball"))
+	@section("Loading bars", loadingRow("bars"))
+	@section("Loading infinity", loadingRow("infinity"))
+	@section("Loading with colors", templ.Raw(`
+		<span class="loading loading-spinner text-primary"></span>
+		<span class="loading loading-spinner text-secondary"></span>
+		<span class="loading loading-spinner text-accent"></span>
+		<span class="loading loading-spinner text-neutral"></span>
+		<span class="loading loading-spinner text-info"></span>
+		<span class="loading loading-spinner text-success"></span>
+		<span class="loading loading-spinner text-warning"></span>
+		<span class="loading loading-spinner text-error"></span>`))
+}
+
+templ loadingRow(shape string) {
+	<div class="flex items-center gap-2">
+		@daisyui.Loading(shape, "xs", "", "")
+		@daisyui.Loading(shape, "sm", "", "")
+		@daisyui.Loading(shape, "md", "", "")
+		@daisyui.Loading(shape, "lg", "", "")
+		@daisyui.Loading(shape, "xl", "", "")
+	</div>
+}

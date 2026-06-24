@@ -1,0 +1,43 @@
+package components
+
+import (
+	"github.com/geoffjay/jughead/sites/links"
+	"github.com/geoffjay/jughead/templates/components/daisyui"
+)
+
+templ FileInputPage(r links.LinkResolver) {
+	@pageShell(r, "File Input", "File Input is a an input field for uploading files.", fileInputBody(r))
+}
+
+templ fileInputBody(r links.LinkResolver) {
+	@section("File input", daisyui.FileInput(daisyui.FileInputConfig{}))
+	@section("File input ghost", daisyui.FileInput(daisyui.FileInputConfig{Style: "ghost"}))
+	@section("With fieldset and label", daisyui.Fieldset(daisyui.FieldsetConfig{
+		Legend: "Pick a file",
+	}, templ.Raw(`
+		<input type="file" class="file-input" />
+		<label class="label">Max size 2MB</label>`)))
+	@section("Sizes", fileInputSizeRow())
+	@section("Primary color", templ.Raw(`
+		<div class="grid gap-2">
+			<input type="file" class="file-input file-input-primary" />
+			<input type="file" class="file-input file-input-secondary" />
+			<input type="file" class="file-input file-input-accent" />
+			<input type="file" class="file-input file-input-neutral" />
+			<input type="file" class="file-input file-input-info" />
+			<input type="file" class="file-input file-input-success" />
+			<input type="file" class="file-input file-input-warning" />
+			<input type="file" class="file-input file-input-error" />
+		</div>`))
+	@section("Disabled", daisyui.FileInput(daisyui.FileInputConfig{Disabled: true}))
+}
+
+templ fileInputSizeRow() {
+	<div class="flex flex-col gap-4 w-full items-center">
+		@daisyui.FileInput(daisyui.FileInputConfig{Size: "xs"})
+		@daisyui.FileInput(daisyui.FileInputConfig{Size: "sm"})
+		@daisyui.FileInput(daisyui.FileInputConfig{Size: "md"})
+		@daisyui.FileInput(daisyui.FileInputConfig{Size: "lg"})
+		@daisyui.FileInput(daisyui.FileInputConfig{Size: "xl"})
+	</div>
+}

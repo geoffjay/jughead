@@ -12,72 +12,11 @@ import (
 
 import (
 	"github.com/geoffjay/jughead/sites/links"
+	"github.com/geoffjay/jughead/sites/tld/domain1/layout"
 	"github.com/geoffjay/jughead/templates/components/daisyui"
 )
 
-// navbarData builds the shared navbar configuration. The "Components" dropdown
-// links to each component example page. Hrefs are site-relative and resolved
-// at render time via the per-request LinkResolver. EndExtra renders a
-// light/dark theme toggle in the navbar-end region.
-func navbarData(r links.LinkResolver) daisyui.NavbarData {
-	return daisyui.NavbarData{
-		Title:     "domain1.tld",
-		TitleHref: "",
-		Resolver:  r,
-		EndDropdowns: []daisyui.NavDropdown{
-			{
-				Label: "Components",
-				Items: []daisyui.NavItem{
-					{Label: "Accordion", Href: "/components/accordion"},
-					{Label: "Navbar", Href: "/components/navbar"},
-					{Label: "Join", Href: "/components/join"},
-					{Label: "Stack", Href: "/components/stack"},
-					{Label: "Divider", Href: "/components/divider"},
-					{Label: "Mask", Href: "/components/mask"},
-					{Label: "Link", Href: "/components/link"},
-					{Label: "Kbd", Href: "/components/kbd"},
-					{Label: "Status", Href: "/components/status"},
-					{Label: "Loading", Href: "/components/loading"},
-					{Label: "Collapse", Href: "/components/collapse"},
-					{Label: "Swap", Href: "/components/swap"},
-					{Label: "Theme Controller", Href: "/components/theme-controller"},
-					{Label: "Button", Href: "/components/button"},
-					{Label: "FAB / Speed Dial", Href: "/components/floating-action-button"},
-					{Label: "Text Input", Href: "/components/input-field"},
-					{Label: "Textarea", Href: "/components/textarea"},
-					{Label: "Select", Href: "/components/select"},
-					{Label: "Checkbox", Href: "/components/checkbox"},
-					{Label: "Radio", Href: "/components/radio"},
-					{Label: "Range slider", Href: "/components/range"},
-					{Label: "File Input", Href: "/components/file-input"},
-					{Label: "Toggle", Href: "/components/toggle"},
-					{Label: "Rating", Href: "/components/rating"},
-					{Label: "Label", Href: "/components/label"},
-					{Label: "Fieldset", Href: "/components/fieldset"},
-					{Label: "Validator", Href: "/components/validator"},
-					{Label: "Alert", Href: "/components/alert"},
-					{Label: "Badge", Href: "/components/badge"},
-					{Label: "Progress", Href: "/components/progress"},
-					{Label: "Radial progress", Href: "/components/radial-progress"},
-					{Label: "Countdown", Href: "/components/countdown"},
-					{Label: "Skeleton", Href: "/components/skeleton"},
-					{Label: "Toast", Href: "/components/toast"},
-					{Label: "Tooltip", Href: "/components/tooltip"},
-					{Label: "Indicator", Href: "/components/indicator"},
-					{Label: "Chat bubble", Href: "/components/chat-bubble"},
-				},
-			},
-		},
-		EndExtra: themeToggle(),
-	}
-}
-
-// themeToggle renders a daisyUI swap with a hidden theme-controller checkbox.
-// When checked the page adopts the "dark" theme; unchecked restores "light".
-// The checkbox pattern (rather than swap-active) is used because daisyUI's
-// :checked rules live in the same CSS layer as the base swap rules and so can
-// override them.
-func themeToggle() templ.Component {
+func Home(r links.LinkResolver) templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -98,715 +37,626 @@ func themeToggle() templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<label class=\"swap swap-rotate btn btn-ghost btn-circle\" aria-label=\"Toggle theme\"><input type=\"checkbox\" class=\"theme-controller\" value=\"kanagawa-dark\" autocomplete=\"off\"> <svg class=\"swap-off h-5 w-5 fill-current\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\"><path d=\"M5.64,17l-.71.71a1,1,0,0,0,0,1.41,1,1,0,0,0,1.41,0l.71-.71A1,1,0,0,0,5.64,17ZM5,12a1,1,0,0,0-1-1H3a1,1,0,0,0,0,2H4A1,1,0,0,0,5,12Zm7-7a1,1,0,0,0,1-1V3a1,1,0,0,0-2,0V4A1,1,0,0,0,12,5ZM5.64,7.05a1,1,0,0,0,.7.29,1,1,0,0,0,.71-.29,1,1,0,0,0,0-1.41l-.71-.71A1,1,0,0,0,4.93,6.34Zm12,.29a1,1,0,0,0,.7-.29l.71-.71a1,1,0,1,0-1.41-1.41L17,5.64a1,1,0,0,0,0,1.41A1,1,0,0,0,17.66,7.34ZM21,11H20a1,1,0,0,0,0,2h1a1,1,0,0,0,0-2Zm-9,8a1,1,0,0,0-1,1v1a1,1,0,0,0,2,0V20A1,1,0,0,0,12,19ZM18.36,17A1,1,0,0,0,17,18.36l.71.71a1,1,0,0,0,1.41,0,1,1,0,0,0,0-1.41ZM12,6.5A5.5,5.5,0,1,0,17.5,12,5.51,5.51,0,0,0,12,6.5Zm0,9A3.5,3.5,0,1,1,15.5,12,3.5,3.5,0,0,1,12,15.5Z\"></path></svg> <svg class=\"swap-on h-5 w-5 fill-current\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\"><path d=\"M21.64,13a1,1,0,0,0-1.05-.14,8.05,8.05,0,0,1-3.37.73A8.15,8.15,0,0,1,9.08,5.49a8.59,8.59,0,0,1,.25-2A1,1,0,0,0,8,2.36,10.14,10.14,0,1,0,22,14.05,1,1,0,0,0,21.64,13Zm-9.5,6.69A8.14,8.14,0,0,1,7.08,5.22v.27A10.15,10.15,0,0,0,17.22,15.63a9.79,9.79,0,0,0,2.1-.22A8.11,8.11,0,0,1,12.14,19.73Z\"></path></svg></label>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<div class=\"min-h-screen bg-base-200 text-base-content\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		return nil
-	})
-}
-
-func Home(r links.LinkResolver) templ.Component {
-	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
-		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
-		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
-			return templ_7745c5c3_CtxErr
-		}
-		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
-		if !templ_7745c5c3_IsBuffer {
-			defer func() {
-				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
-				if templ_7745c5c3_Err == nil {
-					templ_7745c5c3_Err = templ_7745c5c3_BufErr
-				}
-			}()
-		}
-		ctx = templ.InitializeContext(ctx)
-		templ_7745c5c3_Var2 := templ.GetChildren(ctx)
-		if templ_7745c5c3_Var2 == nil {
-			templ_7745c5c3_Var2 = templ.NopComponent
-		}
-		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "<div class=\"min-h-screen bg-base-200 text-base-content\">")
+		templ_7745c5c3_Err = daisyui.Navbar(layout.NavbarData(r)).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = daisyui.Navbar(navbarData(r)).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "<main class=\"p-8 max-w-2xl mx-auto space-y-4\"><h1 class=\"text-4xl font-bold text-primary\">domain1.tld</h1><p class=\"text-base-content/70\">Reusable daisyUI component examples. Use the \"Components\" dropdown in the navbar to browse each component.</p><ul class=\"menu bg-base-100 rounded-box w-56 shadow\"><li><a href=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "<main class=\"p-8 max-w-2xl mx-auto space-y-4\"><h1 class=\"text-4xl font-bold text-primary\">domain1.tld</h1><p class=\"text-base-content/70\">Reusable daisyUI component examples. Use the \"Components\" dropdown in the navbar to browse each component.</p><ul class=\"menu bg-base-100 rounded-box w-56 shadow\"><li><a href=\"")
+		var templ_7745c5c3_Var2 templ.SafeURL
+		templ_7745c5c3_Var2, templ_7745c5c3_Err = templ.JoinURLErrs(r.SafeURL("/components/accordion"))
+		if templ_7745c5c3_Err != nil {
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/index.templ`, Line: 19, Col: 52}
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var2))
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "\" class=\"link link-hover\">Accordion</a></li><li><a href=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var3 templ.SafeURL
-		templ_7745c5c3_Var3, templ_7745c5c3_Err = templ.JoinURLErrs(r.SafeURL("/components/accordion"))
+		templ_7745c5c3_Var3, templ_7745c5c3_Err = templ.JoinURLErrs(r.SafeURL("/components/navbar"))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/index.templ`, Line: 92, Col: 52}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/index.templ`, Line: 20, Col: 49}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var3))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "\" class=\"link link-hover\">Accordion</a></li><li><a href=\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "\" class=\"link link-hover\">Navbar</a></li><li><a href=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var4 templ.SafeURL
-		templ_7745c5c3_Var4, templ_7745c5c3_Err = templ.JoinURLErrs(r.SafeURL("/components/navbar"))
+		templ_7745c5c3_Var4, templ_7745c5c3_Err = templ.JoinURLErrs(r.SafeURL("/components/join"))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/index.templ`, Line: 93, Col: 49}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/index.templ`, Line: 21, Col: 47}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var4))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "\" class=\"link link-hover\">Navbar</a></li><li><a href=\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "\" class=\"link link-hover\">Join</a></li><li><a href=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var5 templ.SafeURL
-		templ_7745c5c3_Var5, templ_7745c5c3_Err = templ.JoinURLErrs(r.SafeURL("/components/join"))
+		templ_7745c5c3_Var5, templ_7745c5c3_Err = templ.JoinURLErrs(r.SafeURL("/components/stack"))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/index.templ`, Line: 94, Col: 47}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/index.templ`, Line: 22, Col: 48}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var5))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "\" class=\"link link-hover\">Join</a></li><li><a href=\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "\" class=\"link link-hover\">Stack</a></li><li><a href=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var6 templ.SafeURL
-		templ_7745c5c3_Var6, templ_7745c5c3_Err = templ.JoinURLErrs(r.SafeURL("/components/stack"))
+		templ_7745c5c3_Var6, templ_7745c5c3_Err = templ.JoinURLErrs(r.SafeURL("/components/divider"))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/index.templ`, Line: 95, Col: 48}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/index.templ`, Line: 23, Col: 50}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var6))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "\" class=\"link link-hover\">Stack</a></li><li><a href=\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "\" class=\"link link-hover\">Divider</a></li><li><a href=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var7 templ.SafeURL
-		templ_7745c5c3_Var7, templ_7745c5c3_Err = templ.JoinURLErrs(r.SafeURL("/components/divider"))
+		templ_7745c5c3_Var7, templ_7745c5c3_Err = templ.JoinURLErrs(r.SafeURL("/components/mask"))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/index.templ`, Line: 96, Col: 50}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/index.templ`, Line: 24, Col: 47}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var7))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 8, "\" class=\"link link-hover\">Divider</a></li><li><a href=\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 8, "\" class=\"link link-hover\">Mask</a></li><li><a href=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var8 templ.SafeURL
-		templ_7745c5c3_Var8, templ_7745c5c3_Err = templ.JoinURLErrs(r.SafeURL("/components/mask"))
+		templ_7745c5c3_Var8, templ_7745c5c3_Err = templ.JoinURLErrs(r.SafeURL("/components/link"))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/index.templ`, Line: 97, Col: 47}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/index.templ`, Line: 25, Col: 47}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var8))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 9, "\" class=\"link link-hover\">Mask</a></li><li><a href=\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 9, "\" class=\"link link-hover\">Link</a></li><li><a href=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var9 templ.SafeURL
-		templ_7745c5c3_Var9, templ_7745c5c3_Err = templ.JoinURLErrs(r.SafeURL("/components/link"))
+		templ_7745c5c3_Var9, templ_7745c5c3_Err = templ.JoinURLErrs(r.SafeURL("/components/kbd"))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/index.templ`, Line: 98, Col: 47}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/index.templ`, Line: 26, Col: 46}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var9))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 10, "\" class=\"link link-hover\">Link</a></li><li><a href=\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 10, "\" class=\"link link-hover\">Kbd</a></li><li><a href=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var10 templ.SafeURL
-		templ_7745c5c3_Var10, templ_7745c5c3_Err = templ.JoinURLErrs(r.SafeURL("/components/kbd"))
+		templ_7745c5c3_Var10, templ_7745c5c3_Err = templ.JoinURLErrs(r.SafeURL("/components/status"))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/index.templ`, Line: 99, Col: 46}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/index.templ`, Line: 27, Col: 49}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var10))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 11, "\" class=\"link link-hover\">Kbd</a></li><li><a href=\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 11, "\" class=\"link link-hover\">Status</a></li><li><a href=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var11 templ.SafeURL
-		templ_7745c5c3_Var11, templ_7745c5c3_Err = templ.JoinURLErrs(r.SafeURL("/components/status"))
+		templ_7745c5c3_Var11, templ_7745c5c3_Err = templ.JoinURLErrs(r.SafeURL("/components/loading"))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/index.templ`, Line: 100, Col: 49}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/index.templ`, Line: 28, Col: 50}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var11))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 12, "\" class=\"link link-hover\">Status</a></li><li><a href=\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 12, "\" class=\"link link-hover\">Loading</a></li><li><a href=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var12 templ.SafeURL
-		templ_7745c5c3_Var12, templ_7745c5c3_Err = templ.JoinURLErrs(r.SafeURL("/components/loading"))
+		templ_7745c5c3_Var12, templ_7745c5c3_Err = templ.JoinURLErrs(r.SafeURL("/components/collapse"))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/index.templ`, Line: 101, Col: 50}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/index.templ`, Line: 29, Col: 51}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var12))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 13, "\" class=\"link link-hover\">Loading</a></li><li><a href=\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 13, "\" class=\"link link-hover\">Collapse</a></li><li><a href=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var13 templ.SafeURL
-		templ_7745c5c3_Var13, templ_7745c5c3_Err = templ.JoinURLErrs(r.SafeURL("/components/collapse"))
+		templ_7745c5c3_Var13, templ_7745c5c3_Err = templ.JoinURLErrs(r.SafeURL("/components/swap"))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/index.templ`, Line: 102, Col: 51}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/index.templ`, Line: 30, Col: 47}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var13))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 14, "\" class=\"link link-hover\">Collapse</a></li><li><a href=\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 14, "\" class=\"link link-hover\">Swap</a></li><li><a href=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var14 templ.SafeURL
-		templ_7745c5c3_Var14, templ_7745c5c3_Err = templ.JoinURLErrs(r.SafeURL("/components/swap"))
+		templ_7745c5c3_Var14, templ_7745c5c3_Err = templ.JoinURLErrs(r.SafeURL("/components/theme-controller"))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/index.templ`, Line: 103, Col: 47}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/index.templ`, Line: 31, Col: 59}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var14))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 15, "\" class=\"link link-hover\">Swap</a></li><li><a href=\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 15, "\" class=\"link link-hover\">Theme Controller</a></li><li><a href=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var15 templ.SafeURL
-		templ_7745c5c3_Var15, templ_7745c5c3_Err = templ.JoinURLErrs(r.SafeURL("/components/theme-controller"))
+		templ_7745c5c3_Var15, templ_7745c5c3_Err = templ.JoinURLErrs(r.SafeURL("/components/button"))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/index.templ`, Line: 104, Col: 59}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/index.templ`, Line: 32, Col: 49}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var15))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 16, "\" class=\"link link-hover\">Theme Controller</a></li><li><a href=\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 16, "\" class=\"link link-hover\">Button</a></li><li><a href=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var16 templ.SafeURL
-		templ_7745c5c3_Var16, templ_7745c5c3_Err = templ.JoinURLErrs(r.SafeURL("/components/button"))
+		templ_7745c5c3_Var16, templ_7745c5c3_Err = templ.JoinURLErrs(r.SafeURL("/components/floating-action-button"))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/index.templ`, Line: 105, Col: 49}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/index.templ`, Line: 33, Col: 65}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var16))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 17, "\" class=\"link link-hover\">Button</a></li><li><a href=\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 17, "\" class=\"link link-hover\">FAB / Speed Dial</a></li><li><a href=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var17 templ.SafeURL
-		templ_7745c5c3_Var17, templ_7745c5c3_Err = templ.JoinURLErrs(r.SafeURL("/components/floating-action-button"))
+		templ_7745c5c3_Var17, templ_7745c5c3_Err = templ.JoinURLErrs(r.SafeURL("/components/input-field"))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/index.templ`, Line: 106, Col: 65}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/index.templ`, Line: 34, Col: 54}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var17))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 18, "\" class=\"link link-hover\">FAB / Speed Dial</a></li><li><a href=\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 18, "\" class=\"link link-hover\">Text Input</a></li><li><a href=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var18 templ.SafeURL
-		templ_7745c5c3_Var18, templ_7745c5c3_Err = templ.JoinURLErrs(r.SafeURL("/components/input-field"))
+		templ_7745c5c3_Var18, templ_7745c5c3_Err = templ.JoinURLErrs(r.SafeURL("/components/textarea"))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/index.templ`, Line: 107, Col: 54}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/index.templ`, Line: 35, Col: 51}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var18))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 19, "\" class=\"link link-hover\">Text Input</a></li><li><a href=\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 19, "\" class=\"link link-hover\">Textarea</a></li><li><a href=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var19 templ.SafeURL
-		templ_7745c5c3_Var19, templ_7745c5c3_Err = templ.JoinURLErrs(r.SafeURL("/components/textarea"))
+		templ_7745c5c3_Var19, templ_7745c5c3_Err = templ.JoinURLErrs(r.SafeURL("/components/select"))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/index.templ`, Line: 108, Col: 51}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/index.templ`, Line: 36, Col: 49}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var19))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 20, "\" class=\"link link-hover\">Textarea</a></li><li><a href=\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 20, "\" class=\"link link-hover\">Select</a></li><li><a href=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var20 templ.SafeURL
-		templ_7745c5c3_Var20, templ_7745c5c3_Err = templ.JoinURLErrs(r.SafeURL("/components/select"))
+		templ_7745c5c3_Var20, templ_7745c5c3_Err = templ.JoinURLErrs(r.SafeURL("/components/checkbox"))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/index.templ`, Line: 109, Col: 49}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/index.templ`, Line: 37, Col: 51}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var20))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 21, "\" class=\"link link-hover\">Select</a></li><li><a href=\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 21, "\" class=\"link link-hover\">Checkbox</a></li><li><a href=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var21 templ.SafeURL
-		templ_7745c5c3_Var21, templ_7745c5c3_Err = templ.JoinURLErrs(r.SafeURL("/components/checkbox"))
+		templ_7745c5c3_Var21, templ_7745c5c3_Err = templ.JoinURLErrs(r.SafeURL("/components/radio"))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/index.templ`, Line: 110, Col: 51}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/index.templ`, Line: 38, Col: 48}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var21))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 22, "\" class=\"link link-hover\">Checkbox</a></li><li><a href=\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 22, "\" class=\"link link-hover\">Radio</a></li><li><a href=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var22 templ.SafeURL
-		templ_7745c5c3_Var22, templ_7745c5c3_Err = templ.JoinURLErrs(r.SafeURL("/components/radio"))
+		templ_7745c5c3_Var22, templ_7745c5c3_Err = templ.JoinURLErrs(r.SafeURL("/components/range"))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/index.templ`, Line: 111, Col: 48}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/index.templ`, Line: 39, Col: 48}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var22))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 23, "\" class=\"link link-hover\">Radio</a></li><li><a href=\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 23, "\" class=\"link link-hover\">Range slider</a></li><li><a href=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var23 templ.SafeURL
-		templ_7745c5c3_Var23, templ_7745c5c3_Err = templ.JoinURLErrs(r.SafeURL("/components/range"))
+		templ_7745c5c3_Var23, templ_7745c5c3_Err = templ.JoinURLErrs(r.SafeURL("/components/file-input"))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/index.templ`, Line: 112, Col: 48}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/index.templ`, Line: 40, Col: 53}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var23))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 24, "\" class=\"link link-hover\">Range slider</a></li><li><a href=\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 24, "\" class=\"link link-hover\">File Input</a></li><li><a href=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var24 templ.SafeURL
-		templ_7745c5c3_Var24, templ_7745c5c3_Err = templ.JoinURLErrs(r.SafeURL("/components/file-input"))
+		templ_7745c5c3_Var24, templ_7745c5c3_Err = templ.JoinURLErrs(r.SafeURL("/components/toggle"))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/index.templ`, Line: 113, Col: 53}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/index.templ`, Line: 41, Col: 49}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var24))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 25, "\" class=\"link link-hover\">File Input</a></li><li><a href=\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 25, "\" class=\"link link-hover\">Toggle</a></li><li><a href=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var25 templ.SafeURL
-		templ_7745c5c3_Var25, templ_7745c5c3_Err = templ.JoinURLErrs(r.SafeURL("/components/toggle"))
+		templ_7745c5c3_Var25, templ_7745c5c3_Err = templ.JoinURLErrs(r.SafeURL("/components/rating"))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/index.templ`, Line: 114, Col: 49}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/index.templ`, Line: 42, Col: 49}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var25))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 26, "\" class=\"link link-hover\">Toggle</a></li><li><a href=\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 26, "\" class=\"link link-hover\">Rating</a></li><li><a href=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var26 templ.SafeURL
-		templ_7745c5c3_Var26, templ_7745c5c3_Err = templ.JoinURLErrs(r.SafeURL("/components/rating"))
+		templ_7745c5c3_Var26, templ_7745c5c3_Err = templ.JoinURLErrs(r.SafeURL("/components/label"))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/index.templ`, Line: 115, Col: 49}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/index.templ`, Line: 43, Col: 48}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var26))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 27, "\" class=\"link link-hover\">Rating</a></li><li><a href=\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 27, "\" class=\"link link-hover\">Label</a></li><li><a href=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var27 templ.SafeURL
-		templ_7745c5c3_Var27, templ_7745c5c3_Err = templ.JoinURLErrs(r.SafeURL("/components/label"))
+		templ_7745c5c3_Var27, templ_7745c5c3_Err = templ.JoinURLErrs(r.SafeURL("/components/fieldset"))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/index.templ`, Line: 116, Col: 48}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/index.templ`, Line: 44, Col: 51}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var27))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 28, "\" class=\"link link-hover\">Label</a></li><li><a href=\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 28, "\" class=\"link link-hover\">Fieldset</a></li><li><a href=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var28 templ.SafeURL
-		templ_7745c5c3_Var28, templ_7745c5c3_Err = templ.JoinURLErrs(r.SafeURL("/components/fieldset"))
+		templ_7745c5c3_Var28, templ_7745c5c3_Err = templ.JoinURLErrs(r.SafeURL("/components/validator"))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/index.templ`, Line: 117, Col: 51}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/index.templ`, Line: 45, Col: 52}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var28))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 29, "\" class=\"link link-hover\">Fieldset</a></li><li><a href=\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 29, "\" class=\"link link-hover\">Validator</a></li><li><a href=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var29 templ.SafeURL
-		templ_7745c5c3_Var29, templ_7745c5c3_Err = templ.JoinURLErrs(r.SafeURL("/components/validator"))
+		templ_7745c5c3_Var29, templ_7745c5c3_Err = templ.JoinURLErrs(r.SafeURL("/components/alert"))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/index.templ`, Line: 118, Col: 52}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/index.templ`, Line: 46, Col: 48}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var29))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 30, "\" class=\"link link-hover\">Validator</a></li><li><a href=\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 30, "\" class=\"link link-hover\">Alert</a></li><li><a href=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var30 templ.SafeURL
-		templ_7745c5c3_Var30, templ_7745c5c3_Err = templ.JoinURLErrs(r.SafeURL("/components/alert"))
+		templ_7745c5c3_Var30, templ_7745c5c3_Err = templ.JoinURLErrs(r.SafeURL("/components/badge"))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/index.templ`, Line: 119, Col: 48}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/index.templ`, Line: 47, Col: 48}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var30))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 31, "\" class=\"link link-hover\">Alert</a></li><li><a href=\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 31, "\" class=\"link link-hover\">Badge</a></li><li><a href=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var31 templ.SafeURL
-		templ_7745c5c3_Var31, templ_7745c5c3_Err = templ.JoinURLErrs(r.SafeURL("/components/badge"))
+		templ_7745c5c3_Var31, templ_7745c5c3_Err = templ.JoinURLErrs(r.SafeURL("/components/progress"))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/index.templ`, Line: 120, Col: 48}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/index.templ`, Line: 48, Col: 51}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var31))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 32, "\" class=\"link link-hover\">Badge</a></li><li><a href=\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 32, "\" class=\"link link-hover\">Progress</a></li><li><a href=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var32 templ.SafeURL
-		templ_7745c5c3_Var32, templ_7745c5c3_Err = templ.JoinURLErrs(r.SafeURL("/components/progress"))
+		templ_7745c5c3_Var32, templ_7745c5c3_Err = templ.JoinURLErrs(r.SafeURL("/components/radial-progress"))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/index.templ`, Line: 121, Col: 51}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/index.templ`, Line: 49, Col: 58}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var32))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 33, "\" class=\"link link-hover\">Progress</a></li><li><a href=\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 33, "\" class=\"link link-hover\">Radial progress</a></li><li><a href=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var33 templ.SafeURL
-		templ_7745c5c3_Var33, templ_7745c5c3_Err = templ.JoinURLErrs(r.SafeURL("/components/radial-progress"))
+		templ_7745c5c3_Var33, templ_7745c5c3_Err = templ.JoinURLErrs(r.SafeURL("/components/countdown"))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/index.templ`, Line: 122, Col: 58}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/index.templ`, Line: 50, Col: 52}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var33))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 34, "\" class=\"link link-hover\">Radial progress</a></li><li><a href=\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 34, "\" class=\"link link-hover\">Countdown</a></li><li><a href=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var34 templ.SafeURL
-		templ_7745c5c3_Var34, templ_7745c5c3_Err = templ.JoinURLErrs(r.SafeURL("/components/countdown"))
+		templ_7745c5c3_Var34, templ_7745c5c3_Err = templ.JoinURLErrs(r.SafeURL("/components/skeleton"))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/index.templ`, Line: 123, Col: 52}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/index.templ`, Line: 51, Col: 51}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var34))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 35, "\" class=\"link link-hover\">Countdown</a></li><li><a href=\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 35, "\" class=\"link link-hover\">Skeleton</a></li><li><a href=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var35 templ.SafeURL
-		templ_7745c5c3_Var35, templ_7745c5c3_Err = templ.JoinURLErrs(r.SafeURL("/components/skeleton"))
+		templ_7745c5c3_Var35, templ_7745c5c3_Err = templ.JoinURLErrs(r.SafeURL("/components/toast"))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/index.templ`, Line: 124, Col: 51}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/index.templ`, Line: 52, Col: 48}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var35))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 36, "\" class=\"link link-hover\">Skeleton</a></li><li><a href=\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 36, "\" class=\"link link-hover\">Toast</a></li><li><a href=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var36 templ.SafeURL
-		templ_7745c5c3_Var36, templ_7745c5c3_Err = templ.JoinURLErrs(r.SafeURL("/components/toast"))
+		templ_7745c5c3_Var36, templ_7745c5c3_Err = templ.JoinURLErrs(r.SafeURL("/components/tooltip"))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/index.templ`, Line: 125, Col: 48}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/index.templ`, Line: 53, Col: 50}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var36))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 37, "\" class=\"link link-hover\">Toast</a></li><li><a href=\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 37, "\" class=\"link link-hover\">Tooltip</a></li><li><a href=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var37 templ.SafeURL
-		templ_7745c5c3_Var37, templ_7745c5c3_Err = templ.JoinURLErrs(r.SafeURL("/components/tooltip"))
+		templ_7745c5c3_Var37, templ_7745c5c3_Err = templ.JoinURLErrs(r.SafeURL("/components/indicator"))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/index.templ`, Line: 126, Col: 50}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/index.templ`, Line: 54, Col: 52}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var37))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 38, "\" class=\"link link-hover\">Tooltip</a></li><li><a href=\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 38, "\" class=\"link link-hover\">Indicator</a></li><li><a href=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var38 templ.SafeURL
-		templ_7745c5c3_Var38, templ_7745c5c3_Err = templ.JoinURLErrs(r.SafeURL("/components/indicator"))
+		templ_7745c5c3_Var38, templ_7745c5c3_Err = templ.JoinURLErrs(r.SafeURL("/components/chat-bubble"))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/index.templ`, Line: 127, Col: 52}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/index.templ`, Line: 55, Col: 54}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var38))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 39, "\" class=\"link link-hover\">Indicator</a></li><li><a href=\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 39, "\" class=\"link link-hover\">Chat bubble</a></li><li><a href=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var39 templ.SafeURL
-		templ_7745c5c3_Var39, templ_7745c5c3_Err = templ.JoinURLErrs(r.SafeURL("/components/chat-bubble"))
+		templ_7745c5c3_Var39, templ_7745c5c3_Err = templ.JoinURLErrs(r.SafeURL("/components/breadcrumbs"))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/index.templ`, Line: 128, Col: 54}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/index.templ`, Line: 56, Col: 54}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var39))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 40, "\" class=\"link link-hover\">Chat bubble</a></li></ul></main></div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 40, "\" class=\"link link-hover\">Breadcrumbs</a></li><li><a href=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		return nil
-	})
-}
-
-func AccordionPage(r links.LinkResolver) templ.Component {
-	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
-		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
-		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
-			return templ_7745c5c3_CtxErr
+		var templ_7745c5c3_Var40 templ.SafeURL
+		templ_7745c5c3_Var40, templ_7745c5c3_Err = templ.JoinURLErrs(r.SafeURL("/components/menu"))
+		if templ_7745c5c3_Err != nil {
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/index.templ`, Line: 57, Col: 47}
 		}
-		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
-		if !templ_7745c5c3_IsBuffer {
-			defer func() {
-				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
-				if templ_7745c5c3_Err == nil {
-					templ_7745c5c3_Err = templ_7745c5c3_BufErr
-				}
-			}()
-		}
-		ctx = templ.InitializeContext(ctx)
-		templ_7745c5c3_Var40 := templ.GetChildren(ctx)
-		if templ_7745c5c3_Var40 == nil {
-			templ_7745c5c3_Var40 = templ.NopComponent
-		}
-		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 41, "<div class=\"min-h-screen bg-base-200 text-base-content\">")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var40))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = daisyui.Navbar(navbarData(r)).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 41, "\" class=\"link link-hover\">Menu</a></li><li><a href=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 42, "<main class=\"p-8 max-w-2xl mx-auto space-y-8\"><h1 class=\"text-3xl font-bold text-primary\">Accordion</h1><p class=\"text-base-content/70\">Accordion is used for showing and hiding content but only one item can stay open at a time.</p><section class=\"space-y-4\"><h2 class=\"text-2xl font-semibold\">Accordion using radio inputs</h2>")
+		var templ_7745c5c3_Var41 templ.SafeURL
+		templ_7745c5c3_Var41, templ_7745c5c3_Err = templ.JoinURLErrs(r.SafeURL("/components/pagination"))
+		if templ_7745c5c3_Err != nil {
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/index.templ`, Line: 58, Col: 53}
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var41))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = daisyui.Accordion(
-			"my-accordion-1",
-			[]daisyui.AccordionItem{
-				{Title: "How do I create an account?", Content: "Click the \"Sign Up\" button in the top right corner and follow the registration process.", Open: true},
-				{Title: "I forgot my password. What should I do?", Content: "Click on \"Forgot Password\" on the login page and follow the instructions sent to your email."},
-				{Title: "How do I update my profile information?", Content: "Go to \"My Account\" settings and select \"Edit Profile\" to make changes."},
-			},
-			"",
-			false,
-		).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 42, "\" class=\"link link-hover\">Pagination</a></li><li><a href=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 43, "</section><section class=\"space-y-4\"><h2 class=\"text-2xl font-semibold\">Accordion with arrow icon</h2>")
+		var templ_7745c5c3_Var42 templ.SafeURL
+		templ_7745c5c3_Var42, templ_7745c5c3_Err = templ.JoinURLErrs(r.SafeURL("/components/steps"))
+		if templ_7745c5c3_Err != nil {
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/index.templ`, Line: 59, Col: 48}
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var42))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = daisyui.Accordion(
-			"my-accordion-2",
-			[]daisyui.AccordionItem{
-				{Title: "How do I create an account?", Content: "Click the \"Sign Up\" button in the top right corner and follow the registration process.", Open: true},
-				{Title: "I forgot my password. What should I do?", Content: "Click on \"Forgot Password\" on the login page and follow the instructions sent to your email."},
-				{Title: "How do I update my profile information?", Content: "Go to \"My Account\" settings and select \"Edit Profile\" to make changes."},
-			},
-			"arrow",
-			false,
-		).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 43, "\" class=\"link link-hover\">Steps</a></li><li><a href=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 44, "</section><section class=\"space-y-4\"><h2 class=\"text-2xl font-semibold\">Accordion with plus/minus icon</h2>")
+		var templ_7745c5c3_Var43 templ.SafeURL
+		templ_7745c5c3_Var43, templ_7745c5c3_Err = templ.JoinURLErrs(r.SafeURL("/components/tabs"))
+		if templ_7745c5c3_Err != nil {
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/index.templ`, Line: 60, Col: 47}
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var43))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = daisyui.Accordion(
-			"my-accordion-3",
-			[]daisyui.AccordionItem{
-				{Title: "How do I create an account?", Content: "Click the \"Sign Up\" button in the top right corner and follow the registration process.", Open: true},
-				{Title: "I forgot my password. What should I do?", Content: "Click on \"Forgot Password\" on the login page and follow the instructions sent to your email."},
-				{Title: "How do I update my profile information?", Content: "Go to \"My Account\" settings and select \"Edit Profile\" to make changes."},
-			},
-			"plus",
-			false,
-		).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 44, "\" class=\"link link-hover\">Tabs</a></li><li><a href=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 45, "</section><section class=\"space-y-4\"><h2 class=\"text-2xl font-semibold\">Accordion joined</h2>")
+		var templ_7745c5c3_Var44 templ.SafeURL
+		templ_7745c5c3_Var44, templ_7745c5c3_Err = templ.JoinURLErrs(r.SafeURL("/components/dock"))
+		if templ_7745c5c3_Err != nil {
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/index.templ`, Line: 61, Col: 47}
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var44))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = daisyui.Accordion(
-			"my-accordion-4",
-			[]daisyui.AccordionItem{
-				{Title: "How do I create an account?", Content: "Click the \"Sign Up\" button in the top right corner and follow the registration process.", Open: true},
-				{Title: "I forgot my password. What should I do?", Content: "Click on \"Forgot Password\" on the login page and follow the instructions sent to your email."},
-				{Title: "How do I update my profile information?", Content: "Go to \"My Account\" settings and select \"Edit Profile\" to make changes."},
-			},
-			"arrow",
-			true,
-		).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 45, "\" class=\"link link-hover\">Dock</a></li><li><a href=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 46, "</section></main></div>")
+		var templ_7745c5c3_Var45 templ.SafeURL
+		templ_7745c5c3_Var45, templ_7745c5c3_Err = templ.JoinURLErrs(r.SafeURL("/components/dropdown"))
+		if templ_7745c5c3_Err != nil {
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/index.templ`, Line: 62, Col: 51}
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var45))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		return nil
-	})
-}
-
-func NavbarPage(r links.LinkResolver) templ.Component {
-	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
-		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
-		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
-			return templ_7745c5c3_CtxErr
-		}
-		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
-		if !templ_7745c5c3_IsBuffer {
-			defer func() {
-				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
-				if templ_7745c5c3_Err == nil {
-					templ_7745c5c3_Err = templ_7745c5c3_BufErr
-				}
-			}()
-		}
-		ctx = templ.InitializeContext(ctx)
-		templ_7745c5c3_Var41 := templ.GetChildren(ctx)
-		if templ_7745c5c3_Var41 == nil {
-			templ_7745c5c3_Var41 = templ.NopComponent
-		}
-		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 47, "<div class=\"min-h-screen bg-base-200 text-base-content\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 46, "\" class=\"link link-hover\">Dropdown</a></li><li><a href=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = daisyui.Navbar(navbarData(r)).Render(ctx, templ_7745c5c3_Buffer)
+		var templ_7745c5c3_Var46 templ.SafeURL
+		templ_7745c5c3_Var46, templ_7745c5c3_Err = templ.JoinURLErrs(r.SafeURL("/components/footer"))
+		if templ_7745c5c3_Err != nil {
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/index.templ`, Line: 63, Col: 49}
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var46))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 48, "<main class=\"p-8 max-w-2xl mx-auto space-y-8\"><h1 class=\"text-3xl font-bold text-primary\">Navbar</h1><p class=\"text-base-content/70\">Navbar is used to show a navigation bar on the top of the page.</p><section class=\"space-y-4\"><h2 class=\"text-2xl font-semibold\">Navbar with title only</h2>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 47, "\" class=\"link link-hover\">Footer</a></li><li><a href=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = daisyui.Navbar(daisyui.NavbarData{Title: "daisyUI"}).Render(ctx, templ_7745c5c3_Buffer)
+		var templ_7745c5c3_Var47 templ.SafeURL
+		templ_7745c5c3_Var47, templ_7745c5c3_Err = templ.JoinURLErrs(r.SafeURL("/components/drawer-sidebar"))
+		if templ_7745c5c3_Err != nil {
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/index.templ`, Line: 64, Col: 57}
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var47))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 49, "</section><section class=\"space-y-4\"><h2 class=\"text-2xl font-semibold\">Navbar with title and icon</h2><div class=\"navbar bg-base-100 shadow-sm\"><div class=\"flex-1\"><button class=\"btn btn-ghost text-xl\">daisyUI</button></div><div class=\"flex-none\"><button class=\"btn btn-square btn-ghost\"><svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewBox=\"0 0 24 24\" class=\"inline-block w-5 h-5 stroke-current\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z\"></path></svg></button></div></div></section><section class=\"space-y-4\"><h2 class=\"text-2xl font-semibold\">Navbar with menu and submenu</h2>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 48, "\" class=\"link link-hover\">Drawer sidebar</a></li><li><a href=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = daisyui.Navbar(daisyui.NavbarData{
-			Title: "daisyUI",
-			EndDropdowns: []daisyui.NavDropdown{
-				{
-					Label: "Parent",
-					Items: []daisyui.NavItem{
-						{Label: "Link 1", Href: "#"},
-						{Label: "Link 2", Href: "#"},
-					},
-				},
-			},
-			End: []daisyui.NavItem{{Label: "Link", Href: "#"}},
-		}).Render(ctx, templ_7745c5c3_Buffer)
+		var templ_7745c5c3_Var48 templ.SafeURL
+		templ_7745c5c3_Var48, templ_7745c5c3_Err = templ.JoinURLErrs(r.SafeURL("/components/filter"))
+		if templ_7745c5c3_Err != nil {
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/index.templ`, Line: 65, Col: 49}
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var48))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 50, "</section><section class=\"space-y-4\"><h2 class=\"text-2xl font-semibold\">Navbar with search input and dropdown</h2>")
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Err = daisyui.Navbar(daisyui.NavbarData{
-			Title:             "daisyUI",
-			SearchPlaceholder: "Search",
-			EndDropdowns: []daisyui.NavDropdown{
-				{
-					Label: "Profile",
-					Items: []daisyui.NavItem{
-						{Label: "Settings", Href: "#"},
-						{Label: "Logout", Href: "#"},
-					},
-				},
-			},
-		}).Render(ctx, templ_7745c5c3_Buffer)
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 51, "</section><section class=\"space-y-4\"><h2 class=\"text-2xl font-semibold\">Navbar with colors</h2><div class=\"navbar bg-neutral text-neutral-content\"><button class=\"btn btn-ghost text-xl\">daisyUI</button></div><div class=\"navbar bg-base-300\"><button class=\"btn btn-ghost text-xl\">daisyUI</button></div><div class=\"navbar bg-primary text-primary-content\"><button class=\"btn btn-ghost text-xl\">daisyUI</button></div></section></main></div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 49, "\" class=\"link link-hover\">Filter</a></li></ul></main></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

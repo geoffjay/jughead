@@ -1,0 +1,66 @@
+package components
+
+import (
+	"github.com/geoffjay/jughead/sites/links"
+	"github.com/geoffjay/jughead/templates/components/daisyui"
+)
+
+templ JoinPage(r links.LinkResolver) {
+	@pageShell(r, "Join", "Join is a container for grouping multiple items, it can be used to group buttons, inputs, etc. Join applies border radius to the first and last item.", joinBody(r))
+}
+
+templ joinBody(r links.LinkResolver) {
+	@section("Join", templ.Raw(`
+		<div class="join">
+			<button class="btn join-item">Button</button>
+			<button class="btn join-item">Button</button>
+			<button class="btn join-item">Button</button>
+		</div>`))
+	@section("Group items vertically", daisyui.Join(
+		[]templ.Component{
+			templ.Raw(`<button class="btn join-item">Button</button>`),
+			templ.Raw(`<button class="btn join-item">Button</button>`),
+			templ.Raw(`<button class="btn join-item">Button</button>`),
+		},
+		"vertical",
+		"",
+	))
+	@section("Responsive: vertical on small, horizontal on large", daisyui.Join(
+		[]templ.Component{
+			templ.Raw(`<button class="btn join-item">Button</button>`),
+			templ.Raw(`<button class="btn join-item">Button</button>`),
+			templ.Raw(`<button class="btn join-item">Button</button>`),
+		},
+		"vertical lg:join-horizontal",
+		"",
+	))
+	@section("With extra elements in the group", templ.Raw(`
+		<div class="join">
+			<div>
+				<div>
+					<input class="input join-item w-[5.3rem] md:w-52" placeholder="Search"/>
+				</div>
+			</div>
+			<select class="select join-item w-[5.8rem] md:w-auto">
+				<option disabled selected>Filter</option>
+				<option>Sci-fi</option>
+				<option>Drama</option>
+				<option>Action</option>
+			</select>
+			<div class="indicator">
+				<span class="indicator-item badge badge-secondary">new</span>
+				<button class="btn join-item">Search</button>
+			</div>
+		</div>`))
+	@section("Custom border radius", templ.Raw(`
+		<div class="join">
+			<input class="input join-item w-36 lg:w-52" placeholder="Email"/>
+			<button class="btn join-item rounded-r-full">Subscribe</button>
+		</div>`))
+	@section("Join radio inputs with btn style", templ.Raw(`
+		<div class="join">
+			<input class="join-item btn" type="radio" name="options" autocomplete="off" aria-label="Radio 1"/>
+			<input class="join-item btn" type="radio" name="options" autocomplete="off" aria-label="Radio 2"/>
+			<input class="join-item btn" type="radio" name="options" autocomplete="off" aria-label="Radio 3"/>
+		</div>`))
+}

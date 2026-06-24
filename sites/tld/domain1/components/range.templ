@@ -1,0 +1,49 @@
+package components
+
+import (
+	"github.com/geoffjay/jughead/sites/links"
+	"github.com/geoffjay/jughead/templates/components/daisyui"
+)
+
+templ RangePage(r links.LinkResolver) {
+	@pageShell(r, "Range slider", "Range slider is used to select a value by sliding a handle.", rangeBody(r))
+}
+
+templ rangeBody(r links.LinkResolver) {
+	@section("Range", daisyui.Range(daisyui.RangeConfig{
+		Min: "0", Max: "100", Value: "40",
+	}))
+	@section("With steps and measure", templ.Raw(`
+		<div class="w-full max-w-xs">
+			<input type="range" min="0" max="100" value="25" class="range" step="25" />
+			<div class="flex justify-between px-2.5 mt-2 text-xs">
+				<span>|</span><span>|</span><span>|</span><span>|</span><span>|</span>
+			</div>
+			<div class="flex justify-between px-2.5 mt-2 text-xs">
+				<span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
+			</div>
+		</div>`))
+	@section("Neutral color", daisyui.Range(daisyui.RangeConfig{Min: "0", Max: "100", Value: "40", Color: "neutral"}))
+	@section("Primary color", daisyui.Range(daisyui.RangeConfig{Min: "0", Max: "100", Value: "40", Color: "primary"}))
+	@section("Secondary color", daisyui.Range(daisyui.RangeConfig{Min: "0", Max: "100", Value: "40", Color: "secondary"}))
+	@section("Accent color", daisyui.Range(daisyui.RangeConfig{Min: "0", Max: "100", Value: "40", Color: "accent"}))
+	@section("Success color", daisyui.Range(daisyui.RangeConfig{Min: "0", Max: "100", Value: "40", Color: "success"}))
+	@section("Warning color", daisyui.Range(daisyui.RangeConfig{Min: "0", Max: "100", Value: "40", Color: "warning"}))
+	@section("Info color", daisyui.Range(daisyui.RangeConfig{Min: "0", Max: "100", Value: "40", Color: "info"}))
+	@section("Error color", daisyui.Range(daisyui.RangeConfig{Min: "0", Max: "100", Value: "40", Color: "error"}))
+	@section("Sizes", rangeSizeRow())
+	@section("Range with custom color and no fill", daisyui.Range(daisyui.RangeConfig{
+		Min: "0", Max: "100", Value: "40",
+		Class: "text-blue-300 [--range-bg:orange] [--range-thumb:blue] [--range-fill:0]",
+	}))
+}
+
+templ rangeSizeRow() {
+	<div class="flex flex-col gap-4 w-full max-w-xs">
+		@daisyui.Range(daisyui.RangeConfig{Min: "0", Max: "100", Value: "30", Size: "xs"})
+		@daisyui.Range(daisyui.RangeConfig{Min: "0", Max: "100", Value: "40", Size: "sm"})
+		@daisyui.Range(daisyui.RangeConfig{Min: "0", Max: "100", Value: "50", Size: "md"})
+		@daisyui.Range(daisyui.RangeConfig{Min: "0", Max: "100", Value: "60", Size: "lg"})
+		@daisyui.Range(daisyui.RangeConfig{Min: "0", Max: "100", Value: "70", Size: "xl"})
+	</div>
+}

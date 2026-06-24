@@ -1,0 +1,75 @@
+package components
+
+import (
+	"github.com/geoffjay/jughead/sites/links"
+	"github.com/geoffjay/jughead/templates/components/daisyui"
+)
+
+templ TooltipPage(r links.LinkResolver) {
+	@pageShell(r, "Tooltip", "Tooltip can be used to show a message when hovering over an element.", tooltipBody(r))
+}
+
+templ tooltipBody(r links.LinkResolver) {
+	@section("Tooltip", daisyui.Tooltip(daisyui.TooltipConfig{
+		Tip:      "hello",
+		Children: templ.Raw(`<button class="btn">Hover me</button>`),
+	}))
+	@section("Tooltip with tooltip-content", daisyui.Tooltip(daisyui.TooltipConfig{
+		Content:  templ.Raw(`<div class="animate-bounce text-orange-400 -rotate-10 text-2xl font-black">Wow!</div>`),
+		Children: templ.Raw(`<button class="btn">Hover me</button>`),
+	}))
+	@section("Force open", daisyui.Tooltip(daisyui.TooltipConfig{
+		Tip:      "hello",
+		Open:     true,
+		Children: templ.Raw(`<button class="btn">Force open</button>`),
+	}))
+	@section("Top", daisyui.Tooltip(daisyui.TooltipConfig{
+		Tip: "hello", Position: "top", Open: true,
+		Children: templ.Raw(`<button class="btn">Top</button>`),
+	}))
+	@section("Bottom", daisyui.Tooltip(daisyui.TooltipConfig{
+		Tip: "hello", Position: "bottom", Open: true,
+		Children: templ.Raw(`<button class="btn">Bottom</button>`),
+	}))
+	@section("Left", daisyui.Tooltip(daisyui.TooltipConfig{
+		Tip: "hello", Position: "left", Open: true,
+		Children: templ.Raw(`<button class="btn">Left</button>`),
+	}))
+	@section("Right", daisyui.Tooltip(daisyui.TooltipConfig{
+		Tip: "hello", Position: "right", Open: true,
+		Children: templ.Raw(`<button class="btn">Right</button>`),
+	}))
+	@section("Primary color", daisyui.Tooltip(daisyui.TooltipConfig{
+		Tip: "primary", Color: "primary", Open: true,
+		Children: templ.Raw(`<button class="btn btn-primary">primary</button>`),
+	}))
+	@section("Secondary color", daisyui.Tooltip(daisyui.TooltipConfig{
+		Tip: "secondary", Color: "secondary", Open: true,
+		Children: templ.Raw(`<button class="btn btn-secondary">secondary</button>`),
+	}))
+	@section("Accent color", daisyui.Tooltip(daisyui.TooltipConfig{
+		Tip: "accent", Color: "accent", Open: true,
+		Children: templ.Raw(`<button class="btn btn-accent">accent</button>`),
+	}))
+	@section("Info color", daisyui.Tooltip(daisyui.TooltipConfig{
+		Tip: "info", Color: "info", Open: true,
+		Children: templ.Raw(`<button class="btn btn-info">info</button>`),
+	}))
+	@section("Success color", daisyui.Tooltip(daisyui.TooltipConfig{
+		Tip: "success", Color: "success", Open: true,
+		Children: templ.Raw(`<button class="btn btn-success">success</button>`),
+	}))
+	@section("Warning color", daisyui.Tooltip(daisyui.TooltipConfig{
+		Tip: "warning", Color: "warning", Open: true,
+		Children: templ.Raw(`<button class="btn btn-warning">warning</button>`),
+	}))
+	@section("Error color", daisyui.Tooltip(daisyui.TooltipConfig{
+		Tip: "error", Color: "error", Open: true,
+		Children: templ.Raw(`<button class="btn btn-error">error</button>`),
+	}))
+	@section("Responsive tooltip. only show for large screen", daisyui.Tooltip(daisyui.TooltipConfig{
+		Tip:      "hello",
+		Class:    "lg:tooltip",
+		Children: templ.Raw(`<button class="btn">Hover me</button>`),
+	}))
+}

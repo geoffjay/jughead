@@ -1,0 +1,35 @@
+package components
+
+import (
+	"github.com/geoffjay/jughead/sites/links"
+	"github.com/geoffjay/jughead/templates/components/daisyui"
+)
+
+templ SkeletonPage(r links.LinkResolver) {
+	@pageShell(r, "Skeleton", "Skeleton is a component that can be used to show a loading state of a component.", skeletonBody(r))
+}
+
+templ skeletonBody(r links.LinkResolver) {
+	@section("Skeleton", daisyui.Skeleton(daisyui.SkeletonConfig{Class: "w-32 h-32"}))
+	@section("Skeleton - circle with content", templ.Raw(`
+		<div class="flex flex-col gap-4 w-52">
+			<div class="flex gap-4 items-center">
+				<div class="skeleton w-16 h-16 rounded-full shrink-0"></div>
+				<div class="flex flex-col gap-4">
+					<div class="skeleton h-4 w-20"></div>
+					<div class="skeleton h-4 w-28"></div>
+				</div>
+			</div>
+			<div class="skeleton h-32 w-full"></div>
+		</div>`))
+	@section("Skeleton - rectangle with content", templ.Raw(`
+		<div class="flex flex-col gap-4 w-52">
+			<div class="skeleton h-32 w-full"></div>
+			<div class="skeleton h-4 w-28"></div>
+			<div class="skeleton h-4 w-full"></div>
+			<div class="skeleton h-4 w-full"></div>
+		</div>`))
+	@section("skeleton-text - animated gradient text", daisyui.Skeleton(daisyui.SkeletonConfig{
+		Text: "AI is thinking harder...",
+	}))
+}
