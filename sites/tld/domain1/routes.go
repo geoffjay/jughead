@@ -89,6 +89,14 @@ func componentRoutes() map[string]componentRoute {
 		"footer":                 {"Footer - domain1.tld", components.FooterPage},
 		"drawer-sidebar":         {"Drawer sidebar - domain1.tld", components.DrawerSidebarPage},
 		"filter":                 {"Filter - domain1.tld", components.FilterPage},
+		"card":                   {"Card - domain1.tld", components.CardPage},
+		"table":                  {"Table - domain1.tld", components.TablePage},
+		"stat":                   {"Stat - domain1.tld", components.StatPage},
+		"list":                   {"List - domain1.tld", components.ListPage},
+		"timeline":               {"Timeline - domain1.tld", components.TimelinePage},
+		"code":                   {"Code mockup - domain1.tld", components.CodePage},
+		"avatar":                 {"Avatar - domain1.tld", components.AvatarPage},
+		"diff":                   {"Diff - domain1.tld", components.DiffPage},
 	}
 }
 

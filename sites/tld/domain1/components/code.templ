@@ -1,0 +1,53 @@
+package components
+
+import (
+	"github.com/geoffjay/jughead/sites/links"
+	"github.com/geoffjay/jughead/templates/components/daisyui"
+)
+
+templ CodePage(r links.LinkResolver) {
+	@pageShell(r, "Code mockup", "Code mockup is used to show a block of code in a box that looks like a code editor.", codeBody(r))
+}
+
+templ codeBody(r links.LinkResolver) {
+	@section("mockup code with line prefix", daisyui.Code(daisyui.CodeConfig{
+		Class: "w-full",
+		Lines: []daisyui.CodeLine{
+			{Prefix: "$", Text: "npm i daisyui"},
+		},
+	}))
+	@section("Multi line", daisyui.Code(daisyui.CodeConfig{
+		Class: "w-full",
+		Lines: []daisyui.CodeLine{
+			{Prefix: "$", Text: "npm i daisyui"},
+			{Prefix: ">", Text: "installing...", Class: "text-warning"},
+			{Prefix: ">", Text: "Done!", Class: "text-success"},
+		},
+	}))
+	@section("Highlighted line", daisyui.Code(daisyui.CodeConfig{
+		Class: "w-full",
+		Lines: []daisyui.CodeLine{
+			{Prefix: "1", Text: "npm i daisyui"},
+			{Prefix: "2", Text: "installing..."},
+			{Prefix: "3", Text: "Error!", Class: "bg-warning text-warning-content"},
+		},
+	}))
+	@section("Long line will scroll", daisyui.Code(daisyui.CodeConfig{
+		Class: "w-full",
+		Lines: []daisyui.CodeLine{
+			{Prefix: "~", Text: "Magnam dolore beatae necessitatibus nemopsum itaque sit. Et porro quae qui et et dolore ratione."},
+		},
+	}))
+	@section("Without prefix", daisyui.Code(daisyui.CodeConfig{
+		Class: "w-full",
+		Lines: []daisyui.CodeLine{
+			{Text: "without prefix"},
+		},
+	}))
+	@section("With color", daisyui.Code(daisyui.CodeConfig{
+		Class: "bg-primary text-primary-content w-full",
+		Lines: []daisyui.CodeLine{
+			{Text: "can be any color!"},
+		},
+	}))
+}

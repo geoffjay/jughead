@@ -1,0 +1,191 @@
+package components
+
+import (
+	"github.com/geoffjay/jughead/sites/links"
+	"github.com/geoffjay/jughead/templates/components/daisyui"
+)
+
+templ TimelinePage(r links.LinkResolver) {
+	@pageShell(r, "Timeline", "Timeline component shows a list of events in chronological order.", timelineBody(r))
+}
+
+const timelineCheckPath = `M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z`
+
+templ timelineCheckIcon() {
+	<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-5 w-5">
+		<path fill-rule="evenodd" d={ timelineCheckPath } clip-rule="evenodd"></path>
+	</svg>
+}
+
+templ timelineCheckIconPrimary() {
+	<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-5 w-5 text-primary">
+		<path fill-rule="evenodd" d={ timelineCheckPath } clip-rule="evenodd"></path>
+	</svg>
+}
+
+templ timelineBody(r links.LinkResolver) {
+	@section("Timeline with text on both sides and icon", daisyui.Timeline(daisyui.TimelineConfig{
+		Items: timelineBothSidesItems(),
+	}))
+	@section("Timeline with bottom side only", daisyui.Timeline(daisyui.TimelineConfig{
+		Items: timelineBottomOnlyItems(),
+	}))
+	@section("Timeline with top side only", daisyui.Timeline(daisyui.TimelineConfig{
+		Items: timelineTopOnlyItems(),
+	}))
+	@section("Timeline with different sides", daisyui.Timeline(daisyui.TimelineConfig{
+		Items: timelineDifferentSidesItems(),
+	}))
+	@section("Timeline with colorful lines", daisyui.Timeline(daisyui.TimelineConfig{
+		Items: timelineColorfulItems(),
+	}))
+	@section("Timeline without icons", daisyui.Timeline(daisyui.TimelineConfig{
+		Items: timelineNoIconsItems(),
+	}))
+	@section("Vertical timeline with text on both sides and icon", daisyui.Timeline(daisyui.TimelineConfig{
+		Direction: "vertical",
+		Items:     timelineBothSidesItems(),
+	}))
+	@section("Vertical timeline with right side only", daisyui.Timeline(daisyui.TimelineConfig{
+		Direction: "vertical",
+		Items:     timelineBottomOnlyItems(),
+	}))
+	@section("Vertical timeline with left side only", daisyui.Timeline(daisyui.TimelineConfig{
+		Direction: "vertical",
+		Items:     timelineTopOnlyItems(),
+	}))
+	@section("Vertical timeline with different sides", daisyui.Timeline(daisyui.TimelineConfig{
+		Direction: "vertical",
+		Items:     timelineDifferentSidesItems(),
+	}))
+	@section("Vertical timeline with colorful lines", daisyui.Timeline(daisyui.TimelineConfig{
+		Direction: "vertical",
+		Items:     timelineColorfulItems(),
+	}))
+	@section("Vertical timeline without icons", daisyui.Timeline(daisyui.TimelineConfig{
+		Direction: "vertical",
+		Items:     timelineNoIconsItems(),
+	}))
+	@section("Responsive: vertical by default, horizontal on large screen", daisyui.Timeline(daisyui.TimelineConfig{
+		Class: "timeline-vertical lg:timeline-horizontal",
+		Items: timelineBothSidesItems(),
+	}))
+	@section("Timeline with icon snapped to the start", daisyui.Timeline(daisyui.TimelineConfig{
+		Direction: "vertical",
+		Modifier:  "snap-icon",
+		Class:     "max-md:timeline-compact",
+		Items:     timelineSnapItems(),
+	}))
+}
+
+func timelineBothSidesItems() []daisyui.TimelineItem {
+	return []daisyui.TimelineItem{
+		{Side: daisyui.TimelineSideStart, Icon: timelineCheckIcon(), Content: raw("1984"), Box: false, HRAfter: true},
+		{Side: daisyui.TimelineSideStart, Icon: timelineCheckIcon(), Content: raw("1998"), HRBefore: true, HRAfter: true},
+		{Side: daisyui.TimelineSideStart, Icon: timelineCheckIcon(), Content: raw("2001"), HRBefore: true, HRAfter: true},
+		{Side: daisyui.TimelineSideStart, Icon: timelineCheckIcon(), Content: raw("2007"), HRBefore: true, HRAfter: true},
+		{Side: daisyui.TimelineSideStart, Icon: timelineCheckIcon(), Content: raw("2015"), HRBefore: true},
+	}
+}
+
+func timelineBottomOnlyItems() []daisyui.TimelineItem {
+	events := []string{"First Macintosh computer", "iMac", "iPod", "iPhone", "Apple Watch"}
+	items := make([]daisyui.TimelineItem, len(events))
+	for i, e := range events {
+		item := daisyui.TimelineItem{
+			Side:    daisyui.TimelineSideEnd,
+			Icon:    timelineCheckIcon(),
+			Content: raw(e),
+			Box:     true,
+		}
+		if i > 0 {
+			item.HRBefore = true
+		}
+		if i < len(events)-1 {
+			item.HRAfter = true
+		}
+		items[i] = item
+	}
+	return items
+}
+
+func timelineTopOnlyItems() []daisyui.TimelineItem {
+	events := []string{"First Macintosh computer", "iMac", "iPod", "iPhone", "Apple Watch"}
+	items := make([]daisyui.TimelineItem, len(events))
+	for i, e := range events {
+		item := daisyui.TimelineItem{
+			Side:    daisyui.TimelineSideStart,
+			Icon:    timelineCheckIcon(),
+			Content: raw(e),
+			Box:     true,
+		}
+		if i > 0 {
+			item.HRBefore = true
+		}
+		if i < len(events)-1 {
+			item.HRAfter = true
+		}
+		items[i] = item
+	}
+	return items
+}
+
+func timelineDifferentSidesItems() []daisyui.TimelineItem {
+	return []daisyui.TimelineItem{
+		{Side: daisyui.TimelineSideStart, Icon: timelineCheckIcon(), Content: raw("First Macintosh computer"), Box: true, HRAfter: true},
+		{Side: daisyui.TimelineSideEnd, Icon: timelineCheckIcon(), Content: raw("iMac"), Box: true, HRBefore: true, HRAfter: true},
+		{Side: daisyui.TimelineSideStart, Icon: timelineCheckIcon(), Content: raw("iPod"), Box: true, HRBefore: true, HRAfter: true},
+		{Side: daisyui.TimelineSideEnd, Icon: timelineCheckIcon(), Content: raw("iPhone"), Box: true, HRBefore: true, HRAfter: true},
+		{Side: daisyui.TimelineSideStart, Icon: timelineCheckIcon(), Content: raw("Apple Watch"), Box: true, HRBefore: true},
+	}
+}
+
+func timelineColorfulItems() []daisyui.TimelineItem {
+	return []daisyui.TimelineItem{
+		{Side: daisyui.TimelineSideStart, Icon: timelineCheckIconPrimary(), Content: raw("First Macintosh computer"), Box: true, HRAfter: true, HRClass: "bg-primary"},
+		{Side: daisyui.TimelineSideEnd, Icon: timelineCheckIconPrimary(), Content: raw("iMac"), Box: true, HRBefore: true, HRAfter: true, HRClass: "bg-primary"},
+		{Side: daisyui.TimelineSideStart, Icon: timelineCheckIconPrimary(), Content: raw("iPod"), Box: true, HRBefore: true, HRAfter: true, HRClass: "bg-primary"},
+		{Side: daisyui.TimelineSideEnd, Icon: timelineCheckIcon(), Content: raw("iPhone"), Box: true, HRBefore: true, HRAfter: true},
+		{Side: daisyui.TimelineSideStart, Icon: timelineCheckIcon(), Content: raw("Apple Watch"), Box: true, HRBefore: true},
+	}
+}
+
+func timelineNoIconsItems() []daisyui.TimelineItem {
+	return []daisyui.TimelineItem{
+		{Side: daisyui.TimelineSideStart, Content: raw("First Macintosh computer"), Box: true, HRAfter: true},
+		{Side: daisyui.TimelineSideEnd, Content: raw("iMac"), Box: true, HRBefore: true, HRAfter: true},
+		{Side: daisyui.TimelineSideStart, Content: raw("iPod"), Box: true, HRBefore: true, HRAfter: true},
+		{Side: daisyui.TimelineSideEnd, Content: raw("iPhone"), Box: true, HRBefore: true, HRAfter: true},
+		{Side: daisyui.TimelineSideStart, Content: raw("Apple Watch"), Box: true, HRBefore: true},
+	}
+}
+
+func timelineSnapItems() []daisyui.TimelineItem {
+	return []daisyui.TimelineItem{
+		{Side: daisyui.TimelineSideStart, Icon: timelineCheckIcon(), Content: timelineSnapStartContent("1984", "First Macintosh computer", "The Apple Macintosh—later rebranded as the Macintosh 128K—is the original Apple Macintosh personal computer. It played a pivotal role in establishing desktop publishing as a general office function."), HRAfter: true},
+		{Side: daisyui.TimelineSideEnd, Icon: timelineCheckIcon(), Content: timelineSnapEndContent("1998", "iMac", "iMac is a family of all-in-one Mac desktop computers designed and built by Apple Inc. It has been the primary part of Apple's consumer desktop offerings since its debut in August 1998, and has evolved through seven distinct forms."), HRBefore: true, HRAfter: true},
+		{Side: daisyui.TimelineSideStart, Icon: timelineCheckIcon(), Content: timelineSnapStartContent("2001", "iPod", "The iPod is a discontinued series of portable media players and multi-purpose mobile devices designed and marketed by Apple Inc. The first version was released on October 23, 2001."), HRBefore: true, HRAfter: true},
+		{Side: daisyui.TimelineSideEnd, Icon: timelineCheckIcon(), Content: timelineSnapEndContent("2007", "iPhone", "iPhone is a line of smartphones produced by Apple Inc. that use Apple's own iOS mobile operating system. The first-generation iPhone was announced by then-Apple CEO Steve Jobs on January 9, 2007."), HRBefore: true, HRAfter: true},
+		{Side: daisyui.TimelineSideStart, Icon: timelineCheckIcon(), Content: timelineSnapStartContent("2015", "Apple Watch", "The Apple Watch is a line of smartwatches produced by Apple Inc. It incorporates fitness tracking, health-oriented capabilities, and wireless telecommunication, and integrates with iOS and other Apple products and services."), HRBefore: true},
+	}
+}
+
+templ timelineSnapStartContent(year, title, body string) {
+	<div class="mb-10 md:text-end">
+		<time class="font-mono italic">{ year }</time>
+		<div class="text-lg font-black">{ title }</div>
+		{ body }
+	</div>
+}
+
+templ timelineSnapEndContent(year, title, body string) {
+	<div class="mb-10">
+		<time class="font-mono italic">{ year }</time>
+		<div class="text-lg font-black">{ title }</div>
+		{ body }
+	</div>
+}
+
+func raw(s string) templ.Component {
+	return templ.Raw(s)
+}
