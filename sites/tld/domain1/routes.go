@@ -97,6 +97,10 @@ func componentRoutes() map[string]componentRoute {
 		"code":                   {"Code mockup - domain1.tld", components.CodePage},
 		"avatar":                 {"Avatar - domain1.tld", components.AvatarPage},
 		"diff":                   {"Diff - domain1.tld", components.DiffPage},
+		"modal":                  {"Modal - domain1.tld", components.ModalPage},
+		"carousel":               {"Carousel - domain1.tld", components.CarouselPage},
+		"hero":                   {"Hero - domain1.tld", components.HeroPage},
+		"calendar":               {"Calendar - domain1.tld", components.CalendarPage},
 	}
 }
 
