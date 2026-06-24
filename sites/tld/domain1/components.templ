@@ -19,7 +19,7 @@ templ pageShell(r links.LinkResolver, title, description string, body templ.Comp
 }
 
 templ section(title string, body templ.Component) {
-	<section class="space-y-4">
+	<section class="space-y-4 rounded-box p-4 shadow-sm component-preview">
 		<h2 class="text-2xl font-semibold">{ title }</h2>
 		@body
 	</section>
