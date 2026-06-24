@@ -7,6 +7,7 @@ import (
 )
 
 templ Home(r links.LinkResolver) {
+	@layout.ThemeRestoreScript()
 	<div class="min-h-screen bg-base-200 text-base-content">
 		@daisyui.Navbar(layout.NavbarData(r))
 		<main class="p-8 max-w-2xl mx-auto space-y-4">
@@ -16,101 +17,149 @@ templ Home(r links.LinkResolver) {
 				the navbar to browse each component.
 			</p>
 			<ul class="menu bg-base-100 rounded-box w-56 shadow">
-				<li>@daisyui.Link("/components/accordion", "Accordion", "", "hover", "", r)
-</li>
-				<li>@daisyui.Link("/components/navbar", "Navbar", "", "hover", "", r)
-</li>
-				<li>@daisyui.Link("/components/join", "Join", "", "hover", "", r)
-</li>
-				<li>@daisyui.Link("/components/stack", "Stack", "", "hover", "", r)
-</li>
-				<li>@daisyui.Link("/components/divider", "Divider", "", "hover", "", r)
-</li>
-				<li>@daisyui.Link("/components/mask", "Mask", "", "hover", "", r)
-</li>
-				<li>@daisyui.Link("/components/link", "Link", "", "hover", "", r)
-</li>
-				<li>@daisyui.Link("/components/kbd", "Kbd", "", "hover", "", r)
-</li>
-				<li>@daisyui.Link("/components/status", "Status", "", "hover", "", r)
-</li>
-				<li>@daisyui.Link("/components/loading", "Loading", "", "hover", "", r)
-</li>
-				<li>@daisyui.Link("/components/collapse", "Collapse", "", "hover", "", r)
-</li>
-				<li>@daisyui.Link("/components/swap", "Swap", "", "hover", "", r)
-</li>
-				<li>@daisyui.Link("/components/theme-controller", "Theme Controller", "", "hover", "", r)
-</li>
-				<li>@daisyui.Link("/components/button", "Button", "", "hover", "", r)
-</li>
-				<li>@daisyui.Link("/components/floating-action-button", "FAB / Speed Dial", "", "hover", "", r)
-</li>
-				<li>@daisyui.Link("/components/input-field", "Text Input", "", "hover", "", r)
-</li>
-				<li>@daisyui.Link("/components/textarea", "Textarea", "", "hover", "", r)
-</li>
-				<li>@daisyui.Link("/components/select", "Select", "", "hover", "", r)
-</li>
-				<li>@daisyui.Link("/components/checkbox", "Checkbox", "", "hover", "", r)
-</li>
-				<li>@daisyui.Link("/components/radio", "Radio", "", "hover", "", r)
-</li>
-				<li>@daisyui.Link("/components/range", "Range slider", "", "hover", "", r)
-</li>
-				<li>@daisyui.Link("/components/file-input", "File Input", "", "hover", "", r)
-</li>
-				<li>@daisyui.Link("/components/toggle", "Toggle", "", "hover", "", r)
-</li>
-				<li>@daisyui.Link("/components/rating", "Rating", "", "hover", "", r)
-</li>
-				<li>@daisyui.Link("/components/label", "Label", "", "hover", "", r)
-</li>
-				<li>@daisyui.Link("/components/fieldset", "Fieldset", "", "hover", "", r)
-</li>
-				<li>@daisyui.Link("/components/validator", "Validator", "", "hover", "", r)
-</li>
-				<li>@daisyui.Link("/components/alert", "Alert", "", "hover", "", r)
-</li>
-				<li>@daisyui.Link("/components/badge", "Badge", "", "hover", "", r)
-</li>
-				<li>@daisyui.Link("/components/progress", "Progress", "", "hover", "", r)
-</li>
-				<li>@daisyui.Link("/components/radial-progress", "Radial progress", "", "hover", "", r)
-</li>
-				<li>@daisyui.Link("/components/countdown", "Countdown", "", "hover", "", r)
-</li>
-				<li>@daisyui.Link("/components/skeleton", "Skeleton", "", "hover", "", r)
-</li>
-				<li>@daisyui.Link("/components/toast", "Toast", "", "hover", "", r)
-</li>
-				<li>@daisyui.Link("/components/tooltip", "Tooltip", "", "hover", "", r)
-</li>
-				<li>@daisyui.Link("/components/indicator", "Indicator", "", "hover", "", r)
-</li>
-				<li>@daisyui.Link("/components/chat-bubble", "Chat bubble", "", "hover", "", r)
-</li>
-				<li>@daisyui.Link("/components/breadcrumbs", "Breadcrumbs", "", "hover", "", r)
-</li>
-				<li>@daisyui.Link("/components/menu", "Menu", "", "hover", "", r)
-</li>
-				<li>@daisyui.Link("/components/pagination", "Pagination", "", "hover", "", r)
-</li>
-				<li>@daisyui.Link("/components/steps", "Steps", "", "hover", "", r)
-</li>
-				<li>@daisyui.Link("/components/tabs", "Tabs", "", "hover", "", r)
-</li>
-				<li>@daisyui.Link("/components/dock", "Dock", "", "hover", "", r)
-</li>
-				<li>@daisyui.Link("/components/dropdown", "Dropdown", "", "hover", "", r)
-</li>
-				<li>@daisyui.Link("/components/footer", "Footer", "", "hover", "", r)
-</li>
-				<li>@daisyui.Link("/components/drawer-sidebar", "Drawer sidebar", "", "hover", "", r)
-</li>
-				<li>@daisyui.Link("/components/filter", "Filter", "", "hover", "", r)
-</li>
+				<li>
+					@daisyui.Link("/components/accordion", "Accordion", "", "hover", "", r)
+				</li>
+				<li>
+					@daisyui.Link("/components/navbar", "Navbar", "", "hover", "", r)
+				</li>
+				<li>
+					@daisyui.Link("/components/join", "Join", "", "hover", "", r)
+				</li>
+				<li>
+					@daisyui.Link("/components/stack", "Stack", "", "hover", "", r)
+				</li>
+				<li>
+					@daisyui.Link("/components/divider", "Divider", "", "hover", "", r)
+				</li>
+				<li>
+					@daisyui.Link("/components/mask", "Mask", "", "hover", "", r)
+				</li>
+				<li>
+					@daisyui.Link("/components/link", "Link", "", "hover", "", r)
+				</li>
+				<li>
+					@daisyui.Link("/components/kbd", "Kbd", "", "hover", "", r)
+				</li>
+				<li>
+					@daisyui.Link("/components/status", "Status", "", "hover", "", r)
+				</li>
+				<li>
+					@daisyui.Link("/components/loading", "Loading", "", "hover", "", r)
+				</li>
+				<li>
+					@daisyui.Link("/components/collapse", "Collapse", "", "hover", "", r)
+				</li>
+				<li>
+					@daisyui.Link("/components/swap", "Swap", "", "hover", "", r)
+				</li>
+				<li>
+					@daisyui.Link("/components/theme-controller", "Theme Controller", "", "hover", "", r)
+				</li>
+				<li>
+					@daisyui.Link("/components/button", "Button", "", "hover", "", r)
+				</li>
+				<li>
+					@daisyui.Link("/components/floating-action-button", "FAB / Speed Dial", "", "hover", "", r)
+				</li>
+				<li>
+					@daisyui.Link("/components/input-field", "Text Input", "", "hover", "", r)
+				</li>
+				<li>
+					@daisyui.Link("/components/textarea", "Textarea", "", "hover", "", r)
+				</li>
+				<li>
+					@daisyui.Link("/components/select", "Select", "", "hover", "", r)
+				</li>
+				<li>
+					@daisyui.Link("/components/checkbox", "Checkbox", "", "hover", "", r)
+				</li>
+				<li>
+					@daisyui.Link("/components/radio", "Radio", "", "hover", "", r)
+				</li>
+				<li>
+					@daisyui.Link("/components/range", "Range slider", "", "hover", "", r)
+				</li>
+				<li>
+					@daisyui.Link("/components/file-input", "File Input", "", "hover", "", r)
+				</li>
+				<li>
+					@daisyui.Link("/components/toggle", "Toggle", "", "hover", "", r)
+				</li>
+				<li>
+					@daisyui.Link("/components/rating", "Rating", "", "hover", "", r)
+				</li>
+				<li>
+					@daisyui.Link("/components/label", "Label", "", "hover", "", r)
+				</li>
+				<li>
+					@daisyui.Link("/components/fieldset", "Fieldset", "", "hover", "", r)
+				</li>
+				<li>
+					@daisyui.Link("/components/validator", "Validator", "", "hover", "", r)
+				</li>
+				<li>
+					@daisyui.Link("/components/alert", "Alert", "", "hover", "", r)
+				</li>
+				<li>
+					@daisyui.Link("/components/badge", "Badge", "", "hover", "", r)
+				</li>
+				<li>
+					@daisyui.Link("/components/progress", "Progress", "", "hover", "", r)
+				</li>
+				<li>
+					@daisyui.Link("/components/radial-progress", "Radial progress", "", "hover", "", r)
+				</li>
+				<li>
+					@daisyui.Link("/components/countdown", "Countdown", "", "hover", "", r)
+				</li>
+				<li>
+					@daisyui.Link("/components/skeleton", "Skeleton", "", "hover", "", r)
+				</li>
+				<li>
+					@daisyui.Link("/components/toast", "Toast", "", "hover", "", r)
+				</li>
+				<li>
+					@daisyui.Link("/components/tooltip", "Tooltip", "", "hover", "", r)
+				</li>
+				<li>
+					@daisyui.Link("/components/indicator", "Indicator", "", "hover", "", r)
+				</li>
+				<li>
+					@daisyui.Link("/components/chat-bubble", "Chat bubble", "", "hover", "", r)
+				</li>
+				<li>
+					@daisyui.Link("/components/breadcrumbs", "Breadcrumbs", "", "hover", "", r)
+				</li>
+				<li>
+					@daisyui.Link("/components/menu", "Menu", "", "hover", "", r)
+				</li>
+				<li>
+					@daisyui.Link("/components/pagination", "Pagination", "", "hover", "", r)
+				</li>
+				<li>
+					@daisyui.Link("/components/steps", "Steps", "", "hover", "", r)
+				</li>
+				<li>
+					@daisyui.Link("/components/tabs", "Tabs", "", "hover", "", r)
+				</li>
+				<li>
+					@daisyui.Link("/components/dock", "Dock", "", "hover", "", r)
+				</li>
+				<li>
+					@daisyui.Link("/components/dropdown", "Dropdown", "", "hover", "", r)
+				</li>
+				<li>
+					@daisyui.Link("/components/footer", "Footer", "", "hover", "", r)
+				</li>
+				<li>
+					@daisyui.Link("/components/drawer-sidebar", "Drawer sidebar", "", "hover", "", r)
+				</li>
+				<li>
+					@daisyui.Link("/components/filter", "Filter", "", "hover", "", r)
+				</li>
 			</ul>
 		</main>
 	</div>
+	@layout.ThemePersistScript()
 }

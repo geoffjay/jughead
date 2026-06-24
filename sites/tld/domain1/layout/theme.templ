@@ -1,0 +1,58 @@
+package layout
+
+// ThemeKey is the localStorage key used to persist domain1's selected theme.
+// The domain1 prefix avoids collisions with other sites on the same origin.
+//
+// NOTE: these constants document the values hard-coded in the inline scripts
+// below. templ treats <script> element content as raw text (not templ
+// expressions), so { ThemeKey } would be emitted verbatim as a JS object
+// literal and throw a ReferenceError at runtime. The values must therefore be
+// written directly into the script body.
+const ThemeKey = "domain1.theme"
+
+// LightTheme/DarkTheme mirror the daisyUI theme names used by the site. The
+// server renders pages with LightTheme by default (see sites/sites.go); the
+// toggle overrides to DarkTheme when checked.
+const (
+	LightTheme = "kanagawa-light"
+	DarkTheme  = "kanagawa-dark"
+)
+
+// ThemeRestoreScript runs synchronously in <head>-equivalent position so the
+// saved theme is applied to <html> before first paint, preventing a flash of
+// the wrong theme on reload.
+templ ThemeRestoreScript() {
+	<script nonce="">
+		(function () {
+			try {
+				var t = localStorage.getItem("domain1.theme");
+				if (t === "kanagawa-light" || t === "kanagawa-dark") {
+					document.documentElement.setAttribute("data-theme", t);
+				}
+			} catch (e) {
+				/* storage disabled */
+			}
+		})();
+	</script>
+}
+
+// ThemePersistScript runs after the body renders. It syncs the navbar toggle's
+// checked state with the restored theme and writes the active theme to
+// localStorage whenever the user toggles it.
+templ ThemePersistScript() {
+	<script nonce="">
+		(function () {
+			var cb = document.getElementById("theme-toggle");
+			if (!cb) return;
+			cb.checked =
+				document.documentElement.getAttribute("data-theme") === "kanagawa-dark";
+			cb.addEventListener("change", function () {
+				var next = cb.checked ? "kanagawa-dark" : "kanagawa-light";
+				document.documentElement.setAttribute("data-theme", next);
+				try {
+					localStorage.setItem("domain1.theme", next);
+				} catch (e) {}
+			});
+		})();
+	</script>
+}
