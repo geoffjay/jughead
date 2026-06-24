@@ -71,6 +71,42 @@ func Routes(router *gin.RouterGroup, theme string) {
 	router.GET("/components/floating-action-button", func(c *gin.Context) {
 		render(c, theme, "FAB / Speed Dial - domain1.tld", FABPage(resolver(c)))
 	})
+	router.GET("/components/input-field", func(c *gin.Context) {
+		render(c, theme, "Text Input - domain1.tld", InputFieldPage(resolver(c)))
+	})
+	router.GET("/components/textarea", func(c *gin.Context) {
+		render(c, theme, "Textarea - domain1.tld", TextareaPage(resolver(c)))
+	})
+	router.GET("/components/select", func(c *gin.Context) {
+		render(c, theme, "Select - domain1.tld", SelectPage(resolver(c)))
+	})
+	router.GET("/components/checkbox", func(c *gin.Context) {
+		render(c, theme, "Checkbox - domain1.tld", CheckboxPage(resolver(c)))
+	})
+	router.GET("/components/radio", func(c *gin.Context) {
+		render(c, theme, "Radio - domain1.tld", RadioPage(resolver(c)))
+	})
+	router.GET("/components/range", func(c *gin.Context) {
+		render(c, theme, "Range slider - domain1.tld", RangePage(resolver(c)))
+	})
+	router.GET("/components/file-input", func(c *gin.Context) {
+		render(c, theme, "File Input - domain1.tld", FileInputPage(resolver(c)))
+	})
+	router.GET("/components/toggle", func(c *gin.Context) {
+		render(c, theme, "Toggle - domain1.tld", TogglePage(resolver(c)))
+	})
+	router.GET("/components/rating", func(c *gin.Context) {
+		render(c, theme, "Rating - domain1.tld", RatingPage(resolver(c)))
+	})
+	router.GET("/components/label", func(c *gin.Context) {
+		render(c, theme, "Label - domain1.tld", LabelPage(resolver(c)))
+	})
+	router.GET("/components/fieldset", func(c *gin.Context) {
+		render(c, theme, "Fieldset - domain1.tld", FieldsetPage(resolver(c)))
+	})
+	router.GET("/components/validator", func(c *gin.Context) {
+		render(c, theme, "Validator - domain1.tld", ValidatorPage(resolver(c)))
+	})
 }
 
 func resolver(c *gin.Context) links.LinkResolver {

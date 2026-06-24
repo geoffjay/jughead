@@ -53,7 +53,7 @@ func pageShell(r links.LinkResolver, title, description string, body templ.Compo
 		var templ_7745c5c3_Var2 string
 		templ_7745c5c3_Var2, templ_7745c5c3_Err = templ.JoinStringErrs(title)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `components.templ`, Line: 14, Col: 54}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/components.templ`, Line: 14, Col: 54}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var2))
 		if templ_7745c5c3_Err != nil {
@@ -66,7 +66,7 @@ func pageShell(r links.LinkResolver, title, description string, body templ.Compo
 		var templ_7745c5c3_Var3 string
 		templ_7745c5c3_Var3, templ_7745c5c3_Err = templ.JoinStringErrs(description)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `components.templ`, Line: 15, Col: 48}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/components.templ`, Line: 15, Col: 48}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var3))
 		if templ_7745c5c3_Err != nil {
@@ -116,7 +116,7 @@ func section(title string, body templ.Component) templ.Component {
 		var templ_7745c5c3_Var5 string
 		templ_7745c5c3_Var5, templ_7745c5c3_Err = templ.JoinStringErrs(title)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `components.templ`, Line: 23, Col: 44}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/components.templ`, Line: 23, Col: 44}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var5))
 		if templ_7745c5c3_Err != nil {
@@ -1947,7 +1947,7 @@ func fabFrame(title string, fab templ.Component) templ.Component {
 		var templ_7745c5c3_Var38 string
 		templ_7745c5c3_Var38, templ_7745c5c3_Err = templ.JoinStringErrs(title)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `components.templ`, Line: 625, Col: 44}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/components.templ`, Line: 625, Col: 44}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var38))
 		if templ_7745c5c3_Err != nil {
@@ -1999,7 +1999,7 @@ func fabFrameShort(title string, fab templ.Component) templ.Component {
 		var templ_7745c5c3_Var40 string
 		templ_7745c5c3_Var40, templ_7745c5c3_Err = templ.JoinStringErrs(title)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `components.templ`, Line: 636, Col: 44}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/components.templ`, Line: 636, Col: 44}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var40))
 		if templ_7745c5c3_Err != nil {
@@ -2153,6 +2153,2073 @@ func fabBody(r links.LinkResolver) templ.Component {
 				{Button: templ.Raw(`<div class="tooltip" data-tip="Label D"><button class="btn btn-lg btn-circle">D</button></div>`)},
 			},
 		})).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
+func InputFieldPage(r links.LinkResolver) templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var42 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var42 == nil {
+			templ_7745c5c3_Var42 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = pageShell(r, "Text Input", "Text Input is a simple input field.", inputFieldBody(r)).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
+func inputFieldBody(r links.LinkResolver) templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var43 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var43 == nil {
+			templ_7745c5c3_Var43 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = section("Text input", daisyui.Input(daisyui.InputConfig{
+			Placeholder: "Type here",
+		})).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = section("Text input with text label inside", templ.Raw(`
+		<div class="grid gap-4 w-xs">
+			<label class="input">
+				<svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g stroke-linejoin="round" stroke-linecap="round" stroke-width="2.5" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></g></svg>
+				<input type="search" class="grow" placeholder="Search" />
+				<kbd class="kbd kbd-sm">⌘</kbd>
+				<kbd class="kbd kbd-sm">K</kbd>
+			</label>
+			<label class="input">
+				<svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g stroke-linejoin="round" stroke-linecap="round" stroke-width="2.5" fill="none" stroke="currentColor"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"></path><path d="M14 2v4a2 2 0 0 0 2 2h4"></path></g></svg>
+				<input type="text" class="grow" placeholder="index.php" />
+			</label>
+			<label class="input">
+				Path
+				<input type="text" class="grow" placeholder="src/app/" />
+				<span class="badge badge-neutral badge-xs">Optional</span>
+			</label>
+		</div>`)).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = section("Ghost style", daisyui.Input(daisyui.InputConfig{
+			Placeholder: "Type here",
+			Style:       "ghost",
+		})).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = section("With fieldset and fieldset-legend", daisyui.Fieldset(daisyui.FieldsetConfig{
+			Legend: "What is your name?",
+			Class:  "w-xs",
+		}, templ.Raw(`
+		<input type="text" class="input" placeholder="Type here" />
+		<p class="label">Optional</p>`))).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = section("Input colors", inputColorRow()).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = section("Sizes", inputSizeRow()).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = section("Disabled", daisyui.Input(daisyui.InputConfig{
+			Placeholder: "You can't touch this",
+			Disabled:    true,
+		})).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = section("Date input", daisyui.Input(daisyui.InputConfig{Type: "date"})).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = section("Time input", daisyui.Input(daisyui.InputConfig{Type: "time"})).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = section("datetime-local input", daisyui.Input(daisyui.InputConfig{Type: "datetime-local"})).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = section("Username text input with icon and validator", templ.Raw(`
+		<form class="w-full max-w-xs">
+			<label class="input validator">
+				<svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g stroke-linejoin="round" stroke-linecap="round" stroke-width="2.5" fill="none" stroke="currentColor"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></g></svg>
+				<input type="text" required placeholder="Username" pattern="[A-Za-z][A-Za-z0-9\-]*" minlength="3" maxlength="30" title="Only letters, numbers or dash" />
+			</label>
+			<p class="validator-hint">
+				Must be 3 to 30 characters
+				<br/>containing only letters, numbers or dash
+			</p>
+		</form>`)).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = section("Search input with icon", templ.Raw(`
+		<form class="w-full max-w-xs">
+			<label class="input">
+				<svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g stroke-linejoin="round" stroke-linecap="round" stroke-width="2.5" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></g></svg>
+				<input type="search" required placeholder="Search"/>
+			</label>
+		</form>`)).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
+func inputColorRow() templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var44 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var44 == nil {
+			templ_7745c5c3_Var44 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 27, "<div class=\"grid gap-4 w-xs\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Input(daisyui.InputConfig{Placeholder: "neutral", Color: "neutral"}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Input(daisyui.InputConfig{Placeholder: "Primary", Color: "primary"}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Input(daisyui.InputConfig{Placeholder: "Secondary", Color: "secondary"}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Input(daisyui.InputConfig{Placeholder: "Accent", Color: "accent"}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Input(daisyui.InputConfig{Placeholder: "Info", Color: "info"}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Input(daisyui.InputConfig{Placeholder: "Success", Color: "success"}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Input(daisyui.InputConfig{Placeholder: "Warning", Color: "warning"}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Input(daisyui.InputConfig{Placeholder: "Error", Color: "error"}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 28, "</div>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
+func inputSizeRow() templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var45 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var45 == nil {
+			templ_7745c5c3_Var45 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 29, "<div class=\"grid gap-4 w-xs\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Input(daisyui.InputConfig{Placeholder: "Xsmall", Size: "xs"}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Input(daisyui.InputConfig{Placeholder: "Small", Size: "sm"}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Input(daisyui.InputConfig{Placeholder: "Medium", Size: "md"}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Input(daisyui.InputConfig{Placeholder: "Large", Size: "lg"}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Input(daisyui.InputConfig{Placeholder: "Xlarge", Size: "xl"}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 30, "</div>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
+func TextareaPage(r links.LinkResolver) templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var46 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var46 == nil {
+			templ_7745c5c3_Var46 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = pageShell(r, "Textarea", "Textarea allows users to enter text in multiple lines.", textareaBody(r)).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
+func textareaBody(r links.LinkResolver) templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var47 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var47 == nil {
+			templ_7745c5c3_Var47 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = section("Textarea", daisyui.Textarea(daisyui.TextareaConfig{Placeholder: "Bio"})).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = section("Ghost (no background)", daisyui.Textarea(daisyui.TextareaConfig{
+			Placeholder: "Bio",
+			Style:       "ghost",
+		})).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = section("With form control and labels", daisyui.Fieldset(daisyui.FieldsetConfig{
+			Legend: "Your bio",
+			Class:  "w-xs",
+		}, templ.Raw(`
+		<textarea class="textarea h-24" placeholder="Bio"></textarea>
+		<div class="label">Optional</div>`))).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = section("Textarea colors", textareaColorRow()).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = section("Sizes", textareaSizeRow()).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = section("Disabled", daisyui.Textarea(daisyui.TextareaConfig{
+			Placeholder: "Bio",
+			Disabled:    true,
+		})).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
+func textareaColorRow() templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var48 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var48 == nil {
+			templ_7745c5c3_Var48 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 31, "<div class=\"grid gap-4 w-xs\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Textarea(daisyui.TextareaConfig{Placeholder: "Primary", Color: "primary"}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Textarea(daisyui.TextareaConfig{Placeholder: "Secondary", Color: "secondary"}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Textarea(daisyui.TextareaConfig{Placeholder: "Accent", Color: "accent"}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Textarea(daisyui.TextareaConfig{Placeholder: "Neutral", Color: "neutral"}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Textarea(daisyui.TextareaConfig{Placeholder: "Info", Color: "info"}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Textarea(daisyui.TextareaConfig{Placeholder: "Success", Color: "success"}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Textarea(daisyui.TextareaConfig{Placeholder: "Warning", Color: "warning"}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Textarea(daisyui.TextareaConfig{Placeholder: "Error", Color: "error"}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 32, "</div>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
+func textareaSizeRow() templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var49 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var49 == nil {
+			templ_7745c5c3_Var49 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 33, "<div class=\"flex flex-col gap-4 w-full items-center\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Textarea(daisyui.TextareaConfig{Placeholder: "Xsmall", Size: "xs"}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Textarea(daisyui.TextareaConfig{Placeholder: "Small", Size: "sm"}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Textarea(daisyui.TextareaConfig{Placeholder: "Medium", Size: "md"}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Textarea(daisyui.TextareaConfig{Placeholder: "Large", Size: "lg"}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Textarea(daisyui.TextareaConfig{Placeholder: "Xlarge", Size: "xl"}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 34, "</div>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
+func SelectPage(r links.LinkResolver) templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var50 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var50 == nil {
+			templ_7745c5c3_Var50 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = pageShell(r, "Select", "Select is used to pick a value from a list of options.", selectBody(r)).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
+func selectBody(r links.LinkResolver) templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var51 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var51 == nil {
+			templ_7745c5c3_Var51 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = section("Select", daisyui.Select(daisyui.SelectConfig{
+			Placeholder: "Pick a color",
+			Options: []daisyui.SelectOption{
+				{Value: "Crimson"},
+				{Value: "Amber"},
+				{Value: "Velvet"},
+			},
+		})).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = section("Ghost (no background)", daisyui.Select(daisyui.SelectConfig{
+			Placeholder: "Pick a font",
+			Style:       "ghost",
+			Options: []daisyui.SelectOption{
+				{Value: "Inter"},
+				{Value: "Poppins"},
+				{Value: "Raleway"},
+			},
+		})).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = section("With fieldset and labels", daisyui.Fieldset(daisyui.FieldsetConfig{
+			Legend: "Browsers",
+			Class:  "w-xs",
+		}, templ.Raw(`
+		<select class="select">
+			<option disabled selected>Pick a Browser</option>
+			<option>Chrome</option>
+			<option>FireFox</option>
+			<option>Safari</option>
+		</select>
+		<span class="label">Optional</span>`))).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = section("Primary color", daisyui.Select(daisyui.SelectConfig{
+			Placeholder: "Pick a text editor",
+			Color:       "primary",
+			Options: []daisyui.SelectOption{
+				{Value: "VScode"},
+				{Value: "VScode fork"},
+				{Value: "Another VScode fork"},
+			},
+		})).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = section("Secondary color", daisyui.Select(daisyui.SelectConfig{
+			Placeholder: "Pick a language",
+			Color:       "secondary",
+			Options: []daisyui.SelectOption{
+				{Value: "Zig"},
+				{Value: "Go"},
+				{Value: "Rust"},
+			},
+		})).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = section("Accent color", daisyui.Select(daisyui.SelectConfig{
+			Placeholder: "Color scheme",
+			Color:       "accent",
+			Options: []daisyui.SelectOption{
+				{Value: "Light mode"},
+				{Value: "Dark mode"},
+				{Value: "System"},
+			},
+		})).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = section("Neutral color", daisyui.Select(daisyui.SelectConfig{
+			Placeholder: "Server location",
+			Color:       "neutral",
+			Options: []daisyui.SelectOption{
+				{Value: "North America"},
+				{Value: "EU west"},
+				{Value: "South East Asia"},
+			},
+		})).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = section("Info color", daisyui.Select(daisyui.SelectConfig{
+			Placeholder: "Pick a Framework",
+			Color:       "info",
+			Options: []daisyui.SelectOption{
+				{Value: "React"},
+				{Value: "Vue"},
+				{Value: "Angular"},
+			},
+		})).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = section("Success color", daisyui.Select(daisyui.SelectConfig{
+			Placeholder: "Pick a Runtime",
+			Color:       "success",
+			Options: []daisyui.SelectOption{
+				{Value: "npm"},
+				{Value: "Bun"},
+				{Value: "yarn"},
+			},
+		})).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = section("Warning color", daisyui.Select(daisyui.SelectConfig{
+			Placeholder: "Pick an OS",
+			Color:       "warning",
+			Options: []daisyui.SelectOption{
+				{Value: "Windows"},
+				{Value: "MacOS"},
+				{Value: "Linux"},
+			},
+		})).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = section("Error color", daisyui.Select(daisyui.SelectConfig{
+			Placeholder: "Pick an AI Model",
+			Color:       "error",
+			Options: []daisyui.SelectOption{
+				{Value: "GPT-4"},
+				{Value: "Claude"},
+				{Value: "Llama"},
+			},
+		})).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = section("Sizes", selectSizeRow()).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = section("Disabled", daisyui.Select(daisyui.SelectConfig{
+			Placeholder: "You can't touch this",
+			Disabled:    true,
+		})).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = section("Using OS native style for the options dropdown", daisyui.Select(daisyui.SelectConfig{
+			Placeholder: "Pick a color",
+			Class:       "appearance-none",
+			Options: []daisyui.SelectOption{
+				{Value: "Crimson"},
+				{Value: "Amber"},
+				{Value: "Velvet"},
+			},
+		})).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
+func selectSizeRow() templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var52 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var52 == nil {
+			templ_7745c5c3_Var52 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 35, "<div class=\"flex flex-col gap-4 w-full items-center\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Select(daisyui.SelectConfig{Placeholder: "Xsmall", Size: "xs", Options: []daisyui.SelectOption{{Value: "Xsmall Apple"}}}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Select(daisyui.SelectConfig{Placeholder: "Small", Size: "sm", Options: []daisyui.SelectOption{{Value: "Small Apple"}}}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Select(daisyui.SelectConfig{Placeholder: "Medium", Size: "md", Options: []daisyui.SelectOption{{Value: "Medium Apple"}}}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Select(daisyui.SelectConfig{Placeholder: "Large", Size: "lg", Options: []daisyui.SelectOption{{Value: "Large Apple"}}}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Select(daisyui.SelectConfig{Placeholder: "Xlarge", Size: "xl", Options: []daisyui.SelectOption{{Value: "Xlarge Apple"}}}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 36, "</div>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
+func CheckboxPage(r links.LinkResolver) templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var53 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var53 == nil {
+			templ_7745c5c3_Var53 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = pageShell(r, "Checkbox", "Checkboxes are used to select or deselect a value.", checkboxBody(r)).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
+func checkboxBody(r links.LinkResolver) templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var54 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var54 == nil {
+			templ_7745c5c3_Var54 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = section("Checkbox", daisyui.Checkbox(daisyui.CheckboxConfig{Checked: true})).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = section("With fieldset and label", daisyui.Fieldset(daisyui.FieldsetConfig{
+			Legend: "Login options",
+			Class:  "p-4 bg-base-100 border border-base-300 rounded-box w-64",
+		}, templ.Raw(`
+		<label class="label">
+			<input type="checkbox" checked="checked" class="checkbox" />
+			Remember me
+		</label>`))).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = section("Sizes", templ.Raw(`
+		<div class="flex gap-4">
+			<input type="checkbox" checked="checked" class="checkbox checkbox-xs" />
+			<input type="checkbox" checked="checked" class="checkbox checkbox-sm" />
+			<input type="checkbox" checked="checked" class="checkbox checkbox-md" />
+			<input type="checkbox" checked="checked" class="checkbox checkbox-lg" />
+			<input type="checkbox" checked="checked" class="checkbox checkbox-xl" />
+		</div>`)).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = section("Colors", templ.Raw(`
+		<div class="flex gap-4">
+			<input type="checkbox" checked="checked" class="checkbox checkbox-primary" />
+			<input type="checkbox" checked="checked" class="checkbox checkbox-secondary" />
+			<input type="checkbox" checked="checked" class="checkbox checkbox-accent" />
+			<input type="checkbox" checked="checked" class="checkbox checkbox-neutral" />
+			<input type="checkbox" checked="checked" class="checkbox checkbox-info" />
+			<input type="checkbox" checked="checked" class="checkbox checkbox-success" />
+			<input type="checkbox" checked="checked" class="checkbox checkbox-warning" />
+			<input type="checkbox" checked="checked" class="checkbox checkbox-error" />
+		</div>`)).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = section("Disabled", templ.Raw(`
+		<div class="flex gap-4">
+			<input type="checkbox" disabled="disabled" class="checkbox" />
+			<input type="checkbox" disabled="disabled" class="checkbox" checked="checked" />
+		</div>`)).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = section("Checkbox with custom colors", daisyui.Checkbox(daisyui.CheckboxConfig{
+			Checked: true,
+			Class:   "border-indigo-600 bg-indigo-500 checked:bg-orange-400 checked:text-orange-800 checked:border-orange-500",
+		})).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
+func RadioPage(r links.LinkResolver) templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var55 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var55 == nil {
+			templ_7745c5c3_Var55 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = pageShell(r, "Radio", "Radio buttons allow the user to select one option from a set.", radioBody(r)).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
+func radioBody(r links.LinkResolver) templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var56 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var56 == nil {
+			templ_7745c5c3_Var56 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = section("Radio", daisyui.Radio(daisyui.RadioConfig{
+			Name: "radio-1",
+			Options: []daisyui.RadioOption{
+				{Value: "a", Checked: true},
+				{Value: "b"},
+			},
+		})).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = section("Radio sizes", templ.Raw(`
+		<div class="flex gap-4">
+			<input type="radio" name="radio-2" class="radio radio-xs" checked="checked" />
+			<input type="radio" name="radio-2.1" class="radio radio-sm" checked="checked" />
+			<input type="radio" name="radio-2.2" class="radio radio-md" checked="checked" />
+			<input type="radio" name="radio-2.3" class="radio radio-lg" checked="checked" />
+			<input type="radio" name="radio-2.4" class="radio radio-xl" checked="checked" />
+		</div>`)).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = section("Neutral color", daisyui.Radio(daisyui.RadioConfig{
+			Name:  "radio-3",
+			Color: "neutral",
+			Options: []daisyui.RadioOption{
+				{Value: "a", Checked: true},
+				{Value: "b"},
+			},
+		})).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = section("Primary color", daisyui.Radio(daisyui.RadioConfig{
+			Name:  "radio-4",
+			Color: "primary",
+			Options: []daisyui.RadioOption{
+				{Value: "a", Checked: true},
+				{Value: "b"},
+			},
+		})).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = section("Secondary color", daisyui.Radio(daisyui.RadioConfig{
+			Name:  "radio-5",
+			Color: "secondary",
+			Options: []daisyui.RadioOption{
+				{Value: "a", Checked: true},
+				{Value: "b"},
+			},
+		})).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = section("Accent color", daisyui.Radio(daisyui.RadioConfig{
+			Name:  "radio-6",
+			Color: "accent",
+			Options: []daisyui.RadioOption{
+				{Value: "a", Checked: true},
+				{Value: "b"},
+			},
+		})).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = section("Success color", daisyui.Radio(daisyui.RadioConfig{
+			Name:  "radio-7",
+			Color: "success",
+			Options: []daisyui.RadioOption{
+				{Value: "a", Checked: true},
+				{Value: "b"},
+			},
+		})).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = section("Warning color", daisyui.Radio(daisyui.RadioConfig{
+			Name:  "radio-8",
+			Color: "warning",
+			Options: []daisyui.RadioOption{
+				{Value: "a", Checked: true},
+				{Value: "b"},
+			},
+		})).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = section("Info color", daisyui.Radio(daisyui.RadioConfig{
+			Name:  "radio-9",
+			Color: "info",
+			Options: []daisyui.RadioOption{
+				{Value: "a", Checked: true},
+				{Value: "b"},
+			},
+		})).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = section("Error color", daisyui.Radio(daisyui.RadioConfig{
+			Name:  "radio-10",
+			Color: "error",
+			Options: []daisyui.RadioOption{
+				{Value: "a", Checked: true},
+				{Value: "b"},
+			},
+		})).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = section("Disabled", templ.Raw(`
+		<div class="flex gap-4">
+			<input type="radio" name="radio-11" class="radio" disabled checked="checked" />
+			<input type="radio" name="radio-11" class="radio" disabled />
+		</div>`)).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = section("Radio with custom colors", templ.Raw(`
+		<div class="flex gap-4">
+			<input type="radio" name="radio-12" class="radio bg-red-100 border-red-300 checked:bg-red-200 checked:text-red-600 checked:border-red-600" checked="checked" />
+			<input type="radio" name="radio-12" class="radio bg-blue-100 border-blue-300 checked:bg-blue-200 checked:text-blue-600 checked:border-blue-600" checked="checked" />
+		</div>`)).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
+func RangePage(r links.LinkResolver) templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var57 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var57 == nil {
+			templ_7745c5c3_Var57 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = pageShell(r, "Range slider", "Range slider is used to select a value by sliding a handle.", rangeBody(r)).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
+func rangeBody(r links.LinkResolver) templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var58 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var58 == nil {
+			templ_7745c5c3_Var58 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = section("Range", daisyui.Range(daisyui.RangeConfig{
+			Min: "0", Max: "100", Value: "40",
+		})).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = section("With steps and measure", templ.Raw(`
+		<div class="w-full max-w-xs">
+			<input type="range" min="0" max="100" value="25" class="range" step="25" />
+			<div class="flex justify-between px-2.5 mt-2 text-xs">
+				<span>|</span><span>|</span><span>|</span><span>|</span><span>|</span>
+			</div>
+			<div class="flex justify-between px-2.5 mt-2 text-xs">
+				<span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
+			</div>
+		</div>`)).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = section("Neutral color", daisyui.Range(daisyui.RangeConfig{Min: "0", Max: "100", Value: "40", Color: "neutral"})).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = section("Primary color", daisyui.Range(daisyui.RangeConfig{Min: "0", Max: "100", Value: "40", Color: "primary"})).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = section("Secondary color", daisyui.Range(daisyui.RangeConfig{Min: "0", Max: "100", Value: "40", Color: "secondary"})).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = section("Accent color", daisyui.Range(daisyui.RangeConfig{Min: "0", Max: "100", Value: "40", Color: "accent"})).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = section("Success color", daisyui.Range(daisyui.RangeConfig{Min: "0", Max: "100", Value: "40", Color: "success"})).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = section("Warning color", daisyui.Range(daisyui.RangeConfig{Min: "0", Max: "100", Value: "40", Color: "warning"})).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = section("Info color", daisyui.Range(daisyui.RangeConfig{Min: "0", Max: "100", Value: "40", Color: "info"})).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = section("Error color", daisyui.Range(daisyui.RangeConfig{Min: "0", Max: "100", Value: "40", Color: "error"})).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = section("Sizes", rangeSizeRow()).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = section("Range with custom color and no fill", daisyui.Range(daisyui.RangeConfig{
+			Min: "0", Max: "100", Value: "40",
+			Class: "text-blue-300 [--range-bg:orange] [--range-thumb:blue] [--range-fill:0]",
+		})).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
+func rangeSizeRow() templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var59 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var59 == nil {
+			templ_7745c5c3_Var59 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 37, "<div class=\"flex flex-col gap-4 w-full max-w-xs\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Range(daisyui.RangeConfig{Min: "0", Max: "100", Value: "30", Size: "xs"}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Range(daisyui.RangeConfig{Min: "0", Max: "100", Value: "40", Size: "sm"}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Range(daisyui.RangeConfig{Min: "0", Max: "100", Value: "50", Size: "md"}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Range(daisyui.RangeConfig{Min: "0", Max: "100", Value: "60", Size: "lg"}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Range(daisyui.RangeConfig{Min: "0", Max: "100", Value: "70", Size: "xl"}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 38, "</div>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
+func FileInputPage(r links.LinkResolver) templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var60 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var60 == nil {
+			templ_7745c5c3_Var60 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = pageShell(r, "File Input", "File Input is a an input field for uploading files.", fileInputBody(r)).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
+func fileInputBody(r links.LinkResolver) templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var61 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var61 == nil {
+			templ_7745c5c3_Var61 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = section("File input", daisyui.FileInput(daisyui.FileInputConfig{})).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = section("File input ghost", daisyui.FileInput(daisyui.FileInputConfig{Style: "ghost"})).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = section("With fieldset and label", daisyui.Fieldset(daisyui.FieldsetConfig{
+			Legend: "Pick a file",
+		}, templ.Raw(`
+		<input type="file" class="file-input" />
+		<label class="label">Max size 2MB</label>`))).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = section("Sizes", fileInputSizeRow()).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = section("Primary color", templ.Raw(`
+		<div class="grid gap-2">
+			<input type="file" class="file-input file-input-primary" />
+			<input type="file" class="file-input file-input-secondary" />
+			<input type="file" class="file-input file-input-accent" />
+			<input type="file" class="file-input file-input-neutral" />
+			<input type="file" class="file-input file-input-info" />
+			<input type="file" class="file-input file-input-success" />
+			<input type="file" class="file-input file-input-warning" />
+			<input type="file" class="file-input file-input-error" />
+		</div>`)).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = section("Disabled", daisyui.FileInput(daisyui.FileInputConfig{Disabled: true})).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
+func fileInputSizeRow() templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var62 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var62 == nil {
+			templ_7745c5c3_Var62 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 39, "<div class=\"flex flex-col gap-4 w-full items-center\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.FileInput(daisyui.FileInputConfig{Size: "xs"}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.FileInput(daisyui.FileInputConfig{Size: "sm"}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.FileInput(daisyui.FileInputConfig{Size: "md"}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.FileInput(daisyui.FileInputConfig{Size: "lg"}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.FileInput(daisyui.FileInputConfig{Size: "xl"}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 40, "</div>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
+func TogglePage(r links.LinkResolver) templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var63 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var63 == nil {
+			templ_7745c5c3_Var63 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = pageShell(r, "Toggle", "Toggle is a checkbox that is styled to look like a switch button.", toggleBody(r)).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
+func toggleBody(r links.LinkResolver) templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var64 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var64 == nil {
+			templ_7745c5c3_Var64 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = section("Toggle (switch)", daisyui.Toggle(daisyui.ToggleConfig{Checked: true})).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = section("With fieldset and label", daisyui.Fieldset(daisyui.FieldsetConfig{
+			Legend: "Login options",
+			Class:  "p-4 bg-base-100 border border-base-300 rounded-box w-64",
+		}, templ.Raw(`
+		<label class="label">
+			<input type="checkbox" checked="checked" class="toggle" />
+			Remember me
+		</label>`))).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = section("Sizes", templ.Raw(`
+		<div class="flex gap-4">
+			<input type="checkbox" checked="checked" class="toggle toggle-xs" />
+			<input type="checkbox" checked="checked" class="toggle toggle-sm" />
+			<input type="checkbox" checked="checked" class="toggle toggle-md" />
+			<input type="checkbox" checked="checked" class="toggle toggle-lg" />
+			<input type="checkbox" checked="checked" class="toggle toggle-xl" />
+		</div>`)).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = section("Colors", templ.Raw(`
+		<div class="flex gap-4">
+			<input type="checkbox" checked="checked" class="toggle toggle-primary" />
+			<input type="checkbox" checked="checked" class="toggle toggle-secondary" />
+			<input type="checkbox" checked="checked" class="toggle toggle-accent" />
+			<input type="checkbox" checked="checked" class="toggle toggle-neutral" />
+			<input type="checkbox" checked="checked" class="toggle toggle-info" />
+			<input type="checkbox" checked="checked" class="toggle toggle-success" />
+			<input type="checkbox" checked="checked" class="toggle toggle-warning" />
+			<input type="checkbox" checked="checked" class="toggle toggle-error" />
+		</div>`)).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = section("Disabled", templ.Raw(`
+		<div class="flex gap-4">
+			<input type="checkbox" disabled="disabled" class="toggle" />
+			<input type="checkbox" disabled="disabled" class="toggle" checked="checked" />
+		</div>`)).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = section("Toggle with custom colors", daisyui.Toggle(daisyui.ToggleConfig{
+			Checked: true,
+			Class:   "border-indigo-600 bg-indigo-500 checked:bg-orange-400 checked:text-orange-800 checked:border-orange-500",
+		})).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
+func RatingPage(r links.LinkResolver) templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var65 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var65 == nil {
+			templ_7745c5c3_Var65 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = pageShell(r, "Rating", "Rating is a set of radio buttons that allow the user to rate something.", ratingBody(r)).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
+func ratingBody(r links.LinkResolver) templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var66 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var66 == nil {
+			templ_7745c5c3_Var66 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = section("Rating", daisyui.Rating(daisyui.RatingConfig{
+			Name: "rating-1",
+			Items: []daisyui.RatingItem{
+				{Mask: "star", AriaLabel: "1 star"},
+				{Mask: "star", AriaLabel: "2 star", Checked: true},
+				{Mask: "star", AriaLabel: "3 star"},
+				{Mask: "star", AriaLabel: "4 star"},
+				{Mask: "star", AriaLabel: "5 star"},
+			},
+		})).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = section("Read-only Rating", templ.Raw(`
+		<div class="rating">
+			<div class="mask mask-star" aria-label="1 star"></div>
+			<div class="mask mask-star" aria-label="2 star"></div>
+			<div class="mask mask-star" aria-label="3 star" aria-current="true"></div>
+			<div class="mask mask-star" aria-label="4 star"></div>
+			<div class="mask mask-star" aria-label="5 star"></div>
+		</div>`)).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = section("mask-star-2 with warning color", daisyui.Rating(daisyui.RatingConfig{
+			Name: "rating-2",
+			Items: []daisyui.RatingItem{
+				{Mask: "star-2", AriaLabel: "1 star", ColorClass: "bg-orange-400"},
+				{Mask: "star-2", AriaLabel: "2 star", ColorClass: "bg-orange-400", Checked: true},
+				{Mask: "star-2", AriaLabel: "3 star", ColorClass: "bg-orange-400"},
+				{Mask: "star-2", AriaLabel: "4 star", ColorClass: "bg-orange-400"},
+				{Mask: "star-2", AriaLabel: "5 star", ColorClass: "bg-orange-400"},
+			},
+		})).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = section("mask-heart with multiple colors", daisyui.Rating(daisyui.RatingConfig{
+			Name:  "rating-3",
+			Class: "gap-1",
+			Items: []daisyui.RatingItem{
+				{Mask: "heart", AriaLabel: "1 star", ColorClass: "bg-red-400"},
+				{Mask: "heart", AriaLabel: "2 star", ColorClass: "bg-orange-400", Checked: true},
+				{Mask: "heart", AriaLabel: "3 star", ColorClass: "bg-yellow-400"},
+				{Mask: "heart", AriaLabel: "4 star", ColorClass: "bg-lime-400"},
+				{Mask: "heart", AriaLabel: "5 star", ColorClass: "bg-green-400"},
+			},
+		})).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = section("mask-star-2 with green-500 color", daisyui.Rating(daisyui.RatingConfig{
+			Name: "rating-4",
+			Items: []daisyui.RatingItem{
+				{Mask: "star-2", AriaLabel: "1 star", ColorClass: "bg-green-500"},
+				{Mask: "star-2", AriaLabel: "2 star", ColorClass: "bg-green-500", Checked: true},
+				{Mask: "star-2", AriaLabel: "3 star", ColorClass: "bg-green-500"},
+				{Mask: "star-2", AriaLabel: "4 star", ColorClass: "bg-green-500"},
+				{Mask: "star-2", AriaLabel: "5 star", ColorClass: "bg-green-500"},
+			},
+		})).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = section("Sizes", ratingSizeRow()).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = section("with rating-hidden", daisyui.Rating(daisyui.RatingConfig{
+			Name: "rating-10", Size: "lg",
+			Items: []daisyui.RatingItem{
+				{Hidden: true, AriaLabel: "clear"},
+				{Mask: "star-2", AriaLabel: "1 star"},
+				{Mask: "star-2", AriaLabel: "2 star", Checked: true},
+				{Mask: "star-2", AriaLabel: "3 star"},
+				{Mask: "star-2", AriaLabel: "4 star"},
+				{Mask: "star-2", AriaLabel: "5 star"},
+			},
+		})).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = section("half stars", daisyui.Rating(daisyui.RatingConfig{
+			Name: "rating-11", Size: "lg", Half: true,
+			Items: []daisyui.RatingItem{
+				{Hidden: true, AriaLabel: "clear"},
+				{Mask: "star-2", Modifier: "half-1", AriaLabel: "0.5 star", ColorClass: "bg-green-500"},
+				{Mask: "star-2", Modifier: "half-2", AriaLabel: "1 star", ColorClass: "bg-green-500"},
+				{Mask: "star-2", Modifier: "half-1", AriaLabel: "1.5 star", ColorClass: "bg-green-500", Checked: true},
+				{Mask: "star-2", Modifier: "half-2", AriaLabel: "2 star", ColorClass: "bg-green-500"},
+				{Mask: "star-2", Modifier: "half-1", AriaLabel: "2.5 star", ColorClass: "bg-green-500"},
+				{Mask: "star-2", Modifier: "half-2", AriaLabel: "3 star", ColorClass: "bg-green-500"},
+				{Mask: "star-2", Modifier: "half-1", AriaLabel: "3.5 star", ColorClass: "bg-green-500"},
+				{Mask: "star-2", Modifier: "half-2", AriaLabel: "4 star", ColorClass: "bg-green-500"},
+				{Mask: "star-2", Modifier: "half-1", AriaLabel: "4.5 star", ColorClass: "bg-green-500"},
+				{Mask: "star-2", Modifier: "half-2", AriaLabel: "5 star", ColorClass: "bg-green-500"},
+			},
+		})).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
+func ratingSizeRow() templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var67 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var67 == nil {
+			templ_7745c5c3_Var67 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 41, "<div class=\"flex flex-col gap-2 items-center\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Rating(daisyui.RatingConfig{Name: "rating-5", Size: "xs", Items: ratingStarItems("rating-5", "bg-orange-400", 2)}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Rating(daisyui.RatingConfig{Name: "rating-6", Size: "sm", Items: ratingStarItems("rating-6", "bg-orange-400", 2)}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Rating(daisyui.RatingConfig{Name: "rating-7", Size: "md", Items: ratingStarItems("rating-7", "bg-orange-400", 2)}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Rating(daisyui.RatingConfig{Name: "rating-8", Size: "lg", Items: ratingStarItems("rating-8", "bg-orange-400", 2)}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Rating(daisyui.RatingConfig{Name: "rating-9", Size: "xl", Items: ratingStarItems("rating-9", "bg-orange-400", 2)}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 42, "</div>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
+// ratingStarItems builds a 5-star rating item slice using mask-star-2 and the
+// given background color class, marking the item at checkedIndex (1-based) as
+// checked.
+func ratingStarItems(name, colorClass string, checkedIndex int) []daisyui.RatingItem {
+	items := make([]daisyui.RatingItem, 5)
+	for i := 0; i < 5; i++ {
+		items[i] = daisyui.RatingItem{
+			Mask:       "star-2",
+			ColorClass: colorClass,
+			AriaLabel:  starAriaLabel(i + 1),
+			Checked:    (i + 1) == checkedIndex,
+		}
+	}
+	return items
+}
+
+func starAriaLabel(n int) string {
+	switch n {
+	case 1:
+		return "1 star"
+	case 2:
+		return "2 star"
+	case 3:
+		return "3 star"
+	case 4:
+		return "4 star"
+	default:
+		return "5 star"
+	}
+}
+
+func LabelPage(r links.LinkResolver) templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var68 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var68 == nil {
+			templ_7745c5c3_Var68 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = pageShell(r, "Label", "Label is used to provide a name or title for an input field. Label can be placed before or after the field.", labelBody(r)).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
+func labelBody(r links.LinkResolver) templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var69 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var69 == nil {
+			templ_7745c5c3_Var69 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = section("Label for input", templ.Raw(`
+		<label class="input">
+			<span class="label">https://</span>
+			<input type="text" placeholder="URL" />
+		</label>`)).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = section("Label for input at the end", templ.Raw(`
+		<label class="input">
+			<input type="text" placeholder="domain name" />
+			<span class="label">.com</span>
+		</label>`)).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = section("Label for select", templ.Raw(`
+		<label class="select">
+			<span class="label">Type</span>
+			<select>
+				<option>Personal</option>
+				<option>Business</option>
+			</select>
+		</label>`)).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = section("Label for date input", templ.Raw(`
+		<label class="input">
+			<span class="label">Publish date</span>
+			<input type="date" />
+		</label>`)).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = section("Floating Label", daisyui.FloatingLabel(daisyui.FloatingLabelConfig{
+			Label:       "Your Email",
+			InputType:   "email",
+			Placeholder: "mail@site.com",
+			InputClass:  "input input-md",
+			Class:       "w-full max-w-xs",
+		})).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = section("Floating Label with Different Sizes", templ.Raw(`
+		<div class="grid gap-4 w-xs">
+			<label class="floating-label">
+				<input type="text" placeholder="Extra Small" class="input input-xs" />
+				<span>Extra Small</span>
+			</label>
+			<label class="floating-label">
+				<input type="text" placeholder="Small" class="input input-sm" />
+				<span>Small</span>
+			</label>
+			<label class="floating-label">
+				<input type="text" placeholder="Medium" class="input input-md" />
+				<span>Medium</span>
+			</label>
+			<label class="floating-label">
+				<input type="text" placeholder="Large" class="input input-lg" />
+				<span>Large</span>
+			</label>
+			<label class="floating-label">
+				<input type="text" placeholder="Extra Large" class="input input-xl" />
+				<span>Extra Large</span>
+			</label>
+		</div>`)).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
+func FieldsetPage(r links.LinkResolver) templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var70 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var70 == nil {
+			templ_7745c5c3_Var70 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = pageShell(r, "Fieldset", "Fieldset is a container for grouping related form elements. It includes fieldset-legend as a title and label as a description.", fieldsetBody(r)).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
+func fieldsetBody(r links.LinkResolver) templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var71 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var71 == nil {
+			templ_7745c5c3_Var71 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = section("Fieldset fieldset-legend and label", daisyui.Fieldset(daisyui.FieldsetConfig{
+			Legend: "Page title",
+			Class:  "w-xs",
+		}, templ.Raw(`
+		<input type="text" class="input" placeholder="My awesome page" />
+		<p class="label">You can edit page title later on from settings</p>`))).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = section("Fieldset with background and border", daisyui.Fieldset(daisyui.FieldsetConfig{
+			Legend: "Page title",
+			Class:  "w-xs bg-base-200 border border-base-300 p-4 rounded-box",
+		}, templ.Raw(`
+		<input type="text" class="input" placeholder="My awesome page" />
+		<p class="label">You can edit page title later on from settings</p>`))).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = section("Fieldset with multiple inputs", daisyui.Fieldset(daisyui.FieldsetConfig{
+			Legend: "Page details",
+			Class:  "w-xs bg-base-200 border border-base-300 p-4 rounded-box",
+		}, templ.Raw(`
+		<label class="label">Title</label>
+		<input type="text" class="input" placeholder="My awesome page" />
+		<label class="label">Slug</label>
+		<input type="text" class="input" placeholder="my-awesome-page" />
+		<label class="label">Author</label>
+		<input type="text" class="input" placeholder="Name" />`))).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = section("Fieldset with multiple join items", daisyui.Fieldset(daisyui.FieldsetConfig{
+			Legend: "Settings",
+			Class:  "w-xs bg-base-200 border border-base-300 p-4 rounded-box",
+		}, templ.Raw(`
+		<div class="join">
+			<input type="text" class="input join-item" placeholder="Product name" />
+			<button class="btn join-item">save</button>
+		</div>`))).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = section("Login form with fieldset", daisyui.Fieldset(daisyui.FieldsetConfig{
+			Legend: "Login",
+			Class:  "w-xs bg-base-200 border border-base-300 p-4 rounded-box",
+		}, templ.Raw(`
+		<label class="label">Email</label>
+		<input type="email" class="input" placeholder="Email" />
+		<label class="label">Password</label>
+		<input type="password" class="input" placeholder="Password" />
+		<button class="btn btn-neutral mt-4">Login</button>`))).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
+func ValidatorPage(r links.LinkResolver) templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var72 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var72 == nil {
+			templ_7745c5c3_Var72 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = pageShell(r, "Validator", "Validator class changes the color of form elements to error or success based on input's validation rules.", validatorBody(r)).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
+func validatorBody(r links.LinkResolver) templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var73 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var73 == nil {
+			templ_7745c5c3_Var73 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = section("Validator", templ.Raw(`
+		<form class="w-full max-w-xs">
+			<input class="input validator" type="email" required placeholder="mail@site.com" autocomplete="false" />
+		</form>`)).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = section("Validator and validator-hint", daisyui.Validator(daisyui.ValidatorConfig{
+			Hint: "Enter valid email address",
+		}, templ.Raw(`<input class="input validator" type="email" required placeholder="mail@site.com" />`))).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = section("Password requirement validator", daisyui.Validator(daisyui.ValidatorConfig{
+			HintChildren: templ.Raw(`Must be more than 8 characters, including<br/>At least one number<br/>At least one lowercase letter<br/>At least one uppercase letter`),
+		}, templ.Raw(`<input type="password" class="input validator" required placeholder="Password" minlength="8" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must be more than 8 characters, including number, lowercase letter, uppercase letter" />`))).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = section("Username requirement validator", daisyui.Validator(daisyui.ValidatorConfig{
+			HintChildren: templ.Raw(`Must be 3 to 30 characters<br/>containing only letters, numbers or dash`),
+		}, templ.Raw(`<input type="text" class="input validator" required placeholder="Username" pattern="[A-Za-z][A-Za-z0-9\-]*" minlength="3" maxlength="30" title="Only letters, numbers or dash" />`))).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = section("Phone Number requirement validator", daisyui.Validator(daisyui.ValidatorConfig{
+			Hint: "Must be 10 digits",
+		}, templ.Raw(`<input type="tel" class="input validator tabular-nums" required placeholder="Phone" pattern="[0-9]*" minlength="10" maxlength="10" title="Must be 10 digits" />`))).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = section("URL input requirement validator", daisyui.Validator(daisyui.ValidatorConfig{
+			Hint: "Must be valid URL",
+		}, templ.Raw(`<input type="url" class="input validator" required placeholder="https://" value="https://" pattern="^(https?://)?([a-zA-Z0-9]([a-zA-Z0-9\-].*[a-zA-Z0-9])?\.)+[a-zA-Z].*$" title="Must be valid URL" />`))).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = section("Date input requirement validator", daisyui.Validator(daisyui.ValidatorConfig{
+			Hint: "Must be 2025",
+		}, templ.Raw(`<input type="date" class="input validator" required placeholder="Pick a date in 2025" min="2025-01-01" max="2025-12-31" title="Must be valid URL" />`))).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = section("Number input requirement validator", daisyui.Validator(daisyui.ValidatorConfig{
+			Hint: "Must be between be 1 to 10",
+		}, templ.Raw(`<input type="number" class="input validator" required placeholder="Type a number between 1 to 10" min="1" max="10" title="Must be between be 1 to 10" />`))).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = section("Checkbox requirement validator", daisyui.Validator(daisyui.ValidatorConfig{
+			Hint: "Required",
+		}, templ.Raw(`<input type="checkbox" class="checkbox validator" required title="Required" />`))).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = section("Toggle requirement validator", daisyui.Validator(daisyui.ValidatorConfig{
+			Hint: "Required",
+		}, templ.Raw(`<input type="checkbox" class="toggle validator" required title="Required" />`))).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = section("Select requirement validator", templ.Raw(`
+		<form autocomplete="off" class="w-full max-w-xs" onsubmit="event.preventDefault()">
+			<select class="select validator" required>
+				<option disabled selected value="">Choose:</option>
+				<option>Tabs</option>
+				<option>Spaces</option>
+			</select>
+			<p class="validator-hint">Required</p>
+			<button class="btn" type="submit">Submit form</button>
+		</form>`)).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = section("Form requirement validator", templ.Raw(`
+		<form autocomplete="off" class="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4" onsubmit="event.preventDefault()">
+			<fieldset class="fieldset">
+				<label class="label">Email</label>
+				<input type="email" class="input validator" placeholder="Email" required />
+				<p class="validator-hint hidden">Required</p>
+			</fieldset>
+
+			<label class="fieldset">
+				<span class="label">Password</span>
+				<input type="password" class="input validator" placeholder="Password" required />
+				<span class="validator-hint hidden">Required</span>
+			</label>
+
+			<button class="btn btn-neutral mt-4" type="submit">Login</button>
+			<button class="btn btn-ghost mt-1" type="reset">Reset</button>
+		</form>`)).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

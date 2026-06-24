@@ -1,19 +1,93 @@
 @import "tailwindcss";
+
 @plugin "@tailwindcss/typography";
-@plugin "daisyui";
+
+@plugin "daisyui" {
+  themes: light --default, dark --prefersdark, coffee, pastel, dim, retro, dracula, business, nord, sunset, abyss;
+}
+
+@plugin "daisyui/theme" {
+  name: "kanagawa-light";
+  default: false;
+  prefersdark: false;
+  color-scheme: "light";
+  --color-base-100: #C8C093;
+  --color-base-200: #DCD7BA;
+  --color-base-300: #C8C093;
+  --color-base-content: #16161D;
+  --color-primary: #54546D;
+  --color-primary-content: #C8C093;
+  --color-secondary: #76946A;
+  --color-secondary-content: #C8C093;
+  --color-accent: #658594;
+  --color-accent-content: #C8C093;
+  --color-neutral: #2A2A37;
+  --color-neutral-content: #DCD7BA;
+  --color-info: #7AA89F;
+  --color-info-content: #16161D;
+  --color-success: #98BB6C;
+  --color-success-content: #16161D;
+  --color-warning: #FFA066;
+  --color-warning-content: #16161D;
+  --color-error: #E46876;
+  --color-error-content: #16161D;
+  --radius-selector: 0.5rem;
+  --radius-field: 0.5rem;
+  --radius-box: 0.5rem;
+  --size-selector: 0.3125rem;
+  --size-field: 0.3125rem;
+  --border: 1px;
+  --depth: 1;
+  --noise: 1;
+}
+
+@plugin "daisyui/theme" {
+  name: "kanagawa-dark";
+  default: false;
+  prefersdark: true;
+  color-scheme: "dark";
+  --color-base-100: #2A2A37;
+  --color-base-200: #16161D;
+  --color-base-300: #1F1F28;
+  --color-base-content: #C8C093;
+  --color-primary: #54546D;
+  --color-primary-content: #C8C093;
+  --color-secondary: #76946A;
+  --color-secondary-content: #C8C093;
+  --color-accent: #658594;
+  --color-accent-content: #C8C093;
+  --color-neutral: oklch(26% 0 0);
+  --color-neutral-content: #DCD7BA;
+  --color-info: #7AA89F;
+  --color-info-content: #16161D;
+  --color-success: #98BB6C;
+  --color-success-content: #16161D;
+  --color-warning: #FFA066;
+  --color-warning-content: #16161D;
+  --color-error: #E46876;
+  --color-error-content: #16161D;
+  --radius-selector: 0.5rem;
+  --radius-field: 0.5rem;
+  --radius-box: 0.5rem;
+  --size-selector: 0.3125rem;
+  --size-field: 0.3125rem;
+  --border: 1px;
+  --depth: 1;
+  --noise: 1;
+}
 
 /* User styles */
 
 :root {
-	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-	font-synthesis: none;
-	text-rendering: optimizeLegibility;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-	margin: 0;
-	min-width: 320px;
-	min-height: 100vh;
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
 }
