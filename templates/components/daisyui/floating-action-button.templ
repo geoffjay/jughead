@@ -70,8 +70,9 @@ templ FAB(cfg FABConfig) {
 			}
 			for _, item := range cfg.Items {
 				if item.Label != "" {
-					<div>{ item.Label } @item.Button
-</div>
+					<div>
+						{ item.Label } @item.Button
+					</div>
 				} else {
 					@item.Button
 				}
