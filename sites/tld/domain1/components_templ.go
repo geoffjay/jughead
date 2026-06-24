@@ -53,7 +53,7 @@ func pageShell(r links.LinkResolver, title, description string, body templ.Compo
 		var templ_7745c5c3_Var2 string
 		templ_7745c5c3_Var2, templ_7745c5c3_Err = templ.JoinStringErrs(title)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/components.templ`, Line: 14, Col: 54}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `components.templ`, Line: 14, Col: 54}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var2))
 		if templ_7745c5c3_Err != nil {
@@ -66,7 +66,7 @@ func pageShell(r links.LinkResolver, title, description string, body templ.Compo
 		var templ_7745c5c3_Var3 string
 		templ_7745c5c3_Var3, templ_7745c5c3_Err = templ.JoinStringErrs(description)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/components.templ`, Line: 15, Col: 48}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `components.templ`, Line: 15, Col: 48}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var3))
 		if templ_7745c5c3_Err != nil {
@@ -116,7 +116,7 @@ func section(title string, body templ.Component) templ.Component {
 		var templ_7745c5c3_Var5 string
 		templ_7745c5c3_Var5, templ_7745c5c3_Err = templ.JoinStringErrs(title)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/components.templ`, Line: 23, Col: 44}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `components.templ`, Line: 23, Col: 44}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var5))
 		if templ_7745c5c3_Err != nil {
@@ -1914,7 +1914,12 @@ func FABPage(r links.LinkResolver) templ.Component {
 	})
 }
 
-func fabBody(r links.LinkResolver) templ.Component {
+// fabFrame wraps a FAB example in a positioned container so each FAB's
+// absolute positioning is scoped to its own section rather than the page.
+// Without this, every FAB stacks in the page's bottom-left corner and only the
+// topmost is interactive. Height mirrors the daisyUI docs (h-54; h-48 for the
+// tooltip variant).
+func fabFrame(title string, fab templ.Component) templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -1935,7 +1940,109 @@ func fabBody(r links.LinkResolver) templ.Component {
 			templ_7745c5c3_Var37 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = section("FAB and Speed Dial (vertical)", daisyui.FAB(daisyui.FABConfig{
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 21, "<section class=\"space-y-4\"><h2 class=\"text-2xl font-semibold\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		var templ_7745c5c3_Var38 string
+		templ_7745c5c3_Var38, templ_7745c5c3_Err = templ.JoinStringErrs(title)
+		if templ_7745c5c3_Err != nil {
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `components.templ`, Line: 625, Col: 44}
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var38))
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 22, "</h2><div class=\"relative h-54\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = fab.Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 23, "</div></section>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
+// fabFrameShort is like fabFrame but with h-48 for the tooltip variant where
+// less vertical space is needed.
+func fabFrameShort(title string, fab templ.Component) templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var39 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var39 == nil {
+			templ_7745c5c3_Var39 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 24, "<section class=\"space-y-4\"><h2 class=\"text-2xl font-semibold\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		var templ_7745c5c3_Var40 string
+		templ_7745c5c3_Var40, templ_7745c5c3_Err = templ.JoinStringErrs(title)
+		if templ_7745c5c3_Err != nil {
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `components.templ`, Line: 636, Col: 44}
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var40))
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 25, "</h2><div class=\"relative h-48\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = fab.Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 26, "</div></section>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
+func fabBody(r links.LinkResolver) templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var41 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var41 == nil {
+			templ_7745c5c3_Var41 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = fabFrame("FAB and Speed Dial (vertical)", daisyui.FAB(daisyui.FABConfig{
 			Trigger: daisyui.FABTrigger{Label: "F", Color: "primary"},
 			Class:   "absolute z-1",
 			Items: []daisyui.FABItem{
@@ -1947,7 +2054,7 @@ func fabBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("FAB and Speed Dial with SVG icons", daisyui.FAB(daisyui.FABConfig{
+		templ_7745c5c3_Err = fabFrame("FAB and Speed Dial with SVG icons", daisyui.FAB(daisyui.FABConfig{
 			Trigger: daisyui.FABTrigger{
 				Color:    "secondary",
 				Children: templ.Raw(`<svg aria-label="New" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="size-6"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg>`),
@@ -1962,7 +2069,7 @@ func fabBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("FAB and Speed Dial with labels", daisyui.FAB(daisyui.FABConfig{
+		templ_7745c5c3_Err = fabFrame("FAB and Speed Dial with labels", daisyui.FAB(daisyui.FABConfig{
 			Trigger: daisyui.FABTrigger{Label: "F", Color: "success"},
 			Class:   "absolute z-1",
 			Items: []daisyui.FABItem{
@@ -1974,7 +2081,7 @@ func fabBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("FAB and Speed Dial with rectangle buttons", daisyui.FAB(daisyui.FABConfig{
+		templ_7745c5c3_Err = fabFrame("FAB and Speed Dial with rectangle buttons", daisyui.FAB(daisyui.FABConfig{
 			Trigger: daisyui.FABTrigger{Label: "F", Color: "success"},
 			Class:   "absolute z-1",
 			Items: []daisyui.FABItem{
@@ -1986,7 +2093,7 @@ func fabBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("FAB and Speed Dial with labels and fab-close button", daisyui.FAB(daisyui.FABConfig{
+		templ_7745c5c3_Err = fabFrame("FAB and Speed Dial with labels and fab-close button", daisyui.FAB(daisyui.FABConfig{
 			Trigger:     daisyui.FABTrigger{Label: "F", Color: "info"},
 			Class:       "absolute z-1",
 			CloseButton: templ.Raw(`Close <span class="btn btn-circle btn-lg btn-error">✕</span>`),
@@ -1999,7 +2106,7 @@ func fabBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("FAB and Speed Dial with labels and fab-main-action Button", daisyui.FAB(daisyui.FABConfig{
+		templ_7745c5c3_Err = fabFrame("FAB and Speed Dial with labels and fab-main-action Button", daisyui.FAB(daisyui.FABConfig{
 			Trigger:    daisyui.FABTrigger{Label: "F", Color: "primary"},
 			Class:      "absolute z-1",
 			MainAction: templ.Raw(`Main Action <button class="btn btn-circle btn-secondary btn-lg">M</button>`),
@@ -2012,14 +2119,14 @@ func fabBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("A single FAB (Floating Action Button)", daisyui.FAB(daisyui.FABConfig{
+		templ_7745c5c3_Err = fabFrame("A single FAB (Floating Action Button)", daisyui.FAB(daisyui.FABConfig{
 			Trigger: daisyui.FABTrigger{Label: "F", Color: "primary"},
 			Class:   "absolute z-1",
 		})).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("FAB Flower and Speed Dial", daisyui.FAB(daisyui.FABConfig{
+		templ_7745c5c3_Err = fabFrame("FAB Flower and Speed Dial", daisyui.FAB(daisyui.FABConfig{
 			Trigger:    daisyui.FABTrigger{Label: "F", Color: "success"},
 			Class:      "absolute z-1",
 			Flower:     true,
@@ -2034,7 +2141,7 @@ func fabBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("FAB and Flower Speed Dial with tooltip", daisyui.FAB(daisyui.FABConfig{
+		templ_7745c5c3_Err = fabFrameShort("FAB and Flower Speed Dial with tooltip", daisyui.FAB(daisyui.FABConfig{
 			Trigger:    daisyui.FABTrigger{Label: "F", Color: "info"},
 			Class:      "absolute z-1",
 			Flower:     true,

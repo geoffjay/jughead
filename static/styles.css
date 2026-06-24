@@ -6860,6 +6860,9 @@
   .h-52 {
     height: calc(var(--spacing) * 52);
   }
+  .h-54 {
+    height: calc(var(--spacing) * 54);
+  }
   .min-h-full {
     min-height: 100%;
   }
@@ -8215,10 +8218,6 @@
     font-size: var(--text-4xl);
     line-height: var(--tw-leading, var(--text-4xl--line-height));
   }
-  .text-6xl {
-    font-size: var(--text-6xl);
-    line-height: var(--tw-leading, var(--text-6xl--line-height));
-  }
   .text-7xl {
     font-size: var(--text-7xl);
     line-height: var(--tw-leading, var(--text-7xl--line-height));
@@ -8234,10 +8233,6 @@
   .text-xl {
     font-size: var(--text-xl);
     line-height: var(--tw-leading, var(--text-xl--line-height));
-  }
-  .text-xs {
-    font-size: var(--text-xs);
-    line-height: var(--tw-leading, var(--text-xs--line-height));
   }
   .badge-lg {
     @layer daisyui.l1.l2 {
@@ -8759,12 +8754,6 @@
   }
   .text-base-content {
     color: var(--color-base-content);
-  }
-  .text-base-content\/50 {
-    color: var(--color-base-content);
-    @supports (color: color-mix(in lab, red, red)) {
-      color: color-mix(in oklab, var(--color-base-content) 50%, transparent);
-    }
   }
   .text-base-content\/60 {
     color: var(--color-base-content);
