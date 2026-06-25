@@ -1,27 +1,23 @@
 package data
 
-// review.go exposes accessor functions over the fixture data. These are the
-// only entry points the quux handlers call, so swapping fixtures for a real
-// GitHub API client later means replacing this file alone.
+// review.go holds the ReviewState assembly helpers shared by both the
+// fixture-backed tests and the real client path. The pure SelectPR selects a
+// PR already present in state.PRs without re-fetching people; the real client
+// path (in the quux Service) calls auth.Client to populate people afresh.
 
-// GetReviewState returns the full demo state: all assigned PRs and the first
-// PR selected as the default view, with its associated collaborators,
-// contributors, and agents populated.
-func GetReviewState() ReviewState {
-	prs := append([]PullRequest(nil), allPRs...)
-	state := ReviewState{PRs: prs}
-	if len(prs) > 0 {
-		state.SelectedPR = &prs[0]
-		state.Collaborators = collaboratorsFor(&prs[0])
-		state.Contributors = contributorsFor(&prs[0])
-		state.Agents = agentsFor(&prs[0])
+// SelectPR returns a copy of the state with the PR matching the given number
+// selected. It does NOT refresh collaborators/contributors/agents — callers
+// that need those populated (the real client path) must set them themselves.
+// It returns nil when no PR with that number exists.
+func (s *ReviewState) SelectPR(number int) *ReviewState {
+	for i := range s.PRs {
+		if s.PRs[i].Number != number {
+			continue
+		}
+		pr := s.PRs[i]
+		out := *s
+		out.SelectedPR = &pr
+		return &out
 	}
-	return state
-}
-
-// GetReviewStateForPR returns the state with a specific PR selected, or nil if
-// no PR with that number exists. Used by the HTMX partial endpoint.
-func GetReviewStateForPR(number int) *ReviewState {
-	state := GetReviewState()
-	return state.SelectPR(number)
+	return nil
 }

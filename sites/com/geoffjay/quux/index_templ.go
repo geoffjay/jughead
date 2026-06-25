@@ -6,10 +6,13 @@ package quux
 //lint:file-ignore SA4006 This context is only used if a nested component is present.
 
 import (
-	"strconv"
-
 	"github.com/a-h/templ"
 	templruntime "github.com/a-h/templ/runtime"
+)
+
+import (
+	"strconv"
+
 	"github.com/geoffjay/jughead/sites/com/geoffjay/quux/data"
 	"github.com/geoffjay/jughead/sites/links"
 	"github.com/geoffjay/jughead/templates/components/daisyui"
@@ -739,7 +742,7 @@ func collaboratorRows(users []data.User) templ.Component {
 			var templ_7745c5c3_Var33 string
 			templ_7745c5c3_Var33, templ_7745c5c3_Err = templ.JoinStringErrs("@" + u.Login)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/com/geoffjay/quux/index.templ`, Line: 169, Col: 77}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/com/geoffjay/quux/index.templ`, Line: 169, Col: 78}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var33))
 			if templ_7745c5c3_Err != nil {
@@ -814,7 +817,7 @@ func contributorRows(users []data.User) templ.Component {
 			var templ_7745c5c3_Var36 string
 			templ_7745c5c3_Var36, templ_7745c5c3_Err = templ.JoinStringErrs("@" + u.Login)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/com/geoffjay/quux/index.templ`, Line: 186, Col: 77}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/com/geoffjay/quux/index.templ`, Line: 186, Col: 78}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var36))
 			if templ_7745c5c3_Err != nil {
@@ -896,7 +899,7 @@ func agentSection(agents []data.User) templ.Component {
 			var templ_7745c5c3_Var40 string
 			templ_7745c5c3_Var40, templ_7745c5c3_Err = templ.JoinStringErrs("@" + a.Login)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/com/geoffjay/quux/index.templ`, Line: 207, Col: 79}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/com/geoffjay/quux/index.templ`, Line: 207, Col: 80}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var40))
 			if templ_7745c5c3_Err != nil {
@@ -1042,6 +1045,97 @@ func AboutPage(r links.LinkResolver) templ.Component {
 			return templ_7745c5c3_Err
 		}
 		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 62, "\" class=\"link link-hover\">&larr; Back to reviews</a></p></main></div>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
+// ErrorPage renders a friendly error card when a GitHub API call fails. action
+// describes what was being attempted (e.g. "Loading your assigned PRs"); detail
+// is the underlying error message.
+func ErrorPage(action, detail string) templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var45 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var45 == nil {
+			templ_7745c5c3_Var45 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 63, "<div class=\"min-h-screen bg-base-200 text-base-content flex flex-col\"><div class=\"flex-1 grid place-content-center p-8\"><div class=\"card bg-base-100 shadow-lg max-w-lg\"><div class=\"card-body\"><h2 class=\"text-xl font-semibold mb-2\">Something went wrong</h2><p class=\"text-base-content/70 mb-2\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		var templ_7745c5c3_Var46 string
+		templ_7745c5c3_Var46, templ_7745c5c3_Err = templ.JoinStringErrs(action)
+		if templ_7745c5c3_Err != nil {
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/com/geoffjay/quux/index.templ`, Line: 284, Col: 50}
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var46))
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 64, "</p><p class=\"text-sm text-error/80 mb-4 font-mono\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		var templ_7745c5c3_Var47 string
+		templ_7745c5c3_Var47, templ_7745c5c3_Err = templ.JoinStringErrs(detail)
+		if templ_7745c5c3_Err != nil {
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/com/geoffjay/quux/index.templ`, Line: 285, Col: 61}
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var47))
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 65, "</p><div class=\"flex gap-2\"><a href=\"/sites/quux.geoffjay.com\" class=\"btn btn-primary btn-sm\">Retry</a> <a href=\"/auth/logout\" class=\"btn btn-ghost btn-sm\">Sign out</a></div></div></div></div></div>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
+// SignInPrompt renders a placeholder shown when the quux site is accessed
+// without GitHub OAuth configured (dev/test). It's the fallback Template on the
+// Site struct, rendered by siteViewHandler when the Service routes aren't
+// registered.
+func SignInPrompt() templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var48 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var48 == nil {
+			templ_7745c5c3_Var48 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 66, "<div class=\"min-h-screen bg-base-200 text-base-content flex flex-col\"><div class=\"flex-1 grid place-content-center p-8\"><div class=\"card bg-base-100 shadow-lg max-w-lg\"><div class=\"card-body\"><h2 class=\"text-xl font-semibold mb-2\">Sign in to review</h2><p class=\"text-base-content/70 mb-4\">quux is a code-review demo. Connect your GitHub account to see your assigned pull requests, diffs, and collaborators.</p><a href=\"/auth/login\" class=\"btn btn-primary\">Sign in with GitHub</a></div></div></div></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

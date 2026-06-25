@@ -159,23 +159,30 @@ func TestSiteViewHandler_PublishedSiteRenders(t *testing.T) {
 	}
 }
 
-func TestSiteViewHandler_DirectAccess_KeepsSitePathInLinks(t *testing.T) {
+func TestSiteViewHandler_QuuxFallbackRendersSignInPrompt(t *testing.T) {
+	// Without GitHub OAuth config, the quux site falls back to the
+	// SignInPrompt template (rendered by siteViewHandler). The Service routes
+	// are only registered when config.Load() succeeds, which doesn't happen
+	// in test env.
 	t.Setenv("JUGHEAD_ENV", "test")
 	r := newTestRouter(t)
 	srv := httptest.NewServer(r)
 	defer srv.Close()
 
 	resp := do(t, srv, http.MethodGet, "/sites/quux.geoffjay.com", nil, nil)
+	if resp.StatusCode != http.StatusOK {
+		t.Fatalf("status = %d, want %d", resp.StatusCode, http.StatusOK)
+	}
 	body := bodyString(t, resp)
-	// The quux home page renders nav links via LinkResolver. Without an
-	// X-Site-Base / X-Forwarded-Host header, links should be prefixed with
-	// the site path.
-	if !strings.Contains(body, "/sites/quux.geoffjay.com") {
-		t.Errorf("direct access should keep site path prefix in links; got: %s", body)
+	if !strings.Contains(body, "Sign in to review") {
+		t.Errorf("expected sign-in prompt; got: %s", body)
+	}
+	if !strings.Contains(body, "/auth/login") {
+		t.Errorf("expected /auth/login link; got: %s", body)
 	}
 }
 
-func TestSiteViewHandler_ProxiedAccess_RootRelativeLinks(t *testing.T) {
+func TestSiteViewHandler_ProxiedAccess_RendersSignInPrompt(t *testing.T) {
 	t.Setenv("JUGHEAD_ENV", "test")
 	r := newTestRouter(t)
 	srv := httptest.NewServer(r)
@@ -187,12 +194,9 @@ func TestSiteViewHandler_ProxiedAccess_RootRelativeLinks(t *testing.T) {
 	if resp.StatusCode != http.StatusOK {
 		t.Errorf("status = %d, want %d", resp.StatusCode, http.StatusOK)
 	}
-	// With X-Site-Base set, the resolver returns root-relative links. We can't
-	// easily assert the absence of a substring reliably across the whole doc,
-	// so just ensure the page still renders and contains the site title.
 	body := bodyString(t, resp)
-	if !strings.Contains(body, "quux.geoffjay.com") {
-		t.Errorf("proxied access body missing site title; got: %s", body)
+	if !strings.Contains(body, "Sign in to review") {
+		t.Errorf("proxied access body missing sign-in prompt; got: %s", body)
 	}
 }
 

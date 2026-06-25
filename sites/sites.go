@@ -58,8 +58,10 @@ var sites = map[string]*Site{
 		Url:       "https://quux.geoffjay.com",
 		Published: true,
 		Theme:     "kanagawa-dark",
+		Template:  quux.SignInPrompt(),
 		Proxy:     quux.Proxy,
-		Routes:    quux.Routes,
+		// Routes is wired in server.go after the Service (auth client + cache)
+		// is constructed; see registerQuuxRoutes.
 	},
 }
 

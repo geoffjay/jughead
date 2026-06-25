@@ -174,3 +174,33 @@ func agentsFor(_ *PullRequest) []User {
 		{Login: "codeql", Name: "CodeQL Security", Role: RoleAgent, Enabled: true},
 	}
 }
+
+// GetFixtureReviewState assembles the review state from the static fixtures,
+// selecting the first PR by default with its associated people. Used by tests
+// and by an offline/dev mode where no GitHub token is configured.
+func GetFixtureReviewState() ReviewState {
+	prs := append([]PullRequest(nil), allPRs...)
+	state := ReviewState{PRs: prs}
+	if len(prs) > 0 {
+		pr := prs[0]
+		state.SelectedPR = &pr
+		state.Collaborators = collaboratorsFor(&pr)
+		state.Contributors = contributorsFor(&pr)
+		state.Agents = agentsFor(&pr)
+	}
+	return state
+}
+
+// GetFixtureReviewStateForPR returns a fixture-backed state with a specific PR
+// selected, or nil when the number is unknown.
+func GetFixtureReviewStateForPR(number int) *ReviewState {
+	state := GetFixtureReviewState()
+	if next := state.SelectPR(number); next != nil {
+		pr := *next.SelectedPR
+		next.Collaborators = collaboratorsFor(&pr)
+		next.Contributors = contributorsFor(&pr)
+		next.Agents = agentsFor(&pr)
+		return next
+	}
+	return nil
+}

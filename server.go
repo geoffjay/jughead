@@ -11,6 +11,9 @@ import (
 	"github.com/geoffjay/jughead/middleware"
 	"github.com/geoffjay/jughead/sessions"
 	"github.com/geoffjay/jughead/sites"
+	"github.com/geoffjay/jughead/sites/com/geoffjay/quux"
+	"github.com/geoffjay/jughead/sites/com/geoffjay/quux/config"
+	"github.com/geoffjay/jughead/sites/com/geoffjay/quux/data"
 
 	"github.com/a-h/templ"
 	"github.com/gin-gonic/gin"
@@ -45,8 +48,8 @@ func (t TemplRender) WriteContentType(w http.ResponseWriter) {
 }
 
 // Instance implements the render.Render interface.
-func (t *TemplRender) Instance(_ string, data any) render.Render {
-	if templData, ok := data.(templ.Component); ok {
+func (t *TemplRender) Instance(_ string, value any) render.Render {
+	if templData, ok := value.(templ.Component); ok {
 		return &TemplRender{
 			Code: http.StatusOK,
 			Data: templData,
@@ -80,11 +83,46 @@ func runServer() error {
 	router.GET("/", indexViewHandler)
 	router.GET("/api/hello-world", showContentAPIHandler)
 
-	// Register each loaded site under its own path so sites can own their
-	// subpages. Sites without a Routes callback get a default handler that
-	// renders the site's template.
 	sm := sites.GetSiteManager()
+
+	// GitHub OAuth config. When unset (dev without a token) the quux site
+	// falls back to a friendly "configure GITHUB_CLIENT_ID" error page; the
+	// auth flow and service simply aren't registered.
+	oauthCfg, cfgErr := config.Load()
+
+	// Register the OAuth flow routes at the app root so they're reachable via
+	// both localhost (/sites/...) and the FQDN reverse proxy (/). Only register
+	// when the config is complete.
+	if cfgErr == nil {
+		registerAuthRoutes(router, store, oauthCfg)
+	} else {
+		slog.Warn("GitHub OAuth config incomplete; quux auth routes disabled",
+			"hint", cfgErr.Error())
+	}
+
+	// Build the quux Service (auth client + cache) and register its routes
+	// behind the GitHub auth middleware.
+	quuxSite := sm.GetSite("/sites/quux.geoffjay.com")
+	if quuxSite != nil {
+		quuxGroup := router.Group(quuxSite.Path)
+		if cfgErr == nil {
+			quuxGroup.Use(middleware.GitHubAuthRequired(store))
+			svc := quux.NewService(data.NewCache())
+			svc.RegisterRoutes(quuxGroup, quuxSite.ThemeValue())
+		} else {
+			// No auth configured: render a placeholder so the site isn't a
+			// bare 404. The default siteViewHandler still renders the (now
+			// fixture-less) template.
+			quuxGroup.GET("", siteViewHandler)
+			quuxGroup.GET("/", siteViewHandler)
+		}
+	}
+
+	// Register each remaining loaded site under its own path.
 	for _, site := range sm.Sites() {
+		if site.Path == "/sites/quux.geoffjay.com" {
+			continue // handled above
+		}
 		group := router.Group(site.Path)
 		if site.Routes != nil {
 			site.Routes(group, site.ThemeValue())

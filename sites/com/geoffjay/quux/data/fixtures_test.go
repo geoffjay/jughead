@@ -3,7 +3,7 @@ package data
 import "testing"
 
 func TestGetReviewStateSelectsFirstPR(t *testing.T) {
-	state := GetReviewState()
+	state := GetFixtureReviewState()
 	if len(state.PRs) == 0 {
 		t.Fatal("expected fixture PRs, got none")
 	}
@@ -25,16 +25,16 @@ func TestGetReviewStateSelectsFirstPR(t *testing.T) {
 }
 
 func TestGetReviewStateForPR(t *testing.T) {
-	if got := GetReviewStateForPR(42); got == nil || got.SelectedPR == nil || got.SelectedPR.Number != 42 {
-		t.Errorf("GetReviewStateForPR(42) = %#v, want selected PR #42", got)
+	if got := GetFixtureReviewStateForPR(42); got == nil || got.SelectedPR == nil || got.SelectedPR.Number != 42 {
+		t.Errorf("GetFixtureReviewStateForPR(42) = %#v, want selected PR #42", got)
 	}
-	if got := GetReviewStateForPR(999); got != nil {
-		t.Errorf("GetReviewStateForPR(999) = %#v, want nil for unknown PR", got)
+	if got := GetFixtureReviewStateForPR(999); got != nil {
+		t.Errorf("GetFixtureReviewStateForPR(999) = %#v, want nil for unknown PR", got)
 	}
 }
 
 func TestSelectPRRefreshesPeople(t *testing.T) {
-	state := GetReviewState()
+	state := GetFixtureReviewState()
 	next := state.SelectPR(17)
 	if next == nil || next.SelectedPR == nil || next.SelectedPR.Number != 17 {
 		t.Fatalf("SelectPR(17) = %#v, want selected PR #17", next)
@@ -45,7 +45,7 @@ func TestSelectPRRefreshesPeople(t *testing.T) {
 }
 
 func TestPRsCoverMultipleRepos(t *testing.T) {
-	state := GetReviewState()
+	state := GetFixtureReviewState()
 	seen := map[string]bool{}
 	for _, pr := range state.PRs {
 		seen[pr.Repo.FullName] = true
@@ -56,7 +56,7 @@ func TestPRsCoverMultipleRepos(t *testing.T) {
 }
 
 func TestFileDiffHasHunks(t *testing.T) {
-	state := GetReviewState()
+	state := GetFixtureReviewState()
 	if state.SelectedPR == nil {
 		t.Fatal("no selected PR")
 	}

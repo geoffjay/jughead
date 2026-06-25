@@ -271,3 +271,45 @@ templ AboutPage(r links.LinkResolver) {
 		</main>
 	</div>
 }
+
+// ErrorPage renders a friendly error card when a GitHub API call fails. action
+// describes what was being attempted (e.g. "Loading your assigned PRs"); detail
+// is the underlying error message.
+templ ErrorPage(action, detail string) {
+	<div class="min-h-screen bg-base-200 text-base-content flex flex-col">
+		<div class="flex-1 grid place-content-center p-8">
+			<div class="card bg-base-100 shadow-lg max-w-lg">
+				<div class="card-body">
+					<h2 class="text-xl font-semibold mb-2">Something went wrong</h2>
+					<p class="text-base-content/70 mb-2">{ action }</p>
+					<p class="text-sm text-error/80 mb-4 font-mono">{ detail }</p>
+					<div class="flex gap-2">
+						<a href="/sites/quux.geoffjay.com" class="btn btn-primary btn-sm">Retry</a>
+						<a href="/auth/logout" class="btn btn-ghost btn-sm">Sign out</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+}
+
+// SignInPrompt renders a placeholder shown when the quux site is accessed
+// without GitHub OAuth configured (dev/test). It's the fallback Template on the
+// Site struct, rendered by siteViewHandler when the Service routes aren't
+// registered.
+templ SignInPrompt() {
+	<div class="min-h-screen bg-base-200 text-base-content flex flex-col">
+		<div class="flex-1 grid place-content-center p-8">
+			<div class="card bg-base-100 shadow-lg max-w-lg">
+				<div class="card-body">
+					<h2 class="text-xl font-semibold mb-2">Sign in to review</h2>
+					<p class="text-base-content/70 mb-4">
+						quux is a code-review demo. Connect your GitHub account to see
+						your assigned pull requests, diffs, and collaborators.
+					</p>
+					<a href="/auth/login" class="btn btn-primary">Sign in with GitHub</a>
+				</div>
+			</div>
+		</div>
+	</div>
+}

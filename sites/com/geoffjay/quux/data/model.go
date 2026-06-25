@@ -118,22 +118,3 @@ type ReviewState struct {
 	Contributors  []User
 	Agents        []User
 }
-
-// SelectPR returns a copy of the state with the PR matching the given number
-// selected, and the collaborators/contributors/agents refreshed to match it.
-// It returns nil when no PR with that number exists.
-func (s *ReviewState) SelectPR(number int) *ReviewState {
-	for i := range s.PRs {
-		if s.PRs[i].Number != number {
-			continue
-		}
-		pr := s.PRs[i]
-		out := *s
-		out.SelectedPR = &pr
-		out.Collaborators = collaboratorsFor(&pr)
-		out.Contributors = contributorsFor(&pr)
-		out.Agents = agentsFor(&pr)
-		return &out
-	}
-	return nil
-}
