@@ -66,6 +66,35 @@ func sidebarStateValue(state SidebarState) string {
 	return string(state)
 }
 
+// menuEntryClass returns the class list for a sidebar menu entry, adding
+// menu-active when the item is active.
+func menuEntryClass(item daisyui.MenuItem) string {
+	if item.Active {
+		return "menu-active"
+	}
+	return ""
+}
+
+// menuDisabledLiClass returns "menu-disabled" for a disabled item's <li>.
+func menuDisabledLiClass(disabled bool) string {
+	if disabled {
+		return "menu-disabled"
+	}
+	return ""
+}
+
+// resolveHref renders an href using the resolver when present, falling back to
+// "#" for empty values (mirrors daisyui.resolveHref).
+func resolveHref(r daisyui.URLResolver, href string) templ.SafeURL {
+	if r == nil {
+		if href == "" {
+			return templ.SafeURL("#")
+		}
+		return templ.SafeURL(href)
+	}
+	return templ.SafeURL(r.Resolve(href))
+}
+
 // AppShellHeader renders the fixed full-width navbar. The start region contains
 // the sidebar toggle button (Aperture icon) followed by the brand title. The
 // end region renders HeaderExtra (when set) followed by NavItems.
@@ -106,17 +135,61 @@ templ AppShellSidebar(cfg AppShellConfig) {
 		data-appshell="sidebar"
 		data-state={ sidebarStateValue(cfg.SidebarState) }
 	>
+		<style>
+			[data-appshell="sidebar"][data-state="collapsed"]
+				[data-appshell="menu-label"] {
+				display: none;
+			}
+			[data-appshell="sidebar"][data-state="collapsed"]
+				[data-appshell="menu-entry"] {
+				justify-content: center;
+			}
+		</style>
 		<nav class="flex-1 overflow-y-auto py-4">
-			@daisyui.Menu(daisyui.MenuConfig{
-				Items:    cfg.MenuItems,
-				Class:    "menu-vertical bg-base-200 w-full",
-				Resolver: cfg.Resolver,
-			})
+			<ul class="menu menu-vertical bg-base-200 w-full">
+				for _, item := range cfg.MenuItems {
+					<li class={ menuDisabledLiClass(item.Disabled) }>
+						@menuEntry(item, cfg)
+					</li>
+				}
+			</ul>
 		</nav>
 		<div class="p-2 border-t border-base-300">
 			@AppShellCollapseToggle()
 		</div>
 	</aside>
+}
+
+// menuEntry renders a single sidebar menu entry as an anchor (when Href is set)
+// or button. The icon sits in a span and the label in a
+// [data-appshell="menu-label"] span so CSS can hide the label and center the
+// icon when the sidebar is collapsed. Resolves hrefs via cfg.Resolver when set.
+templ menuEntry(item daisyui.MenuItem, cfg AppShellConfig) {
+	if item.Href != "" {
+		<a
+			href={ resolveHref(cfg.Resolver, item.Href) }
+			class={ menuEntryClass(item) }
+			data-appshell="menu-entry"
+		>
+			if item.Icon != nil {
+				<span class="shrink-0">@item.Icon
+</span>
+			}
+			<span data-appshell="menu-label">{ item.Label }</span>
+		</a>
+	} else {
+		<button
+			class={ menuEntryClass(item) }
+			data-appshell="menu-entry"
+			disabled?={ item.Disabled }
+		>
+			if item.Icon != nil {
+				<span class="shrink-0">@item.Icon
+</span>
+			}
+			<span data-appshell="menu-label">{ item.Label }</span>
+		</button>
+	}
 }
 
 // AppShellCollapseToggle renders the icon button pinned to the bottom of the
