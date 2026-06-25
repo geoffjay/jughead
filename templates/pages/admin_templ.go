@@ -5,11 +5,64 @@ package pages
 
 //lint:file-ignore SA4006 This context is only used if a nested component is present.
 
-import "github.com/a-h/templ"
-import templruntime "github.com/a-h/templ/runtime"
+import (
+	"github.com/a-h/templ"
+	templruntime "github.com/a-h/templ/runtime"
+)
 
-// AdminContent is the (currently empty) body of the admin section.
-func AdminContent() templ.Component {
+import (
+	"github.com/geoffjay/jughead/templates/components/daisyui"
+	"github.com/geoffjay/jughead/templates/containers"
+	"github.com/iota-uz/icons/phosphor"
+)
+
+// menuIcons maps each sidebar menu item to its phosphor icon component.
+func menuIcons() map[string]templ.Component {
+	return map[string]templ.Component{
+		"Overview": phosphor.House(phosphor.Props{Size: "20", Variant: phosphor.Regular}),
+		"Sites":    phosphor.Globe(phosphor.Props{Size: "20", Variant: phosphor.Regular}),
+		"Users":    phosphor.Users(phosphor.Props{Size: "20", Variant: phosphor.Regular}),
+		"Settings": phosphor.Gear(phosphor.Props{Size: "20", Variant: phosphor.Regular}),
+		"Logs":     phosphor.Scroll(phosphor.Props{Size: "20", Variant: phosphor.Regular}),
+		"Sign out": phosphor.SignOut(phosphor.Props{Size: "20", Variant: phosphor.Regular}),
+	}
+}
+
+// menuItems builds the admin sidebar navigation items, attaching the matching
+// icon to each entry.
+func menuItems() []daisyui.MenuItem {
+	entries := []struct {
+		Label string
+		Href  string
+	}{
+		{"Overview", "/admin"},
+		{"Sites", "/admin/sites"},
+		{"Users", "/admin/users"},
+		{"Settings", "/admin/settings"},
+		{"Logs", "/admin/logs"},
+		{"Sign out", "/logout"},
+	}
+	icons := menuIcons()
+	items := make([]daisyui.MenuItem, 0, len(entries))
+	for _, e := range entries {
+		items = append(items, daisyui.MenuItem{
+			Label: e.Label,
+			Href:  e.Href,
+			Icon:  icons[e.Label],
+		})
+	}
+	return items
+}
+
+// navItems builds the navbar-end items.
+func navItems() []daisyui.NavItem {
+	return []daisyui.NavItem{
+		{Label: "Docs", Href: "https://github.com/geoffjay/jughead"},
+	}
+}
+
+// pageContent renders the admin main region: a placeholder overview.
+func pageContent() templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -30,7 +83,47 @@ func AdminContent() templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<div class=\"min-h-screen bg-base-200 text-base-content p-8\"><h1 class=\"text-3xl font-bold mb-2\">Admin</h1><p class=\"text-base-content/70\">Nothing here yet.</p></div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<div class=\"w-full p-8\"><div class=\"mx-auto max-w-6xl space-y-6\"><h1 class=\"text-3xl font-bold\">Admin</h1><p class=\"text-base-content/70\">Nothing here yet.</p></div></div>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
+// AdminContent renders the admin page using the AppShell container: a fixed
+// navbar header with an Aperture sidebar-toggle button, a left navigation
+// sidebar persisted to localStorage, and the page content filling the
+// remaining space.
+func AdminContent() templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var2 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var2 == nil {
+			templ_7745c5c3_Var2 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = containers.AppShell(containers.AppShellConfig{
+			Title:        "Jughead",
+			TitleHref:    "/admin",
+			NavItems:     navItems(),
+			MenuItems:    menuItems(),
+			Content:      pageContent(),
+			SidebarState: containers.SidebarOpen,
+		}).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

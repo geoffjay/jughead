@@ -10,6 +10,8 @@ import (
 	templruntime "github.com/a-h/templ/runtime"
 )
 
+import "github.com/geoffjay/jughead/templates/components/daisyui"
+
 // MetaTags defines meta tags.
 func MetaTags(keywords, description string) templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
@@ -39,7 +41,7 @@ func MetaTags(keywords, description string) templ.Component {
 		var templ_7745c5c3_Var2 string
 		templ_7745c5c3_Var2, templ_7745c5c3_Err = templ.ResolveAttributeValue(keywords)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/index.templ`, Line: 5, Col: 41}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/index.templ`, Line: 7, Col: 41}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var2)
 		if templ_7745c5c3_Err != nil {
@@ -52,7 +54,7 @@ func MetaTags(keywords, description string) templ.Component {
 		var templ_7745c5c3_Var3 string
 		templ_7745c5c3_Var3, templ_7745c5c3_Err = templ.ResolveAttributeValue(description)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/index.templ`, Line: 6, Col: 47}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/index.templ`, Line: 8, Col: 47}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var3)
 		if templ_7745c5c3_Err != nil {
@@ -66,8 +68,8 @@ func MetaTags(keywords, description string) templ.Component {
 	})
 }
 
-// BodyContent defines HTML content.
-func BodyContent(h1, text string) templ.Component {
+// heroActions renders the call-to-action buttons for the landing hero.
+func heroActions() templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -88,7 +90,199 @@ func BodyContent(h1, text string) templ.Component {
 			templ_7745c5c3_Var4 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "<div class=\"min-h-screen bg-base-200 text-base-content flex items-center justify-center p-8\"><div class=\"max-w-2xl w-full text-center space-y-6\"><a href=\"https://gowebly.org\" target=\"_blank\"><img src=\"/static/images/gowebly.svg\" class=\"h-48 inline\" alt=\"Gowebly logo\"></a><h1 class=\"text-4xl font-bold\">Go + Templ + htmx</h1><p class=\"text-success\">You're using <strong>Templ</strong> package to generate HTML content!<br>Edit this styled text in the <code>./templates/pages/index.templ</code> file.</p><div class=\"py-4 space-y-4\"><button class=\"btn btn-primary\" hx-get=\"/api/hello-world\" hx-target=\"#htmx-result\">Hello, World!</button><div id=\"htmx-result\"></div></div><p class=\"text-base-content/60 text-sm\">The Gowebly project is a next-generation CLI tool that makes it easy to create<br>amazing web applications with Go on the backend, using htmx & hyperscript<br>and the most popular CSS frameworks on the frontend.</p><p class=\"text-base-content/60 text-sm\"><a href=\"https://gowebly.org\" target=\"_blank\" class=\"link link-hover\">Documentation</a> &sdot; <a href=\"https://github.com/gowebly/gowebly\" target=\"_blank\" class=\"link link-hover\">GitHub</a></p></div></div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "<div class=\"flex flex-wrap gap-3\"><a href=\"/login\" class=\"btn btn-primary\">Get started</a> <a href=\"https://github.com/geoffjay/jughead\" target=\"_blank\" class=\"btn btn-outline\">View on GitHub</a></div>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
+// heroContent renders the full hero body: headline, subtitle, actions, and a
+// row of feature highlights.
+func heroContent() templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var5 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var5 == nil {
+			templ_7745c5c3_Var5 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "<div class=\"max-w-3xl text-center\"><span class=\"badge badge-primary badge-outline mb-4\">Go · Templ · htmx · daisyUI</span><h1 class=\"text-5xl md:text-6xl font-bold leading-tight\">Build multi-tenant SaaS apps faster with <span class=\"text-primary\">Jughead</span></h1><p class=\"py-6 text-lg text-base-content/70\">An opinionated starter kit that wires together Gin, templ, htmx, and daisyUI — with GitHub OAuth, session management, and an admin panel ready out of the box. Ship your next idea without reinventing the platform.</p>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = heroActions().Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "<div class=\"grid grid-cols-1 sm:grid-cols-3 gap-4 mt-10 text-left\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = featureCard("Multi-site", "Serve branded tenants from one codebase with per-site themes and templates.").Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = featureCard("Auth ready", "GitHub OAuth and session-based login with an admin panel built in.").Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = featureCard("Hypermedia stack", "htmx + hyperscript for interactivity without a heavy JS framework.").Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "</div></div>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
+// featureCard renders a single highlight card in the hero feature row.
+func featureCard(title, body string) templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var6 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var6 == nil {
+			templ_7745c5c3_Var6 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 8, "<div class=\"card bg-base-100 shadow-sm border border-base-300\"><div class=\"card-body p-4\"><h3 class=\"card-title text-base\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		var templ_7745c5c3_Var7 string
+		templ_7745c5c3_Var7, templ_7745c5c3_Err = templ.JoinStringErrs(title)
+		if templ_7745c5c3_Err != nil {
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/index.templ`, Line: 46, Col: 43}
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var7))
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 9, "</h3><p class=\"text-sm text-base-content/70\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		var templ_7745c5c3_Var8 string
+		templ_7745c5c3_Var8, templ_7745c5c3_Err = templ.JoinStringErrs(body)
+		if templ_7745c5c3_Err != nil {
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/index.templ`, Line: 47, Col: 49}
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var8))
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 10, "</p></div></div>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
+// BodyContent defines the landing page body: hero section + footer.
+func BodyContent(h1, text string) templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var9 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var9 == nil {
+			templ_7745c5c3_Var9 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = daisyui.Hero(daisyui.HeroConfig{
+			Class:        "min-h-screen bg-base-200",
+			ContentClass: "text-center flex-col",
+			Content:      heroContent(),
+		}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = Footer().Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
+// Footer renders the page footer with initial navigation and attribution.
+func Footer() templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var10 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var10 == nil {
+			templ_7745c5c3_Var10 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 11, "<footer class=\"footer p-10 bg-base-100 text-base-content border-t border-base-300\"><nav><h6 class=\"footer-title\">Product</h6><a class=\"link link-hover\" href=\"/\">Overview</a> <a class=\"link link-hover\" href=\"/admin\">Admin</a> <a class=\"link link-hover\" href=\"/login\">Sign in</a></nav><nav><h6 class=\"footer-title\">Resources</h6><a class=\"link link-hover\" href=\"https://github.com/geoffjay/jughead\" target=\"_blank\">GitHub</a> <a class=\"link link-hover\" href=\"https://htmx.org\" target=\"_blank\">htmx docs</a> <a class=\"link link-hover\" href=\"https://daisyui.com\" target=\"_blank\">daisyUI docs</a></nav><nav><h6 class=\"footer-title\">Stack</h6><a class=\"link link-hover\" href=\"https://go.dev\" target=\"_blank\">Go</a> <a class=\"link link-hover\" href=\"https://templ.guide\" target=\"_blank\">Templ</a> <a class=\"link link-hover\" href=\"https://gin-gonic.com\" target=\"_blank\">Gin</a></nav></footer><footer class=\"footer px-10 py-4 border-t border-base-300 bg-base-100 text-base-content/60\"><aside class=\"flex items-center gap-2\"><p>© ")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		var templ_7745c5c3_Var11 string
+		templ_7745c5c3_Var11, templ_7745c5c3_Err = templ.JoinStringErrs("2026")
+		if templ_7745c5c3_Err != nil {
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/index.templ`, Line: 86, Col: 17}
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var11))
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 12, " Jughead. Built with Go, templ, htmx, and daisyUI.</p></aside></footer>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -99,14 +293,14 @@ func BodyContent(h1, text string) templ.Component {
 // BodyScripts defines JavaScript code.
 func BodyScripts() templ.ComponentScript {
 	return templ.ComponentScript{
-		Name: `__templ_BodyScripts_3e71`,
-		Function: `function __templ_BodyScripts_3e71(){console.log(
+		Name: `__templ_BodyScripts_24bc`,
+		Function: `function __templ_BodyScripts_24bc(){console.log(
 		"You're using Templ package to generate HTML content!",
 		"Edit this JavaScript code in the ` + "`" + `./templates/pages/index.templ` + "`" + ` file.",
-	);
+	)
 }`,
-		Call:       templ.SafeScript(`__templ_BodyScripts_3e71`),
-		CallInline: templ.SafeScriptInline(`__templ_BodyScripts_3e71`),
+		Call:       templ.SafeScript(`__templ_BodyScripts_24bc`),
+		CallInline: templ.SafeScriptInline(`__templ_BodyScripts_24bc`),
 	}
 }
 

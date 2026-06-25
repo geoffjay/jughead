@@ -263,7 +263,7 @@ func AppShellSidebar(cfg AppShellConfig) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "\"><style>\n\t\t\t[data-appshell=\"sidebar\"][data-state=\"collapsed\"] [data-appshell=\"menu-label\"] {\n\t\t\t\tdisplay: none;\n\t\t\t}\n\t\t\t[data-appshell=\"sidebar\"][data-state=\"collapsed\"] [data-appshell=\"menu-entry\"] {\n\t\t\t\tjustify-content: center;\n\t\t\t}\n\t\t</style><nav class=\"flex-1 overflow-y-auto py-4\"><ul class=\"menu menu-vertical bg-base-200 w-full\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "\"><style>\n\t\t\t[data-appshell=\"sidebar\"][data-state=\"collapsed\"]\n\t\t\t\t[data-appshell=\"menu-label\"] {\n\t\t\t\tdisplay: none;\n\t\t\t}\n\t\t\t[data-appshell=\"sidebar\"][data-state=\"collapsed\"]\n\t\t\t\t[data-appshell=\"menu-entry\"] {\n\t\t\t\tjustify-content: center;\n\t\t\t}\n\t\t</style><nav class=\"flex-1 overflow-y-auto py-4\"><ul class=\"menu menu-vertical bg-base-200 w-full\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -353,7 +353,7 @@ func menuEntry(item daisyui.MenuItem, cfg AppShellConfig) templ.Component {
 			var templ_7745c5c3_Var10 templ.SafeURL
 			templ_7745c5c3_Var10, templ_7745c5c3_Err = templ.JoinURLErrs(resolveHref(cfg.Resolver, item.Href))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/containers/appshell.templ`, Line: 168, Col: 46}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/containers/appshell.templ`, Line: 170, Col: 46}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var10))
 			if templ_7745c5c3_Err != nil {
@@ -397,7 +397,7 @@ func menuEntry(item daisyui.MenuItem, cfg AppShellConfig) templ.Component {
 			var templ_7745c5c3_Var12 string
 			templ_7745c5c3_Var12, templ_7745c5c3_Err = templ.JoinStringErrs(item.Label)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/containers/appshell.templ`, Line: 175, Col: 48}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/containers/appshell.templ`, Line: 179, Col: 48}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var12))
 			if templ_7745c5c3_Err != nil {
@@ -461,7 +461,7 @@ func menuEntry(item daisyui.MenuItem, cfg AppShellConfig) templ.Component {
 			var templ_7745c5c3_Var15 string
 			templ_7745c5c3_Var15, templ_7745c5c3_Err = templ.JoinStringErrs(item.Label)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/containers/appshell.templ`, Line: 186, Col: 48}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/containers/appshell.templ`, Line: 192, Col: 48}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var15))
 			if templ_7745c5c3_Err != nil {
