@@ -1102,7 +1102,7 @@ func ErrorPage(action, detail string) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 65, "</p><div class=\"flex gap-2\"><a href=\"/sites/quux.geoffjay.com\" class=\"btn btn-primary btn-sm\">Retry</a> <a href=\"/auth/logout\" class=\"btn btn-ghost btn-sm\">Sign out</a></div></div></div></div></div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 65, "</p><div class=\"flex gap-2\"><a href=\"/\" class=\"btn btn-primary btn-sm\">Retry</a> <a href=\"/auth/logout\" class=\"btn btn-ghost btn-sm\">Sign out</a></div></div></div></div></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

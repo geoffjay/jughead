@@ -15,6 +15,11 @@ import (
 //
 // This is distinct from AuthRequired (which gates the admin password login);
 // GitHubAuthRequired specifically checks for the GitHub token field.
+//
+// When the request arrived via the reverse proxy (X-Site-Base header present),
+// the browser's URL is root-relative (e.g. "/"), not the inner site path (e.g.
+// "/sites/quux.geoffjay.com"). The redirect target must use the browser-visible
+// path to avoid a double-prefix after the proxy rewrites it again.
 func GitHubAuthRequired(store *sessions.Store) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		sess := store.Get(c.Request)
@@ -26,11 +31,23 @@ func GitHubAuthRequired(store *sessions.Store) gin.HandlerFunc {
 			return
 		}
 
-		target := c.Request.URL.Path
-		if c.Request.URL.RawQuery != "" {
-			target += "?" + c.Request.URL.RawQuery
-		}
+		target := browserRedirectTarget(c)
 		c.Redirect(http.StatusFound, "/auth/login?redirect="+target)
 		c.Abort()
 	}
+}
+
+// browserRedirectTarget returns the path the browser should be sent back to
+// after OAuth. When proxied (X-Site-Base set), the browser sees root-relative
+// URLs, so "/" is correct. When accessed directly, the browser is on the site
+// path, so the full request path is used.
+func browserRedirectTarget(c *gin.Context) string {
+	if len(c.Request.Header.Values("X-Site-Base")) > 0 {
+		return "/"
+	}
+	target := c.Request.URL.Path
+	if c.Request.URL.RawQuery != "" {
+		target += "?" + c.Request.URL.RawQuery
+	}
+	return target
 }

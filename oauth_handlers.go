@@ -113,13 +113,14 @@ func clearStateCookie(w http.ResponseWriter) {
 	})
 }
 
-// pickPostLoginTarget returns the redirect query param or the default quux
-// site path when unset.
+// pickPostLoginTarget returns the redirect query param or "/" when unset. The
+// default "/" works on both the FQDN proxy (where "/" hits the quux site) and
+// direct localhost access (where the browser is already on the site path).
 func pickPostLoginTarget(redirect string) string {
 	if redirect != "" {
 		return redirect
 	}
-	return "/sites/quux.geoffjay.com"
+	return "/"
 }
 
 // newStateNonce returns 16 random bytes hex-encoded (32 chars).
