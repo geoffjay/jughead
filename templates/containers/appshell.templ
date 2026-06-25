@@ -1,0 +1,224 @@
+package containers
+
+import (
+	"github.com/geoffjay/jughead/templates/components/daisyui"
+	"github.com/iota-uz/icons/phosphor"
+)
+
+// SidebarState describes the visibility state of the AppShell sidebar.
+//
+//   - SidebarOpen      : full-width sidebar showing menu item icons and text.
+//   - SidebarCollapsed : narrow sidebar showing only menu item icons.
+//   - SidebarClosed    : sidebar hidden entirely.
+type SidebarState string
+
+const (
+	SidebarOpen      SidebarState = "open"
+	SidebarCollapsed SidebarState = "collapsed"
+	SidebarClosed    SidebarState = "closed"
+)
+
+// sidebarStorageKey is the localStorage key used to persist the sidebar state.
+const sidebarStorageKey = "appshell-sidebar-state"
+
+// AppShellConfig configures an AppShell container. Title and TitleHref are
+// rendered as the navbar brand. NavItems are rendered in the navbar-end region.
+// MenuItems are rendered in the sidebar as a vertical menu. Content is the
+// page content rendered in the main region. SidebarState is the initial
+// sidebar state (overridden by localStorage on the client). HeaderExtra, when
+// set, is rendered in the navbar-end before NavItems (e.g. a theme toggle).
+// Resolver, when set, is used to build all hrefs.
+type AppShellConfig struct {
+	Title        string
+	TitleHref    string
+	NavItems     []daisyui.NavItem
+	MenuItems    []daisyui.MenuItem
+	Content      templ.Component
+	SidebarState SidebarState
+	HeaderExtra  templ.Component
+	Resolver     daisyui.URLResolver
+}
+
+// AppShell renders a full-height application shell composed of a fixed navbar
+// header and a left navigation sidebar with three states (open, collapsed,
+// closed) persisted to localStorage. The page content fills the remaining
+// height and width and scrolls behind the fixed header.
+templ AppShell(cfg AppShellConfig) {
+	<div
+		class="h-screen w-full flex flex-col overflow-hidden"
+		data-appshell="root"
+	>
+		@AppShellHeader(cfg)
+		<div class="flex flex-1 min-h-0 pt-16">
+			@AppShellSidebar(cfg)
+			@AppShellContent(cfg)
+		</div>
+	</div>
+	@AppShellScript(sidebarStateValue(cfg.SidebarState), sidebarStorageKey)
+}
+
+// sidebarStateValue returns the string form of state, defaulting to
+// SidebarOpen when state is empty (zero value).
+func sidebarStateValue(state SidebarState) string {
+	if state == "" {
+		return string(SidebarOpen)
+	}
+	return string(state)
+}
+
+// AppShellHeader renders the fixed full-width navbar. The start region contains
+// the sidebar toggle button (Aperture icon) followed by the brand title. The
+// end region renders HeaderExtra (when set) followed by NavItems.
+templ AppShellHeader(cfg AppShellConfig) {
+	@daisyui.Navbar(daisyui.NavbarData{
+		Title:      cfg.Title,
+		TitleHref:  cfg.TitleHref,
+		End:        cfg.NavItems,
+		EndExtra:   cfg.HeaderExtra,
+		Resolver:   cfg.Resolver,
+		StartExtra: AppShellSidebarToggle(),
+	})
+}
+
+// AppShellSidebarToggle renders the icon button in the header that toggles the
+// sidebar between its current state and closed. Uses the phosphor Aperture
+// icon.
+templ AppShellSidebarToggle() {
+	<button
+		type="button"
+		class="btn btn-ghost btn-circle"
+		aria-label="Toggle sidebar"
+		data-appshell="toggle"
+	>
+		@phosphor.Aperture(phosphor.Props{Size: "24", Variant: phosphor.Regular})
+	</button>
+}
+
+// AppShellSidebar renders the left navigation sidebar. The sidebar width
+// transitions between open (w-64), collapsed (w-16), and closed (w-0). The
+// menu items render with icons and text in the open state and icons only in
+// the collapsed state. A collapse toggle button is pinned to the bottom of
+// the sidebar and switches between open and collapsed using the phosphor
+// CaretCircleLeft / CaretCircleRight icons.
+templ AppShellSidebar(cfg AppShellConfig) {
+	<aside
+		class="flex flex-col bg-base-200 border-r border-base-300 transition-all duration-300 overflow-hidden shrink-0"
+		data-appshell="sidebar"
+		data-state={ sidebarStateValue(cfg.SidebarState) }
+	>
+		<nav class="flex-1 overflow-y-auto py-4">
+			@daisyui.Menu(daisyui.MenuConfig{
+				Items:    cfg.MenuItems,
+				Class:    "menu-vertical bg-base-200 w-full",
+				Resolver: cfg.Resolver,
+			})
+		</nav>
+		<div class="p-2 border-t border-base-300">
+			@AppShellCollapseToggle()
+		</div>
+	</aside>
+}
+
+// AppShellCollapseToggle renders the icon button pinned to the bottom of the
+// sidebar that toggles between the open and collapsed states. The icon flips
+// between CaretCircleLeft (open state, click to collapse) and
+// CaretCircleRight (collapsed state, click to expand).
+templ AppShellCollapseToggle() {
+	<button
+		type="button"
+		class="btn btn-ghost btn-circle w-full"
+		aria-label="Collapse sidebar"
+		data-appshell="collapse"
+	>
+		<span data-appshell="collapse-icon-open">
+			@phosphor.CaretCircleLeft(phosphor.Props{Size: "24", Variant: phosphor.Regular})
+		</span>
+		<span data-appshell="collapse-icon-collapsed" class="hidden">
+			@phosphor.CaretCircleRight(phosphor.Props{Size: "24", Variant: phosphor.Regular})
+		</span>
+	</button>
+}
+
+// AppShellContent renders the main page content region, which fills the
+// remaining height and width and scrolls independently.
+templ AppShellContent(cfg AppShellConfig) {
+	<main class="flex-1 min-w-0 overflow-y-auto">
+		if cfg.Content != nil {
+			@cfg.Content
+		}
+	</main>
+}
+
+// AppShellScript wires up sidebar state transitions and localStorage
+// persistence. The initial state is read from localStorage (falling back to
+// the provided initialState) and applied on load. Click handlers are attached
+// to the header toggle (data-appshell="toggle") and the sidebar collapse
+// button (data-appshell="collapse") via addEventListener.
+
+script AppShellScript(initialState string, storageKey string) {
+	const states = { open: "open", collapsed: "collapsed", closed: "closed" };
+	const widths = { open: "w-64", collapsed: "w-16", closed: "w-0" };
+	const root = document.currentScript.closest("[data-appshell='root']") || document;
+	const sidebar = root.querySelector('[data-appshell="sidebar"]');
+	const toggleBtn = root.querySelector('[data-appshell="toggle"]');
+	const collapseBtn = root.querySelector('[data-appshell="collapse"]');
+	const iconOpen = root.querySelector('[data-appshell="collapse-icon-open"]');
+	const iconCollapsed = root.querySelector('[data-appshell="collapse-icon-collapsed"]');
+	let lastOpen = states.open;
+
+	function readState() {
+		const saved = localStorage.getItem(storageKey);
+		if (saved === states.open || saved === states.collapsed || saved === states.closed) {
+			return saved;
+		}
+		return initialState || states.open;
+	}
+
+	function writeState(state) {
+		localStorage.setItem(storageKey, state);
+	}
+
+	function applyState(state) {
+		if (!sidebar) return;
+		sidebar.dataset.state = state;
+		sidebar.classList.remove("w-64", "w-16", "w-0");
+		sidebar.classList.add(widths[state]);
+		if (iconOpen && iconCollapsed) {
+			iconOpen.classList.toggle("hidden", state !== states.open);
+			iconCollapsed.classList.toggle("hidden", state === states.open);
+		}
+	}
+
+	function currentState() {
+		return sidebar ? sidebar.dataset.state : readState();
+	}
+
+	function toggleSidebar() {
+		const cur = currentState();
+		if (cur === states.closed) {
+			const next = lastOpen || states.open;
+			applyState(next);
+			writeState(next);
+		} else {
+			lastOpen = cur;
+			applyState(states.closed);
+			writeState(states.closed);
+		}
+	}
+
+	function toggleCollapse() {
+		const cur = currentState();
+		if (cur === states.closed) return;
+		const next = cur === states.open ? states.collapsed : states.open;
+		lastOpen = next;
+		applyState(next);
+		writeState(next);
+	}
+
+	if (toggleBtn) toggleBtn.addEventListener("click", toggleSidebar);
+	if (collapseBtn) collapseBtn.addEventListener("click", toggleCollapse);
+
+	const initial = readState();
+	if (initial !== states.closed) lastOpen = initial;
+	applyState(initial);
+}
