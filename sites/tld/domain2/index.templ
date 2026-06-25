@@ -1,7 +1,63 @@
 package domain2
 
-templ BodyContent() {
-	<div class="min-h-screen w-full bg-base-200 text-base-content p-8">
+import (
+	"github.com/geoffjay/jughead/templates/components/daisyui"
+	"github.com/geoffjay/jughead/templates/containers"
+	"github.com/iota-uz/icons/phosphor"
+)
+
+// menuIcons maps each sidebar menu item to its phosphor icon component.
+func menuIcons() map[string]templ.Component {
+	return map[string]templ.Component{
+		"Overview":   phosphor.House(phosphor.Props{Size: "20", Variant: phosphor.Regular}),
+		"Components": phosphor.Cube(phosphor.Props{Size: "20", Variant: phosphor.Regular}),
+		"Analytics":  phosphor.ChartBar(phosphor.Props{Size: "20", Variant: phosphor.Regular}),
+		"Settings":   phosphor.Gear(phosphor.Props{Size: "20", Variant: phosphor.Regular}),
+	}
+}
+
+// menuItems builds the sidebar navigation items, attaching the matching icon
+// to each entry.
+func menuItems() []daisyui.MenuItem {
+	entries := []struct {
+		Label string
+		Href  string
+	}{
+		{"Overview", "#overview"},
+		{"Components", "#components"},
+		{"Analytics", "#analytics"},
+		{"Settings", "#settings"},
+	}
+	icons := menuIcons()
+	items := make([]daisyui.MenuItem, 0, len(entries))
+	for _, e := range entries {
+		items = append(items, daisyui.MenuItem{
+			Label: e.Label,
+			Href:  e.Href,
+			Icon:  icons[e.Label],
+		})
+	}
+	return items
+}
+
+// BodyContent renders the domain2.tld site using the AppShell container: a
+// fixed navbar header with an Aperture sidebar-toggle button, a left
+// navigation sidebar persisted to localStorage, and the theme-preview content
+// filling the remaining space.
+func BodyContent() templ.Component {
+	return containers.AppShell(containers.AppShellConfig{
+		Title:        "domain2.tld",
+		TitleHref:    "#",
+		MenuItems:    menuItems(),
+		Content:      pageContent(),
+		SidebarState: containers.SidebarOpen,
+	})
+}
+
+// pageContent is the main region rendered inside the AppShell. It previews the
+// "coffee" daisyUI theme assigned in sites/sites.go.
+templ pageContent() {
+	<div class="w-full p-8">
 		<div class="mx-auto max-w-2xl space-y-6">
 			<h1 class="text-4xl font-bold text-primary">domain2.tld</h1>
 			<p class="text-base-content/70">

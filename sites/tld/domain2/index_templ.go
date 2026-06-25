@@ -5,10 +5,68 @@ package domain2
 
 //lint:file-ignore SA4006 This context is only used if a nested component is present.
 
-import "github.com/a-h/templ"
-import templruntime "github.com/a-h/templ/runtime"
+import (
+	"github.com/a-h/templ"
+	templruntime "github.com/a-h/templ/runtime"
+)
 
+import (
+	"github.com/geoffjay/jughead/templates/components/daisyui"
+	"github.com/geoffjay/jughead/templates/containers"
+	"github.com/iota-uz/icons/phosphor"
+)
+
+// menuIcons maps each sidebar menu item to its phosphor icon component.
+func menuIcons() map[string]templ.Component {
+	return map[string]templ.Component{
+		"Overview":   phosphor.House(phosphor.Props{Size: "20", Variant: phosphor.Regular}),
+		"Components": phosphor.Cube(phosphor.Props{Size: "20", Variant: phosphor.Regular}),
+		"Analytics":  phosphor.ChartBar(phosphor.Props{Size: "20", Variant: phosphor.Regular}),
+		"Settings":   phosphor.Gear(phosphor.Props{Size: "20", Variant: phosphor.Regular}),
+	}
+}
+
+// menuItems builds the sidebar navigation items, attaching the matching icon
+// to each entry.
+func menuItems() []daisyui.MenuItem {
+	entries := []struct {
+		Label string
+		Href  string
+	}{
+		{"Overview", "#overview"},
+		{"Components", "#components"},
+		{"Analytics", "#analytics"},
+		{"Settings", "#settings"},
+	}
+	icons := menuIcons()
+	items := make([]daisyui.MenuItem, 0, len(entries))
+	for _, e := range entries {
+		items = append(items, daisyui.MenuItem{
+			Label: e.Label,
+			Href:  e.Href,
+			Icon:  icons[e.Label],
+		})
+	}
+	return items
+}
+
+// BodyContent renders the domain2.tld site using the AppShell container: a
+// fixed navbar header with an Aperture sidebar-toggle button, a left
+// navigation sidebar persisted to localStorage, and the theme-preview content
+// filling the remaining space.
 func BodyContent() templ.Component {
+	return containers.AppShell(containers.AppShellConfig{
+		Title:        "domain2.tld",
+		TitleHref:    "#",
+		MenuItems:    menuItems(),
+		Content:      pageContent(),
+		SidebarState: containers.SidebarOpen,
+	})
+}
+
+// pageContent is the main region rendered inside the AppShell. It previews the
+// "coffee" daisyUI theme assigned in sites/sites.go.
+func pageContent() templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -29,7 +87,7 @@ func BodyContent() templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<div class=\"min-h-screen w-full bg-base-200 text-base-content p-8\"><div class=\"mx-auto max-w-2xl space-y-6\"><h1 class=\"text-4xl font-bold text-primary\">domain2.tld</h1><p class=\"text-base-content/70\">This site is rendered with the daisyUI theme assigned in <code class=\"bg-base-300 px-1 rounded\">sites/sites.go</code>.</p><div class=\"card bg-base-100 shadow-lg border border-base-300\"><div class=\"card-body\"><h2 class=\"card-title text-secondary\">Theme preview</h2><p>Theme-aware elements below should visibly shift between light and dark.</p><div class=\"flex gap-2 pt-2\"><button class=\"btn btn-primary\">Primary</button> <button class=\"btn btn-secondary\">Secondary</button> <button class=\"btn btn-accent\">Accent</button> <button class=\"btn btn-neutral\">Neutral</button></div><div class=\"flex gap-2 pt-2\"><span class=\"badge badge-primary\">primary</span> <span class=\"badge badge-secondary\">secondary</span> <span class=\"badge badge-accent\">accent</span> <span class=\"badge badge-error\">error</span> <span class=\"badge badge-warning\">warning</span> <span class=\"badge badge-success\">success</span></div></div></div><div class=\"alert alert-info\"><span>If this block has a dark background and light text, the <strong>dark</strong> theme is active.</span></div></div></div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<div class=\"w-full p-8\"><div class=\"mx-auto max-w-2xl space-y-6\"><h1 class=\"text-4xl font-bold text-primary\">domain2.tld</h1><p class=\"text-base-content/70\">This site is rendered with the daisyUI theme assigned in <code class=\"bg-base-300 px-1 rounded\">sites/sites.go</code>.</p><div class=\"card bg-base-100 shadow-lg border border-base-300\"><div class=\"card-body\"><h2 class=\"card-title text-secondary\">Theme preview</h2><p>Theme-aware elements below should visibly shift between light and dark.</p><div class=\"flex gap-2 pt-2\"><button class=\"btn btn-primary\">Primary</button> <button class=\"btn btn-secondary\">Secondary</button> <button class=\"btn btn-accent\">Accent</button> <button class=\"btn btn-neutral\">Neutral</button></div><div class=\"flex gap-2 pt-2\"><span class=\"badge badge-primary\">primary</span> <span class=\"badge badge-secondary\">secondary</span> <span class=\"badge badge-accent\">accent</span> <span class=\"badge badge-error\">error</span> <span class=\"badge badge-warning\">warning</span> <span class=\"badge badge-success\">success</span></div></div></div><div class=\"alert alert-info\"><span>If this block has a dark background and light text, the <strong>dark</strong> theme is active.</span></div></div></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
