@@ -58,6 +58,15 @@ func ReverseProxy(targets map[string]string) gin.HandlerFunc {
 			return
 		}
 
+		// Auth routes (/auth/login, /auth/callback, /auth/logout) are mounted
+		// at the app root, not under a site path. Pass them straight through so
+		// the OAuth flow works on proxied hosts (e.g. quux.geoffjay.com/auth/
+		// callback) without being rewritten to /sites/<domain>/auth/...
+		if strings.HasPrefix(c.Request.URL.Path, "/auth/") || c.Request.URL.Path == "/auth" {
+			c.Next()
+			return
+		}
+
 		proxy := httputil.NewSingleHostReverseProxy(target)
 		original := proxy.Director
 		proxy.Director = func(req *http.Request) {
