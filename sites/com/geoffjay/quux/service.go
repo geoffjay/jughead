@@ -4,41 +4,41 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/geoffjay/jughead/auth"
+	githubsvc "github.com/geoffjay/jughead/services/github"
 	"github.com/geoffjay/jughead/sites/com/geoffjay/quux/data"
 
 	"github.com/gin-gonic/gin"
 )
 
-// Service orchestrates the auth.Client (GitHub REST) and the data.Cache to
+// Service orchestrates the githubsvc.Client (GitHub REST) and the data.Cache to
 // assemble data.ReviewState for the quux handlers. It is the only thing the
 // handlers call; the data package stays free of any auth import (avoiding a
 // cycle).
 //
-// The Service holds only the cache (shared, long-lived). The auth.Client is
+// The Service holds only the cache (shared, long-lived). The githubsvc.Client is
 // built per request from the session's access token (in the github_token gin
 // context key) so each user exercises their own GitHub permissions.
 type Service struct {
 	cache *data.Cache
 }
 
-// NewService builds a Service wired to the given cache. The auth.Client is
+// NewService builds a Service wired to the given cache. The githubsvc.Client is
 // constructed per-request via clientFor.
 func NewService(cache *data.Cache) *Service {
 	return &Service{cache: cache}
 }
 
-// clientFor builds an auth.Client from the session token stashed in the gin
+// clientFor builds an githubsvc.Client from the session token stashed in the gin
 // context by middleware.GitHubAuthRequired. The middleware guarantees the key
 // is present and is a string.
-func clientFor(c *gin.Context) *auth.Client {
+func clientFor(c *gin.Context) *githubsvc.Client {
 	token, _ := c.Get("github_token")
-	return auth.NewClient(token.(string))
+	return githubsvc.NewClient(token.(string))
 }
 
 // LoadReviewState fetches the viewer's assigned PRs and selects the first one,
 // populating its collaborators, contributors, and agents via the cache.
-func (s *Service) LoadReviewState(ctx context.Context, client *auth.Client, viewerLogin string) (data.ReviewState, error) {
+func (s *Service) LoadReviewState(ctx context.Context, client *githubsvc.Client, viewerLogin string) (data.ReviewState, error) {
 	prs, err := s.loadPRs(ctx, client, viewerLogin)
 	if err != nil {
 		return data.ReviewState{}, err
@@ -57,7 +57,7 @@ func (s *Service) LoadReviewState(ctx context.Context, client *auth.Client, view
 // number, refreshing the detail (files + branches + status) and people.
 func (s *Service) LoadReviewStateForPR(
 	ctx context.Context,
-	client *auth.Client,
+	client *githubsvc.Client,
 	viewerLogin, repoOwner, repoName string,
 	number int,
 ) (*data.ReviewState, error) {
@@ -79,7 +79,7 @@ func (s *Service) LoadReviewStateForPR(
 }
 
 // loadPRs returns the cached-or-fetched assigned PRs.
-func (s *Service) loadPRs(ctx context.Context, client *auth.Client, viewerLogin string) ([]data.PullRequest, error) {
+func (s *Service) loadPRs(ctx context.Context, client *githubsvc.Client, viewerLogin string) ([]data.PullRequest, error) {
 	key := "prs:" + viewerLogin
 	v, err := s.cache.Get(key, data.PrListTTL, func() (any, error) {
 		return client.ListAssignedPRs(ctx, viewerLogin)
@@ -91,7 +91,7 @@ func (s *Service) loadPRs(ctx context.Context, client *auth.Client, viewerLogin 
 }
 
 // loadPRDetail returns the cached-or-fetched full PR detail.
-func (s *Service) loadPRDetail(ctx context.Context, client *auth.Client, owner, repo string, number int) (data.PullRequest, error) {
+func (s *Service) loadPRDetail(ctx context.Context, client *githubsvc.Client, owner, repo string, number int) (data.PullRequest, error) {
 	key := fmt.Sprintf("pr:%s/%s:%d", owner, repo, number)
 	v, err := s.cache.Get(key, data.PrDetailTTL, func() (any, error) {
 		return client.LoadPR(ctx, owner, repo, number)
@@ -103,7 +103,7 @@ func (s *Service) loadPRDetail(ctx context.Context, client *auth.Client, owner, 
 }
 
 // populateForPR fills the SelectedPR + people sections of state from the cache.
-func (s *Service) populateForPR(ctx context.Context, client *auth.Client, state *data.ReviewState, pr *data.PullRequest) error {
+func (s *Service) populateForPR(ctx context.Context, client *githubsvc.Client, state *data.ReviewState, pr *data.PullRequest) error {
 	state.SelectedPR = pr
 
 	collabs, err := s.loadCollaborators(ctx, client, pr.Repo.Owner, pr.Repo.Name)
@@ -126,7 +126,7 @@ func (s *Service) populateForPR(ctx context.Context, client *auth.Client, state 
 	return nil
 }
 
-func (s *Service) loadCollaborators(ctx context.Context, client *auth.Client, owner, repo string) ([]data.User, error) {
+func (s *Service) loadCollaborators(ctx context.Context, client *githubsvc.Client, owner, repo string) ([]data.User, error) {
 	key := "collabs:" + owner + "/" + repo
 	v, err := s.cache.Get(key, data.CollabTTL, func() (any, error) {
 		return client.ListCollaborators(ctx, owner, repo)
@@ -137,7 +137,7 @@ func (s *Service) loadCollaborators(ctx context.Context, client *auth.Client, ow
 	return v.([]data.User), nil
 }
 
-func (s *Service) loadContributors(ctx context.Context, client *auth.Client, owner, repo string) ([]data.User, error) {
+func (s *Service) loadContributors(ctx context.Context, client *githubsvc.Client, owner, repo string) ([]data.User, error) {
 	key := "contribs:" + owner + "/" + repo
 	v, err := s.cache.Get(key, data.ContribTTL, func() (any, error) {
 		return client.ListContributors(ctx, owner, repo)
@@ -148,7 +148,7 @@ func (s *Service) loadContributors(ctx context.Context, client *auth.Client, own
 	return v.([]data.User), nil
 }
 
-func (s *Service) loadAgents(ctx context.Context, client *auth.Client, owner, repo string) ([]data.User, error) {
+func (s *Service) loadAgents(ctx context.Context, client *githubsvc.Client, owner, repo string) ([]data.User, error) {
 	key := "agents:" + owner + "/" + repo
 	v, err := s.cache.Get(key, data.AgentTTL, func() (any, error) {
 		return client.ListAgents(ctx, owner, repo)

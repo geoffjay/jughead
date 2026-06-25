@@ -7,7 +7,7 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/geoffjay/jughead/auth"
+	githubsvc "github.com/geoffjay/jughead/services/github"
 	"github.com/geoffjay/jughead/sessions"
 	"github.com/geoffjay/jughead/sites/com/geoffjay/quux/config"
 
@@ -40,7 +40,7 @@ func oauthLogin(c *gin.Context, cfg config.OAuthConfig) {
 		HttpOnly: true,
 		SameSite: http.SameSiteLaxMode,
 	})
-	redirectURL := auth.AuthorizeRedirect(cfg, state)
+	redirectURL := githubsvc.AuthorizeRedirect(cfg, state)
 	c.Redirect(http.StatusFound, redirectURL)
 }
 
@@ -71,18 +71,18 @@ func oauthCallback(c *gin.Context, store *sessions.Store, cfg config.OAuthConfig
 	ctx, cancel := context.WithTimeout(c.Request.Context(), oauthHTTPTimeout)
 	defer cancel()
 
-	token, err := auth.ExchangeCode(ctx, cfg, code)
+	token, err := githubsvc.ExchangeCode(ctx, cfg, code)
 	if err != nil {
 		renderOAuthError(c, "Failed to exchange authorization code: "+err.Error())
 		return
 	}
 
-	login, avatarURL, err := auth.FetchViewer(ctx, token)
+	login, avatarURL, err := githubsvc.FetchViewer(ctx, token)
 	if err != nil {
 		renderOAuthError(c, "Failed to fetch GitHub user profile: "+err.Error())
 		return
 	}
-	if !auth.AllowedLogin(cfg, login) {
+	if !githubsvc.AllowedLogin(cfg, login) {
 		renderOAuthError(c, "GitHub login "+login+" is not permitted to use this app.")
 		return
 	}

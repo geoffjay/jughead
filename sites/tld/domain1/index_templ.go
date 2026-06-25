@@ -41,7 +41,20 @@ func Home(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<div class=\"min-h-screen bg-base-200 text-base-content\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<div class=\"drawer min-h-screen bg-base-200 text-base-content\"><input id=\"")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		var templ_7745c5c3_Var2 string
+		templ_7745c5c3_Var2, templ_7745c5c3_Err = templ.ResolveAttributeValue(layout.DrawerToggleID())
+		if templ_7745c5c3_Err != nil {
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/index.templ`, Line: 12, Col: 37}
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var2)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "\" type=\"checkbox\" autocomplete=\"off\" class=\"drawer-toggle\"><div class=\"drawer-content flex flex-col\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -49,271 +62,38 @@ func Home(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "<main class=\"p-8 max-w-5xl mx-auto space-y-4\"><h1 class=\"text-4xl font-bold text-primary\">DaisyUI Components</h1><p class=\"text-base-content/70\">Reusable daisyUI component examples. Use the \"Components\" dropdown in the navbar to browse each component.</p><div class=\"grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "<main class=\"p-8 space-y-4\"><h1 class=\"text-4xl font-bold text-primary\">DaisyUI Components</h1><p class=\"text-base-content/70\">Reusable daisyUI component examples. Use the \"Components\" dropdown in the navbar to browse each component.</p><div class=\"grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = componentCard("/components/accordion", "Accordion", r).Render(ctx, templ_7745c5c3_Buffer)
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Err = componentCard("/components/navbar", "Navbar", r).Render(ctx, templ_7745c5c3_Buffer)
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Err = componentCard("/components/join", "Join", r).Render(ctx, templ_7745c5c3_Buffer)
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Err = componentCard("/components/stack", "Stack", r).Render(ctx, templ_7745c5c3_Buffer)
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Err = componentCard("/components/divider", "Divider", r).Render(ctx, templ_7745c5c3_Buffer)
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Err = componentCard("/components/mask", "Mask", r).Render(ctx, templ_7745c5c3_Buffer)
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Err = componentCard("/components/link", "Link", r).Render(ctx, templ_7745c5c3_Buffer)
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Err = componentCard("/components/kbd", "Kbd", r).Render(ctx, templ_7745c5c3_Buffer)
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Err = componentCard("/components/status", "Status", r).Render(ctx, templ_7745c5c3_Buffer)
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Err = componentCard("/components/loading", "Loading", r).Render(ctx, templ_7745c5c3_Buffer)
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Err = componentCard("/components/collapse", "Collapse", r).Render(ctx, templ_7745c5c3_Buffer)
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Err = componentCard("/components/swap", "Swap", r).Render(ctx, templ_7745c5c3_Buffer)
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Err = componentCard("/components/theme-controller", "Theme Controller", r).Render(ctx, templ_7745c5c3_Buffer)
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Err = componentCard("/components/button", "Button", r).Render(ctx, templ_7745c5c3_Buffer)
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Err = componentCard("/components/floating-action-button", "FAB / Speed Dial", r).Render(ctx, templ_7745c5c3_Buffer)
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Err = componentCard("/components/input-field", "Text Input", r).Render(ctx, templ_7745c5c3_Buffer)
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Err = componentCard("/components/textarea", "Textarea", r).Render(ctx, templ_7745c5c3_Buffer)
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Err = componentCard("/components/select", "Select", r).Render(ctx, templ_7745c5c3_Buffer)
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Err = componentCard("/components/checkbox", "Checkbox", r).Render(ctx, templ_7745c5c3_Buffer)
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Err = componentCard("/components/radio", "Radio", r).Render(ctx, templ_7745c5c3_Buffer)
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Err = componentCard("/components/range", "Range slider", r).Render(ctx, templ_7745c5c3_Buffer)
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Err = componentCard("/components/file-input", "File Input", r).Render(ctx, templ_7745c5c3_Buffer)
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Err = componentCard("/components/toggle", "Toggle", r).Render(ctx, templ_7745c5c3_Buffer)
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Err = componentCard("/components/rating", "Rating", r).Render(ctx, templ_7745c5c3_Buffer)
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Err = componentCard("/components/label", "Label", r).Render(ctx, templ_7745c5c3_Buffer)
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Err = componentCard("/components/fieldset", "Fieldset", r).Render(ctx, templ_7745c5c3_Buffer)
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Err = componentCard("/components/validator", "Validator", r).Render(ctx, templ_7745c5c3_Buffer)
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Err = componentCard("/components/alert", "Alert", r).Render(ctx, templ_7745c5c3_Buffer)
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Err = componentCard("/components/badge", "Badge", r).Render(ctx, templ_7745c5c3_Buffer)
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Err = componentCard("/components/progress", "Progress", r).Render(ctx, templ_7745c5c3_Buffer)
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Err = componentCard("/components/radial-progress", "Radial progress", r).Render(ctx, templ_7745c5c3_Buffer)
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Err = componentCard("/components/countdown", "Countdown", r).Render(ctx, templ_7745c5c3_Buffer)
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Err = componentCard("/components/skeleton", "Skeleton", r).Render(ctx, templ_7745c5c3_Buffer)
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Err = componentCard("/components/toast", "Toast", r).Render(ctx, templ_7745c5c3_Buffer)
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Err = componentCard("/components/tooltip", "Tooltip", r).Render(ctx, templ_7745c5c3_Buffer)
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Err = componentCard("/components/indicator", "Indicator", r).Render(ctx, templ_7745c5c3_Buffer)
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Err = componentCard("/components/chat-bubble", "Chat bubble", r).Render(ctx, templ_7745c5c3_Buffer)
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Err = componentCard("/components/breadcrumbs", "Breadcrumbs", r).Render(ctx, templ_7745c5c3_Buffer)
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Err = componentCard("/components/menu", "Menu", r).Render(ctx, templ_7745c5c3_Buffer)
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Err = componentCard("/components/pagination", "Pagination", r).Render(ctx, templ_7745c5c3_Buffer)
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Err = componentCard("/components/steps", "Steps", r).Render(ctx, templ_7745c5c3_Buffer)
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Err = componentCard("/components/tabs", "Tabs", r).Render(ctx, templ_7745c5c3_Buffer)
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Err = componentCard("/components/dock", "Dock", r).Render(ctx, templ_7745c5c3_Buffer)
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Err = componentCard("/components/dropdown", "Dropdown", r).Render(ctx, templ_7745c5c3_Buffer)
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Err = componentCard("/components/footer", "Footer", r).Render(ctx, templ_7745c5c3_Buffer)
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Err = componentCard("/components/drawer-sidebar", "Drawer sidebar", r).Render(ctx, templ_7745c5c3_Buffer)
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Err = componentCard("/components/filter", "Filter", r).Render(ctx, templ_7745c5c3_Buffer)
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Err = componentCard("/components/card", "Card", r).Render(ctx, templ_7745c5c3_Buffer)
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Err = componentCard("/components/table", "Table", r).Render(ctx, templ_7745c5c3_Buffer)
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Err = componentCard("/components/stat", "Stat", r).Render(ctx, templ_7745c5c3_Buffer)
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Err = componentCard("/components/list", "List", r).Render(ctx, templ_7745c5c3_Buffer)
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Err = componentCard("/components/timeline", "Timeline", r).Render(ctx, templ_7745c5c3_Buffer)
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Err = componentCard("/components/code", "Code mockup", r).Render(ctx, templ_7745c5c3_Buffer)
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Err = componentCard("/components/avatar", "Avatar", r).Render(ctx, templ_7745c5c3_Buffer)
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Err = componentCard("/components/diff", "Diff", r).Render(ctx, templ_7745c5c3_Buffer)
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Err = componentCard("/components/modal", "Modal", r).Render(ctx, templ_7745c5c3_Buffer)
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Err = componentCard("/components/carousel", "Carousel", r).Render(ctx, templ_7745c5c3_Buffer)
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Err = componentCard("/components/hero", "Hero", r).Render(ctx, templ_7745c5c3_Buffer)
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Err = componentCard("/components/calendar", "Calendar", r).Render(ctx, templ_7745c5c3_Buffer)
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Err = componentCard("/components/browser", "Browser mockup", r).Render(ctx, templ_7745c5c3_Buffer)
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
+		for _, c := range componentCards {
+			templ_7745c5c3_Err = componentCard(c, r).Render(ctx, templ_7745c5c3_Buffer)
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
 		}
-		templ_7745c5c3_Err = componentCard("/components/phone", "Phone mockup", r).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "</div></main></div><div class=\"drawer-side z-1002\"><label for=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = componentCard("/components/window", "Window mockup", r).Render(ctx, templ_7745c5c3_Buffer)
+		var templ_7745c5c3_Var3 string
+		templ_7745c5c3_Var3, templ_7745c5c3_Err = templ.ResolveAttributeValue(layout.DrawerToggleID())
 		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/index.templ`, Line: 29, Col: 39}
 		}
-		templ_7745c5c3_Err = componentCard("/components/hover-3d-card", "Hover 3D Card", r).Render(ctx, templ_7745c5c3_Buffer)
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var3)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = componentCard("/components/hover-gallery", "Hover Gallery", r).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "\" aria-label=\"close sidebar\" class=\"drawer-overlay\"></label>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = componentCard("/components/text-rotate", "Text Rotate", r).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = drawerSidebar(r).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "</div></main></div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "</div></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -325,7 +105,10 @@ func Home(r links.LinkResolver) templ.Component {
 	})
 }
 
-func componentCard(href, title string, r links.LinkResolver) templ.Component {
+// drawerSidebar renders the sidebar menu shown when the navbar menu icon is
+// clicked. Links mirror the "Components" dropdown so the sidebar can be used
+// for navigation on small screens.
+func drawerSidebar(r links.LinkResolver) templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -341,16 +124,201 @@ func componentCard(href, title string, r links.LinkResolver) templ.Component {
 			}()
 		}
 		ctx = templ.InitializeContext(ctx)
-		templ_7745c5c3_Var2 := templ.GetChildren(ctx)
-		if templ_7745c5c3_Var2 == nil {
-			templ_7745c5c3_Var2 = templ.NopComponent
+		templ_7745c5c3_Var4 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var4 == nil {
+			templ_7745c5c3_Var4 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "<ul class=\"menu p-4 w-60 md:w-80 min-h-full bg-base-200 text-base-content\"><li><a href=\"")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		var templ_7745c5c3_Var5 templ.SafeURL
+		templ_7745c5c3_Var5, templ_7745c5c3_Err = templ.JoinURLErrs(r.SafeURL("/"))
+		if templ_7745c5c3_Err != nil {
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/index.templ`, Line: 41, Col: 30}
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var5))
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 8, "\">Home</a></li>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		for _, item := range layout.NavbarComponents() {
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 9, "<li><a href=\"")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			var templ_7745c5c3_Var6 templ.SafeURL
+			templ_7745c5c3_Var6, templ_7745c5c3_Err = templ.JoinURLErrs(r.SafeURL(item.Href))
+			if templ_7745c5c3_Err != nil {
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/index.templ`, Line: 43, Col: 37}
+			}
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var6))
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 10, "\">")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			var templ_7745c5c3_Var7 string
+			templ_7745c5c3_Var7, templ_7745c5c3_Err = templ.JoinStringErrs(item.Label)
+			if templ_7745c5c3_Err != nil {
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/index.templ`, Line: 43, Col: 52}
+			}
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var7))
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 11, "</a></li>")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 12, "</ul>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
+// componentCardData describes a single component card on the index page.
+// Href is the site-relative path to the example page. Title is the card
+// heading. Desc is the description shown on the card, sourced from the
+// official daisyUI components listing (https://daisyui.com/components/).
+// Image is the preview image URL, also sourced from the daisyUI components
+// listing.
+type componentCardData struct {
+	Href  string
+	Title string
+	Desc  string
+	Image string
+}
+
+// componentCards is the full set of component cards rendered on the index
+// page. Descriptions and image URLs mirror the daisyUI components listing at
+// https://daisyui.com/components/.
+var componentCards = []componentCardData{
+	{"/components/accordion", "Accordion", "Accordion is used for showing and hiding content but only one item can stay open at a time.", "https://img.daisyui.com/images/components/accordion.webp"},
+	{"/components/navbar", "Navbar", "Navbar is used to show a navigation bar on the top of the page.", "https://img.daisyui.com/images/components/navbar.webp"},
+	{"/components/join", "Join", "Join is a container for grouping multiple items, it can be used to group buttons, inputs, etc. Join applies border radius to the first and last item. Join can be used to create a horizontal or vertical list of items.", "https://img.daisyui.com/images/components/join.webp"},
+	{"/components/stack", "Stack", "Stack visually puts elements on top of each other.", "https://img.daisyui.com/images/components/stack.webp"},
+	{"/components/divider", "Divider", "Divider will be used to separate content vertically or horizontally.", "https://img.daisyui.com/images/components/divider.webp"},
+	{"/components/mask", "Mask", "Mask crops the content of the element to common shapes.", "https://img.daisyui.com/images/components/mask.webp"},
+	{"/components/link", "Link", "Link adds the missing underline style to links.", "https://img.daisyui.com/images/components/link.webp"},
+	{"/components/kbd", "Kbd", "Kbd is used to display keyboard shortcuts.", "https://img.daisyui.com/images/components/kbd.webp"},
+	{"/components/status", "Status", "Status is a really small icon to visually show the current status of an element, like online, offline, error, etc.", "https://img.daisyui.com/images/components/status.webp"},
+	{"/components/loading", "Loading", "Loading shows an animation to indicate that something is loading.", "https://img.daisyui.com/images/components/loading.webp"},
+	{"/components/collapse", "Collapse", "Collapse is used for showing and hiding content.", "https://img.daisyui.com/images/components/collapse.webp"},
+	{"/components/swap", "Swap", "Swap allows you to toggle the visibility of two elements using a checkbox or a class name.", "https://img.daisyui.com/images/components/swap.webp"},
+	{"/components/theme-controller", "Theme Controller", "If a checked checkbox input or a checked radio input with theme-controller class exists in the page, The page will have the same theme as that input's value.", "https://img.daisyui.com/images/components/theme-controller.webp"},
+	{"/components/button", "Button", "Buttons allow the user to take actions or make choices.", "https://img.daisyui.com/images/components/button.webp"},
+	{"/components/floating-action-button", "FAB / Speed Dial", "FAB (Floating Action Button) stays in the bottom corner of screen. It includes a focusable and accessible element with button role. Clicking or focusing it shows additional buttons (known as Speed Dial buttons) in a vertical arrangement or a flower shape (quarter circle).", "https://img.daisyui.com/images/components/fab.webp"},
+	{"/components/input-field", "Text Input", "Text Input is a simple input field.", "https://img.daisyui.com/images/components/input.webp"},
+	{"/components/textarea", "Textarea", "Textarea allows users to enter text in multiple lines.", "https://img.daisyui.com/images/components/textarea.webp"},
+	{"/components/select", "Select", "Select is used to pick a value from a list of options.", "https://img.daisyui.com/images/components/select.webp"},
+	{"/components/checkbox", "Checkbox", "Checkboxes are used to select or deselect a value.", "https://img.daisyui.com/images/components/checkbox.webp"},
+	{"/components/radio", "Radio", "Radio buttons allow the user to select one option from a set.", "https://img.daisyui.com/images/components/radio.webp"},
+	{"/components/range", "Range slider", "Range slider is used to select a value by sliding a handle.", "https://img.daisyui.com/images/components/range.webp"},
+	{"/components/file-input", "File Input", "File Input is a an input field for uploading files.", "https://img.daisyui.com/images/components/file-input.webp"},
+	{"/components/toggle", "Toggle", "Toggle is a checkbox that is styled to look like a switch button.", "https://img.daisyui.com/images/components/toggle.webp"},
+	{"/components/rating", "Rating", "Rating is a set of radio buttons that allow the user to rate something.", "https://img.daisyui.com/images/components/rating.webp"},
+	{"/components/label", "Label", "Label is used to provide a name or title for an input field. Label can be placed before or after the field.", "https://img.daisyui.com/images/components/label.webp"},
+	{"/components/fieldset", "Fieldset", "Fieldset is a container for grouping related form elements. It includes fieldset-legend as a title and label as a description.", "https://img.daisyui.com/images/components/fieldset.webp"},
+	{"/components/validator", "Validator", "Validator class changes the color of form elements to error or success based on input's validation rules.", "https://img.daisyui.com/images/components/validator.webp"},
+	{"/components/alert", "Alert", "Alert informs users about important events.", "https://img.daisyui.com/images/components/alert.webp"},
+	{"/components/badge", "Badge", "Badges are used to inform the user of the status of specific data.", "https://img.daisyui.com/images/components/badge.webp"},
+	{"/components/progress", "Progress", "Progress bar can be used to show the progress of a task or to show the passing of time.", "https://img.daisyui.com/images/components/progress.webp"},
+	{"/components/radial-progress", "Radial progress", "Radial progress can be used to show the progress of a task or to show the passing of time.", "https://img.daisyui.com/images/components/radial-progress.webp"},
+	{"/components/countdown", "Countdown", "Countdown gives you a transition effect when you change a number between 0 to 999.", "https://img.daisyui.com/images/components/countdown.webp"},
+	{"/components/skeleton", "Skeleton", "Skeleton is a component that can be used to show a loading state of a component.", "https://img.daisyui.com/images/components/skeleton.webp"},
+	{"/components/toast", "Toast", "Toast is a wrapper to stack elements, positioned on the corner of page.", "https://img.daisyui.com/images/components/toast.webp"},
+	{"/components/tooltip", "Tooltip", "Tooltip can be used to show a message when hovering over an element.", "https://img.daisyui.com/images/components/tooltip.webp"},
+	{"/components/indicator", "Indicator", "Indicators are used to place an element on the corner of another element.", "https://img.daisyui.com/images/components/indicator.webp"},
+	{"/components/chat-bubble", "Chat bubble", "Chat bubbles are used to show one line of conversation and all its data, including the author image, author name, time, etc.", "https://img.daisyui.com/images/components/chat.webp"},
+	{"/components/breadcrumbs", "Breadcrumbs", "Breadcrumbs helps users to navigate through the website.", "https://img.daisyui.com/images/components/breadcrumbs.webp"},
+	{"/components/menu", "Menu", "Menu is used to display a list of links vertically or horizontally.", "https://img.daisyui.com/images/components/menu.webp"},
+	{"/components/pagination", "Pagination", "Pagination is a group of buttons that allow the user to navigate between a set of related content.", "https://img.daisyui.com/images/components/pagination.webp"},
+	{"/components/steps", "Steps", "Steps can be used to show a list of steps in a process.", "https://img.daisyui.com/images/components/steps.webp"},
+	{"/components/tabs", "Tabs", "Tabs can be used to show a list of links in a tabbed format.", "https://img.daisyui.com/images/components/tab.webp"},
+	{"/components/dock", "Dock", "Dock (also know as Bottom navigation or Bottom bar) is a UI element that provides navigation options to the user. Dock sticks to the bottom of the screen.", "https://img.daisyui.com/images/components/dock.webp"},
+	{"/components/dropdown", "Dropdown", "Dropdown can open a menu or any other element when the button is clicked.", "https://img.daisyui.com/images/components/dropdown.webp"},
+	{"/components/footer", "Footer", "Footer can contain logo, copyright notice, and links to other pages.", "https://img.daisyui.com/images/components/footer.webp"},
+	{"/components/drawer-sidebar", "Drawer sidebar", "Drawer is a grid layout that can show/hide a sidebar on the left or right side of the page.", "https://img.daisyui.com/images/components/drawer.webp"},
+	{"/components/filter", "Filter", "Filter is a group of radio buttons. Choosing one of the options will hide the others and shows a reset button next to the chosen option.", "https://img.daisyui.com/images/components/filter.webp"},
+	{"/components/card", "Card", "Cards are used to group and display content in a way that is easily readable.", "https://img.daisyui.com/images/components/card.webp"},
+	{"/components/table", "Table", "Table can be used to show a list of data in a table format.", "https://img.daisyui.com/images/components/table.webp"},
+	{"/components/stat", "Stat", "Stat is used to show numbers and data in a block.", "https://img.daisyui.com/images/components/stat.webp"},
+	{"/components/list", "List", "List is a vertical layout to display information in rows.", "https://img.daisyui.com/images/components/list.webp"},
+	{"/components/timeline", "Timeline", "Timeline component shows a list of events in chronological order.", "https://img.daisyui.com/images/components/timeline.webp"},
+	{"/components/code", "Code mockup", "Code mockup is used to show a block of code in a box that looks like a code editor.", "https://img.daisyui.com/images/components/mockup-code.webp"},
+	{"/components/avatar", "Avatar", "Avatars are used to show a thumbnail representation of an individual or business in the interface.", "https://img.daisyui.com/images/components/avatar.webp"},
+	{"/components/diff", "Diff", "Diff component shows a side-by-side comparison of two items.", "https://img.daisyui.com/images/components/diff.webp"},
+	{"/components/modal", "Modal", "Modal is used to show a dialog or a box when you click a button.", "https://img.daisyui.com/images/components/modal.webp"},
+	{"/components/carousel", "Carousel", "Carousel show images or content in a scrollable area.", "https://img.daisyui.com/images/components/carousel.webp"},
+	{"/components/hero", "Hero", "Hero is a component for displaying a large box or image with a title and description.", "https://img.daisyui.com/images/components/hero.webp"},
+	{"/components/calendar", "Calendar", "Calendar includes styles for different calendar libraries.", "https://img.daisyui.com/images/components/calendar.webp"},
+	{"/components/browser", "Browser mockup", "Browser mockup shows a box that looks like a browser window.", "https://img.daisyui.com/images/components/mockup-browser.webp"},
+	{"/components/phone", "Phone mockup", "Phone mockup shows a mockup of an iPhone.", "https://img.daisyui.com/images/components/mockup-phone.webp"},
+	{"/components/window", "Window mockup", "Window mockup shows a box that looks like an operating system window.", "https://img.daisyui.com/images/components/mockup-window.webp"},
+	{"/components/hover-3d-card", "Hover 3D Card", "Hover 3D is a wrapper component that adds a 3D hover effect to its content. When we hover over the component, it tilts and rotates based on the mouse position, creating an interactive 3D effect.", "https://img.daisyui.com/images/components/hover-3d.webp"},
+	{"/components/hover-gallery", "Hover Gallery", "Hover Gallery is container of images. The first image is visible be default and when we hover it horizontally, other images show up. Hover Gallery is useful for product cards in ecommerce sites, portfoilios or in image galleries. Hover Gallery can include up to 10 images.", "https://img.daisyui.com/images/components/hover-gallery.webp"},
+	{"/components/text-rotate", "Text Rotate", "Text Rotate can show up to 6 lines of text, one at a time, with a an infinite loop animation. Duration is 10 seconds by default. The animation will pause on hover.", "https://img.daisyui.com/images/components/text-rotate.webp"},
+}
+
+func componentCard(c componentCardData, r links.LinkResolver) templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var8 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var8 == nil {
+			templ_7745c5c3_Var8 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 13, "<a href=\"")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		var templ_7745c5c3_Var9 templ.SafeURL
+		templ_7745c5c3_Var9, templ_7745c5c3_Err = templ.JoinURLErrs(r.SafeURL(c.Href))
+		if templ_7745c5c3_Err != nil {
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/index.templ`, Line: 134, Col: 26}
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var9))
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 14, "\" class=\"group block rounded-box transition-transform duration-200 hover:-translate-y-1\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
 		templ_7745c5c3_Err = daisyui.Card(daisyui.CardConfig{
-			Title:   title,
-			Class:   "bg-base-100 shadow",
-			Actions: daisyui.Link(href, "View example", "primary", "hover", "", r),
+			ImageSrc: c.Image,
+			ImageAlt: c.Title,
+			Title:    c.Title,
+			Desc:     c.Desc,
+			Class:    "bg-base-100 shadow h-full transition-colors duration-200 group-hover:bg-base-300",
 		}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 15, "</a>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

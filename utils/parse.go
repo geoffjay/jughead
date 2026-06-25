@@ -1,11 +1,11 @@
-// Package patch parses the unified-diff `patch` field returned by GitHub's
+// Package utils parses the unified-diff `patch` field returned by GitHub's
 // /repos/{owner}/{repo}/pulls/{number}/files endpoint into structured hunks
 // suitable for a side-by-side diff view.
 //
 // The parser is a pure function operating on a string; it has no I/O
 // dependencies and does not import the data package, avoiding an import
 // cycle. Callers map the returned Hunk/DiffLine values into their own model.
-package patch
+package utils
 
 import (
 	"fmt"

@@ -1,4 +1,4 @@
-package auth
+package github
 
 import (
 	"context"
@@ -10,8 +10,8 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/geoffjay/jughead/patch"
 	"github.com/geoffjay/jughead/sites/com/geoffjay/quux/data"
+	"github.com/geoffjay/jughead/utils"
 )
 
 // Pagination / search defaults.
@@ -99,7 +99,7 @@ func (c *Client) fetchPRFiles(ctx context.Context, owner, repo string, number in
 
 	files := make([]data.FileDiff, 0, len(raw))
 	for _, f := range raw {
-		hunks, err := patch.Parse(f.Patch)
+		hunks, err := utils.Parse(f.Patch)
 		if err != nil {
 			// Skip unparseable files rather than failing the whole PR.
 			continue
@@ -374,7 +374,7 @@ func mapUser(u apiUser, role data.UserRole) data.User {
 	}
 }
 
-func mapHunks(phs []patch.Hunk) []data.Hunk {
+func mapHunks(phs []utils.Hunk) []data.Hunk {
 	hs := make([]data.Hunk, 0, len(phs))
 	for _, ph := range phs {
 		h := data.Hunk{OldStart: ph.OldStart, NewStart: ph.NewStart}
@@ -391,11 +391,11 @@ func mapHunks(phs []patch.Hunk) []data.Hunk {
 	return hs
 }
 
-func mapKind(k patch.LineKind) data.LineKind {
+func mapKind(k utils.LineKind) data.LineKind {
 	switch k {
-	case patch.LineAdded:
+	case utils.LineAdded:
 		return data.LineAdded
-	case patch.LineRemoved:
+	case utils.LineRemoved:
 		return data.LineRemoved
 	default:
 		return data.LineContext

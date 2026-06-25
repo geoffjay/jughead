@@ -12,7 +12,6 @@ import (
 
 import (
 	"github.com/geoffjay/jughead/sites/links"
-	"github.com/geoffjay/jughead/sites/tld/domain1/layout"
 	"github.com/geoffjay/jughead/templates/components/daisyui"
 )
 
@@ -37,19 +36,41 @@ func AccordionPage(r links.LinkResolver) templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<div class=\"min-h-screen bg-base-200 text-base-content\">")
+		templ_7745c5c3_Err = pageShell(
+			r,
+			"Accordion",
+			"Accordion is used for showing and hiding content but only one item can stay open at a time.",
+			accordionBody(r),
+		).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = daisyui.Navbar(layout.NavbarData(r)).Render(ctx, templ_7745c5c3_Buffer)
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
+		return nil
+	})
+}
+
+func accordionBody(r links.LinkResolver) templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "<main class=\"p-8 max-w-2xl mx-auto space-y-8\"><h1 class=\"text-3xl font-bold text-primary\">Accordion</h1><p class=\"text-base-content/70\">Accordion is used for showing and hiding content but only one item can stay open at a time.</p><section class=\"space-y-4\"><h2 class=\"text-2xl font-semibold\">Accordion using radio inputs</h2>")
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
 		}
-		templ_7745c5c3_Err = daisyui.Accordion(
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var2 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var2 == nil {
+			templ_7745c5c3_Var2 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = section("Accordion using radio inputs", daisyui.Accordion(
 			"my-accordion-1",
 			[]daisyui.AccordionItem{
 				{Title: "How do I create an account?", Content: "Click the \"Sign Up\" button in the top right corner and follow the registration process.", Open: true},
@@ -58,15 +79,11 @@ func AccordionPage(r links.LinkResolver) templ.Component {
 			},
 			"",
 			false,
-		).Render(ctx, templ_7745c5c3_Buffer)
+		)).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "</section><section class=\"space-y-4\"><h2 class=\"text-2xl font-semibold\">Accordion with arrow icon</h2>")
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Err = daisyui.Accordion(
+		templ_7745c5c3_Err = section("Accordion with arrow icon", daisyui.Accordion(
 			"my-accordion-2",
 			[]daisyui.AccordionItem{
 				{Title: "How do I create an account?", Content: "Click the \"Sign Up\" button in the top right corner and follow the registration process.", Open: true},
@@ -75,15 +92,11 @@ func AccordionPage(r links.LinkResolver) templ.Component {
 			},
 			"arrow",
 			false,
-		).Render(ctx, templ_7745c5c3_Buffer)
+		)).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "</section><section class=\"space-y-4\"><h2 class=\"text-2xl font-semibold\">Accordion with plus/minus icon</h2>")
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Err = daisyui.Accordion(
+		templ_7745c5c3_Err = section("Accordion with plus/minus icon", daisyui.Accordion(
 			"my-accordion-3",
 			[]daisyui.AccordionItem{
 				{Title: "How do I create an account?", Content: "Click the \"Sign Up\" button in the top right corner and follow the registration process.", Open: true},
@@ -92,15 +105,11 @@ func AccordionPage(r links.LinkResolver) templ.Component {
 			},
 			"plus",
 			false,
-		).Render(ctx, templ_7745c5c3_Buffer)
+		)).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "</section><section class=\"space-y-4\"><h2 class=\"text-2xl font-semibold\">Accordion joined</h2>")
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Err = daisyui.Accordion(
+		templ_7745c5c3_Err = section("Accordion joined", daisyui.Accordion(
 			"my-accordion-4",
 			[]daisyui.AccordionItem{
 				{Title: "How do I create an account?", Content: "Click the \"Sign Up\" button in the top right corner and follow the registration process.", Open: true},
@@ -109,11 +118,7 @@ func AccordionPage(r links.LinkResolver) templ.Component {
 			},
 			"arrow",
 			true,
-		).Render(ctx, templ_7745c5c3_Buffer)
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "</section></main></div>")
+		)).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

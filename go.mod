@@ -7,7 +7,10 @@ require (
 	github.com/angelofallars/htmx-go v0.5.0
 	github.com/gin-gonic/gin v1.12.0
 	github.com/gowebly/helpers v0.4.0
+	github.com/iota-uz/icons v0.0.0-20260205211420-98e1019072b8
 )
+
+replace github.com/iota-uz/icons => github.com/geoffjay/go-icons v0.0.0-20260205211420-98e1019072b8
 
 require (
 	github.com/bytedance/gopkg v0.1.3 // indirect

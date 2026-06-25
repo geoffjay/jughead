@@ -7,7 +7,7 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/geoffjay/jughead/auth"
+	githubsvc "github.com/geoffjay/jughead/services/github"
 	"github.com/geoffjay/jughead/sites/links"
 	"github.com/geoffjay/jughead/templates"
 	"github.com/geoffjay/jughead/templates/pages"
@@ -109,7 +109,7 @@ func boundedCtx(c *gin.Context) (context.Context, context.CancelFunc) {
 }
 
 func isNotFound(err error) bool {
-	var ae *auth.APIError
+	var ae *githubsvc.APIError
 	if errors.As(err, &ae) {
 		return ae.Status == http.StatusNotFound
 	}

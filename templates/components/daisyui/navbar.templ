@@ -21,15 +21,18 @@ type NavDropdown struct {
 }
 
 // NavbarData configures a Navbar. Title is rendered as the brand button on
-// the start side. Start, Center, and End are optional menu items/dropdowns
-// placed in the corresponding navbar regions. SearchPlaceholder, when set,
-// renders a search input in the navbar-end region. Resolver, when set, is used
-// to build all hrefs; without it hrefs are rendered as-is. EndExtra, when set,
-// is rendered inside the navbar-end region before the menu — useful for a
-// theme toggle or other action element.
+// the start side. StartExtra, when set, is rendered inside the navbar-start
+// region before the title — useful for a drawer-toggle menu icon. Start,
+// Center, and End are optional menu items/dropdowns placed in the
+// corresponding navbar regions. SearchPlaceholder, when set, renders a search
+// input in the navbar-end region. Resolver, when set, is used to build all
+// hrefs; without it hrefs are rendered as-is. EndExtra, when set, is rendered
+// inside the navbar-end region before the menu — useful for a theme toggle or
+// other action element.
 type NavbarData struct {
 	Title             string
 	TitleHref         string
+	StartExtra        templ.Component
 	Start             []NavItem
 	StartDropdowns    []NavDropdown
 	Center            []NavItem
@@ -50,8 +53,11 @@ templ Navbar(data NavbarData) {
 }
 
 templ navbarStart(data NavbarData) {
-	if len(data.Start) > 0 || len(data.StartDropdowns) > 0 || data.Title != "" {
+	if len(data.Start) > 0 || len(data.StartDropdowns) > 0 || data.Title != "" || data.StartExtra != nil {
 		<div class="navbar-start">
+			if data.StartExtra != nil {
+				@data.StartExtra
+			}
 			if data.Title != "" {
 				<a href={ resolveHref(data.Resolver, data.TitleHref) } class="btn btn-ghost text-xl">{ data.Title }</a>
 			}

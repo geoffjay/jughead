@@ -1,4 +1,4 @@
-// Package auth implements the GitHub OAuth web flow and a thin typed REST
+// Package github implements the GitHub OAuth web flow and a thin typed REST
 // client over the subset of GitHub API endpoints the quux review UI needs.
 //
 // The OAuth flow follows the standard authorization-code grant:
@@ -10,7 +10,7 @@
 //
 // The client wraps net/http (no third-party dependency) and maps GitHub JSON
 // responses into the quux data package's domain types.
-package auth
+package github
 
 import (
 	"context"

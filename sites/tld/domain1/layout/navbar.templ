@@ -3,7 +3,103 @@ package layout
 import (
 	"github.com/geoffjay/jughead/sites/links"
 	"github.com/geoffjay/jughead/templates/components/daisyui"
+	icons "github.com/iota-uz/icons/phosphor"
 )
+
+// drawerToggleID is the id of the hidden checkbox controlling the page-level
+// drawer sidebar rendered in index.templ. The navbar menu icon acts as a
+// label for this checkbox so clicking it opens the drawer.
+const drawerToggleID = "app-drawer"
+
+// DrawerToggleID returns the id of the hidden checkbox controlling the
+// page-level drawer sidebar. Exposed so pages can wire their drawer toggle
+// and overlay label to the same id used by the navbar menu icon.
+func DrawerToggleID() string { return drawerToggleID }
+
+// NavbarComponents returns the set of component example links shown in the
+// navbar "Components" dropdown. Exposed so the drawer sidebar can render the
+// same links for navigation on small screens.
+func NavbarComponents() []daisyui.NavItem {
+	return []daisyui.NavItem{
+		{Label: "Accordion", Href: "/components/accordion"},
+		{Label: "Navbar", Href: "/components/navbar"},
+		{Label: "Join", Href: "/components/join"},
+		{Label: "Stack", Href: "/components/stack"},
+		{Label: "Divider", Href: "/components/divider"},
+		{Label: "Mask", Href: "/components/mask"},
+		{Label: "Link", Href: "/components/link"},
+		{Label: "Kbd", Href: "/components/kbd"},
+		{Label: "Status", Href: "/components/status"},
+		{Label: "Loading", Href: "/components/loading"},
+		{Label: "Collapse", Href: "/components/collapse"},
+		{Label: "Swap", Href: "/components/swap"},
+		{Label: "Theme Controller", Href: "/components/theme-controller"},
+		{Label: "Button", Href: "/components/button"},
+		{Label: "FAB / Speed Dial", Href: "/components/floating-action-button"},
+		{Label: "Text Input", Href: "/components/input-field"},
+		{Label: "Textarea", Href: "/components/textarea"},
+		{Label: "Select", Href: "/components/select"},
+		{Label: "Checkbox", Href: "/components/checkbox"},
+		{Label: "Radio", Href: "/components/radio"},
+		{Label: "Range slider", Href: "/components/range"},
+		{Label: "File Input", Href: "/components/file-input"},
+		{Label: "Toggle", Href: "/components/toggle"},
+		{Label: "Rating", Href: "/components/rating"},
+		{Label: "Label", Href: "/components/label"},
+		{Label: "Fieldset", Href: "/components/fieldset"},
+		{Label: "Validator", Href: "/components/validator"},
+		{Label: "Alert", Href: "/components/alert"},
+		{Label: "Badge", Href: "/components/badge"},
+		{Label: "Progress", Href: "/components/progress"},
+		{Label: "Radial progress", Href: "/components/radial-progress"},
+		{Label: "Countdown", Href: "/components/countdown"},
+		{Label: "Skeleton", Href: "/components/skeleton"},
+		{Label: "Toast", Href: "/components/toast"},
+		{Label: "Tooltip", Href: "/components/tooltip"},
+		{Label: "Indicator", Href: "/components/indicator"},
+		{Label: "Chat bubble", Href: "/components/chat-bubble"},
+		{Label: "Breadcrumbs", Href: "/components/breadcrumbs"},
+		{Label: "Menu", Href: "/components/menu"},
+		{Label: "Pagination", Href: "/components/pagination"},
+		{Label: "Steps", Href: "/components/steps"},
+		{Label: "Tabs", Href: "/components/tabs"},
+		{Label: "Dock", Href: "/components/dock"},
+		{Label: "Dropdown", Href: "/components/dropdown"},
+		{Label: "Footer", Href: "/components/footer"},
+		{Label: "Drawer sidebar", Href: "/components/drawer-sidebar"},
+		{Label: "Filter", Href: "/components/filter"},
+		{Label: "Card", Href: "/components/card"},
+		{Label: "Table", Href: "/components/table"},
+		{Label: "Stat", Href: "/components/stat"},
+		{Label: "List", Href: "/components/list"},
+		{Label: "Timeline", Href: "/components/timeline"},
+		{Label: "Code mockup", Href: "/components/code"},
+		{Label: "Avatar", Href: "/components/avatar"},
+		{Label: "Diff", Href: "/components/diff"},
+		{Label: "Modal", Href: "/components/modal"},
+		{Label: "Carousel", Href: "/components/carousel"},
+		{Label: "Hero", Href: "/components/hero"},
+		{Label: "Calendar", Href: "/components/calendar"},
+		{Label: "Browser mockup", Href: "/components/browser"},
+		{Label: "Phone mockup", Href: "/components/phone"},
+		{Label: "Window mockup", Href: "/components/window"},
+		{Label: "Hover 3D Card", Href: "/components/hover-3d-card"},
+		{Label: "Hover Gallery", Href: "/components/hover-gallery"},
+		{Label: "Text Rotate", Href: "/components/text-rotate"},
+	}
+}
+
+// menuToggle renders the Phosphor List icon as a navbar button that opens the
+// page-level drawer sidebar. It is placed at the far left of the navbar-start
+// region, beside the title.
+templ menuToggle() {
+	<label for={ drawerToggleID } class="btn btn-ghost btn-circle drawer-button" aria-label="Open menu">
+		@icons.List(icons.Props{
+			Variant: icons.Regular,
+			Size:    "24",
+		})
+	</label>
+}
 
 // themeToggle renders a daisyUI swap with a hidden theme-controller checkbox.
 // When checked the page adopts the "dark" theme; unchecked restores "light".
@@ -28,81 +124,10 @@ templ themeToggle() {
 // light/dark theme toggle in the navbar-end region.
 func NavbarData(r links.LinkResolver) daisyui.NavbarData {
 	return daisyui.NavbarData{
-		Title:     "domain1.tld",
-		TitleHref: "",
-		Resolver:  r,
-		EndDropdowns: []daisyui.NavDropdown{
-			{
-				Label: "Components",
-				Items: []daisyui.NavItem{
-					{Label: "Accordion", Href: "/components/accordion"},
-					{Label: "Navbar", Href: "/components/navbar"},
-					{Label: "Join", Href: "/components/join"},
-					{Label: "Stack", Href: "/components/stack"},
-					{Label: "Divider", Href: "/components/divider"},
-					{Label: "Mask", Href: "/components/mask"},
-					{Label: "Link", Href: "/components/link"},
-					{Label: "Kbd", Href: "/components/kbd"},
-					{Label: "Status", Href: "/components/status"},
-					{Label: "Loading", Href: "/components/loading"},
-					{Label: "Collapse", Href: "/components/collapse"},
-					{Label: "Swap", Href: "/components/swap"},
-					{Label: "Theme Controller", Href: "/components/theme-controller"},
-					{Label: "Button", Href: "/components/button"},
-					{Label: "FAB / Speed Dial", Href: "/components/floating-action-button"},
-					{Label: "Text Input", Href: "/components/input-field"},
-					{Label: "Textarea", Href: "/components/textarea"},
-					{Label: "Select", Href: "/components/select"},
-					{Label: "Checkbox", Href: "/components/checkbox"},
-					{Label: "Radio", Href: "/components/radio"},
-					{Label: "Range slider", Href: "/components/range"},
-					{Label: "File Input", Href: "/components/file-input"},
-					{Label: "Toggle", Href: "/components/toggle"},
-					{Label: "Rating", Href: "/components/rating"},
-					{Label: "Label", Href: "/components/label"},
-					{Label: "Fieldset", Href: "/components/fieldset"},
-					{Label: "Validator", Href: "/components/validator"},
-					{Label: "Alert", Href: "/components/alert"},
-					{Label: "Badge", Href: "/components/badge"},
-					{Label: "Progress", Href: "/components/progress"},
-					{Label: "Radial progress", Href: "/components/radial-progress"},
-					{Label: "Countdown", Href: "/components/countdown"},
-					{Label: "Skeleton", Href: "/components/skeleton"},
-					{Label: "Toast", Href: "/components/toast"},
-					{Label: "Tooltip", Href: "/components/tooltip"},
-					{Label: "Indicator", Href: "/components/indicator"},
-					{Label: "Chat bubble", Href: "/components/chat-bubble"},
-					{Label: "Breadcrumbs", Href: "/components/breadcrumbs"},
-					{Label: "Menu", Href: "/components/menu"},
-					{Label: "Pagination", Href: "/components/pagination"},
-					{Label: "Steps", Href: "/components/steps"},
-					{Label: "Tabs", Href: "/components/tabs"},
-					{Label: "Dock", Href: "/components/dock"},
-					{Label: "Dropdown", Href: "/components/dropdown"},
-					{Label: "Footer", Href: "/components/footer"},
-					{Label: "Drawer sidebar", Href: "/components/drawer-sidebar"},
-					{Label: "Filter", Href: "/components/filter"},
-					{Label: "Card", Href: "/components/card"},
-					{Label: "Table", Href: "/components/table"},
-					{Label: "Stat", Href: "/components/stat"},
-					{Label: "List", Href: "/components/list"},
-					{Label: "Timeline", Href: "/components/timeline"},
-					{Label: "Code mockup", Href: "/components/code"},
-					{Label: "Avatar", Href: "/components/avatar"},
-					{Label: "Diff", Href: "/components/diff"},
-					{Label: "Modal", Href: "/components/modal"},
-					{Label: "Carousel", Href: "/components/carousel"},
-					{Label: "Hero", Href: "/components/hero"},
-					{Label: "Calendar", Href: "/components/calendar"},
-					{Label: "Browser mockup", Href: "/components/browser"},
-					{Label: "Phone mockup", Href: "/components/phone"},
-					{Label: "Window mockup", Href: "/components/window"},
-					{Label: "Hover 3D Card", Href: "/components/hover-3d-card"},
-					{Label: "Hover Gallery", Href: "/components/hover-gallery"},
-					{Label: "Text Rotate", Href: "/components/text-rotate"},
-				},
-			},
-		},
-		EndExtra: themeToggle(),
+		Title:      "domain1.tld",
+		TitleHref:  "",
+		Resolver:   r,
+		StartExtra: menuToggle(),
+		EndExtra:   themeToggle(),
 	}
 }

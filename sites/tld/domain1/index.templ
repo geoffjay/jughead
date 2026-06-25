@@ -8,90 +8,138 @@ import (
 
 templ Home(r links.LinkResolver) {
 	@layout.ThemeRestoreScript()
-	<div class="min-h-screen bg-base-200 text-base-content">
-		@daisyui.Navbar(layout.NavbarData(r))
-		<main class="p-8 max-w-5xl mx-auto space-y-4">
-			<h1 class="text-4xl font-bold text-primary">DaisyUI Components</h1>
-			<p class="text-base-content/70">
-				Reusable daisyUI component examples. Use the "Components" dropdown in
-				the navbar to browse each component.
-			</p>
-			<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-				@componentCard("/components/accordion", "Accordion", r)
-				@componentCard("/components/navbar", "Navbar", r)
-				@componentCard("/components/join", "Join", r)
-				@componentCard("/components/stack", "Stack", r)
-				@componentCard("/components/divider", "Divider", r)
-				@componentCard("/components/mask", "Mask", r)
-				@componentCard("/components/link", "Link", r)
-				@componentCard("/components/kbd", "Kbd", r)
-				@componentCard("/components/status", "Status", r)
-				@componentCard("/components/loading", "Loading", r)
-				@componentCard("/components/collapse", "Collapse", r)
-				@componentCard("/components/swap", "Swap", r)
-				@componentCard("/components/theme-controller", "Theme Controller", r)
-				@componentCard("/components/button", "Button", r)
-				@componentCard("/components/floating-action-button", "FAB / Speed Dial", r)
-				@componentCard("/components/input-field", "Text Input", r)
-				@componentCard("/components/textarea", "Textarea", r)
-				@componentCard("/components/select", "Select", r)
-				@componentCard("/components/checkbox", "Checkbox", r)
-				@componentCard("/components/radio", "Radio", r)
-				@componentCard("/components/range", "Range slider", r)
-				@componentCard("/components/file-input", "File Input", r)
-				@componentCard("/components/toggle", "Toggle", r)
-				@componentCard("/components/rating", "Rating", r)
-				@componentCard("/components/label", "Label", r)
-				@componentCard("/components/fieldset", "Fieldset", r)
-				@componentCard("/components/validator", "Validator", r)
-				@componentCard("/components/alert", "Alert", r)
-				@componentCard("/components/badge", "Badge", r)
-				@componentCard("/components/progress", "Progress", r)
-				@componentCard("/components/radial-progress", "Radial progress", r)
-				@componentCard("/components/countdown", "Countdown", r)
-				@componentCard("/components/skeleton", "Skeleton", r)
-				@componentCard("/components/toast", "Toast", r)
-				@componentCard("/components/tooltip", "Tooltip", r)
-				@componentCard("/components/indicator", "Indicator", r)
-				@componentCard("/components/chat-bubble", "Chat bubble", r)
-				@componentCard("/components/breadcrumbs", "Breadcrumbs", r)
-				@componentCard("/components/menu", "Menu", r)
-				@componentCard("/components/pagination", "Pagination", r)
-				@componentCard("/components/steps", "Steps", r)
-				@componentCard("/components/tabs", "Tabs", r)
-				@componentCard("/components/dock", "Dock", r)
-				@componentCard("/components/dropdown", "Dropdown", r)
-				@componentCard("/components/footer", "Footer", r)
-				@componentCard("/components/drawer-sidebar", "Drawer sidebar", r)
-				@componentCard("/components/filter", "Filter", r)
-				@componentCard("/components/card", "Card", r)
-				@componentCard("/components/table", "Table", r)
-				@componentCard("/components/stat", "Stat", r)
-				@componentCard("/components/list", "List", r)
-				@componentCard("/components/timeline", "Timeline", r)
-				@componentCard("/components/code", "Code mockup", r)
-				@componentCard("/components/avatar", "Avatar", r)
-				@componentCard("/components/diff", "Diff", r)
-				@componentCard("/components/modal", "Modal", r)
-				@componentCard("/components/carousel", "Carousel", r)
-				@componentCard("/components/hero", "Hero", r)
-				@componentCard("/components/calendar", "Calendar", r)
-				@componentCard("/components/browser", "Browser mockup", r)
-				@componentCard("/components/phone", "Phone mockup", r)
-				@componentCard("/components/window", "Window mockup", r)
-				@componentCard("/components/hover-3d-card", "Hover 3D Card", r)
-				@componentCard("/components/hover-gallery", "Hover Gallery", r)
-				@componentCard("/components/text-rotate", "Text Rotate", r)
-			</div>
-		</main>
+	<div class="drawer min-h-screen bg-base-200 text-base-content">
+		<input id={ layout.DrawerToggleID() } type="checkbox" autocomplete="off" class="drawer-toggle"/>
+		<div class="drawer-content flex flex-col">
+			@daisyui.Navbar(layout.NavbarData(r))
+			<main class="p-8 space-y-4">
+				<h1 class="text-4xl font-bold text-primary">DaisyUI Components</h1>
+				<p class="text-base-content/70">
+					Reusable daisyUI component examples. Use the "Components" dropdown in
+					the navbar to browse each component.
+				</p>
+				<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+					for _, c := range componentCards {
+						@componentCard(c, r)
+					}
+				</div>
+			</main>
+		</div>
+		<div class="drawer-side z-1002">
+			<label for={ layout.DrawerToggleID() } aria-label="close sidebar" class="drawer-overlay"></label>
+			@drawerSidebar(r)
+		</div>
 	</div>
 	@layout.ThemePersistScript()
 }
 
-templ componentCard(href, title string, r links.LinkResolver) {
-	@daisyui.Card(daisyui.CardConfig{
-		Title:   title,
-		Class:   "bg-base-100 shadow",
-		Actions: daisyui.Link(href, "View example", "primary", "hover", "", r),
-	})
+// drawerSidebar renders the sidebar menu shown when the navbar menu icon is
+// clicked. Links mirror the "Components" dropdown so the sidebar can be used
+// for navigation on small screens.
+templ drawerSidebar(r links.LinkResolver) {
+	<ul class="menu p-4 w-60 md:w-80 min-h-full bg-base-200 text-base-content">
+		<li><a href={ r.SafeURL("/") }>Home</a></li>
+		for _, item := range layout.NavbarComponents() {
+			<li><a href={ r.SafeURL(item.Href) }>{ item.Label }</a></li>
+		}
+	</ul>
+}
+
+// componentCardData describes a single component card on the index page.
+// Href is the site-relative path to the example page. Title is the card
+// heading. Desc is the description shown on the card, sourced from the
+// official daisyUI components listing (https://daisyui.com/components/).
+// Image is the preview image URL, also sourced from the daisyUI components
+// listing.
+type componentCardData struct {
+	Href  string
+	Title string
+	Desc  string
+	Image string
+}
+
+// componentCards is the full set of component cards rendered on the index
+// page. Descriptions and image URLs mirror the daisyUI components listing at
+// https://daisyui.com/components/.
+var componentCards = []componentCardData{
+	{"/components/accordion", "Accordion", "Accordion is used for showing and hiding content but only one item can stay open at a time.", "https://img.daisyui.com/images/components/accordion.webp"},
+	{"/components/navbar", "Navbar", "Navbar is used to show a navigation bar on the top of the page.", "https://img.daisyui.com/images/components/navbar.webp"},
+	{"/components/join", "Join", "Join is a container for grouping multiple items, it can be used to group buttons, inputs, etc. Join applies border radius to the first and last item. Join can be used to create a horizontal or vertical list of items.", "https://img.daisyui.com/images/components/join.webp"},
+	{"/components/stack", "Stack", "Stack visually puts elements on top of each other.", "https://img.daisyui.com/images/components/stack.webp"},
+	{"/components/divider", "Divider", "Divider will be used to separate content vertically or horizontally.", "https://img.daisyui.com/images/components/divider.webp"},
+	{"/components/mask", "Mask", "Mask crops the content of the element to common shapes.", "https://img.daisyui.com/images/components/mask.webp"},
+	{"/components/link", "Link", "Link adds the missing underline style to links.", "https://img.daisyui.com/images/components/link.webp"},
+	{"/components/kbd", "Kbd", "Kbd is used to display keyboard shortcuts.", "https://img.daisyui.com/images/components/kbd.webp"},
+	{"/components/status", "Status", "Status is a really small icon to visually show the current status of an element, like online, offline, error, etc.", "https://img.daisyui.com/images/components/status.webp"},
+	{"/components/loading", "Loading", "Loading shows an animation to indicate that something is loading.", "https://img.daisyui.com/images/components/loading.webp"},
+	{"/components/collapse", "Collapse", "Collapse is used for showing and hiding content.", "https://img.daisyui.com/images/components/collapse.webp"},
+	{"/components/swap", "Swap", "Swap allows you to toggle the visibility of two elements using a checkbox or a class name.", "https://img.daisyui.com/images/components/swap.webp"},
+	{"/components/theme-controller", "Theme Controller", "If a checked checkbox input or a checked radio input with theme-controller class exists in the page, The page will have the same theme as that input's value.", "https://img.daisyui.com/images/components/theme-controller.webp"},
+	{"/components/button", "Button", "Buttons allow the user to take actions or make choices.", "https://img.daisyui.com/images/components/button.webp"},
+	{"/components/floating-action-button", "FAB / Speed Dial", "FAB (Floating Action Button) stays in the bottom corner of screen. It includes a focusable and accessible element with button role. Clicking or focusing it shows additional buttons (known as Speed Dial buttons) in a vertical arrangement or a flower shape (quarter circle).", "https://img.daisyui.com/images/components/fab.webp"},
+	{"/components/input-field", "Text Input", "Text Input is a simple input field.", "https://img.daisyui.com/images/components/input.webp"},
+	{"/components/textarea", "Textarea", "Textarea allows users to enter text in multiple lines.", "https://img.daisyui.com/images/components/textarea.webp"},
+	{"/components/select", "Select", "Select is used to pick a value from a list of options.", "https://img.daisyui.com/images/components/select.webp"},
+	{"/components/checkbox", "Checkbox", "Checkboxes are used to select or deselect a value.", "https://img.daisyui.com/images/components/checkbox.webp"},
+	{"/components/radio", "Radio", "Radio buttons allow the user to select one option from a set.", "https://img.daisyui.com/images/components/radio.webp"},
+	{"/components/range", "Range slider", "Range slider is used to select a value by sliding a handle.", "https://img.daisyui.com/images/components/range.webp"},
+	{"/components/file-input", "File Input", "File Input is a an input field for uploading files.", "https://img.daisyui.com/images/components/file-input.webp"},
+	{"/components/toggle", "Toggle", "Toggle is a checkbox that is styled to look like a switch button.", "https://img.daisyui.com/images/components/toggle.webp"},
+	{"/components/rating", "Rating", "Rating is a set of radio buttons that allow the user to rate something.", "https://img.daisyui.com/images/components/rating.webp"},
+	{"/components/label", "Label", "Label is used to provide a name or title for an input field. Label can be placed before or after the field.", "https://img.daisyui.com/images/components/label.webp"},
+	{"/components/fieldset", "Fieldset", "Fieldset is a container for grouping related form elements. It includes fieldset-legend as a title and label as a description.", "https://img.daisyui.com/images/components/fieldset.webp"},
+	{"/components/validator", "Validator", "Validator class changes the color of form elements to error or success based on input's validation rules.", "https://img.daisyui.com/images/components/validator.webp"},
+	{"/components/alert", "Alert", "Alert informs users about important events.", "https://img.daisyui.com/images/components/alert.webp"},
+	{"/components/badge", "Badge", "Badges are used to inform the user of the status of specific data.", "https://img.daisyui.com/images/components/badge.webp"},
+	{"/components/progress", "Progress", "Progress bar can be used to show the progress of a task or to show the passing of time.", "https://img.daisyui.com/images/components/progress.webp"},
+	{"/components/radial-progress", "Radial progress", "Radial progress can be used to show the progress of a task or to show the passing of time.", "https://img.daisyui.com/images/components/radial-progress.webp"},
+	{"/components/countdown", "Countdown", "Countdown gives you a transition effect when you change a number between 0 to 999.", "https://img.daisyui.com/images/components/countdown.webp"},
+	{"/components/skeleton", "Skeleton", "Skeleton is a component that can be used to show a loading state of a component.", "https://img.daisyui.com/images/components/skeleton.webp"},
+	{"/components/toast", "Toast", "Toast is a wrapper to stack elements, positioned on the corner of page.", "https://img.daisyui.com/images/components/toast.webp"},
+	{"/components/tooltip", "Tooltip", "Tooltip can be used to show a message when hovering over an element.", "https://img.daisyui.com/images/components/tooltip.webp"},
+	{"/components/indicator", "Indicator", "Indicators are used to place an element on the corner of another element.", "https://img.daisyui.com/images/components/indicator.webp"},
+	{"/components/chat-bubble", "Chat bubble", "Chat bubbles are used to show one line of conversation and all its data, including the author image, author name, time, etc.", "https://img.daisyui.com/images/components/chat.webp"},
+	{"/components/breadcrumbs", "Breadcrumbs", "Breadcrumbs helps users to navigate through the website.", "https://img.daisyui.com/images/components/breadcrumbs.webp"},
+	{"/components/menu", "Menu", "Menu is used to display a list of links vertically or horizontally.", "https://img.daisyui.com/images/components/menu.webp"},
+	{"/components/pagination", "Pagination", "Pagination is a group of buttons that allow the user to navigate between a set of related content.", "https://img.daisyui.com/images/components/pagination.webp"},
+	{"/components/steps", "Steps", "Steps can be used to show a list of steps in a process.", "https://img.daisyui.com/images/components/steps.webp"},
+	{"/components/tabs", "Tabs", "Tabs can be used to show a list of links in a tabbed format.", "https://img.daisyui.com/images/components/tab.webp"},
+	{"/components/dock", "Dock", "Dock (also know as Bottom navigation or Bottom bar) is a UI element that provides navigation options to the user. Dock sticks to the bottom of the screen.", "https://img.daisyui.com/images/components/dock.webp"},
+	{"/components/dropdown", "Dropdown", "Dropdown can open a menu or any other element when the button is clicked.", "https://img.daisyui.com/images/components/dropdown.webp"},
+	{"/components/footer", "Footer", "Footer can contain logo, copyright notice, and links to other pages.", "https://img.daisyui.com/images/components/footer.webp"},
+	{"/components/drawer-sidebar", "Drawer sidebar", "Drawer is a grid layout that can show/hide a sidebar on the left or right side of the page.", "https://img.daisyui.com/images/components/drawer.webp"},
+	{"/components/filter", "Filter", "Filter is a group of radio buttons. Choosing one of the options will hide the others and shows a reset button next to the chosen option.", "https://img.daisyui.com/images/components/filter.webp"},
+	{"/components/card", "Card", "Cards are used to group and display content in a way that is easily readable.", "https://img.daisyui.com/images/components/card.webp"},
+	{"/components/table", "Table", "Table can be used to show a list of data in a table format.", "https://img.daisyui.com/images/components/table.webp"},
+	{"/components/stat", "Stat", "Stat is used to show numbers and data in a block.", "https://img.daisyui.com/images/components/stat.webp"},
+	{"/components/list", "List", "List is a vertical layout to display information in rows.", "https://img.daisyui.com/images/components/list.webp"},
+	{"/components/timeline", "Timeline", "Timeline component shows a list of events in chronological order.", "https://img.daisyui.com/images/components/timeline.webp"},
+	{"/components/code", "Code mockup", "Code mockup is used to show a block of code in a box that looks like a code editor.", "https://img.daisyui.com/images/components/mockup-code.webp"},
+	{"/components/avatar", "Avatar", "Avatars are used to show a thumbnail representation of an individual or business in the interface.", "https://img.daisyui.com/images/components/avatar.webp"},
+	{"/components/diff", "Diff", "Diff component shows a side-by-side comparison of two items.", "https://img.daisyui.com/images/components/diff.webp"},
+	{"/components/modal", "Modal", "Modal is used to show a dialog or a box when you click a button.", "https://img.daisyui.com/images/components/modal.webp"},
+	{"/components/carousel", "Carousel", "Carousel show images or content in a scrollable area.", "https://img.daisyui.com/images/components/carousel.webp"},
+	{"/components/hero", "Hero", "Hero is a component for displaying a large box or image with a title and description.", "https://img.daisyui.com/images/components/hero.webp"},
+	{"/components/calendar", "Calendar", "Calendar includes styles for different calendar libraries.", "https://img.daisyui.com/images/components/calendar.webp"},
+	{"/components/browser", "Browser mockup", "Browser mockup shows a box that looks like a browser window.", "https://img.daisyui.com/images/components/mockup-browser.webp"},
+	{"/components/phone", "Phone mockup", "Phone mockup shows a mockup of an iPhone.", "https://img.daisyui.com/images/components/mockup-phone.webp"},
+	{"/components/window", "Window mockup", "Window mockup shows a box that looks like an operating system window.", "https://img.daisyui.com/images/components/mockup-window.webp"},
+	{"/components/hover-3d-card", "Hover 3D Card", "Hover 3D is a wrapper component that adds a 3D hover effect to its content. When we hover over the component, it tilts and rotates based on the mouse position, creating an interactive 3D effect.", "https://img.daisyui.com/images/components/hover-3d.webp"},
+	{"/components/hover-gallery", "Hover Gallery", "Hover Gallery is container of images. The first image is visible be default and when we hover it horizontally, other images show up. Hover Gallery is useful for product cards in ecommerce sites, portfoilios or in image galleries. Hover Gallery can include up to 10 images.", "https://img.daisyui.com/images/components/hover-gallery.webp"},
+	{"/components/text-rotate", "Text Rotate", "Text Rotate can show up to 6 lines of text, one at a time, with a an infinite loop animation. Duration is 10 seconds by default. The animation will pause on hover.", "https://img.daisyui.com/images/components/text-rotate.webp"},
+}
+
+templ componentCard(c componentCardData, r links.LinkResolver) {
+	<a
+		href={ r.SafeURL(c.Href) }
+		class="group block rounded-box transition-transform duration-200 hover:-translate-y-1"
+	>
+		@daisyui.Card(daisyui.CardConfig{
+			ImageSrc: c.Image,
+			ImageAlt: c.Title,
+			Title:    c.Title,
+			Desc:     c.Desc,
+			Class:    "bg-base-100 shadow h-full transition-colors duration-200 group-hover:bg-base-300",
+		})
+	</a>
 }

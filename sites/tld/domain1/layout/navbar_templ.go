@@ -13,7 +13,147 @@ import (
 import (
 	"github.com/geoffjay/jughead/sites/links"
 	"github.com/geoffjay/jughead/templates/components/daisyui"
+	icons "github.com/iota-uz/icons/phosphor"
 )
+
+// drawerToggleID is the id of the hidden checkbox controlling the page-level
+// drawer sidebar rendered in index.templ. The navbar menu icon acts as a
+// label for this checkbox so clicking it opens the drawer.
+const drawerToggleID = "app-drawer"
+
+// DrawerToggleID returns the id of the hidden checkbox controlling the
+// page-level drawer sidebar. Exposed so pages can wire their drawer toggle
+// and overlay label to the same id used by the navbar menu icon.
+func DrawerToggleID() string { return drawerToggleID }
+
+// NavbarComponents returns the set of component example links shown in the
+// navbar "Components" dropdown. Exposed so the drawer sidebar can render the
+// same links for navigation on small screens.
+func NavbarComponents() []daisyui.NavItem {
+	return []daisyui.NavItem{
+		{Label: "Accordion", Href: "/components/accordion"},
+		{Label: "Navbar", Href: "/components/navbar"},
+		{Label: "Join", Href: "/components/join"},
+		{Label: "Stack", Href: "/components/stack"},
+		{Label: "Divider", Href: "/components/divider"},
+		{Label: "Mask", Href: "/components/mask"},
+		{Label: "Link", Href: "/components/link"},
+		{Label: "Kbd", Href: "/components/kbd"},
+		{Label: "Status", Href: "/components/status"},
+		{Label: "Loading", Href: "/components/loading"},
+		{Label: "Collapse", Href: "/components/collapse"},
+		{Label: "Swap", Href: "/components/swap"},
+		{Label: "Theme Controller", Href: "/components/theme-controller"},
+		{Label: "Button", Href: "/components/button"},
+		{Label: "FAB / Speed Dial", Href: "/components/floating-action-button"},
+		{Label: "Text Input", Href: "/components/input-field"},
+		{Label: "Textarea", Href: "/components/textarea"},
+		{Label: "Select", Href: "/components/select"},
+		{Label: "Checkbox", Href: "/components/checkbox"},
+		{Label: "Radio", Href: "/components/radio"},
+		{Label: "Range slider", Href: "/components/range"},
+		{Label: "File Input", Href: "/components/file-input"},
+		{Label: "Toggle", Href: "/components/toggle"},
+		{Label: "Rating", Href: "/components/rating"},
+		{Label: "Label", Href: "/components/label"},
+		{Label: "Fieldset", Href: "/components/fieldset"},
+		{Label: "Validator", Href: "/components/validator"},
+		{Label: "Alert", Href: "/components/alert"},
+		{Label: "Badge", Href: "/components/badge"},
+		{Label: "Progress", Href: "/components/progress"},
+		{Label: "Radial progress", Href: "/components/radial-progress"},
+		{Label: "Countdown", Href: "/components/countdown"},
+		{Label: "Skeleton", Href: "/components/skeleton"},
+		{Label: "Toast", Href: "/components/toast"},
+		{Label: "Tooltip", Href: "/components/tooltip"},
+		{Label: "Indicator", Href: "/components/indicator"},
+		{Label: "Chat bubble", Href: "/components/chat-bubble"},
+		{Label: "Breadcrumbs", Href: "/components/breadcrumbs"},
+		{Label: "Menu", Href: "/components/menu"},
+		{Label: "Pagination", Href: "/components/pagination"},
+		{Label: "Steps", Href: "/components/steps"},
+		{Label: "Tabs", Href: "/components/tabs"},
+		{Label: "Dock", Href: "/components/dock"},
+		{Label: "Dropdown", Href: "/components/dropdown"},
+		{Label: "Footer", Href: "/components/footer"},
+		{Label: "Drawer sidebar", Href: "/components/drawer-sidebar"},
+		{Label: "Filter", Href: "/components/filter"},
+		{Label: "Card", Href: "/components/card"},
+		{Label: "Table", Href: "/components/table"},
+		{Label: "Stat", Href: "/components/stat"},
+		{Label: "List", Href: "/components/list"},
+		{Label: "Timeline", Href: "/components/timeline"},
+		{Label: "Code mockup", Href: "/components/code"},
+		{Label: "Avatar", Href: "/components/avatar"},
+		{Label: "Diff", Href: "/components/diff"},
+		{Label: "Modal", Href: "/components/modal"},
+		{Label: "Carousel", Href: "/components/carousel"},
+		{Label: "Hero", Href: "/components/hero"},
+		{Label: "Calendar", Href: "/components/calendar"},
+		{Label: "Browser mockup", Href: "/components/browser"},
+		{Label: "Phone mockup", Href: "/components/phone"},
+		{Label: "Window mockup", Href: "/components/window"},
+		{Label: "Hover 3D Card", Href: "/components/hover-3d-card"},
+		{Label: "Hover Gallery", Href: "/components/hover-gallery"},
+		{Label: "Text Rotate", Href: "/components/text-rotate"},
+	}
+}
+
+// menuToggle renders the Phosphor List icon as a navbar button that opens the
+// page-level drawer sidebar. It is placed at the far left of the navbar-start
+// region, beside the title.
+func menuToggle() templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var1 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var1 == nil {
+			templ_7745c5c3_Var1 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<label for=\"")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		var templ_7745c5c3_Var2 string
+		templ_7745c5c3_Var2, templ_7745c5c3_Err = templ.ResolveAttributeValue(drawerToggleID)
+		if templ_7745c5c3_Err != nil {
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/layout/navbar.templ`, Line: 96, Col: 28}
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var2)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "\" class=\"btn btn-ghost btn-circle drawer-button\" aria-label=\"Open menu\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = icons.List(icons.Props{
+			Variant: icons.Regular,
+			Size:    "24",
+		}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "</label>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
 
 // themeToggle renders a daisyUI swap with a hidden theme-controller checkbox.
 // When checked the page adopts the "dark" theme; unchecked restores "light".
@@ -36,12 +176,12 @@ func themeToggle() templ.Component {
 			}()
 		}
 		ctx = templ.InitializeContext(ctx)
-		templ_7745c5c3_Var1 := templ.GetChildren(ctx)
-		if templ_7745c5c3_Var1 == nil {
-			templ_7745c5c3_Var1 = templ.NopComponent
+		templ_7745c5c3_Var3 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var3 == nil {
+			templ_7745c5c3_Var3 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<label class=\"swap swap-rotate btn btn-ghost btn-circle\" aria-label=\"Toggle theme\"><input id=\"theme-toggle\" type=\"checkbox\" class=\"theme-controller\" value=\"kanagawa-dark\" autocomplete=\"off\"> <svg class=\"swap-off h-5 w-5 fill-current\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\"><path d=\"M5.64,17l-.71.71a1,1,0,0,0,0,1.41,1,1,0,0,0,1.41,0l.71-.71A1,1,0,0,0,5.64,17ZM5,12a1,1,0,0,0-1-1H3a1,1,0,0,0,0,2H4A1,1,0,0,0,5,12Zm7-7a1,1,0,0,0,1-1V3a1,1,0,0,0-2,0V4A1,1,0,0,0,12,5ZM5.64,7.05a1,1,0,0,0,.7.29,1,1,0,0,0,.71-.29,1,1,0,0,0,0-1.41l-.71-.71A1,1,0,0,0,4.93,6.34Zm12,.29a1,1,0,0,0,.7-.29l.71-.71a1,1,0,1,0-1.41-1.41L17,5.64a1,1,0,0,0,0,1.41A1,1,0,0,0,17.66,7.34ZM21,11H20a1,1,0,0,0,0,2h1a1,1,0,0,0,0-2Zm-9,8a1,1,0,0,0-1,1v1a1,1,0,0,0,2,0V20A1,1,0,0,0,12,19ZM18.36,17A1,1,0,0,0,17,18.36l.71.71a1,1,0,0,0,1.41,0,1,1,0,0,0,0-1.41ZM12,6.5A5.5,5.5,0,1,0,17.5,12,5.51,5.51,0,0,0,12,6.5Zm0,9A3.5,3.5,0,1,1,15.5,12,3.5,3.5,0,0,1,12,15.5Z\"></path></svg> <svg class=\"swap-on h-5 w-5 fill-current\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\"><path d=\"M21.64,13a1,1,0,0,0-1.05-.14,8.05,8.05,0,0,1-3.37.73A8.15,8.15,0,0,1,9.08,5.49a8.59,8.59,0,0,1,.25-2A1,1,0,0,0,8,2.36,10.14,10.14,0,1,0,22,14.05,1,1,0,0,0,21.64,13Zm-9.5,6.69A8.14,8.14,0,0,1,7.08,5.22v.27A10.15,10.15,0,0,0,17.22,15.63a9.79,9.79,0,0,0,2.1-.22A8.11,8.11,0,0,1,12.14,19.73Z\"></path></svg></label>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "<label class=\"swap swap-rotate btn btn-ghost btn-circle\" aria-label=\"Toggle theme\"><input id=\"theme-toggle\" type=\"checkbox\" class=\"theme-controller\" value=\"kanagawa-dark\" autocomplete=\"off\"> <svg class=\"swap-off h-5 w-5 fill-current\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\"><path d=\"M5.64,17l-.71.71a1,1,0,0,0,0,1.41,1,1,0,0,0,1.41,0l.71-.71A1,1,0,0,0,5.64,17ZM5,12a1,1,0,0,0-1-1H3a1,1,0,0,0,0,2H4A1,1,0,0,0,5,12Zm7-7a1,1,0,0,0,1-1V3a1,1,0,0,0-2,0V4A1,1,0,0,0,12,5ZM5.64,7.05a1,1,0,0,0,.7.29,1,1,0,0,0,.71-.29,1,1,0,0,0,0-1.41l-.71-.71A1,1,0,0,0,4.93,6.34Zm12,.29a1,1,0,0,0,.7-.29l.71-.71a1,1,0,1,0-1.41-1.41L17,5.64a1,1,0,0,0,0,1.41A1,1,0,0,0,17.66,7.34ZM21,11H20a1,1,0,0,0,0,2h1a1,1,0,0,0,0-2Zm-9,8a1,1,0,0,0-1,1v1a1,1,0,0,0,2,0V20A1,1,0,0,0,12,19ZM18.36,17A1,1,0,0,0,17,18.36l.71.71a1,1,0,0,0,1.41,0,1,1,0,0,0,0-1.41ZM12,6.5A5.5,5.5,0,1,0,17.5,12,5.51,5.51,0,0,0,12,6.5Zm0,9A3.5,3.5,0,1,1,15.5,12,3.5,3.5,0,0,1,12,15.5Z\"></path></svg> <svg class=\"swap-on h-5 w-5 fill-current\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\"><path d=\"M21.64,13a1,1,0,0,0-1.05-.14,8.05,8.05,0,0,1-3.37.73A8.15,8.15,0,0,1,9.08,5.49a8.59,8.59,0,0,1,.25-2A1,1,0,0,0,8,2.36,10.14,10.14,0,1,0,22,14.05,1,1,0,0,0,21.64,13Zm-9.5,6.69A8.14,8.14,0,0,1,7.08,5.22v.27A10.15,10.15,0,0,0,17.22,15.63a9.79,9.79,0,0,0,2.1-.22A8.11,8.11,0,0,1,12.14,19.73Z\"></path></svg></label>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -55,82 +195,11 @@ func themeToggle() templ.Component {
 // light/dark theme toggle in the navbar-end region.
 func NavbarData(r links.LinkResolver) daisyui.NavbarData {
 	return daisyui.NavbarData{
-		Title:     "domain1.tld",
-		TitleHref: "",
-		Resolver:  r,
-		EndDropdowns: []daisyui.NavDropdown{
-			{
-				Label: "Components",
-				Items: []daisyui.NavItem{
-					{Label: "Accordion", Href: "/components/accordion"},
-					{Label: "Navbar", Href: "/components/navbar"},
-					{Label: "Join", Href: "/components/join"},
-					{Label: "Stack", Href: "/components/stack"},
-					{Label: "Divider", Href: "/components/divider"},
-					{Label: "Mask", Href: "/components/mask"},
-					{Label: "Link", Href: "/components/link"},
-					{Label: "Kbd", Href: "/components/kbd"},
-					{Label: "Status", Href: "/components/status"},
-					{Label: "Loading", Href: "/components/loading"},
-					{Label: "Collapse", Href: "/components/collapse"},
-					{Label: "Swap", Href: "/components/swap"},
-					{Label: "Theme Controller", Href: "/components/theme-controller"},
-					{Label: "Button", Href: "/components/button"},
-					{Label: "FAB / Speed Dial", Href: "/components/floating-action-button"},
-					{Label: "Text Input", Href: "/components/input-field"},
-					{Label: "Textarea", Href: "/components/textarea"},
-					{Label: "Select", Href: "/components/select"},
-					{Label: "Checkbox", Href: "/components/checkbox"},
-					{Label: "Radio", Href: "/components/radio"},
-					{Label: "Range slider", Href: "/components/range"},
-					{Label: "File Input", Href: "/components/file-input"},
-					{Label: "Toggle", Href: "/components/toggle"},
-					{Label: "Rating", Href: "/components/rating"},
-					{Label: "Label", Href: "/components/label"},
-					{Label: "Fieldset", Href: "/components/fieldset"},
-					{Label: "Validator", Href: "/components/validator"},
-					{Label: "Alert", Href: "/components/alert"},
-					{Label: "Badge", Href: "/components/badge"},
-					{Label: "Progress", Href: "/components/progress"},
-					{Label: "Radial progress", Href: "/components/radial-progress"},
-					{Label: "Countdown", Href: "/components/countdown"},
-					{Label: "Skeleton", Href: "/components/skeleton"},
-					{Label: "Toast", Href: "/components/toast"},
-					{Label: "Tooltip", Href: "/components/tooltip"},
-					{Label: "Indicator", Href: "/components/indicator"},
-					{Label: "Chat bubble", Href: "/components/chat-bubble"},
-					{Label: "Breadcrumbs", Href: "/components/breadcrumbs"},
-					{Label: "Menu", Href: "/components/menu"},
-					{Label: "Pagination", Href: "/components/pagination"},
-					{Label: "Steps", Href: "/components/steps"},
-					{Label: "Tabs", Href: "/components/tabs"},
-					{Label: "Dock", Href: "/components/dock"},
-					{Label: "Dropdown", Href: "/components/dropdown"},
-					{Label: "Footer", Href: "/components/footer"},
-					{Label: "Drawer sidebar", Href: "/components/drawer-sidebar"},
-					{Label: "Filter", Href: "/components/filter"},
-					{Label: "Card", Href: "/components/card"},
-					{Label: "Table", Href: "/components/table"},
-					{Label: "Stat", Href: "/components/stat"},
-					{Label: "List", Href: "/components/list"},
-					{Label: "Timeline", Href: "/components/timeline"},
-					{Label: "Code mockup", Href: "/components/code"},
-					{Label: "Avatar", Href: "/components/avatar"},
-					{Label: "Diff", Href: "/components/diff"},
-					{Label: "Modal", Href: "/components/modal"},
-					{Label: "Carousel", Href: "/components/carousel"},
-					{Label: "Hero", Href: "/components/hero"},
-					{Label: "Calendar", Href: "/components/calendar"},
-					{Label: "Browser mockup", Href: "/components/browser"},
-					{Label: "Phone mockup", Href: "/components/phone"},
-					{Label: "Window mockup", Href: "/components/window"},
-					{Label: "Hover 3D Card", Href: "/components/hover-3d-card"},
-					{Label: "Hover Gallery", Href: "/components/hover-gallery"},
-					{Label: "Text Rotate", Href: "/components/text-rotate"},
-				},
-			},
-		},
-		EndExtra: themeToggle(),
+		Title:      "domain1.tld",
+		TitleHref:  "",
+		Resolver:   r,
+		StartExtra: menuToggle(),
+		EndExtra:   themeToggle(),
 	}
 }
 
