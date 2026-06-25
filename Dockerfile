@@ -16,6 +16,13 @@ RUN go build -ldflags="-s -w" -o jughead
 
 FROM scratch
 
+# Copy the system CA certificates from the builder so Go's TLS stack can
+# verify external HTTPS endpoints (e.g. github.com). Without this, scratch
+# has no cert store and every TLS handshake fails with "x509: certificate
+# signed by unknown authority".
+COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
+ENV SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
+
 # Copy project's binary and templates from /build to the scratch container.
 COPY --from=builder /build/jughead /
 COPY --from=builder /build/static /static
