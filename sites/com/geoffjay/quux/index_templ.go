@@ -222,7 +222,7 @@ func prListItem(r links.LinkResolver, pr data.PullRequest, selected *data.PullRe
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Var8 := []any{joinPRItemClass(selected != nil && selected.Number == pr.Number)}
+		templ_7745c5c3_Var8 := []any{joinPRItemClass(selected != nil && selected.Number == pr.Number && selected.Repo.FullName == pr.Repo.FullName)}
 		templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var8...)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
@@ -232,9 +232,9 @@ func prListItem(r links.LinkResolver, pr data.PullRequest, selected *data.PullRe
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var9 templ.SafeURL
-		templ_7745c5c3_Var9, templ_7745c5c3_Err = templ.JoinURLErrs(r.SafeURL("/pr/" + strconv.Itoa(pr.Number)))
+		templ_7745c5c3_Var9, templ_7745c5c3_Err = templ.JoinURLErrs(r.SafeURL("/pr/" + pr.Repo.Owner + "/" + pr.Repo.Name + "/" + strconv.Itoa(pr.Number)))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/com/geoffjay/quux/index.templ`, Line: 61, Col: 53}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/com/geoffjay/quux/index.templ`, Line: 61, Col: 96}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var9))
 		if templ_7745c5c3_Err != nil {

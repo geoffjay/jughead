@@ -58,8 +58,8 @@ templ repoSection(r links.LinkResolver, g repoGroup, selected *data.PullRequest)
 templ prListItem(r links.LinkResolver, pr data.PullRequest, selected *data.PullRequest) {
 	<li>
 		<a
-			href={ r.SafeURL("/pr/" + strconv.Itoa(pr.Number)) }
-			class={ joinPRItemClass(selected != nil && selected.Number == pr.Number) }
+			href={ r.SafeURL("/pr/" + pr.Repo.Owner + "/" + pr.Repo.Name + "/" + strconv.Itoa(pr.Number)) }
+			class={ joinPRItemClass(selected != nil && selected.Number == pr.Number && selected.Repo.FullName == pr.Repo.FullName) }
 		>
 			<span class="flex flex-col gap-0.5">
 				<span class="text-xs opacity-60">#{ strconv.Itoa(pr.Number) }</span>
