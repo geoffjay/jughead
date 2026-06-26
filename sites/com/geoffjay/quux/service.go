@@ -29,8 +29,9 @@ func NewService(cache *data.Cache) *Service {
 }
 
 // clientFor builds an githubsvc.Client from the session token stashed in the gin
-// context by middleware.GitHubAuthRequired. The middleware guarantees the key
-// is present and is a string.
+// context by the GitHub auth provider's middleware (applied by the SiteManager
+// before the site's Routes run). The middleware guarantees the key is present
+// and is a string.
 func clientFor(c *gin.Context) *githubsvc.Client {
 	token, _ := c.Get("github_token")
 	return githubsvc.NewClient(token.(string))

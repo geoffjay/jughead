@@ -285,7 +285,7 @@ templ ErrorPage(action, detail string) {
 					<p class="text-sm text-error/80 mb-4 font-mono">{ detail }</p>
 					<div class="flex gap-2">
 						<a href="/" class="btn btn-primary btn-sm">Retry</a>
-						<a href="/auth/logout" class="btn btn-ghost btn-sm">Sign out</a>
+						<a href="/auth/github/logout" class="btn btn-ghost btn-sm">Sign out</a>
 					</div>
 				</div>
 			</div>
@@ -307,7 +307,7 @@ templ SignInPrompt() {
 						quux is a code-review demo. Connect your GitHub account to see
 						your assigned pull requests, diffs, and collaborators.
 					</p>
-					<a href="/auth/login" class="btn btn-primary">Sign in with GitHub</a>
+					<a href="/auth/github/login" class="btn btn-primary">Sign in with GitHub</a>
 				</div>
 			</div>
 		</div>

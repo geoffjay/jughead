@@ -8,8 +8,6 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
-
-	"github.com/geoffjay/jughead/sites/com/geoffjay/quux/config"
 )
 
 // OAuth endpoints on github.com (not api.github.com).
@@ -42,7 +40,7 @@ type viewerUser struct {
 // AuthorizeRedirect builds the GitHub authorize URL and returns it for the
 // caller to issue a 302 with. state is an opaque CSRF token the caller must
 // persist (cookie) and verify in the callback.
-func AuthorizeRedirect(cfg config.OAuthConfig, state string) string {
+func AuthorizeRedirect(cfg OAuthConfig, state string) string {
 	q := url.Values{}
 	q.Set("client_id", cfg.ClientID)
 	q.Set("redirect_uri", cfg.RedirectURL)
@@ -53,7 +51,7 @@ func AuthorizeRedirect(cfg config.OAuthConfig, state string) string {
 
 // ExchangeCode POSTs the authorization code to GitHub and returns the access
 // token. Called from the OAuth callback handler.
-func ExchangeCode(ctx context.Context, cfg config.OAuthConfig, code string) (string, error) {
+func ExchangeCode(ctx context.Context, cfg OAuthConfig, code string) (string, error) {
 	form := url.Values{
 		"client_id":     {cfg.ClientID},
 		"client_secret": {cfg.ClientSecret},
@@ -130,7 +128,7 @@ func FetchViewer(ctx context.Context, token string) (login, avatarURL string, er
 // AllowedLogin enforces the GITHUB_ALLOWED_LOGIN restriction. When
 // cfg.AllowedLogin is empty any authenticated user is accepted; otherwise the
 // resolved login must match exactly.
-func AllowedLogin(cfg config.OAuthConfig, login string) bool {
+func AllowedLogin(cfg OAuthConfig, login string) bool {
 	if cfg.AllowedLogin == "" {
 		return true
 	}

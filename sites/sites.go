@@ -1,13 +1,14 @@
 package sites
 
 import (
+	"github.com/geoffjay/jughead/sites/auth"
 	"github.com/geoffjay/jughead/sites/com/geoffjay/quux"
 	"github.com/geoffjay/jughead/sites/links"
 	"github.com/geoffjay/jughead/sites/tld/domain1"
 	"github.com/geoffjay/jughead/sites/tld/domain2"
-	"github.com/gin-gonic/gin"
 
 	"github.com/a-h/templ"
+	"github.com/gin-gonic/gin"
 )
 
 type Site struct {
@@ -22,6 +23,11 @@ type Site struct {
 	// every loaded site, receiving the site's configured daisyUI theme so
 	// handlers can pass it through to templates.Layout.
 	Routes func(router *gin.RouterGroup, theme string)
+	// Auth, when non-nil, declares an authentication provider for the site.
+	// The SiteManager looks the provider up in the sites/auth registry and, if
+	// its config is complete, mounts its OAuth routes and wraps the site group
+	// in its auth middleware before Routes runs. When nil the site is public.
+	Auth *auth.AuthConfig
 }
 
 // ThemeValue returns the configured daisyUI theme for the site, defaulting to
@@ -60,8 +66,8 @@ var sites = map[string]*Site{
 		Theme:     "kanagawa-dark",
 		Template:  quux.SignInPrompt(),
 		Proxy:     quux.Proxy,
-		// Routes is wired in server.go after the Service (auth client + cache)
-		// is constructed; see registerQuuxRoutes.
+		Routes:    quux.Routes,
+		Auth:      &auth.AuthConfig{Provider: "github"},
 	},
 }
 

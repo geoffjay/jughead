@@ -8,6 +8,7 @@ import (
 	"time"
 
 	githubsvc "github.com/geoffjay/jughead/services/github"
+	"github.com/geoffjay/jughead/sites/com/geoffjay/quux/data"
 	"github.com/geoffjay/jughead/sites/links"
 	"github.com/geoffjay/jughead/templates"
 	"github.com/geoffjay/jughead/templates/pages"
@@ -23,12 +24,18 @@ const sitePath = "/sites/quux.geoffjay.com"
 // requestTimeout bounds GitHub API calls made on behalf of a single request.
 const requestTimeout = 30 * time.Second
 
+// Routes is the Site.Routes callback for the quux site. It constructs the
+// Service (auth client + cache) and registers the review UI routes onto the
+// given group. Auth middleware is applied by the SiteManager before Routes
+// runs, so handlers can rely on the github_token context key being set.
+func Routes(router *gin.RouterGroup, theme string) {
+	svc := NewService(data.NewCache())
+	svc.RegisterRoutes(router, theme)
+}
+
 // RegisterRoutes wires the quux routes onto the given group using the Service
 // for data loading. The group's base path is the site path; the theme is the
 // site's configured daisyUI theme, passed through to templates.Layout.
-//
-// This replaces the older Routes(router, theme) signature so the Service can be
-// injected; server.go calls RegisterRoutes instead of the bare Routes.
 func (s *Service) RegisterRoutes(router *gin.RouterGroup, theme string) {
 	router.GET("", func(c *gin.Context) { s.home(c, theme) })
 	router.GET("/", func(c *gin.Context) { s.home(c, theme) })

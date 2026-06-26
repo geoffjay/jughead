@@ -9,8 +9,10 @@ import (
 	"testing"
 
 	"github.com/geoffjay/jughead/middleware"
+	githubsvc "github.com/geoffjay/jughead/services/github"
 	"github.com/geoffjay/jughead/sessions"
 	"github.com/geoffjay/jughead/sites"
+	"github.com/geoffjay/jughead/sites/auth"
 
 	"github.com/gin-gonic/gin"
 )
@@ -23,6 +25,12 @@ func init() { gin.SetMode(gin.TestMode) }
 func newTestRouter(t *testing.T) *gin.Engine {
 	t.Helper()
 	sites.Initialize()
+
+	// Register the GitHub provider so quux's Auth.Provider == "github" can be
+	// resolved. In test env GITHUB_CLIENT_ID is unset, so Load returns an error
+	// and the site falls back to siteViewHandler (its SignInPrompt template).
+	auth.Register(githubsvc.NewProvider())
+
 	store := sessions.NewStore()
 	r := gin.New()
 	r.HTMLRender = &TemplRender{}
@@ -31,15 +39,7 @@ func newTestRouter(t *testing.T) *gin.Engine {
 	r.GET("/api/hello-world", showContentAPIHandler)
 
 	sm := sites.GetSiteManager()
-	for _, site := range sm.Sites() {
-		group := r.Group(site.Path)
-		if site.Routes != nil {
-			site.Routes(group, site.ThemeValue())
-		} else {
-			group.GET("", siteViewHandler)
-			group.GET("/", siteViewHandler)
-		}
-	}
+	sm.BuildSiteRoutes(r, store, siteViewHandler)
 
 	r.GET("/login", loginViewHandler)
 	r.POST("/login", loginSubmitHandler(store))
@@ -161,9 +161,9 @@ func TestSiteViewHandler_PublishedSiteRenders(t *testing.T) {
 
 func TestSiteViewHandler_QuuxFallbackRendersSignInPrompt(t *testing.T) {
 	// Without GitHub OAuth config, the quux site falls back to the
-	// SignInPrompt template (rendered by siteViewHandler). The Service routes
-	// are only registered when config.Load() succeeds, which doesn't happen
-	// in test env.
+	// SignInPrompt template (rendered by siteViewHandler). The provider's
+	// routes are only registered when Load succeeds, which doesn't happen
+	// in test env (GITHUB_CLIENT_ID unset).
 	t.Setenv("JUGHEAD_ENV", "test")
 	r := newTestRouter(t)
 	srv := httptest.NewServer(r)
@@ -177,8 +177,8 @@ func TestSiteViewHandler_QuuxFallbackRendersSignInPrompt(t *testing.T) {
 	if !strings.Contains(body, "Sign in to review") {
 		t.Errorf("expected sign-in prompt; got: %s", body)
 	}
-	if !strings.Contains(body, "/auth/login") {
-		t.Errorf("expected /auth/login link; got: %s", body)
+	if !strings.Contains(body, "/auth/github/login") {
+		t.Errorf("expected /auth/github/login link; got: %s", body)
 	}
 }
 
