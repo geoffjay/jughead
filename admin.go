@@ -7,6 +7,7 @@ import (
 	"github.com/geoffjay/jughead/templates"
 	"github.com/geoffjay/jughead/templates/pages"
 
+	"github.com/a-h/templ"
 	"github.com/angelofallars/htmx-go"
 	"github.com/gin-gonic/gin"
 )
@@ -54,11 +55,35 @@ func logoutHandler(store *sessions.Store) gin.HandlerFunc {
 	}
 }
 
-// adminViewHandler renders the (currently empty) admin page.
+// adminViewHandler renders the (currently empty) admin overview page.
 func adminViewHandler(c *gin.Context) {
-	metaTags := pages.MetaTags("jughead admin", "Admin section")
-	body := pages.AdminContent()
-	tmpl := templates.Layout("Admin", "light", metaTags, body)
+	renderAdmin(c, "Admin", "Admin section", pages.AdminContent())
+}
+
+// sitesViewHandler renders the admin sites page.
+func sitesViewHandler(c *gin.Context) {
+	renderAdmin(c, "Admin · Sites", "Manage configured sites", pages.SitesContent())
+}
+
+// usersViewHandler renders the admin users page.
+func usersViewHandler(c *gin.Context) {
+	renderAdmin(c, "Admin · Users", "Manage user accounts", pages.UsersContent())
+}
+
+// settingsViewHandler renders the admin settings page.
+func settingsViewHandler(c *gin.Context) {
+	renderAdmin(c, "Admin · Settings", "Application configuration", pages.SettingsContent())
+}
+
+// logsViewHandler renders the admin logs page.
+func logsViewHandler(c *gin.Context) {
+	renderAdmin(c, "Admin · Logs", "Application and audit logs", pages.LogsContent())
+}
+
+// renderAdmin renders an admin page with the standard layout and meta tags.
+func renderAdmin(c *gin.Context, title, description string, body templ.Component) {
+	metaTags := pages.MetaTags("jughead admin", description)
+	tmpl := templates.Layout(title, "light", metaTags, body)
 
 	if err := htmx.NewResponse().RenderTempl(c.Request.Context(), c.Writer, tmpl); err != nil {
 		c.AbortWithStatus(http.StatusInternalServerError)

@@ -6,72 +6,156 @@ import (
 	"github.com/iota-uz/icons/phosphor"
 )
 
-// menuIcons maps each sidebar menu item to its phosphor icon component.
-func menuIcons() map[string]templ.Component {
-	return map[string]templ.Component{
-		"Overview": phosphor.House(phosphor.Props{Size: "20", Variant: phosphor.Regular}),
-		"Sites":    phosphor.Globe(phosphor.Props{Size: "20", Variant: phosphor.Regular}),
-		"Users":    phosphor.Users(phosphor.Props{Size: "20", Variant: phosphor.Regular}),
-		"Settings": phosphor.Gear(phosphor.Props{Size: "20", Variant: phosphor.Regular}),
-		"Logs":     phosphor.Scroll(phosphor.Props{Size: "20", Variant: phosphor.Regular}),
-		"Sign out": phosphor.SignOut(phosphor.Props{Size: "20", Variant: phosphor.Regular}),
+// adminMenuEntry is a single sidebar entry: label, href, and the phosphor
+// icon component to render next to the label.
+type adminMenuEntry struct {
+	Label string
+	Href  string
+	Icon  templ.Component
+}
+
+// adminMenuEntries is the canonical ordered list of admin sidebar items.
+// The active entry is marked by the caller via markAdminMenuActive.
+func adminMenuEntries() []adminMenuEntry {
+	return []adminMenuEntry{
+		{"Overview", "/admin", phosphor.House(phosphor.Props{Size: "20", Variant: phosphor.Regular})},
+		{"Sites", "/admin/sites", phosphor.Globe(phosphor.Props{Size: "20", Variant: phosphor.Regular})},
+		{"Users", "/admin/users", phosphor.Users(phosphor.Props{Size: "20", Variant: phosphor.Regular})},
+		{"Settings", "/admin/settings", phosphor.Gear(phosphor.Props{Size: "20", Variant: phosphor.Regular})},
+		{"Logs", "/admin/logs", phosphor.Scroll(phosphor.Props{Size: "20", Variant: phosphor.Regular})},
+		{"Sign out", "/logout", phosphor.SignOut(phosphor.Props{Size: "20", Variant: phosphor.Regular})},
 	}
 }
 
-// menuItems builds the admin sidebar navigation items, attaching the matching
-// icon to each entry.
-func menuItems() []daisyui.MenuItem {
-	entries := []struct {
-		Label string
-		Href  string
-	}{
-		{"Overview", "/admin"},
-		{"Sites", "/admin/sites"},
-		{"Users", "/admin/users"},
-		{"Settings", "/admin/settings"},
-		{"Logs", "/admin/logs"},
-		{"Sign out", "/logout"},
-	}
-	icons := menuIcons()
-	items := make([]daisyui.MenuItem, 0, len(entries))
-	for _, e := range entries {
-		items = append(items, daisyui.MenuItem{
-			Label: e.Label,
-			Href:  e.Href,
-			Icon:  icons[e.Label],
-		})
-	}
-	return items
-}
-
-// navItems builds the navbar-end items.
-func navItems() []daisyui.NavItem {
+// adminNavItems builds the navbar-end items for the admin AppShell.
+func adminNavItems() []daisyui.NavItem {
 	return []daisyui.NavItem{
 		{Label: "Docs", Href: "https://github.com/geoffjay/jughead"},
 	}
 }
 
-// pageContent renders the admin main region: a placeholder overview.
-templ pageContent() {
-	<div class="w-full p-8">
-		<div class="mx-auto max-w-6xl space-y-6">
-			<h1 class="text-3xl font-bold">Admin</h1>
-			<p class="text-base-content/70">Nothing here yet.</p>
+// adminMenuItems builds the sidebar menu items, marking the entry whose Href
+// matches activeHref as active.
+func adminMenuItems(activeHref string) []daisyui.MenuItem {
+	entries := adminMenuEntries()
+	items := make([]daisyui.MenuItem, 0, len(entries))
+	for _, e := range entries {
+		items = append(items, daisyui.MenuItem{
+			Label:  e.Label,
+			Href:   e.Href,
+			Icon:   e.Icon,
+			Active: e.Href == activeHref,
+		})
+	}
+	return items
+}
+
+// adminShell renders the admin AppShell with the given active menu entry and
+// page content. It is the shared entry point used by every admin page.
+templ adminShell(activeHref string, content templ.Component) {
+	@containers.AppShell(containers.AppShellConfig{
+		Title:        "Jughead",
+		TitleHref:    "/admin",
+		NavItems:     adminNavItems(),
+		MenuItems:    adminMenuItems(activeHref),
+		Content:      content,
+		SidebarState: containers.SidebarOpen,
+	})
+}
+
+// pageHeader renders the standard admin page title + subtitle header.
+templ pageHeader(title, subtitle string) {
+	<div class="mb-6">
+		<h1 class="text-3xl font-bold">{ title }</h1>
+		if subtitle != "" {
+			<p class="text-base-content/70 mt-1">{ subtitle }</p>
+		}
+	</div>
+}
+
+// emptyState renders a placeholder card used by not-yet-implemented admin
+// sections.
+templ emptyState(label string) {
+	<div class="card bg-base-100 shadow-sm border border-base-300">
+		<div class="card-body">
+			<h2 class="card-title text-base-content/60">{ label }</h2>
+			<p class="text-base-content/50">Nothing here yet.</p>
 		</div>
 	</div>
 }
 
-// AdminContent renders the admin page using the AppShell container: a fixed
-// navbar header with an Aperture sidebar-toggle button, a left navigation
-// sidebar persisted to localStorage, and the page content filling the
-// remaining space.
+// --- Overview -------------------------------------------------------------
+templ overviewContent() {
+	<div class="w-full p-8">
+		<div class="mx-auto max-w-6xl space-y-6">
+			@pageHeader("Admin", "Nothing here yet.")
+			@emptyState("Overview")
+		</div>
+	</div>
+}
+
+// AdminContent renders the admin overview page using the AppShell container.
 templ AdminContent() {
-	@containers.AppShell(containers.AppShellConfig{
-		Title:        "Jughead",
-		TitleHref:    "/admin",
-		NavItems:     navItems(),
-		MenuItems:    menuItems(),
-		Content:      pageContent(),
-		SidebarState: containers.SidebarOpen,
-	})
+	@adminShell("/admin", overviewContent())
+}
+
+// --- Sites ---------------------------------------------------------------
+templ sitesContent() {
+	<div class="w-full p-8">
+		<div class="mx-auto max-w-6xl space-y-6">
+			@pageHeader("Sites", "Manage configured sites and their themes.")
+			@emptyState("Sites")
+		</div>
+	</div>
+}
+
+// SitesContent renders the admin sites page using the AppShell container.
+templ SitesContent() {
+	@adminShell("/admin/sites", sitesContent())
+}
+
+// --- Users ---------------------------------------------------------------
+templ usersContent() {
+	<div class="w-full p-8">
+		<div class="mx-auto max-w-6xl space-y-6">
+			@pageHeader("Users", "Manage user accounts and access.")
+			@emptyState("Users")
+		</div>
+	</div>
+}
+
+// UsersContent renders the admin users page using the AppShell container.
+templ UsersContent() {
+	@adminShell("/admin/users", usersContent())
+}
+
+// --- Settings ------------------------------------------------------------
+templ settingsContent() {
+	<div class="w-full p-8">
+		<div class="mx-auto max-w-6xl space-y-6">
+			@pageHeader("Settings", "Application and workspace configuration.")
+			@emptyState("Settings")
+		</div>
+	</div>
+}
+
+// SettingsContent renders the admin settings page using the AppShell
+// container.
+templ SettingsContent() {
+	@adminShell("/admin/settings", settingsContent())
+}
+
+// --- Logs ----------------------------------------------------------------
+templ logsContent() {
+	<div class="w-full p-8">
+		<div class="mx-auto max-w-6xl space-y-6">
+			@pageHeader("Logs", "Application and audit logs.")
+			@emptyState("Logs")
+		</div>
+	</div>
+}
+
+// LogsContent renders the admin logs page using the AppShell container.
+templ LogsContent() {
+	@adminShell("/admin/logs", logsContent())
 }

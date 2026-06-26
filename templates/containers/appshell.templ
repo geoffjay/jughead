@@ -172,8 +172,9 @@ templ menuEntry(item daisyui.MenuItem, cfg AppShellConfig) {
 			data-appshell="menu-entry"
 		>
 			if item.Icon != nil {
-				<span class="shrink-0">@item.Icon
-</span>
+				<span class="shrink-0">
+					@item.Icon
+				</span>
 			}
 			<span data-appshell="menu-label">{ item.Label }</span>
 		</a>
@@ -184,8 +185,9 @@ templ menuEntry(item daisyui.MenuItem, cfg AppShellConfig) {
 			disabled?={ item.Disabled }
 		>
 			if item.Icon != nil {
-				<span class="shrink-0">@item.Icon
-</span>
+				<span class="shrink-0">
+					@item.Icon
+				</span>
 			}
 			<span data-appshell="menu-label">{ item.Label }</span>
 		</button>

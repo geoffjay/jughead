@@ -71,11 +71,7 @@ func runServer() error {
 
 	store := sessions.NewStore()
 
-	router.Use(middleware.ReverseProxy(map[string]string{
-		"domain1.tld":       fmt.Sprintf("http://localhost:%d/sites/domain1.tld", port),
-		"domain2.tld":       fmt.Sprintf("http://localhost:%d/sites/domain2.tld", port),
-		"quux.geoffjay.com": fmt.Sprintf("http://localhost:%d/sites/quux.geoffjay.com", port),
-	}))
+	registerSiteRoutes(router, port)
 
 	router.HTMLRender = &TemplRender{}
 	router.Static("/static", "./static")
@@ -138,9 +134,7 @@ func runServer() error {
 	router.POST("/login", loginSubmitHandler(store))
 	router.GET("/logout", logoutHandler(store))
 
-	admin := router.Group("/admin", middleware.AuthRequired(store))
-	admin.GET("", adminViewHandler)
-	admin.GET("/", adminViewHandler)
+	registerAdminRoutes(router, store)
 
 	server := &http.Server{
 		Addr:         fmt.Sprintf(":%d", port),
@@ -152,4 +146,22 @@ func runServer() error {
 	slog.Info("Starting server...", "port", port)
 
 	return server.ListenAndServe()
+}
+
+func registerSiteRoutes(router *gin.Engine, port int) {
+	router.Use(middleware.ReverseProxy(map[string]string{
+		"domain1.tld":       fmt.Sprintf("http://localhost:%d/sites/domain1.tld", port),
+		"domain2.tld":       fmt.Sprintf("http://localhost:%d/sites/domain2.tld", port),
+		"quux.geoffjay.com": fmt.Sprintf("http://localhost:%d/sites/quux.geoffjay.com", port),
+	}))
+}
+
+func registerAdminRoutes(router *gin.Engine, store *sessions.Store) {
+	admin := router.Group("/admin", middleware.AuthRequired(store))
+	admin.GET("", adminViewHandler)
+	admin.GET("/", adminViewHandler)
+	admin.GET("/sites", sitesViewHandler)
+	admin.GET("/users", usersViewHandler)
+	admin.GET("/settings", settingsViewHandler)
+	admin.GET("/logs", logsViewHandler)
 }
