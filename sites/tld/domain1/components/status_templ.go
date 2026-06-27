@@ -69,35 +69,22 @@ func statusBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Status sizes", `<div aria-label="status" class="status status-xs"></div>
-<div aria-label="status" class="status status-sm"></div>
-<div aria-label="status" class="status status-md"></div>
-<div aria-label="status" class="status status-lg"></div>
-<div aria-label="status" class="status status-xl"></div>`, templ.Raw(`
-		<div aria-label="status" class="status status-xs"></div>
-		<div aria-label="status" class="status status-sm"></div>
-		<div aria-label="status" class="status status-md"></div>
-		<div aria-label="status" class="status status-lg"></div>
-		<div aria-label="status" class="status status-xl"></div>`)).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Status sizes", `@daisyui.Status("", "xs", "", "status", "")
+@daisyui.Status("", "sm", "", "status", "")
+@daisyui.Status("", "md", "", "status", "")
+@daisyui.Status("", "lg", "", "status", "")
+@daisyui.Status("", "xl", "", "status", "")`, statusSizeRow()).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Status with colors", `<div aria-label="status" class="status status-primary"></div>
-<div aria-label="status" class="status status-secondary"></div>
-<div aria-label="status" class="status status-accent"></div>
-<div aria-label="status" class="status status-neutral"></div>
-<div aria-label="info" class="status status-info"></div>
-<div aria-label="success" class="status status-success"></div>
-<div aria-label="warning" class="status status-warning"></div>
-<div aria-label="error" class="status status-error"></div>`, templ.Raw(`
-		<div aria-label="status" class="status status-primary"></div>
-		<div aria-label="status" class="status status-secondary"></div>
-		<div aria-label="status" class="status status-accent"></div>
-		<div aria-label="status" class="status status-neutral"></div>
-		<div aria-label="info" class="status status-info"></div>
-		<div aria-label="success" class="status status-success"></div>
-		<div aria-label="warning" class="status status-warning"></div>
-		<div aria-label="error" class="status status-error"></div>`)).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Status with colors", `@daisyui.Status("primary", "", "", "status", "")
+@daisyui.Status("secondary", "", "", "status", "")
+@daisyui.Status("accent", "", "", "status", "")
+@daisyui.Status("neutral", "", "", "status", "")
+@daisyui.Status("info", "", "", "info", "")
+@daisyui.Status("success", "", "", "success", "")
+@daisyui.Status("warning", "", "", "warning", "")
+@daisyui.Status("error", "", "", "error", "")`, statusColorRow()).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -106,6 +93,108 @@ func statusBody(r links.LinkResolver) templ.Component {
 			return templ_7745c5c3_Err
 		}
 		templ_7745c5c3_Err = section("Status with bounce animation", `@daisyui.Status("info", "", "animate-bounce", "status", "")`, daisyui.Status("info", "", "animate-bounce", "status", "")).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
+func statusSizeRow() templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var3 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var3 == nil {
+			templ_7745c5c3_Var3 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = daisyui.Status("", "xs", "", "status", "").Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Status("", "sm", "", "status", "").Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Status("", "md", "", "status", "").Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Status("", "lg", "", "status", "").Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Status("", "xl", "", "status", "").Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
+func statusColorRow() templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var4 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var4 == nil {
+			templ_7745c5c3_Var4 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = daisyui.Status("primary", "", "", "status", "").Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Status("secondary", "", "", "status", "").Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Status("accent", "", "", "status", "").Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Status("neutral", "", "", "status", "").Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Status("info", "", "", "info", "").Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Status("success", "", "", "success", "").Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Status("warning", "", "", "warning", "").Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Status("error", "", "", "error", "").Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

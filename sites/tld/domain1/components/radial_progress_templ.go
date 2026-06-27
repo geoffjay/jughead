@@ -74,19 +74,12 @@ func radialProgressBody(r links.LinkResolver) templ.Component {
 			return templ_7745c5c3_Err
 		}
 		templ_7745c5c3_Err = section("Different values", `<div class="flex gap-4">
-	<div class="radial-progress" style="--value:0;" aria-valuenow="0" role="progressbar">0%</div>
-	<div class="radial-progress" style="--value:20;" aria-valuenow="20" role="progressbar">20%</div>
-	<div class="radial-progress" style="--value:60;" aria-valuenow="60" role="progressbar">60%</div>
-	<div class="radial-progress" style="--value:80;" aria-valuenow="80" role="progressbar">80%</div>
-	<div class="radial-progress" style="--value:100;" aria-valuenow="100" role="progressbar">100%</div>
-</div>`, templ.Raw(`
-		<div class="flex gap-4">
-			<div class="radial-progress" style="--value:0;" aria-valuenow="0" role="progressbar">0%</div>
-			<div class="radial-progress" style="--value:20;" aria-valuenow="20" role="progressbar">20%</div>
-			<div class="radial-progress" style="--value:60;" aria-valuenow="60" role="progressbar">60%</div>
-			<div class="radial-progress" style="--value:80;" aria-valuenow="80" role="progressbar">80%</div>
-			<div class="radial-progress" style="--value:100;" aria-valuenow="100" role="progressbar">100%</div>
-		</div>`)).Render(ctx, templ_7745c5c3_Buffer)
+	@daisyui.RadialProgress(daisyui.RadialProgressConfig{Value: "0", Label: "0%"})
+	@daisyui.RadialProgress(daisyui.RadialProgressConfig{Value: "20", Label: "20%"})
+	@daisyui.RadialProgress(daisyui.RadialProgressConfig{Value: "60", Label: "60%"})
+	@daisyui.RadialProgress(daisyui.RadialProgressConfig{Value: "80", Label: "80%"})
+	@daisyui.RadialProgress(daisyui.RadialProgressConfig{Value: "100", Label: "100%"})
+</div>`, radialProgressValuesRow()).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -109,13 +102,103 @@ func radialProgressBody(r links.LinkResolver) templ.Component {
 			return templ_7745c5c3_Err
 		}
 		templ_7745c5c3_Err = section("Custom size and custom thickness", `<div class="flex gap-4">
-	<div class="radial-progress" style="--value:70; --size:12rem; --thickness: 2px;" aria-valuenow="70" role="progressbar">70%</div>
-	<div class="radial-progress" style="--value:70; --size:12rem; --thickness: 2rem;" aria-valuenow="70" role="progressbar">70%</div>
-</div>`, templ.Raw(`
-		<div class="flex gap-4">
-			<div class="radial-progress" style="--value:70; --size:12rem; --thickness: 2px;" aria-valuenow="70" role="progressbar">70%</div>
-			<div class="radial-progress" style="--value:70; --size:12rem; --thickness: 2rem;" aria-valuenow="70" role="progressbar">70%</div>
-		</div>`)).Render(ctx, templ_7745c5c3_Buffer)
+	@daisyui.RadialProgress(daisyui.RadialProgressConfig{Value: "70", Label: "70%", Size: "12rem", Thickness: "2px"})
+	@daisyui.RadialProgress(daisyui.RadialProgressConfig{Value: "70", Label: "70%", Size: "12rem", Thickness: "2rem"})
+</div>`, radialProgressSizeRow()).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
+func radialProgressValuesRow() templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var3 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var3 == nil {
+			templ_7745c5c3_Var3 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<div class=\"flex gap-4\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.RadialProgress(daisyui.RadialProgressConfig{Value: "0", Label: "0%"}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.RadialProgress(daisyui.RadialProgressConfig{Value: "20", Label: "20%"}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.RadialProgress(daisyui.RadialProgressConfig{Value: "60", Label: "60%"}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.RadialProgress(daisyui.RadialProgressConfig{Value: "80", Label: "80%"}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.RadialProgress(daisyui.RadialProgressConfig{Value: "100", Label: "100%"}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "</div>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
+func radialProgressSizeRow() templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var4 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var4 == nil {
+			templ_7745c5c3_Var4 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "<div class=\"flex gap-4\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.RadialProgress(daisyui.RadialProgressConfig{Value: "70", Label: "70%", Size: "12rem", Thickness: "2px"}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.RadialProgress(daisyui.RadialProgressConfig{Value: "70", Label: "70%", Size: "12rem", Thickness: "2rem"}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "</div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

@@ -45,24 +45,22 @@ templ selectBody(r links.LinkResolver) {
 	@section("With fieldset and labels", `@daisyui.Fieldset(daisyui.FieldsetConfig{
 	Legend: "Browsers",
 	Class:  "w-xs",
-}, templ.Raw(...)) // children:
-<select class="select">
-	<option disabled selected>Pick a Browser</option>
-	<option>Chrome</option>
-	<option>FireFox</option>
-	<option>Safari</option>
-</select>
-<span class="label">Optional</span>`, daisyui.Fieldset(daisyui.FieldsetConfig{
+}, selectFieldsetBody())
+
+templ selectFieldsetBody() {
+	@daisyui.Select(daisyui.SelectConfig{
+		Placeholder: "Pick a Browser",
+		Options: []daisyui.SelectOption{
+			{Value: "Chrome"},
+			{Value: "FireFox"},
+			{Value: "Safari"},
+		},
+	})
+	<span class="label">Optional</span>
+}`, daisyui.Fieldset(daisyui.FieldsetConfig{
 		Legend: "Browsers",
 		Class:  "w-xs",
-	}, templ.Raw(`
-		<select class="select">
-			<option disabled selected>Pick a Browser</option>
-			<option>Chrome</option>
-			<option>FireFox</option>
-			<option>Safari</option>
-		</select>
-		<span class="label">Optional</span>`)))
+	}, selectFieldsetBody()))
 	@section("Primary color", `@daisyui.Select(daisyui.SelectConfig{
 	Placeholder: "Pick a text editor",
 	Color:       "primary",
@@ -228,6 +226,18 @@ templ selectBody(r links.LinkResolver) {
 			{Value: "Velvet"},
 		},
 	}))
+}
+
+templ selectFieldsetBody() {
+	@daisyui.Select(daisyui.SelectConfig{
+		Placeholder: "Pick a Browser",
+		Options: []daisyui.SelectOption{
+			{Value: "Chrome"},
+			{Value: "FireFox"},
+			{Value: "Safari"},
+		},
+	})
+	<span class="label">Optional</span>
 }
 
 templ selectSizeRow() {

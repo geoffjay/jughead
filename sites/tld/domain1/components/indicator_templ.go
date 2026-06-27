@@ -97,12 +97,12 @@ func indicatorBody(r links.LinkResolver) templ.Component {
 	Items: []daisyui.IndicatorItemConfig{
 		{Class: "badge badge-secondary", Children: templ.Raw("12")},
 	},
-	Children: templ.Raw(...),
+	Children: daisyui.Button(daisyui.ButtonConfig{Label: "inbox"}),
 })`, daisyui.Indicator(daisyui.IndicatorConfig{
 			Items: []daisyui.IndicatorItemConfig{
 				{Class: "badge badge-secondary", Children: templ.Raw("12")},
 			},
-			Children: templ.Raw(`<button class="btn">inbox</button>`),
+			Children: daisyui.Button(daisyui.ButtonConfig{Label: "inbox"}),
 		})).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
@@ -111,12 +111,12 @@ func indicatorBody(r links.LinkResolver) templ.Component {
 	Items: []daisyui.IndicatorItemConfig{
 		{Class: "badge", Children: templ.Raw("Required")},
 	},
-	Children: templ.Raw(...),
+	Children: daisyui.Input(daisyui.InputConfig{Type: "text", Placeholder: "Your email address", Class: "input-bordered"}),
 })`, daisyui.Indicator(daisyui.IndicatorConfig{
 			Items: []daisyui.IndicatorItemConfig{
 				{Class: "badge", Children: templ.Raw("Required")},
 			},
-			Children: templ.Raw(`<input type="text" placeholder="Your email address" class="input input-bordered" />`),
+			Children: daisyui.Input(daisyui.InputConfig{Type: "text", Placeholder: "Your email address", Class: "input-bordered"}),
 		})).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
@@ -124,13 +124,13 @@ func indicatorBody(r links.LinkResolver) templ.Component {
 		templ_7745c5c3_Err = section("A button as an indicator for a card", `@daisyui.Indicator(daisyui.IndicatorConfig{
 	Class: "my-6 mx-10",
 	Items: []daisyui.IndicatorItemConfig{
-		{Vertical: "bottom", Children: templ.Raw(...)},
+		{Vertical: "bottom", Children: daisyui.Button(daisyui.ButtonConfig{Label: "Apply", Color: "primary"})},
 	},
 	Children: templ.Raw(...),
 })`, daisyui.Indicator(daisyui.IndicatorConfig{
 			Class: "my-6 mx-10",
 			Items: []daisyui.IndicatorItemConfig{
-				{Vertical: "bottom", Children: templ.Raw(`<button class="btn btn-primary">Apply</button>`)},
+				{Vertical: "bottom", Children: daisyui.Button(daisyui.ButtonConfig{Label: "Apply", Color: "primary"})},
 			},
 			Children: templ.Raw(`<div class="border border-base-300 shadow-sm card bg-base-100"><div class="card-body"><h2 class="card-title">Job Title</h2><p>Rerum reiciendis beatae tenetur excepturi</p></div></div>`),
 		})).Render(ctx, templ_7745c5c3_Buffer)

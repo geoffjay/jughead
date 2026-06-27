@@ -10,100 +10,146 @@ templ JoinPage(r links.LinkResolver) {
 }
 
 templ joinBody(r links.LinkResolver) {
-	@section("Join", `<div class="join">
-	<button class="btn join-item">Button</button>
-	<button class="btn join-item">Button</button>
-	<button class="btn join-item">Button</button>
-</div>`, templ.Raw(`
-		<div class="join">
-			<button class="btn join-item">Button</button>
-			<button class="btn join-item">Button</button>
-			<button class="btn join-item">Button</button>
-		</div>`))
+	@section("Join", `@daisyui.Join(
+	[]templ.Component{
+		daisyui.Button(daisyui.ButtonConfig{Label: "Button", Class: "join-item"}),
+		daisyui.Button(daisyui.ButtonConfig{Label: "Button", Class: "join-item"}),
+		daisyui.Button(daisyui.ButtonConfig{Label: "Button", Class: "join-item"}),
+	},
+	"",
+	"",
+)`, daisyui.Join(
+		[]templ.Component{
+			daisyui.Button(daisyui.ButtonConfig{Label: "Button", Class: "join-item"}),
+			daisyui.Button(daisyui.ButtonConfig{Label: "Button", Class: "join-item"}),
+			daisyui.Button(daisyui.ButtonConfig{Label: "Button", Class: "join-item"}),
+		},
+		"",
+		"",
+	))
 	@section("Group items vertically", `@daisyui.Join(
 	[]templ.Component{
-		templ.Raw(...),
-		templ.Raw(...),
-		templ.Raw(...),
+		daisyui.Button(daisyui.ButtonConfig{Label: "Button", Class: "join-item"}),
+		daisyui.Button(daisyui.ButtonConfig{Label: "Button", Class: "join-item"}),
+		daisyui.Button(daisyui.ButtonConfig{Label: "Button", Class: "join-item"}),
 	},
 	"vertical",
 	"",
 )`, daisyui.Join(
 		[]templ.Component{
-			templ.Raw(`<button class="btn join-item">Button</button>`),
-			templ.Raw(`<button class="btn join-item">Button</button>`),
-			templ.Raw(`<button class="btn join-item">Button</button>`),
+			daisyui.Button(daisyui.ButtonConfig{Label: "Button", Class: "join-item"}),
+			daisyui.Button(daisyui.ButtonConfig{Label: "Button", Class: "join-item"}),
+			daisyui.Button(daisyui.ButtonConfig{Label: "Button", Class: "join-item"}),
 		},
 		"vertical",
 		"",
 	))
 	@section("Responsive: vertical on small, horizontal on large", `@daisyui.Join(
 	[]templ.Component{
-		templ.Raw(...),
-		templ.Raw(...),
-		templ.Raw(...),
+		daisyui.Button(daisyui.ButtonConfig{Label: "Button", Class: "join-item"}),
+		daisyui.Button(daisyui.ButtonConfig{Label: "Button", Class: "join-item"}),
+		daisyui.Button(daisyui.ButtonConfig{Label: "Button", Class: "join-item"}),
 	},
 	"vertical lg:join-horizontal",
 	"",
 )`, daisyui.Join(
 		[]templ.Component{
-			templ.Raw(`<button class="btn join-item">Button</button>`),
-			templ.Raw(`<button class="btn join-item">Button</button>`),
-			templ.Raw(`<button class="btn join-item">Button</button>`),
+			daisyui.Button(daisyui.ButtonConfig{Label: "Button", Class: "join-item"}),
+			daisyui.Button(daisyui.ButtonConfig{Label: "Button", Class: "join-item"}),
+			daisyui.Button(daisyui.ButtonConfig{Label: "Button", Class: "join-item"}),
 		},
 		"vertical lg:join-horizontal",
 		"",
 	))
-	@section("With extra elements in the group", `<div class="join">
+	@section("With extra elements in the group", `@daisyui.Join(
+	[]templ.Component{
+		joinSearchInput(),
+		daisyui.Select(daisyui.SelectConfig{
+			Placeholder: "Filter",
+			Options: []daisyui.SelectOption{
+				{Value: "Sci-fi"},
+				{Value: "Drama"},
+				{Value: "Action"},
+			},
+			Class: "join-item w-[5.8rem] md:w-auto",
+		}),
+		daisyui.Indicator(daisyui.IndicatorConfig{
+			Items: []daisyui.IndicatorItemConfig{
+				{Class: "badge badge-secondary", Children: templ.Raw("new")},
+			},
+			Children: daisyui.Button(daisyui.ButtonConfig{Label: "Search", Class: "join-item"}),
+		}),
+	},
+	"",
+	"",
+)
+
+templ joinSearchInput() {
 	<div>
 		<div>
-			<input class="input join-item w-[5.3rem] md:w-52" placeholder="Search"/>
+			@daisyui.Input(daisyui.InputConfig{Placeholder: "Search", Class: "join-item w-[5.3rem] md:w-52"})
 		</div>
 	</div>
-	<select class="select join-item w-[5.8rem] md:w-auto">
-		<option disabled selected>Filter</option>
-		<option>Sci-fi</option>
-		<option>Drama</option>
-		<option>Action</option>
-	</select>
-	<div class="indicator">
-		<span class="indicator-item badge badge-secondary">new</span>
-		<button class="btn join-item">Search</button>
+}`, daisyui.Join(
+		[]templ.Component{
+			joinSearchInput(),
+			daisyui.Select(daisyui.SelectConfig{
+				Placeholder: "Filter",
+				Options: []daisyui.SelectOption{
+					{Value: "Sci-fi"},
+					{Value: "Drama"},
+					{Value: "Action"},
+				},
+				Class: "join-item w-[5.8rem] md:w-auto",
+			}),
+			daisyui.Indicator(daisyui.IndicatorConfig{
+				Items: []daisyui.IndicatorItemConfig{
+					{Class: "badge badge-secondary", Children: templ.Raw("new")},
+				},
+				Children: daisyui.Button(daisyui.ButtonConfig{Label: "Search", Class: "join-item"}),
+			}),
+		},
+		"",
+		"",
+	))
+	@section("Custom border radius", `@daisyui.Join(
+	[]templ.Component{
+		daisyui.Input(daisyui.InputConfig{Placeholder: "Email", Class: "join-item w-36 lg:w-52"}),
+		daisyui.Button(daisyui.ButtonConfig{Label: "Subscribe", Class: "join-item rounded-r-full"}),
+	},
+	"",
+	"",
+)`, daisyui.Join(
+		[]templ.Component{
+			daisyui.Input(daisyui.InputConfig{Placeholder: "Email", Class: "join-item w-36 lg:w-52"}),
+			daisyui.Button(daisyui.ButtonConfig{Label: "Subscribe", Class: "join-item rounded-r-full"}),
+		},
+		"",
+		"",
+	))
+	@section("Join radio inputs with btn style", `@daisyui.Join(
+	[]templ.Component{
+		templ.Raw(...),
+		templ.Raw(...),
+		templ.Raw(...),
+	},
+	"",
+	"",
+)`, daisyui.Join(
+		[]templ.Component{
+			templ.Raw(`<input class="join-item btn" type="radio" name="options" autocomplete="off" aria-label="Radio 1"/>`),
+			templ.Raw(`<input class="join-item btn" type="radio" name="options" autocomplete="off" aria-label="Radio 2"/>`),
+			templ.Raw(`<input class="join-item btn" type="radio" name="options" autocomplete="off" aria-label="Radio 3"/>`),
+		},
+		"",
+		"",
+	))
+}
+
+templ joinSearchInput() {
+	<div>
+		<div>
+			@daisyui.Input(daisyui.InputConfig{Placeholder: "Search", Class: "join-item w-[5.3rem] md:w-52"})
+		</div>
 	</div>
-</div>`, templ.Raw(`
-		<div class="join">
-			<div>
-				<div>
-					<input class="input join-item w-[5.3rem] md:w-52" placeholder="Search"/>
-				</div>
-			</div>
-			<select class="select join-item w-[5.8rem] md:w-auto">
-				<option disabled selected>Filter</option>
-				<option>Sci-fi</option>
-				<option>Drama</option>
-				<option>Action</option>
-			</select>
-			<div class="indicator">
-				<span class="indicator-item badge badge-secondary">new</span>
-				<button class="btn join-item">Search</button>
-			</div>
-		</div>`))
-	@section("Custom border radius", `<div class="join">
-	<input class="input join-item w-36 lg:w-52" placeholder="Email"/>
-	<button class="btn join-item rounded-r-full">Subscribe</button>
-</div>`, templ.Raw(`
-		<div class="join">
-			<input class="input join-item w-36 lg:w-52" placeholder="Email"/>
-			<button class="btn join-item rounded-r-full">Subscribe</button>
-		</div>`))
-	@section("Join radio inputs with btn style", `<div class="join">
-	<input class="join-item btn" type="radio" name="options" autocomplete="off" aria-label="Radio 1"/>
-	<input class="join-item btn" type="radio" name="options" autocomplete="off" aria-label="Radio 2"/>
-	<input class="join-item btn" type="radio" name="options" autocomplete="off" aria-label="Radio 3"/>
-</div>`, templ.Raw(`
-		<div class="join">
-			<input class="join-item btn" type="radio" name="options" autocomplete="off" aria-label="Radio 1"/>
-			<input class="join-item btn" type="radio" name="options" autocomplete="off" aria-label="Radio 2"/>
-			<input class="join-item btn" type="radio" name="options" autocomplete="off" aria-label="Radio 3"/>
-		</div>`))
 }

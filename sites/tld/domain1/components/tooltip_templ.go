@@ -67,20 +67,20 @@ func tooltipBody(r links.LinkResolver) templ.Component {
 		ctx = templ.ClearChildren(ctx)
 		templ_7745c5c3_Err = section("Tooltip", `@daisyui.Tooltip(daisyui.TooltipConfig{
 	Tip:      "hello",
-	Children: templ.Raw(...),
+	Children: daisyui.Button(daisyui.ButtonConfig{Label: "Hover me"}),
 })`, daisyui.Tooltip(daisyui.TooltipConfig{
 			Tip:      "hello",
-			Children: templ.Raw(`<button class="btn">Hover me</button>`),
+			Children: daisyui.Button(daisyui.ButtonConfig{Label: "Hover me"}),
 		})).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		templ_7745c5c3_Err = section("Tooltip with tooltip-content", `@daisyui.Tooltip(daisyui.TooltipConfig{
 	Content:  templ.Raw(...),
-	Children: templ.Raw(...),
+	Children: daisyui.Button(daisyui.ButtonConfig{Label: "Hover me"}),
 })`, daisyui.Tooltip(daisyui.TooltipConfig{
 			Content:  templ.Raw(`<div class="animate-bounce text-orange-400 -rotate-10 text-2xl font-black">Wow!</div>`),
-			Children: templ.Raw(`<button class="btn">Hover me</button>`),
+			Children: daisyui.Button(daisyui.ButtonConfig{Label: "Hover me"}),
 		})).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
@@ -88,121 +88,121 @@ func tooltipBody(r links.LinkResolver) templ.Component {
 		templ_7745c5c3_Err = section("Force open", `@daisyui.Tooltip(daisyui.TooltipConfig{
 	Tip:      "hello",
 	Open:     true,
-	Children: templ.Raw(...),
+	Children: daisyui.Button(daisyui.ButtonConfig{Label: "Force open"}),
 })`, daisyui.Tooltip(daisyui.TooltipConfig{
 			Tip:      "hello",
 			Open:     true,
-			Children: templ.Raw(`<button class="btn">Force open</button>`),
+			Children: daisyui.Button(daisyui.ButtonConfig{Label: "Force open"}),
 		})).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		templ_7745c5c3_Err = section("Top", `@daisyui.Tooltip(daisyui.TooltipConfig{
 	Tip: "hello", Position: "top", Open: true,
-	Children: templ.Raw(...),
+	Children: daisyui.Button(daisyui.ButtonConfig{Label: "Top"}),
 })`, daisyui.Tooltip(daisyui.TooltipConfig{
 			Tip: "hello", Position: "top", Open: true,
-			Children: templ.Raw(`<button class="btn">Top</button>`),
+			Children: daisyui.Button(daisyui.ButtonConfig{Label: "Top"}),
 		})).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		templ_7745c5c3_Err = section("Bottom", `@daisyui.Tooltip(daisyui.TooltipConfig{
 	Tip: "hello", Position: "bottom", Open: true,
-	Children: templ.Raw(...),
+	Children: daisyui.Button(daisyui.ButtonConfig{Label: "Bottom"}),
 })`, daisyui.Tooltip(daisyui.TooltipConfig{
 			Tip: "hello", Position: "bottom", Open: true,
-			Children: templ.Raw(`<button class="btn">Bottom</button>`),
+			Children: daisyui.Button(daisyui.ButtonConfig{Label: "Bottom"}),
 		})).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		templ_7745c5c3_Err = section("Left", `@daisyui.Tooltip(daisyui.TooltipConfig{
 	Tip: "hello", Position: "left", Open: true,
-	Children: templ.Raw(...),
+	Children: daisyui.Button(daisyui.ButtonConfig{Label: "Left"}),
 })`, daisyui.Tooltip(daisyui.TooltipConfig{
 			Tip: "hello", Position: "left", Open: true,
-			Children: templ.Raw(`<button class="btn">Left</button>`),
+			Children: daisyui.Button(daisyui.ButtonConfig{Label: "Left"}),
 		})).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		templ_7745c5c3_Err = section("Right", `@daisyui.Tooltip(daisyui.TooltipConfig{
 	Tip: "hello", Position: "right", Open: true,
-	Children: templ.Raw(...),
+	Children: daisyui.Button(daisyui.ButtonConfig{Label: "Right"}),
 })`, daisyui.Tooltip(daisyui.TooltipConfig{
 			Tip: "hello", Position: "right", Open: true,
-			Children: templ.Raw(`<button class="btn">Right</button>`),
+			Children: daisyui.Button(daisyui.ButtonConfig{Label: "Right"}),
 		})).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		templ_7745c5c3_Err = section("Primary color", `@daisyui.Tooltip(daisyui.TooltipConfig{
 	Tip: "primary", Color: "primary", Open: true,
-	Children: templ.Raw(...),
+	Children: daisyui.Button(daisyui.ButtonConfig{Label: "primary", Color: "primary"}),
 })`, daisyui.Tooltip(daisyui.TooltipConfig{
 			Tip: "primary", Color: "primary", Open: true,
-			Children: templ.Raw(`<button class="btn btn-primary">primary</button>`),
+			Children: daisyui.Button(daisyui.ButtonConfig{Label: "primary", Color: "primary"}),
 		})).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		templ_7745c5c3_Err = section("Secondary color", `@daisyui.Tooltip(daisyui.TooltipConfig{
 	Tip: "secondary", Color: "secondary", Open: true,
-	Children: templ.Raw(...),
+	Children: daisyui.Button(daisyui.ButtonConfig{Label: "secondary", Color: "secondary"}),
 })`, daisyui.Tooltip(daisyui.TooltipConfig{
 			Tip: "secondary", Color: "secondary", Open: true,
-			Children: templ.Raw(`<button class="btn btn-secondary">secondary</button>`),
+			Children: daisyui.Button(daisyui.ButtonConfig{Label: "secondary", Color: "secondary"}),
 		})).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		templ_7745c5c3_Err = section("Accent color", `@daisyui.Tooltip(daisyui.TooltipConfig{
 	Tip: "accent", Color: "accent", Open: true,
-	Children: templ.Raw(...),
+	Children: daisyui.Button(daisyui.ButtonConfig{Label: "accent", Color: "accent"}),
 })`, daisyui.Tooltip(daisyui.TooltipConfig{
 			Tip: "accent", Color: "accent", Open: true,
-			Children: templ.Raw(`<button class="btn btn-accent">accent</button>`),
+			Children: daisyui.Button(daisyui.ButtonConfig{Label: "accent", Color: "accent"}),
 		})).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		templ_7745c5c3_Err = section("Info color", `@daisyui.Tooltip(daisyui.TooltipConfig{
 	Tip: "info", Color: "info", Open: true,
-	Children: templ.Raw(...),
+	Children: daisyui.Button(daisyui.ButtonConfig{Label: "info", Color: "info"}),
 })`, daisyui.Tooltip(daisyui.TooltipConfig{
 			Tip: "info", Color: "info", Open: true,
-			Children: templ.Raw(`<button class="btn btn-info">info</button>`),
+			Children: daisyui.Button(daisyui.ButtonConfig{Label: "info", Color: "info"}),
 		})).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		templ_7745c5c3_Err = section("Success color", `@daisyui.Tooltip(daisyui.TooltipConfig{
 	Tip: "success", Color: "success", Open: true,
-	Children: templ.Raw(...),
+	Children: daisyui.Button(daisyui.ButtonConfig{Label: "success", Color: "success"}),
 })`, daisyui.Tooltip(daisyui.TooltipConfig{
 			Tip: "success", Color: "success", Open: true,
-			Children: templ.Raw(`<button class="btn btn-success">success</button>`),
+			Children: daisyui.Button(daisyui.ButtonConfig{Label: "success", Color: "success"}),
 		})).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		templ_7745c5c3_Err = section("Warning color", `@daisyui.Tooltip(daisyui.TooltipConfig{
 	Tip: "warning", Color: "warning", Open: true,
-	Children: templ.Raw(...),
+	Children: daisyui.Button(daisyui.ButtonConfig{Label: "warning", Color: "warning"}),
 })`, daisyui.Tooltip(daisyui.TooltipConfig{
 			Tip: "warning", Color: "warning", Open: true,
-			Children: templ.Raw(`<button class="btn btn-warning">warning</button>`),
+			Children: daisyui.Button(daisyui.ButtonConfig{Label: "warning", Color: "warning"}),
 		})).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		templ_7745c5c3_Err = section("Error color", `@daisyui.Tooltip(daisyui.TooltipConfig{
 	Tip: "error", Color: "error", Open: true,
-	Children: templ.Raw(...),
+	Children: daisyui.Button(daisyui.ButtonConfig{Label: "error", Color: "error"}),
 })`, daisyui.Tooltip(daisyui.TooltipConfig{
 			Tip: "error", Color: "error", Open: true,
-			Children: templ.Raw(`<button class="btn btn-error">error</button>`),
+			Children: daisyui.Button(daisyui.ButtonConfig{Label: "error", Color: "error"}),
 		})).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
@@ -210,11 +210,11 @@ func tooltipBody(r links.LinkResolver) templ.Component {
 		templ_7745c5c3_Err = section("Responsive tooltip. only show for large screen", `@daisyui.Tooltip(daisyui.TooltipConfig{
 	Tip:      "hello",
 	Class:    "lg:tooltip",
-	Children: templ.Raw(...),
+	Children: daisyui.Button(daisyui.ButtonConfig{Label: "Hover me"}),
 })`, daisyui.Tooltip(daisyui.TooltipConfig{
 			Tip:      "hello",
 			Class:    "lg:tooltip",
-			Children: templ.Raw(`<button class="btn">Hover me</button>`),
+			Children: daisyui.Button(daisyui.ButtonConfig{Label: "Hover me"}),
 		})).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err

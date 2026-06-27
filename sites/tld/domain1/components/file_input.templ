@@ -28,25 +28,10 @@ templ fileInputBody(r links.LinkResolver) {
 	// ... one per size
 </div>`, fileInputSizeRow())
 	@section("Primary color", `<div class="grid gap-2">
-	<input type="file" class="file-input file-input-primary" />
-	<input type="file" class="file-input file-input-secondary" />
-	<input type="file" class="file-input file-input-accent" />
-	<input type="file" class="file-input file-input-neutral" />
-	<input type="file" class="file-input file-input-info" />
-	<input type="file" class="file-input file-input-success" />
-	<input type="file" class="file-input file-input-warning" />
-	<input type="file" class="file-input file-input-error" />
-</div>`, templ.Raw(`
-		<div class="grid gap-2">
-			<input type="file" class="file-input file-input-primary" />
-			<input type="file" class="file-input file-input-secondary" />
-			<input type="file" class="file-input file-input-accent" />
-			<input type="file" class="file-input file-input-neutral" />
-			<input type="file" class="file-input file-input-info" />
-			<input type="file" class="file-input file-input-success" />
-			<input type="file" class="file-input file-input-warning" />
-			<input type="file" class="file-input file-input-error" />
-		</div>`))
+	@daisyui.FileInput(daisyui.FileInputConfig{Color: "primary"})
+	@daisyui.FileInput(daisyui.FileInputConfig{Color: "secondary"})
+	// ... one per color
+</div>`, fileInputColorRow())
 	@section("Disabled", `@daisyui.FileInput(daisyui.FileInputConfig{Disabled: true})`, daisyui.FileInput(daisyui.FileInputConfig{Disabled: true}))
 }
 
@@ -57,5 +42,18 @@ templ fileInputSizeRow() {
 		@daisyui.FileInput(daisyui.FileInputConfig{Size: "md"})
 		@daisyui.FileInput(daisyui.FileInputConfig{Size: "lg"})
 		@daisyui.FileInput(daisyui.FileInputConfig{Size: "xl"})
+	</div>
+}
+
+templ fileInputColorRow() {
+	<div class="grid gap-2">
+		@daisyui.FileInput(daisyui.FileInputConfig{Color: "primary"})
+		@daisyui.FileInput(daisyui.FileInputConfig{Color: "secondary"})
+		@daisyui.FileInput(daisyui.FileInputConfig{Color: "accent"})
+		@daisyui.FileInput(daisyui.FileInputConfig{Color: "neutral"})
+		@daisyui.FileInput(daisyui.FileInputConfig{Color: "info"})
+		@daisyui.FileInput(daisyui.FileInputConfig{Color: "success"})
+		@daisyui.FileInput(daisyui.FileInputConfig{Color: "warning"})
+		@daisyui.FileInput(daisyui.FileInputConfig{Color: "error"})
 	</div>
 }

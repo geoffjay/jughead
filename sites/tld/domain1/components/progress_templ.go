@@ -66,19 +66,12 @@ func progressBody(r links.LinkResolver) templ.Component {
 		}
 		ctx = templ.ClearChildren(ctx)
 		templ_7745c5c3_Err = section("Progress", `<div class="flex flex-col gap-2 items-center">
-	<progress class="progress w-56" value="0" max="100"></progress>
-	<progress class="progress w-56" value="10" max="100"></progress>
-	<progress class="progress w-56" value="40" max="100"></progress>
-	<progress class="progress w-56" value="70" max="100"></progress>
-	<progress class="progress w-56" value="100" max="100"></progress>
-</div>`, templ.Raw(`
-		<div class="flex flex-col gap-2 items-center">
-			<progress class="progress w-56" value="0" max="100"></progress>
-			<progress class="progress w-56" value="10" max="100"></progress>
-			<progress class="progress w-56" value="40" max="100"></progress>
-			<progress class="progress w-56" value="70" max="100"></progress>
-			<progress class="progress w-56" value="100" max="100"></progress>
-		</div>`)).Render(ctx, templ_7745c5c3_Buffer)
+	@daisyui.Progress(daisyui.ProgressConfig{Value: "0", Max: "100", Class: "w-56"})
+	@daisyui.Progress(daisyui.ProgressConfig{Value: "10", Max: "100", Class: "w-56"})
+	@daisyui.Progress(daisyui.ProgressConfig{Value: "40", Max: "100", Class: "w-56"})
+	@daisyui.Progress(daisyui.ProgressConfig{Value: "70", Max: "100", Class: "w-56"})
+	@daisyui.Progress(daisyui.ProgressConfig{Value: "100", Max: "100", Class: "w-56"})
+</div>`, progressColorRow("")).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

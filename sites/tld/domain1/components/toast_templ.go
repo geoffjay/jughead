@@ -10,7 +10,10 @@ import (
 	templruntime "github.com/a-h/templ/runtime"
 )
 
-import "github.com/geoffjay/jughead/sites/links"
+import (
+	"github.com/geoffjay/jughead/sites/links"
+	"github.com/geoffjay/jughead/templates/components/daisyui"
+)
 
 func ToastPage(r links.LinkResolver) templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
@@ -63,136 +66,107 @@ func toastBody(r links.LinkResolver) templ.Component {
 		}
 		ctx = templ.ClearChildren(ctx)
 		templ_7745c5c3_Err = section("toast with alert inside", `<div class="w-full h-64 relative">
-	<div class="toast absolute">
-		<div class="alert alert-info">
-			<span>New message arrived.</span>
-		</div>
-	</div>
-</div>`, templ.Raw(`
-		<div class="w-full h-64 relative">
-			<div class="toast absolute">
-				<div class="alert alert-info">
-					<span>New message arrived.</span>
-				</div>
-			</div>
-		</div>`)).Render(ctx, templ_7745c5c3_Buffer)
+	@daisyui.Toast(daisyui.ToastConfig{
+		Class:    "absolute",
+		Children: daisyui.Alert(daisyui.AlertConfig{Message: "New message arrived.", Color: "info"}),
+	})
+</div>`, toastSingleFrame()).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		templ_7745c5c3_Err = section("toast-top toast-start", `<div class="w-full h-64 relative">
-	<div class="toast toast-top toast-start absolute">
-		<div class="alert alert-info">
-			<span>New mail arrived.</span>
-		</div>
-		<div class="alert alert-success">
-			<span>Message sent successfully.</span>
-		</div>
-	</div>
-</div>`, toastFrame("toast-top toast-start")).Render(ctx, templ_7745c5c3_Buffer)
+	@daisyui.Toast(daisyui.ToastConfig{
+		Vertical:   "top",
+		Horizontal: "start",
+		Class:      "absolute",
+		Children:   toastAlerts(),
+	})
+</div>`, toastFrame("start", "top")).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		templ_7745c5c3_Err = section("toast-top toast-center", `<div class="w-full h-64 relative">
-	<div class="toast toast-top toast-center absolute">
-		<div class="alert alert-info">
-			<span>New mail arrived.</span>
-		</div>
-		<div class="alert alert-success">
-			<span>Message sent successfully.</span>
-		</div>
-	</div>
-</div>`, toastFrame("toast-top toast-center")).Render(ctx, templ_7745c5c3_Buffer)
+	@daisyui.Toast(daisyui.ToastConfig{
+		Vertical:   "top",
+		Horizontal: "center",
+		Class:      "absolute",
+		Children:   toastAlerts(),
+	})
+</div>`, toastFrame("center", "top")).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		templ_7745c5c3_Err = section("toast-top toast-end", `<div class="w-full h-64 relative">
-	<div class="toast toast-top toast-end absolute">
-		<div class="alert alert-info">
-			<span>New mail arrived.</span>
-		</div>
-		<div class="alert alert-success">
-			<span>Message sent successfully.</span>
-		</div>
-	</div>
-</div>`, toastFrame("toast-top toast-end")).Render(ctx, templ_7745c5c3_Buffer)
+	@daisyui.Toast(daisyui.ToastConfig{
+		Vertical:   "top",
+		Horizontal: "end",
+		Class:      "absolute",
+		Children:   toastAlerts(),
+	})
+</div>`, toastFrame("end", "top")).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		templ_7745c5c3_Err = section("toast-start toast-middle", `<div class="w-full h-64 relative">
-	<div class="toast toast-start toast-middle absolute">
-		<div class="alert alert-info">
-			<span>New mail arrived.</span>
-		</div>
-		<div class="alert alert-success">
-			<span>Message sent successfully.</span>
-		</div>
-	</div>
-</div>`, toastFrame("toast-start toast-middle")).Render(ctx, templ_7745c5c3_Buffer)
+	@daisyui.Toast(daisyui.ToastConfig{
+		Vertical:   "middle",
+		Horizontal: "start",
+		Class:      "absolute",
+		Children:   toastAlerts(),
+	})
+</div>`, toastFrame("start", "middle")).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		templ_7745c5c3_Err = section("toast-center toast-middle", `<div class="w-full h-64 relative">
-	<div class="toast toast-center toast-middle absolute">
-		<div class="alert alert-info">
-			<span>New mail arrived.</span>
-		</div>
-		<div class="alert alert-success">
-			<span>Message sent successfully.</span>
-		</div>
-	</div>
-</div>`, toastFrame("toast-center toast-middle")).Render(ctx, templ_7745c5c3_Buffer)
+	@daisyui.Toast(daisyui.ToastConfig{
+		Vertical:   "middle",
+		Horizontal: "center",
+		Class:      "absolute",
+		Children:   toastAlerts(),
+	})
+</div>`, toastFrame("center", "middle")).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		templ_7745c5c3_Err = section("toast-end toast-middle", `<div class="w-full h-64 relative">
-	<div class="toast toast-end toast-middle absolute">
-		<div class="alert alert-info">
-			<span>New mail arrived.</span>
-		</div>
-		<div class="alert alert-success">
-			<span>Message sent successfully.</span>
-		</div>
-	</div>
-</div>`, toastFrame("toast-end toast-middle")).Render(ctx, templ_7745c5c3_Buffer)
+	@daisyui.Toast(daisyui.ToastConfig{
+		Vertical:   "middle",
+		Horizontal: "end",
+		Class:      "absolute",
+		Children:   toastAlerts(),
+	})
+</div>`, toastFrame("end", "middle")).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		templ_7745c5c3_Err = section("toast-start toast-bottom (default)", `<div class="w-full h-64 relative">
-	<div class="toast toast-start absolute">
-		<div class="alert alert-info">
-			<span>New mail arrived.</span>
-		</div>
-		<div class="alert alert-success">
-			<span>Message sent successfully.</span>
-		</div>
-	</div>
-</div>`, toastFrame("toast-start")).Render(ctx, templ_7745c5c3_Buffer)
+	@daisyui.Toast(daisyui.ToastConfig{
+		Horizontal: "start",
+		Class:      "absolute",
+		Children:   toastAlerts(),
+	})
+</div>`, toastFrame("start", "")).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		templ_7745c5c3_Err = section("toast-center toast-bottom (default)", `<div class="w-full h-64 relative">
-	<div class="toast toast-center absolute">
-		<div class="alert alert-info">
-			<span>New mail arrived.</span>
-		</div>
-		<div class="alert alert-success">
-			<span>Message sent successfully.</span>
-		</div>
-	</div>
-</div>`, toastFrame("toast-center")).Render(ctx, templ_7745c5c3_Buffer)
+	@daisyui.Toast(daisyui.ToastConfig{
+		Horizontal: "center",
+		Class:      "absolute",
+		Children:   toastAlerts(),
+	})
+</div>`, toastFrame("center", "")).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		templ_7745c5c3_Err = section("toast-end (default) toast-bottom (default)", `<div class="w-full h-64 relative">
-	<div class="toast toast-end absolute">
-		<div class="alert alert-info">
-			<span>New mail arrived.</span>
-		</div>
-		<div class="alert alert-success">
-			<span>Message sent successfully.</span>
-		</div>
-	</div>
-</div>`, toastFrame("toast-end")).Render(ctx, templ_7745c5c3_Buffer)
+	@daisyui.Toast(daisyui.ToastConfig{
+		Horizontal: "end",
+		Class:      "absolute",
+		Children:   toastAlerts(),
+	})
+</div>`, toastFrame("end", "")).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -200,7 +174,7 @@ func toastBody(r links.LinkResolver) templ.Component {
 	})
 }
 
-func toastFrame(position string) templ.Component {
+func toastAlerts() templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -221,29 +195,93 @@ func toastFrame(position string) templ.Component {
 			templ_7745c5c3_Var3 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = daisyui.Alert(daisyui.AlertConfig{Message: "New mail arrived.", Color: "info"}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Alert(daisyui.AlertConfig{Message: "Message sent successfully.", Color: "success"}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
+func toastSingleFrame() templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var4 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var4 == nil {
+			templ_7745c5c3_Var4 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
 		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<div class=\"w-full h-64 relative\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Var4 := []any{"toast " + position + " absolute"}
-		templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var4...)
+		templ_7745c5c3_Err = daisyui.Toast(daisyui.ToastConfig{
+			Class:    "absolute",
+			Children: daisyui.Alert(daisyui.AlertConfig{Message: "New message arrived.", Color: "info"}),
+		}).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "<div class=\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "</div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		var templ_7745c5c3_Var5 string
-		templ_7745c5c3_Var5, templ_7745c5c3_Err = templ.ResolveAttributeValue(templ.CSSClasses(templ_7745c5c3_Var4).String())
-		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/components/toast.templ`, Line: 1, Col: 0}
+		return nil
+	})
+}
+
+func toastFrame(horizontal, vertical string) templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var5)
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var5 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var5 == nil {
+			templ_7745c5c3_Var5 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "<div class=\"w-full h-64 relative\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "\"><div class=\"alert alert-info\"><span>New mail arrived.</span></div><div class=\"alert alert-success\"><span>Message sent successfully.</span></div></div></div>")
+		templ_7745c5c3_Err = daisyui.Toast(daisyui.ToastConfig{
+			Horizontal: horizontal,
+			Vertical:   vertical,
+			Class:      "absolute",
+			Children:   toastAlerts(),
+		}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "</div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

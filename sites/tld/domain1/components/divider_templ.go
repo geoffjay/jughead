@@ -10,7 +10,10 @@ import (
 	templruntime "github.com/a-h/templ/runtime"
 )
 
-import "github.com/geoffjay/jughead/sites/links"
+import (
+	"github.com/geoffjay/jughead/sites/links"
+	"github.com/geoffjay/jughead/templates/components/daisyui"
+)
 
 func DividerPage(r links.LinkResolver) templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
@@ -64,104 +67,370 @@ func dividerBody(r links.LinkResolver) templ.Component {
 		ctx = templ.ClearChildren(ctx)
 		templ_7745c5c3_Err = section("Divider", `<div class="flex flex-col w-full">
 	<div class="grid h-20 card bg-base-300 rounded-box place-items-center">content</div>
-	<div class="divider">OR</div>
+	@daisyui.Divider("OR", "", "", "", "")
 	<div class="grid h-20 card bg-base-300 rounded-box place-items-center">content</div>
-</div>`, templ.Raw(`
-		<div class="flex flex-col w-full">
-			<div class="grid h-20 card bg-base-300 rounded-box place-items-center">content</div>
-			<div class="divider">OR</div>
-			<div class="grid h-20 card bg-base-300 rounded-box place-items-center">content</div>
-		</div>`)).Render(ctx, templ_7745c5c3_Buffer)
+</div>`, dividerVerticalRow()).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		templ_7745c5c3_Err = section("Divider horizontal", `<div class="flex w-full">
 	<div class="grid h-20 grow card bg-base-300 rounded-box place-items-center">content</div>
-	<div class="divider divider-horizontal">OR</div>
+	@daisyui.Divider("OR", "horizontal", "", "", "")
 	<div class="grid h-20 grow card bg-base-300 rounded-box place-items-center">content</div>
-</div>`, templ.Raw(`
-		<div class="flex w-full">
-			<div class="grid h-20 grow card bg-base-300 rounded-box place-items-center">content</div>
-			<div class="divider divider-horizontal">OR</div>
-			<div class="grid h-20 grow card bg-base-300 rounded-box place-items-center">content</div>
-		</div>`)).Render(ctx, templ_7745c5c3_Buffer)
+</div>`, dividerHorizontalRow()).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		templ_7745c5c3_Err = section("Divider with no text", `<div class="flex flex-col w-full">
 	<div class="grid h-20 card bg-base-300 rounded-box place-items-center">content</div>
-	<div class="divider"></div>
+	@daisyui.Divider("", "", "", "", "")
 	<div class="grid h-20 card bg-base-300 rounded-box place-items-center">content</div>
-</div>`, templ.Raw(`
-		<div class="flex flex-col w-full">
-			<div class="grid h-20 card bg-base-300 rounded-box place-items-center">content</div>
-			<div class="divider"></div>
-			<div class="grid h-20 card bg-base-300 rounded-box place-items-center">content</div>
-		</div>`)).Render(ctx, templ_7745c5c3_Buffer)
+</div>`, dividerNoTextRow()).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		templ_7745c5c3_Err = section("Responsive (lg:divider-horizontal)", `<div class="flex flex-col w-full lg:flex-row">
 	<div class="grid grow h-32 card bg-base-300 rounded-box place-items-center">content</div>
-	<div class="divider lg:divider-horizontal">OR</div>
+	@daisyui.Divider("OR", "", "", "", "lg:divider-horizontal")
 	<div class="grid grow h-32 card bg-base-300 rounded-box place-items-center">content</div>
-</div>`, templ.Raw(`
-		<div class="flex flex-col w-full lg:flex-row">
-			<div class="grid grow h-32 card bg-base-300 rounded-box place-items-center">content</div>
-			<div class="divider lg:divider-horizontal">OR</div>
-			<div class="grid grow h-32 card bg-base-300 rounded-box place-items-center">content</div>
-		</div>`)).Render(ctx, templ_7745c5c3_Buffer)
+</div>`, dividerResponsiveRow()).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		templ_7745c5c3_Err = section("Divider with colors", `<div class="flex flex-col w-full">
-	<div class="divider">Default</div>
-	<div class="divider divider-neutral">Neutral</div>
-	<div class="divider divider-primary">Primary</div>
-	<div class="divider divider-secondary">Secondary</div>
-	<div class="divider divider-accent">Accent</div>
-	<div class="divider divider-success">Success</div>
-	<div class="divider divider-warning">Warning</div>
-	<div class="divider divider-info">Info</div>
-	<div class="divider divider-error">Error</div>
-</div>`, templ.Raw(`
-		<div class="flex flex-col w-full">
-			<div class="divider">Default</div>
-			<div class="divider divider-neutral">Neutral</div>
-			<div class="divider divider-primary">Primary</div>
-			<div class="divider divider-secondary">Secondary</div>
-			<div class="divider divider-accent">Accent</div>
-			<div class="divider divider-success">Success</div>
-			<div class="divider divider-warning">Warning</div>
-			<div class="divider divider-info">Info</div>
-			<div class="divider divider-error">Error</div>
-		</div>`)).Render(ctx, templ_7745c5c3_Buffer)
+	@daisyui.Divider("Default", "", "", "", "")
+	@daisyui.Divider("Neutral", "", "neutral", "", "")
+	@daisyui.Divider("Primary", "", "primary", "", "")
+	@daisyui.Divider("Secondary", "", "secondary", "", "")
+	@daisyui.Divider("Accent", "", "accent", "", "")
+	@daisyui.Divider("Success", "", "success", "", "")
+	@daisyui.Divider("Warning", "", "warning", "", "")
+	@daisyui.Divider("Info", "", "info", "", "")
+	@daisyui.Divider("Error", "", "error", "", "")
+</div>`, dividerColorRow()).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		templ_7745c5c3_Err = section("Divider in different positions", `<div class="flex flex-col w-full">
-	<div class="divider divider-start">Start</div>
-	<div class="divider">Default</div>
-	<div class="divider divider-end">End</div>
-</div>`, templ.Raw(`
-		<div class="flex flex-col w-full">
-			<div class="divider divider-start">Start</div>
-			<div class="divider">Default</div>
-			<div class="divider divider-end">End</div>
-		</div>`)).Render(ctx, templ_7745c5c3_Buffer)
+	@daisyui.Divider("Start", "", "", "start", "")
+	@daisyui.Divider("Default", "", "", "", "")
+	@daisyui.Divider("End", "", "", "end", "")
+</div>`, dividerPlacementRow()).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		templ_7745c5c3_Err = section("Divider in different positions (horizontal)", `<div class="flex w-full justify-center h-52">
-	<div class="divider divider-horizontal divider-start">Start</div>
-	<div class="divider divider-horizontal">Default</div>
-	<div class="divider divider-horizontal divider-end">End</div>
-</div>`, templ.Raw(`
-		<div class="flex w-full justify-center h-52">
-			<div class="divider divider-horizontal divider-start">Start</div>
-			<div class="divider divider-horizontal">Default</div>
-			<div class="divider divider-horizontal divider-end">End</div>
-		</div>`)).Render(ctx, templ_7745c5c3_Buffer)
+	@daisyui.Divider("Start", "horizontal", "", "start", "")
+	@daisyui.Divider("Default", "horizontal", "", "", "")
+	@daisyui.Divider("End", "horizontal", "", "end", "")
+</div>`, dividerPlacementHorizontalRow()).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
+func dividerVerticalRow() templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var3 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var3 == nil {
+			templ_7745c5c3_Var3 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<div class=\"flex flex-col w-full\"><div class=\"grid h-20 card bg-base-300 rounded-box place-items-center\">content</div>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Divider("OR", "", "", "", "").Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "<div class=\"grid h-20 card bg-base-300 rounded-box place-items-center\">content</div></div>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
+func dividerHorizontalRow() templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var4 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var4 == nil {
+			templ_7745c5c3_Var4 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "<div class=\"flex w-full\"><div class=\"grid h-20 grow card bg-base-300 rounded-box place-items-center\">content</div>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Divider("OR", "horizontal", "", "", "").Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "<div class=\"grid h-20 grow card bg-base-300 rounded-box place-items-center\">content</div></div>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
+func dividerNoTextRow() templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var5 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var5 == nil {
+			templ_7745c5c3_Var5 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "<div class=\"flex flex-col w-full\"><div class=\"grid h-20 card bg-base-300 rounded-box place-items-center\">content</div>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Divider("", "", "", "", "").Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "<div class=\"grid h-20 card bg-base-300 rounded-box place-items-center\">content</div></div>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
+func dividerResponsiveRow() templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var6 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var6 == nil {
+			templ_7745c5c3_Var6 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "<div class=\"flex flex-col w-full lg:flex-row\"><div class=\"grid grow h-32 card bg-base-300 rounded-box place-items-center\">content</div>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Divider("OR", "", "", "", "lg:divider-horizontal").Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 8, "<div class=\"grid grow h-32 card bg-base-300 rounded-box place-items-center\">content</div></div>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
+func dividerColorRow() templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var7 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var7 == nil {
+			templ_7745c5c3_Var7 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 9, "<div class=\"flex flex-col w-full\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Divider("Default", "", "", "", "").Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Divider("Neutral", "", "neutral", "", "").Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Divider("Primary", "", "primary", "", "").Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Divider("Secondary", "", "secondary", "", "").Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Divider("Accent", "", "accent", "", "").Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Divider("Success", "", "success", "", "").Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Divider("Warning", "", "warning", "", "").Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Divider("Info", "", "info", "", "").Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Divider("Error", "", "error", "", "").Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 10, "</div>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
+func dividerPlacementRow() templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var8 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var8 == nil {
+			templ_7745c5c3_Var8 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 11, "<div class=\"flex flex-col w-full\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Divider("Start", "", "", "start", "").Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Divider("Default", "", "", "", "").Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Divider("End", "", "", "end", "").Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 12, "</div>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
+func dividerPlacementHorizontalRow() templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var9 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var9 == nil {
+			templ_7745c5c3_Var9 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 13, "<div class=\"flex w-full justify-center h-52\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Divider("Start", "horizontal", "", "start", "").Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Divider("Default", "horizontal", "", "", "").Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Divider("End", "horizontal", "", "end", "").Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 14, "</div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

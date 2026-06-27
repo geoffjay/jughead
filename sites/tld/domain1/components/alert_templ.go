@@ -161,12 +161,19 @@ func alertBody(r links.LinkResolver) templ.Component {
 	Message: "we use cookies for no reason.",
 	Class:   "w-full alert-vertical sm:alert-horizontal",
 	Icon:    templ.Raw(...),
-	Actions: templ.Raw(...),
-})`, daisyui.Alert(daisyui.AlertConfig{
+	Actions: alertActionButtons(),
+})
+
+templ alertActionButtons() {
+	<div>
+		@daisyui.Button(daisyui.ButtonConfig{Label: "Deny", Size: "sm"})
+		@daisyui.Button(daisyui.ButtonConfig{Label: "Accept", Size: "sm", Color: "primary"})
+	</div>
+}`, daisyui.Alert(daisyui.AlertConfig{
 			Message: "we use cookies for no reason.",
 			Class:   "w-full alert-vertical sm:alert-horizontal",
 			Icon:    templ.Raw(`<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-info shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>`),
-			Actions: templ.Raw(`<div><button class="btn btn-sm">Deny</button><button class="btn btn-sm btn-primary">Accept</button></div>`),
+			Actions: alertActionButtons(),
 		})).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
@@ -176,13 +183,13 @@ func alertBody(r links.LinkResolver) templ.Component {
 	Desc:    "You have 1 unread message",
 	Class:   "w-full alert-vertical sm:alert-horizontal",
 	Icon:    templ.Raw(...),
-	Actions: templ.Raw(...),
+	Actions: daisyui.Button(daisyui.ButtonConfig{Label: "See", Size: "sm"}),
 })`, daisyui.Alert(daisyui.AlertConfig{
 			Title:   "New message!",
 			Desc:    "You have 1 unread message",
 			Class:   "w-full alert-vertical sm:alert-horizontal",
 			Icon:    templ.Raw(`<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-info shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>`),
-			Actions: templ.Raw(`<button class="btn btn-sm">See</button>`),
+			Actions: daisyui.Button(daisyui.ButtonConfig{Label: "See", Size: "sm"}),
 		})).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
@@ -191,7 +198,7 @@ func alertBody(r links.LinkResolver) templ.Component {
 	})
 }
 
-func alertSoftRow() templ.Component {
+func alertActionButtons() templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -212,23 +219,15 @@ func alertSoftRow() templ.Component {
 			templ_7745c5c3_Var3 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<div class=\"flex flex-col gap-2\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = daisyui.Alert(daisyui.AlertConfig{Message: "12 unread messages. Tap to see.", Color: "info", Style: "soft", Class: "w-full"}).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = daisyui.Button(daisyui.ButtonConfig{Label: "Deny", Size: "sm"}).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = daisyui.Alert(daisyui.AlertConfig{Message: "Your purchase has been confirmed!", Color: "success", Style: "soft", Class: "w-full"}).Render(ctx, templ_7745c5c3_Buffer)
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Err = daisyui.Alert(daisyui.AlertConfig{Message: "Warning: Invalid email address!", Color: "warning", Style: "soft", Class: "w-full"}).Render(ctx, templ_7745c5c3_Buffer)
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Err = daisyui.Alert(daisyui.AlertConfig{Message: "Error! Task failed successfully.", Color: "error", Style: "soft", Class: "w-full"}).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = daisyui.Button(daisyui.ButtonConfig{Label: "Accept", Size: "sm", Color: "primary"}).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -240,7 +239,7 @@ func alertSoftRow() templ.Component {
 	})
 }
 
-func alertOutlineRow() templ.Component {
+func alertSoftRow() templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -265,19 +264,19 @@ func alertOutlineRow() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = daisyui.Alert(daisyui.AlertConfig{Message: "12 unread messages. Tap to see.", Color: "info", Style: "outline", Class: "w-full"}).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = daisyui.Alert(daisyui.AlertConfig{Message: "12 unread messages. Tap to see.", Color: "info", Style: "soft", Class: "w-full"}).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = daisyui.Alert(daisyui.AlertConfig{Message: "Your purchase has been confirmed!", Color: "success", Style: "outline", Class: "w-full"}).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = daisyui.Alert(daisyui.AlertConfig{Message: "Your purchase has been confirmed!", Color: "success", Style: "soft", Class: "w-full"}).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = daisyui.Alert(daisyui.AlertConfig{Message: "Warning: Invalid email address!", Color: "warning", Style: "outline", Class: "w-full"}).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = daisyui.Alert(daisyui.AlertConfig{Message: "Warning: Invalid email address!", Color: "warning", Style: "soft", Class: "w-full"}).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = daisyui.Alert(daisyui.AlertConfig{Message: "Error! Task failed successfully.", Color: "error", Style: "outline", Class: "w-full"}).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = daisyui.Alert(daisyui.AlertConfig{Message: "Error! Task failed successfully.", Color: "error", Style: "soft", Class: "w-full"}).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -289,7 +288,7 @@ func alertOutlineRow() templ.Component {
 	})
 }
 
-func alertDashRow() templ.Component {
+func alertOutlineRow() templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -314,6 +313,55 @@ func alertDashRow() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
+		templ_7745c5c3_Err = daisyui.Alert(daisyui.AlertConfig{Message: "12 unread messages. Tap to see.", Color: "info", Style: "outline", Class: "w-full"}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Alert(daisyui.AlertConfig{Message: "Your purchase has been confirmed!", Color: "success", Style: "outline", Class: "w-full"}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Alert(daisyui.AlertConfig{Message: "Warning: Invalid email address!", Color: "warning", Style: "outline", Class: "w-full"}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Alert(daisyui.AlertConfig{Message: "Error! Task failed successfully.", Color: "error", Style: "outline", Class: "w-full"}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "</div>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
+func alertDashRow() templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var6 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var6 == nil {
+			templ_7745c5c3_Var6 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "<div class=\"flex flex-col gap-2\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
 		templ_7745c5c3_Err = daisyui.Alert(daisyui.AlertConfig{Message: "12 unread messages. Tap to see.", Color: "info", Style: "dash", Class: "w-full"}).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
@@ -330,7 +378,7 @@ func alertDashRow() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "</div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 8, "</div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

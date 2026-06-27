@@ -113,22 +113,71 @@ func loadingBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Loading with colors", `<span class="loading loading-spinner text-primary"></span>
-<span class="loading loading-spinner text-secondary"></span>
-<span class="loading loading-spinner text-accent"></span>
-<span class="loading loading-spinner text-neutral"></span>
-<span class="loading loading-spinner text-info"></span>
-<span class="loading loading-spinner text-success"></span>
-<span class="loading loading-spinner text-warning"></span>
-<span class="loading loading-spinner text-error"></span>`, templ.Raw(`
-		<span class="loading loading-spinner text-primary"></span>
-		<span class="loading loading-spinner text-secondary"></span>
-		<span class="loading loading-spinner text-accent"></span>
-		<span class="loading loading-spinner text-neutral"></span>
-		<span class="loading loading-spinner text-info"></span>
-		<span class="loading loading-spinner text-success"></span>
-		<span class="loading loading-spinner text-warning"></span>
-		<span class="loading loading-spinner text-error"></span>`)).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Loading with colors", `@daisyui.Loading("spinner", "", "text-primary", "")
+@daisyui.Loading("spinner", "", "text-secondary", "")
+@daisyui.Loading("spinner", "", "text-accent", "")
+@daisyui.Loading("spinner", "", "text-neutral", "")
+@daisyui.Loading("spinner", "", "text-info", "")
+@daisyui.Loading("spinner", "", "text-success", "")
+@daisyui.Loading("spinner", "", "text-warning", "")
+@daisyui.Loading("spinner", "", "text-error", "")`, loadingColorRow()).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
+func loadingColorRow() templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var3 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var3 == nil {
+			templ_7745c5c3_Var3 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = daisyui.Loading("spinner", "", "text-primary", "").Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Loading("spinner", "", "text-secondary", "").Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Loading("spinner", "", "text-accent", "").Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Loading("spinner", "", "text-neutral", "").Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Loading("spinner", "", "text-info", "").Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Loading("spinner", "", "text-success", "").Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Loading("spinner", "", "text-warning", "").Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Loading("spinner", "", "text-error", "").Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -152,9 +201,9 @@ func loadingRow(shape string) templ.Component {
 			}()
 		}
 		ctx = templ.InitializeContext(ctx)
-		templ_7745c5c3_Var3 := templ.GetChildren(ctx)
-		if templ_7745c5c3_Var3 == nil {
-			templ_7745c5c3_Var3 = templ.NopComponent
+		templ_7745c5c3_Var4 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var4 == nil {
+			templ_7745c5c3_Var4 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
 		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<div class=\"flex items-center gap-2\">")

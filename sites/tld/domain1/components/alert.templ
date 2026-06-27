@@ -82,26 +82,40 @@ templ alertBody(r links.LinkResolver) {
 	Message: "we use cookies for no reason.",
 	Class:   "w-full alert-vertical sm:alert-horizontal",
 	Icon:    templ.Raw(...),
-	Actions: templ.Raw(...),
-})`, daisyui.Alert(daisyui.AlertConfig{
+	Actions: alertActionButtons(),
+})
+
+templ alertActionButtons() {
+	<div>
+		@daisyui.Button(daisyui.ButtonConfig{Label: "Deny", Size: "sm"})
+		@daisyui.Button(daisyui.ButtonConfig{Label: "Accept", Size: "sm", Color: "primary"})
+	</div>
+}`, daisyui.Alert(daisyui.AlertConfig{
 		Message: "we use cookies for no reason.",
 		Class:   "w-full alert-vertical sm:alert-horizontal",
 		Icon:    templ.Raw(`<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-info shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>`),
-		Actions: templ.Raw(`<div><button class="btn btn-sm">Deny</button><button class="btn btn-sm btn-primary">Accept</button></div>`),
+		Actions: alertActionButtons(),
 	}))
 	@section("Alert with title and description", `@daisyui.Alert(daisyui.AlertConfig{
 	Title:   "New message!",
 	Desc:    "You have 1 unread message",
 	Class:   "w-full alert-vertical sm:alert-horizontal",
 	Icon:    templ.Raw(...),
-	Actions: templ.Raw(...),
+	Actions: daisyui.Button(daisyui.ButtonConfig{Label: "See", Size: "sm"}),
 })`, daisyui.Alert(daisyui.AlertConfig{
 		Title:   "New message!",
 		Desc:    "You have 1 unread message",
 		Class:   "w-full alert-vertical sm:alert-horizontal",
 		Icon:    templ.Raw(`<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-info shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>`),
-		Actions: templ.Raw(`<button class="btn btn-sm">See</button>`),
+		Actions: daisyui.Button(daisyui.ButtonConfig{Label: "See", Size: "sm"}),
 	}))
+}
+
+templ alertActionButtons() {
+	<div>
+		@daisyui.Button(daisyui.ButtonConfig{Label: "Deny", Size: "sm"})
+		@daisyui.Button(daisyui.ButtonConfig{Label: "Accept", Size: "sm", Color: "primary"})
+	</div>
 }
 
 templ alertSoftRow() {

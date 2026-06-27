@@ -121,166 +121,214 @@ func countdownBody(r links.LinkResolver) templ.Component {
 		}
 		templ_7745c5c3_Err = section("Large text with labels", `<div class="flex gap-5">
 	<div>
-		<span class="font-mono text-4xl countdown">
-			<span style="--value:15;" aria-live="polite" aria-label="15">15</span>
-		</span>
+		@daisyui.Countdown(daisyui.CountdownConfig{Class: "font-mono text-4xl", Items: []daisyui.CountdownItem{{Value: "15"}}})
 		days
 	</div>
-	<div>
-		<span class="font-mono text-4xl countdown">
-			<span style="--value:10;" aria-live="polite" aria-label="10">10</span>
-		</span>
-		hours
-	</div>
-	<div>
-		<span class="font-mono text-4xl countdown">
-			<span style="--value:24;" aria-live="polite" aria-label="24">24</span>
-		</span>
-		minutes
-	</div>
-	<div>
-		<span class="font-mono text-4xl countdown">
-			<span style="--value:59;" aria-live="polite" aria-label="59">59</span>
-		</span>
-		sec
-	</div>
-</div>`, templ.Raw(`
-		<div class="flex gap-5">
-			<div>
-				<span class="font-mono text-4xl countdown">
-					<span style="--value:15;" aria-live="polite" aria-label="15">15</span>
-				</span>
-				days
-			</div>
-			<div>
-				<span class="font-mono text-4xl countdown">
-					<span style="--value:10;" aria-live="polite" aria-label="10">10</span>
-				</span>
-				hours
-			</div>
-			<div>
-				<span class="font-mono text-4xl countdown">
-					<span style="--value:24;" aria-live="polite" aria-label="24">24</span>
-				</span>
-				minutes
-			</div>
-			<div>
-				<span class="font-mono text-4xl countdown">
-					<span style="--value:59;" aria-live="polite" aria-label="59">59</span>
-				</span>
-				sec
-			</div>
-		</div>`)).Render(ctx, templ_7745c5c3_Buffer)
+	// ... one per unit
+</div>`, countdownWithLabels()).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		templ_7745c5c3_Err = section("Large text with labels under", `<div class="grid grid-flow-col gap-5 text-center auto-cols-max">
 	<div class="flex flex-col">
-		<span class="font-mono text-5xl countdown">
-			<span style="--value:15;" aria-live="polite" aria-label="15">15</span>
-		</span>
+		@daisyui.Countdown(daisyui.CountdownConfig{Class: "font-mono text-5xl", Items: []daisyui.CountdownItem{{Value: "15"}}})
 		days
 	</div>
-	<div class="flex flex-col">
-		<span class="font-mono text-5xl countdown">
-			<span style="--value:10;" aria-live="polite" aria-label="10">10</span>
-		</span>
-		hours
-	</div>
-	<div class="flex flex-col">
-		<span class="font-mono text-5xl countdown">
-			<span style="--value:24;" aria-live="polite" aria-label="24">24</span>
-		</span>
-		min
-	</div>
-	<div class="flex flex-col">
-		<span class="font-mono text-5xl countdown">
-			<span style="--value:59;" aria-live="polite" aria-label="59">59</span>
-		</span>
-		sec
-	</div>
-</div>`, templ.Raw(`
-		<div class="grid grid-flow-col gap-5 text-center auto-cols-max">
-			<div class="flex flex-col">
-				<span class="font-mono text-5xl countdown">
-					<span style="--value:15;" aria-live="polite" aria-label="15">15</span>
-				</span>
-				days
-			</div>
-			<div class="flex flex-col">
-				<span class="font-mono text-5xl countdown">
-					<span style="--value:10;" aria-live="polite" aria-label="10">10</span>
-				</span>
-				hours
-			</div>
-			<div class="flex flex-col">
-				<span class="font-mono text-5xl countdown">
-					<span style="--value:24;" aria-live="polite" aria-label="24">24</span>
-				</span>
-				min
-			</div>
-			<div class="flex flex-col">
-				<span class="font-mono text-5xl countdown">
-					<span style="--value:59;" aria-live="polite" aria-label="59">59</span>
-				</span>
-				sec
-			</div>
-		</div>`)).Render(ctx, templ_7745c5c3_Buffer)
+	// ... one per unit
+</div>`, countdownWithLabelsUnder()).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		templ_7745c5c3_Err = section("In boxes", `<div class="grid grid-flow-col gap-5 text-center auto-cols-max">
 	<div class="flex flex-col p-2 bg-neutral rounded-box text-neutral-content">
-		<span class="font-mono text-5xl countdown">
-			<span style="--value:15;" aria-live="polite" aria-label="15">15</span>
-		</span>
+		@daisyui.Countdown(daisyui.CountdownConfig{Class: "font-mono text-5xl", Items: []daisyui.CountdownItem{{Value: "15"}}})
 		days
 	</div>
-	<div class="flex flex-col p-2 bg-neutral rounded-box text-neutral-content">
-		<span class="font-mono text-5xl countdown">
-			<span style="--value:10;" aria-live="polite" aria-label="10">10</span>
-		</span>
-		hours
-	</div>
-	<div class="flex flex-col p-2 bg-neutral rounded-box text-neutral-content">
-		<span class="font-mono text-5xl countdown">
-			<span style="--value:24;" aria-live="polite" aria-label="24">24</span>
-		</span>
-		min
-	</div>
-	<div class="flex flex-col p-2 bg-neutral rounded-box text-neutral-content">
-		<span class="font-mono text-5xl countdown">
-			<span style="--value:59;" aria-live="polite" aria-label="59">59</span>
-		</span>
-		sec
-	</div>
-</div>`, templ.Raw(`
-		<div class="grid grid-flow-col gap-5 text-center auto-cols-max">
-			<div class="flex flex-col p-2 bg-neutral rounded-box text-neutral-content">
-				<span class="font-mono text-5xl countdown">
-					<span style="--value:15;" aria-live="polite" aria-label="15">15</span>
-				</span>
-				days
-			</div>
-			<div class="flex flex-col p-2 bg-neutral rounded-box text-neutral-content">
-				<span class="font-mono text-5xl countdown">
-					<span style="--value:10;" aria-live="polite" aria-label="10">10</span>
-				</span>
-				hours
-			</div>
-			<div class="flex flex-col p-2 bg-neutral rounded-box text-neutral-content">
-				<span class="font-mono text-5xl countdown">
-					<span style="--value:24;" aria-live="polite" aria-label="24">24</span>
-				</span>
-				min
-			</div>
-			<div class="flex flex-col p-2 bg-neutral rounded-box text-neutral-content">
-				<span class="font-mono text-5xl countdown">
-					<span style="--value:59;" aria-live="polite" aria-label="59">59</span>
-				</span>
-				sec
-			</div>
-		</div>`)).Render(ctx, templ_7745c5c3_Buffer)
+	// ... one per unit
+</div>`, countdownInBoxes()).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
+func countdownWithLabels() templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var3 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var3 == nil {
+			templ_7745c5c3_Var3 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<div class=\"flex gap-5\"><div>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Countdown(daisyui.CountdownConfig{Class: "font-mono text-4xl", Items: []daisyui.CountdownItem{{Value: "15"}}}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "days</div><div>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Countdown(daisyui.CountdownConfig{Class: "font-mono text-4xl", Items: []daisyui.CountdownItem{{Value: "10"}}}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "hours</div><div>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Countdown(daisyui.CountdownConfig{Class: "font-mono text-4xl", Items: []daisyui.CountdownItem{{Value: "24"}}}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "minutes</div><div>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Countdown(daisyui.CountdownConfig{Class: "font-mono text-4xl", Items: []daisyui.CountdownItem{{Value: "59"}}}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "sec</div></div>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
+func countdownWithLabelsUnder() templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var4 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var4 == nil {
+			templ_7745c5c3_Var4 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "<div class=\"grid grid-flow-col gap-5 text-center auto-cols-max\"><div class=\"flex flex-col\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Countdown(daisyui.CountdownConfig{Class: "font-mono text-5xl", Items: []daisyui.CountdownItem{{Value: "15"}}}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "days</div><div class=\"flex flex-col\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Countdown(daisyui.CountdownConfig{Class: "font-mono text-5xl", Items: []daisyui.CountdownItem{{Value: "10"}}}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 8, "hours</div><div class=\"flex flex-col\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Countdown(daisyui.CountdownConfig{Class: "font-mono text-5xl", Items: []daisyui.CountdownItem{{Value: "24"}}}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 9, "min</div><div class=\"flex flex-col\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Countdown(daisyui.CountdownConfig{Class: "font-mono text-5xl", Items: []daisyui.CountdownItem{{Value: "59"}}}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 10, "sec</div></div>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
+func countdownInBoxes() templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var5 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var5 == nil {
+			templ_7745c5c3_Var5 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 11, "<div class=\"grid grid-flow-col gap-5 text-center auto-cols-max\"><div class=\"flex flex-col p-2 bg-neutral rounded-box text-neutral-content\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Countdown(daisyui.CountdownConfig{Class: "font-mono text-5xl", Items: []daisyui.CountdownItem{{Value: "15"}}}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 12, "days</div><div class=\"flex flex-col p-2 bg-neutral rounded-box text-neutral-content\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Countdown(daisyui.CountdownConfig{Class: "font-mono text-5xl", Items: []daisyui.CountdownItem{{Value: "10"}}}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 13, "hours</div><div class=\"flex flex-col p-2 bg-neutral rounded-box text-neutral-content\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Countdown(daisyui.CountdownConfig{Class: "font-mono text-5xl", Items: []daisyui.CountdownItem{{Value: "24"}}}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 14, "min</div><div class=\"flex flex-col p-2 bg-neutral rounded-box text-neutral-content\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Countdown(daisyui.CountdownConfig{Class: "font-mono text-5xl", Items: []daisyui.CountdownItem{{Value: "59"}}}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 15, "sec</div></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

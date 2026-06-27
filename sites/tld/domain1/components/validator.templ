@@ -11,11 +11,8 @@ templ ValidatorPage(r links.LinkResolver) {
 
 templ validatorBody(r links.LinkResolver) {
 	@section("Validator", `<form class="w-full max-w-xs">
-	<input class="input validator" type="email" required placeholder="mail@site.com" autocomplete="false" />
-</form>`, templ.Raw(`
-		<form class="w-full max-w-xs">
-			<input class="input validator" type="email" required placeholder="mail@site.com" autocomplete="false" />
-		</form>`))
+	@daisyui.Validator(daisyui.ValidatorConfig{}, templ.Raw("<input class=\"input validator\" type=\"email\" required placeholder=\"mail@site.com\" autocomplete=\"false\" />"))
+</form>`, validatorBasicForm())
 	@section("Validator and validator-hint", `@daisyui.Validator(daisyui.ValidatorConfig{
 	Hint: "Enter valid email address",
 }, templ.Raw("<input class=\"input validator\" type=\"email\" required placeholder=\"mail@site.com\" />"))`, daisyui.Validator(daisyui.ValidatorConfig{
@@ -62,53 +59,69 @@ templ validatorBody(r links.LinkResolver) {
 		Hint: "Required",
 	}, templ.Raw(`<input type="checkbox" class="toggle validator" required title="Required" />`)))
 	@section("Select requirement validator", `<form autocomplete="off" class="w-full max-w-xs" onsubmit="event.preventDefault()">
-	<select class="select validator" required>
-		<option disabled selected value="">Choose:</option>
-		<option>Tabs</option>
-		<option>Spaces</option>
-	</select>
-	<p class="validator-hint">Required</p>
-	<button class="btn" type="submit">Submit form</button>
-</form>`, templ.Raw(`
-		<form autocomplete="off" class="w-full max-w-xs" onsubmit="event.preventDefault()">
-			<select class="select validator" required>
-				<option disabled selected value="">Choose:</option>
-				<option>Tabs</option>
-				<option>Spaces</option>
-			</select>
-			<p class="validator-hint">Required</p>
-			<button class="btn" type="submit">Submit form</button>
-		</form>`))
+	@daisyui.Validator(daisyui.ValidatorConfig{
+		Hint: "Required",
+	}, templ.Raw("<select class=\"select validator\" required>...</select>"))
+	@daisyui.Button(daisyui.ButtonConfig{Label: "Submit form", Type: "submit"})
+</form>`, validatorSelectForm())
 	@section("Form requirement validator", `<form autocomplete="off" class="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4" onsubmit="event.preventDefault()">
 	<fieldset class="fieldset">
 		<label class="label">Email</label>
-		<input type="email" class="input validator" placeholder="Email" required />
-		<p class="validator-hint hidden">Required</p>
+		@daisyui.Validator(daisyui.ValidatorConfig{
+			Hint:       "Required",
+			HintHidden: true,
+		}, templ.Raw("<input type=\"email\" class=\"input validator\" placeholder=\"Email\" required />"))
 	</fieldset>
 
 	<label class="fieldset">
 		<span class="label">Password</span>
-		<input type="password" class="input validator" placeholder="Password" required />
-		<span class="validator-hint hidden">Required</span>
+		@daisyui.Validator(daisyui.ValidatorConfig{
+			Hint:       "Required",
+			HintHidden: true,
+		}, templ.Raw("<input type=\"password\" class=\"input validator\" placeholder=\"Password\" required />"))
 	</label>
 
-	<button class="btn btn-neutral mt-4" type="submit">Login</button>
-	<button class="btn btn-ghost mt-1" type="reset">Reset</button>
-</form>`, templ.Raw(`
-		<form autocomplete="off" class="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4" onsubmit="event.preventDefault()">
-			<fieldset class="fieldset">
-				<label class="label">Email</label>
-				<input type="email" class="input validator" placeholder="Email" required />
-				<p class="validator-hint hidden">Required</p>
-			</fieldset>
+	@daisyui.Button(daisyui.ButtonConfig{Label: "Login", Color: "neutral", Type: "submit", Class: "mt-4"})
+	@daisyui.Button(daisyui.ButtonConfig{Label: "Reset", Style: "ghost", Type: "reset", Class: "mt-1"})
+</form>`, validatorLoginForm())
+}
 
-			<label class="fieldset">
-				<span class="label">Password</span>
-				<input type="password" class="input validator" placeholder="Password" required />
-				<span class="validator-hint hidden">Required</span>
-			</label>
+templ validatorBasicForm() {
+	<form class="w-full max-w-xs">
+		@daisyui.Validator(daisyui.ValidatorConfig{}, templ.Raw(`<input class="input validator" type="email" required placeholder="mail@site.com" autocomplete="false" />`))
+	</form>
+}
 
-			<button class="btn btn-neutral mt-4" type="submit">Login</button>
-			<button class="btn btn-ghost mt-1" type="reset">Reset</button>
-		</form>`))
+templ validatorSelectForm() {
+	<form autocomplete="off" class="w-full max-w-xs" onsubmit="event.preventDefault()">
+		@daisyui.Validator(daisyui.ValidatorConfig{
+			Hint: "Required",
+		}, templ.Raw(`<select class="select validator" required>
+			<option disabled selected value="">Choose:</option>
+			<option>Tabs</option>
+			<option>Spaces</option>
+		</select>`))
+		@daisyui.Button(daisyui.ButtonConfig{Label: "Submit form", Type: "submit"})
+	</form>
+}
+
+templ validatorLoginForm() {
+	<form autocomplete="off" class="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4" onsubmit="event.preventDefault()">
+		<fieldset class="fieldset">
+			<label class="label">Email</label>
+			@daisyui.Validator(daisyui.ValidatorConfig{
+				Hint:       "Required",
+				HintHidden: true,
+			}, templ.Raw(`<input type="email" class="input validator" placeholder="Email" required />`))
+		</fieldset>
+		<label class="fieldset">
+			<span class="label">Password</span>
+			@daisyui.Validator(daisyui.ValidatorConfig{
+				Hint:       "Required",
+				HintHidden: true,
+			}, templ.Raw(`<input type="password" class="input validator" placeholder="Password" required />`))
+		</label>
+		@daisyui.Button(daisyui.ButtonConfig{Label: "Login", Color: "neutral", Type: "submit", Class: "mt-4"})
+		@daisyui.Button(daisyui.ButtonConfig{Label: "Reset", Style: "ghost", Type: "reset", Class: "mt-1"})
+	</form>
 }

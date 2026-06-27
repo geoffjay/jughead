@@ -151,7 +151,8 @@ func fabFrameShort(title string, fab templ.Component) templ.Component {
 	})
 }
 
-func fabBody(r links.LinkResolver) templ.Component {
+// fabCircleItem builds a circular speed-dial action button with a text label.
+func fabCircleItem(label string) templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -172,13 +173,42 @@ func fabBody(r links.LinkResolver) templ.Component {
 			templ_7745c5c3_Var6 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = daisyui.Button(daisyui.ButtonConfig{Label: label, Size: "lg", Modifier: "circle"}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
+func fabBody(r links.LinkResolver) templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var7 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var7 == nil {
+			templ_7745c5c3_Var7 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
 		templ_7745c5c3_Err = fabFrame("FAB and Speed Dial (vertical)", daisyui.FAB(daisyui.FABConfig{
 			Trigger: daisyui.FABTrigger{Label: "F", Color: "primary"},
 			Class:   "absolute z-1",
 			Items: []daisyui.FABItem{
-				{Button: templ.Raw(`<button class="btn btn-lg btn-circle">A</button>`)},
-				{Button: templ.Raw(`<button class="btn btn-lg btn-circle">B</button>`)},
-				{Button: templ.Raw(`<button class="btn btn-lg btn-circle">C</button>`)},
+				{Button: fabCircleItem("A")},
+				{Button: fabCircleItem("B")},
+				{Button: fabCircleItem("C")},
 			},
 		})).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
@@ -191,9 +221,9 @@ func fabBody(r links.LinkResolver) templ.Component {
 			},
 			Class: "absolute z-1",
 			Items: []daisyui.FABItem{
-				{Button: templ.Raw(`<button class="btn btn-lg btn-circle"><svg aria-label="Camera" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6"><path stroke-linecap="round" stroke-linejoin="round" d="M6.827 6.175A2.31 2.31 0 0 1 5.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 0 0-1.134-.175 2.31 2.31 0 0 1-1.64-1.055l-.822-1.316a2.192 2.192 0 0 0-1.736-1.039 48.774 48.774 0 0 0-5.232 0 2.192 2.192 0 0 0-1.736 1.039l-.821 1.316Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 12.75a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0ZM18.75 10.5h.008v.008h-.008V10.5Z"/></svg></button>`)},
-				{Button: templ.Raw(`<button class="btn btn-lg btn-circle"><svg aria-label="Gallery" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6"><path stroke-linecap="round" stroke-linejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"/></svg></button>`)},
-				{Button: templ.Raw(`<button class="btn btn-lg btn-circle"><svg aria-label="Voice" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18.75a6 6 0 0 0 6-6v-1.5m-6 7.5a6 6 0 0 1-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 0 1-3-3V4.5a3 3 0 1 1 6 0v8.25a3 3 0 0 1-3 3Z"/></svg></button>`)},
+				{Button: daisyui.Button(daisyui.ButtonConfig{Size: "lg", Modifier: "circle", Children: templ.Raw(`<svg aria-label="Camera" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6"><path stroke-linecap="round" stroke-linejoin="round" d="M6.827 6.175A2.31 2.31 0 0 1 5.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 0 0-1.134-.175 2.31 2.31 0 0 1-1.64-1.055l-.822-1.316a2.192 2.192 0 0 0-1.736-1.039 48.774 48.774 0 0 0-5.232 0 2.192 2.192 0 0 0-1.736 1.039l-.821 1.316Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 12.75a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0ZM18.75 10.5h.008v.008h-.008V10.5Z"/></svg>`)})},
+				{Button: daisyui.Button(daisyui.ButtonConfig{Size: "lg", Modifier: "circle", Children: templ.Raw(`<svg aria-label="Gallery" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6"><path stroke-linecap="round" stroke-linejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"/></svg>`)})},
+				{Button: daisyui.Button(daisyui.ButtonConfig{Size: "lg", Modifier: "circle", Children: templ.Raw(`<svg aria-label="Voice" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18.75a6 6 0 0 0 6-6v-1.5m-6 7.5a6 6 0 0 1-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 0 1-3-3V4.5a3 3 0 1 1 6 0v8.25a3 3 0 0 1-3 3Z"/></svg>`)})},
 			},
 		})).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
@@ -203,9 +233,9 @@ func fabBody(r links.LinkResolver) templ.Component {
 			Trigger: daisyui.FABTrigger{Label: "F", Color: "success"},
 			Class:   "absolute z-1",
 			Items: []daisyui.FABItem{
-				{Label: "Label B", Button: templ.Raw(`<button class="btn btn-lg btn-circle">A</button>`)},
-				{Label: "Label C", Button: templ.Raw(`<button class="btn btn-lg btn-circle">B</button>`)},
-				{Label: "Label D", Button: templ.Raw(`<button class="btn btn-lg btn-circle">C</button>`)},
+				{Label: "Label B", Button: fabCircleItem("A")},
+				{Label: "Label C", Button: fabCircleItem("B")},
+				{Label: "Label D", Button: fabCircleItem("C")},
 			},
 		})).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
@@ -215,9 +245,9 @@ func fabBody(r links.LinkResolver) templ.Component {
 			Trigger: daisyui.FABTrigger{Label: "F", Color: "success"},
 			Class:   "absolute z-1",
 			Items: []daisyui.FABItem{
-				{Button: templ.Raw(`<button class="btn btn-lg">Button A</button>`)},
-				{Button: templ.Raw(`<button class="btn btn-lg">Button B</button>`)},
-				{Button: templ.Raw(`<button class="btn btn-lg">Button C</button>`)},
+				{Button: daisyui.Button(daisyui.ButtonConfig{Label: "Button A", Size: "lg"})},
+				{Button: daisyui.Button(daisyui.ButtonConfig{Label: "Button B", Size: "lg"})},
+				{Button: daisyui.Button(daisyui.ButtonConfig{Label: "Button C", Size: "lg"})},
 			},
 		})).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
@@ -228,9 +258,9 @@ func fabBody(r links.LinkResolver) templ.Component {
 			Class:       "absolute z-1",
 			CloseButton: templ.Raw(`Close <span class="btn btn-circle btn-lg btn-error">✕</span>`),
 			Items: []daisyui.FABItem{
-				{Label: "Label A", Button: templ.Raw(`<button class="btn btn-lg btn-circle">A</button>`)},
-				{Label: "Label B", Button: templ.Raw(`<button class="btn btn-lg btn-circle">B</button>`)},
-				{Label: "Label C", Button: templ.Raw(`<button class="btn btn-lg btn-circle">C</button>`)},
+				{Label: "Label A", Button: fabCircleItem("A")},
+				{Label: "Label B", Button: fabCircleItem("B")},
+				{Label: "Label C", Button: fabCircleItem("C")},
 			},
 		})).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
@@ -241,9 +271,9 @@ func fabBody(r links.LinkResolver) templ.Component {
 			Class:      "absolute z-1",
 			MainAction: templ.Raw(`Main Action <button class="btn btn-circle btn-secondary btn-lg">M</button>`),
 			Items: []daisyui.FABItem{
-				{Label: "Label A", Button: templ.Raw(`<button class="btn btn-lg btn-circle">A</button>`)},
-				{Label: "Label B", Button: templ.Raw(`<button class="btn btn-lg btn-circle">B</button>`)},
-				{Label: "Label C", Button: templ.Raw(`<button class="btn btn-lg btn-circle">C</button>`)},
+				{Label: "Label A", Button: fabCircleItem("A")},
+				{Label: "Label B", Button: fabCircleItem("B")},
+				{Label: "Label C", Button: fabCircleItem("C")},
 			},
 		})).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
@@ -260,12 +290,12 @@ func fabBody(r links.LinkResolver) templ.Component {
 			Trigger:    daisyui.FABTrigger{Label: "F", Color: "success"},
 			Class:      "absolute z-1",
 			Flower:     true,
-			MainAction: templ.Raw(`<button class="btn btn-circle btn-lg">M</button>`),
+			MainAction: daisyui.Button(daisyui.ButtonConfig{Label: "M", Size: "lg", Modifier: "circle"}),
 			Items: []daisyui.FABItem{
-				{Button: templ.Raw(`<button class="btn btn-lg btn-circle">A</button>`)},
-				{Button: templ.Raw(`<button class="btn btn-lg btn-circle">B</button>`)},
-				{Button: templ.Raw(`<button class="btn btn-lg btn-circle">C</button>`)},
-				{Button: templ.Raw(`<button class="btn btn-lg btn-circle">D</button>`)},
+				{Button: fabCircleItem("A")},
+				{Button: fabCircleItem("B")},
+				{Button: fabCircleItem("C")},
+				{Button: fabCircleItem("D")},
 			},
 		})).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
@@ -275,12 +305,12 @@ func fabBody(r links.LinkResolver) templ.Component {
 			Trigger:    daisyui.FABTrigger{Label: "F", Color: "info"},
 			Class:      "absolute z-1",
 			Flower:     true,
-			MainAction: templ.Raw(`<button class="btn btn-circle btn-lg btn-success">M</button>`),
+			MainAction: daisyui.Button(daisyui.ButtonConfig{Label: "M", Size: "lg", Modifier: "circle", Color: "success"}),
 			Items: []daisyui.FABItem{
-				{Button: templ.Raw(`<div class="tooltip tooltip-left" data-tip="Label A"><button class="btn btn-lg btn-circle">A</button></div>`)},
-				{Button: templ.Raw(`<div class="tooltip tooltip-left" data-tip="Label B"><button class="btn btn-lg btn-circle">B</button></div>`)},
-				{Button: templ.Raw(`<div class="tooltip" data-tip="Label C"><button class="btn btn-lg btn-circle">C</button></div>`)},
-				{Button: templ.Raw(`<div class="tooltip" data-tip="Label D"><button class="btn btn-lg btn-circle">D</button></div>`)},
+				{Button: daisyui.Tooltip(daisyui.TooltipConfig{Tip: "Label A", Position: "left", Children: fabCircleItem("A")})},
+				{Button: daisyui.Tooltip(daisyui.TooltipConfig{Tip: "Label B", Position: "left", Children: fabCircleItem("B")})},
+				{Button: daisyui.Tooltip(daisyui.TooltipConfig{Tip: "Label C", Children: fabCircleItem("C")})},
+				{Button: daisyui.Tooltip(daisyui.TooltipConfig{Tip: "Label D", Children: fabCircleItem("D")})},
 			},
 		})).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {

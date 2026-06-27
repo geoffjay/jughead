@@ -54,158 +54,86 @@ templ countdownBody(r links.LinkResolver) {
 	}))
 	@section("Large text with labels", `<div class="flex gap-5">
 	<div>
-		<span class="font-mono text-4xl countdown">
-			<span style="--value:15;" aria-live="polite" aria-label="15">15</span>
-		</span>
+		@daisyui.Countdown(daisyui.CountdownConfig{Class: "font-mono text-4xl", Items: []daisyui.CountdownItem{{Value: "15"}}})
 		days
 	</div>
-	<div>
-		<span class="font-mono text-4xl countdown">
-			<span style="--value:10;" aria-live="polite" aria-label="10">10</span>
-		</span>
-		hours
-	</div>
-	<div>
-		<span class="font-mono text-4xl countdown">
-			<span style="--value:24;" aria-live="polite" aria-label="24">24</span>
-		</span>
-		minutes
-	</div>
-	<div>
-		<span class="font-mono text-4xl countdown">
-			<span style="--value:59;" aria-live="polite" aria-label="59">59</span>
-		</span>
-		sec
-	</div>
-</div>`, templ.Raw(`
-		<div class="flex gap-5">
-			<div>
-				<span class="font-mono text-4xl countdown">
-					<span style="--value:15;" aria-live="polite" aria-label="15">15</span>
-				</span>
-				days
-			</div>
-			<div>
-				<span class="font-mono text-4xl countdown">
-					<span style="--value:10;" aria-live="polite" aria-label="10">10</span>
-				</span>
-				hours
-			</div>
-			<div>
-				<span class="font-mono text-4xl countdown">
-					<span style="--value:24;" aria-live="polite" aria-label="24">24</span>
-				</span>
-				minutes
-			</div>
-			<div>
-				<span class="font-mono text-4xl countdown">
-					<span style="--value:59;" aria-live="polite" aria-label="59">59</span>
-				</span>
-				sec
-			</div>
-		</div>`))
+	// ... one per unit
+</div>`, countdownWithLabels())
 	@section("Large text with labels under", `<div class="grid grid-flow-col gap-5 text-center auto-cols-max">
 	<div class="flex flex-col">
-		<span class="font-mono text-5xl countdown">
-			<span style="--value:15;" aria-live="polite" aria-label="15">15</span>
-		</span>
+		@daisyui.Countdown(daisyui.CountdownConfig{Class: "font-mono text-5xl", Items: []daisyui.CountdownItem{{Value: "15"}}})
 		days
 	</div>
-	<div class="flex flex-col">
-		<span class="font-mono text-5xl countdown">
-			<span style="--value:10;" aria-live="polite" aria-label="10">10</span>
-		</span>
-		hours
-	</div>
-	<div class="flex flex-col">
-		<span class="font-mono text-5xl countdown">
-			<span style="--value:24;" aria-live="polite" aria-label="24">24</span>
-		</span>
-		min
-	</div>
-	<div class="flex flex-col">
-		<span class="font-mono text-5xl countdown">
-			<span style="--value:59;" aria-live="polite" aria-label="59">59</span>
-		</span>
-		sec
-	</div>
-</div>`, templ.Raw(`
-		<div class="grid grid-flow-col gap-5 text-center auto-cols-max">
-			<div class="flex flex-col">
-				<span class="font-mono text-5xl countdown">
-					<span style="--value:15;" aria-live="polite" aria-label="15">15</span>
-				</span>
-				days
-			</div>
-			<div class="flex flex-col">
-				<span class="font-mono text-5xl countdown">
-					<span style="--value:10;" aria-live="polite" aria-label="10">10</span>
-				</span>
-				hours
-			</div>
-			<div class="flex flex-col">
-				<span class="font-mono text-5xl countdown">
-					<span style="--value:24;" aria-live="polite" aria-label="24">24</span>
-				</span>
-				min
-			</div>
-			<div class="flex flex-col">
-				<span class="font-mono text-5xl countdown">
-					<span style="--value:59;" aria-live="polite" aria-label="59">59</span>
-				</span>
-				sec
-			</div>
-		</div>`))
+	// ... one per unit
+</div>`, countdownWithLabelsUnder())
 	@section("In boxes", `<div class="grid grid-flow-col gap-5 text-center auto-cols-max">
 	<div class="flex flex-col p-2 bg-neutral rounded-box text-neutral-content">
-		<span class="font-mono text-5xl countdown">
-			<span style="--value:15;" aria-live="polite" aria-label="15">15</span>
-		</span>
+		@daisyui.Countdown(daisyui.CountdownConfig{Class: "font-mono text-5xl", Items: []daisyui.CountdownItem{{Value: "15"}}})
 		days
 	</div>
-	<div class="flex flex-col p-2 bg-neutral rounded-box text-neutral-content">
-		<span class="font-mono text-5xl countdown">
-			<span style="--value:10;" aria-live="polite" aria-label="10">10</span>
-		</span>
-		hours
+	// ... one per unit
+</div>`, countdownInBoxes())
+}
+
+templ countdownWithLabels() {
+	<div class="flex gap-5">
+		<div>
+			@daisyui.Countdown(daisyui.CountdownConfig{Class: "font-mono text-4xl", Items: []daisyui.CountdownItem{{Value: "15"}}})
+			days
+		</div>
+		<div>
+			@daisyui.Countdown(daisyui.CountdownConfig{Class: "font-mono text-4xl", Items: []daisyui.CountdownItem{{Value: "10"}}})
+			hours
+		</div>
+		<div>
+			@daisyui.Countdown(daisyui.CountdownConfig{Class: "font-mono text-4xl", Items: []daisyui.CountdownItem{{Value: "24"}}})
+			minutes
+		</div>
+		<div>
+			@daisyui.Countdown(daisyui.CountdownConfig{Class: "font-mono text-4xl", Items: []daisyui.CountdownItem{{Value: "59"}}})
+			sec
+		</div>
 	</div>
-	<div class="flex flex-col p-2 bg-neutral rounded-box text-neutral-content">
-		<span class="font-mono text-5xl countdown">
-			<span style="--value:24;" aria-live="polite" aria-label="24">24</span>
-		</span>
-		min
+}
+
+templ countdownWithLabelsUnder() {
+	<div class="grid grid-flow-col gap-5 text-center auto-cols-max">
+		<div class="flex flex-col">
+			@daisyui.Countdown(daisyui.CountdownConfig{Class: "font-mono text-5xl", Items: []daisyui.CountdownItem{{Value: "15"}}})
+			days
+		</div>
+		<div class="flex flex-col">
+			@daisyui.Countdown(daisyui.CountdownConfig{Class: "font-mono text-5xl", Items: []daisyui.CountdownItem{{Value: "10"}}})
+			hours
+		</div>
+		<div class="flex flex-col">
+			@daisyui.Countdown(daisyui.CountdownConfig{Class: "font-mono text-5xl", Items: []daisyui.CountdownItem{{Value: "24"}}})
+			min
+		</div>
+		<div class="flex flex-col">
+			@daisyui.Countdown(daisyui.CountdownConfig{Class: "font-mono text-5xl", Items: []daisyui.CountdownItem{{Value: "59"}}})
+			sec
+		</div>
 	</div>
-	<div class="flex flex-col p-2 bg-neutral rounded-box text-neutral-content">
-		<span class="font-mono text-5xl countdown">
-			<span style="--value:59;" aria-live="polite" aria-label="59">59</span>
-		</span>
-		sec
+}
+
+templ countdownInBoxes() {
+	<div class="grid grid-flow-col gap-5 text-center auto-cols-max">
+		<div class="flex flex-col p-2 bg-neutral rounded-box text-neutral-content">
+			@daisyui.Countdown(daisyui.CountdownConfig{Class: "font-mono text-5xl", Items: []daisyui.CountdownItem{{Value: "15"}}})
+			days
+		</div>
+		<div class="flex flex-col p-2 bg-neutral rounded-box text-neutral-content">
+			@daisyui.Countdown(daisyui.CountdownConfig{Class: "font-mono text-5xl", Items: []daisyui.CountdownItem{{Value: "10"}}})
+			hours
+		</div>
+		<div class="flex flex-col p-2 bg-neutral rounded-box text-neutral-content">
+			@daisyui.Countdown(daisyui.CountdownConfig{Class: "font-mono text-5xl", Items: []daisyui.CountdownItem{{Value: "24"}}})
+			min
+		</div>
+		<div class="flex flex-col p-2 bg-neutral rounded-box text-neutral-content">
+			@daisyui.Countdown(daisyui.CountdownConfig{Class: "font-mono text-5xl", Items: []daisyui.CountdownItem{{Value: "59"}}})
+			sec
+		</div>
 	</div>
-</div>`, templ.Raw(`
-		<div class="grid grid-flow-col gap-5 text-center auto-cols-max">
-			<div class="flex flex-col p-2 bg-neutral rounded-box text-neutral-content">
-				<span class="font-mono text-5xl countdown">
-					<span style="--value:15;" aria-live="polite" aria-label="15">15</span>
-				</span>
-				days
-			</div>
-			<div class="flex flex-col p-2 bg-neutral rounded-box text-neutral-content">
-				<span class="font-mono text-5xl countdown">
-					<span style="--value:10;" aria-live="polite" aria-label="10">10</span>
-				</span>
-				hours
-			</div>
-			<div class="flex flex-col p-2 bg-neutral rounded-box text-neutral-content">
-				<span class="font-mono text-5xl countdown">
-					<span style="--value:24;" aria-live="polite" aria-label="24">24</span>
-				</span>
-				min
-			</div>
-			<div class="flex flex-col p-2 bg-neutral rounded-box text-neutral-content">
-				<span class="font-mono text-5xl countdown">
-					<span style="--value:59;" aria-live="polite" aria-label="59">59</span>
-				</span>
-				sec
-			</div>
-		</div>`))
 }

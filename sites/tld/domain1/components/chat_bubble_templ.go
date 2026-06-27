@@ -68,130 +68,36 @@ func chatBubbleBody(r links.LinkResolver) templ.Component {
 		templ_7745c5c3_Err = section("chat-start and chat-end", `<div class="chat chat-start">
 	<div class="chat-bubble">It's over Anakin, <br/>I have the high ground.</div>
 </div>
-<div class="chat chat-end">
-	<div class="chat-bubble">You underestimate my power!</div>
-</div>`, templ.Raw(`
-		<div class="w-full">
-			<div class="chat chat-start">
-				<div class="chat-bubble">It's over Anakin, <br/>I have the high ground.</div>
-			</div>
-			<div class="chat chat-end">
-				<div class="chat-bubble">You underestimate my power!</div>
-			</div>
-		</div>`)).Render(ctx, templ_7745c5c3_Buffer)
+@daisyui.ChatBubble(daisyui.ChatBubbleConfig{End: true, Message: "You underestimate my power!"})`, chatStartEndRow()).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Chat with image", `<div class="chat chat-start">
-	<div class="chat-image avatar">
-		<div class="w-10 rounded-full">
-			<img alt="Tailwind CSS chat bubble component" src="https://img.daisyui.com/images/profile/demo/kenobee@192.webp" />
-		</div>
-	</div>
-	<div class="chat-bubble">It was said that you would, destroy the Sith, not join them.</div>
-</div>
-<!-- ... more chat-start bubbles -->`, templ.Raw(`
-		<div class="w-full">
-			<div class="chat chat-start">
-				<div class="chat-image avatar">
-					<div class="w-10 rounded-full">
-						<img alt="Tailwind CSS chat bubble component" src="https://img.daisyui.com/images/profile/demo/kenobee@192.webp" />
-					</div>
-				</div>
-				<div class="chat-bubble">It was said that you would, destroy the Sith, not join them.</div>
-			</div>
-			<div class="chat chat-start">
-				<div class="chat-image avatar">
-					<div class="w-10 rounded-full">
-						<img alt="Tailwind CSS chat bubble component" src="https://img.daisyui.com/images/profile/demo/kenobee@192.webp" />
-					</div>
-				</div>
-				<div class="chat-bubble">It was you who would bring balance to the Force</div>
-			</div>
-			<div class="chat chat-start">
-				<div class="chat-image avatar">
-					<div class="w-10 rounded-full">
-						<img alt="Tailwind CSS chat bubble component" src="https://img.daisyui.com/images/profile/demo/kenobee@192.webp" />
-					</div>
-				</div>
-				<div class="chat-bubble">Not leave it in Darkness</div>
-			</div>
-		</div>`)).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Chat with image", `@daisyui.ChatBubble(daisyui.ChatBubbleConfig{
+	Avatar:  kenobiAvatar(),
+	Message: "It was said that you would, destroy the Sith, not join them.",
+})
+// ... more chat-start bubbles`, chatWithImageRow()).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Chat with image, header and footer", `<div class="chat chat-start">
-	<div class="chat-image avatar">
-		<div class="w-10 rounded-full">
-			<img alt="Tailwind CSS chat bubble component" src="https://img.daisyui.com/images/profile/demo/kenobee@192.webp" />
-		</div>
-	</div>
-	<div class="chat-header">
-		Obi-Wan Kenobi
-		<time class="text-xs opacity-50">12:45</time>
-	</div>
-	<div class="chat-bubble">You were the Chosen One!</div>
-	<div class="chat-footer opacity-50">Delivered</div>
-</div>
-<!-- ... a chat-end bubble for Anakin -->`, templ.Raw(`
-		<div class="w-full">
-			<div class="chat chat-start">
-				<div class="chat-image avatar">
-					<div class="w-10 rounded-full">
-						<img alt="Tailwind CSS chat bubble component" src="https://img.daisyui.com/images/profile/demo/kenobee@192.webp" />
-					</div>
-				</div>
-				<div class="chat-header">
-					Obi-Wan Kenobi
-					<time class="text-xs opacity-50">12:45</time>
-				</div>
-				<div class="chat-bubble">You were the Chosen One!</div>
-				<div class="chat-footer opacity-50">Delivered</div>
-			</div>
-			<div class="chat chat-end">
-				<div class="chat-image avatar">
-					<div class="w-10 rounded-full">
-						<img alt="Tailwind CSS chat bubble component" src="https://img.daisyui.com/images/profile/demo/anakeen@192.webp" />
-					</div>
-				</div>
-				<div class="chat-header">
-					Anakin
-					<time class="text-xs opacity-50">12:46</time>
-				</div>
-				<div class="chat-bubble">I hate you!</div>
-				<div class="chat-footer opacity-50">Seen at 12:46</div>
-			</div>
-		</div>`)).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Chat with image, header and footer", `@daisyui.ChatBubble(daisyui.ChatBubbleConfig{
+	Avatar:  kenobiAvatar(),
+	Author:  "Obi-Wan Kenobi",
+	Time:    "12:45",
+	Message: "You were the Chosen One!",
+	Footer:  "Delivered",
+})
+// ... a chat-end bubble for Anakin`, chatWithImageHeaderFooterRow()).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Chat with header and footer", `<div class="chat chat-start">
-	<div class="chat-header">
-		Obi-Wan Kenobi
-		<time class="text-xs opacity-50">2 hours ago</time>
-	</div>
-	<div class="chat-bubble">You were my brother, Anakin.</div>
-	<div class="chat-footer opacity-50">Seen</div>
-</div>
-<!-- ... another chat-start bubble -->`, templ.Raw(`
-		<div class="w-full">
-			<div class="chat chat-start">
-				<div class="chat-header">
-					Obi-Wan Kenobi
-					<time class="text-xs opacity-50">2 hours ago</time>
-				</div>
-				<div class="chat-bubble">You were my brother, Anakin.</div>
-				<div class="chat-footer opacity-50">Seen</div>
-			</div>
-			<div class="chat chat-start">
-				<div class="chat-header">
-					Obi-Wan Kenobi
-					<time class="text-xs opacity-50">2 hour ago</time>
-				</div>
-				<div class="chat-bubble">I loved you.</div>
-				<div class="chat-footer opacity-50">Delivered</div>
-			</div>
-		</div>`)).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Chat with header and footer", `@daisyui.ChatBubble(daisyui.ChatBubbleConfig{
+	Author:  "Obi-Wan Kenobi",
+	Time:    "2 hours ago",
+	Message: "You were my brother, Anakin.",
+	Footer:  "Seen",
+})
+// ... another chat-start bubble`, chatWithHeaderFooterRow()).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -264,6 +170,251 @@ func chatBubbleColorsRow() templ.Component {
 			return templ_7745c5c3_Err
 		}
 		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "</div>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
+func kenobiAvatar() templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var4 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var4 == nil {
+			templ_7745c5c3_Var4 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "<div class=\"w-10 rounded-full\"><img alt=\"Tailwind CSS chat bubble component\" src=\"https://img.daisyui.com/images/profile/demo/kenobee@192.webp\"></div>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
+func anakinAvatar() templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var5 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var5 == nil {
+			templ_7745c5c3_Var5 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "<div class=\"w-10 rounded-full\"><img alt=\"Tailwind CSS chat bubble component\" src=\"https://img.daisyui.com/images/profile/demo/anakeen@192.webp\"></div>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
+func chatStartEndRow() templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var6 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var6 == nil {
+			templ_7745c5c3_Var6 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "<div class=\"w-full\"><div class=\"chat chat-start\"><div class=\"chat-bubble\">It's over Anakin, <br>I have the high ground.</div></div>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.ChatBubble(daisyui.ChatBubbleConfig{End: true, Message: "You underestimate my power!"}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "</div>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
+func chatWithImageRow() templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var7 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var7 == nil {
+			templ_7745c5c3_Var7 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "<div class=\"w-full\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.ChatBubble(daisyui.ChatBubbleConfig{Avatar: kenobiAvatar(), Message: "It was said that you would, destroy the Sith, not join them."}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.ChatBubble(daisyui.ChatBubbleConfig{Avatar: kenobiAvatar(), Message: "It was you who would bring balance to the Force"}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.ChatBubble(daisyui.ChatBubbleConfig{Avatar: kenobiAvatar(), Message: "Not leave it in Darkness"}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 8, "</div>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
+func chatWithImageHeaderFooterRow() templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var8 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var8 == nil {
+			templ_7745c5c3_Var8 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 9, "<div class=\"w-full\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.ChatBubble(daisyui.ChatBubbleConfig{
+			Avatar:  kenobiAvatar(),
+			Author:  "Obi-Wan Kenobi",
+			Time:    "12:45",
+			Message: "You were the Chosen One!",
+			Footer:  "Delivered",
+		}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.ChatBubble(daisyui.ChatBubbleConfig{
+			End:     true,
+			Avatar:  anakinAvatar(),
+			Author:  "Anakin",
+			Time:    "12:46",
+			Message: "I hate you!",
+			Footer:  "Seen at 12:46",
+		}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 10, "</div>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
+func chatWithHeaderFooterRow() templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var9 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var9 == nil {
+			templ_7745c5c3_Var9 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 11, "<div class=\"w-full\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.ChatBubble(daisyui.ChatBubbleConfig{
+			Author:  "Obi-Wan Kenobi",
+			Time:    "2 hours ago",
+			Message: "You were my brother, Anakin.",
+			Footer:  "Seen",
+		}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.ChatBubble(daisyui.ChatBubbleConfig{
+			Author:  "Obi-Wan Kenobi",
+			Time:    "2 hour ago",
+			Message: "I loved you.",
+			Footer:  "Delivered",
+		}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 12, "</div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

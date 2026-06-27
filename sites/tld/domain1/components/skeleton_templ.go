@@ -71,39 +71,23 @@ func skeletonBody(r links.LinkResolver) templ.Component {
 		}
 		templ_7745c5c3_Err = section("Skeleton - circle with content", `<div class="flex flex-col gap-4 w-52">
 	<div class="flex gap-4 items-center">
-		<div class="skeleton w-16 h-16 rounded-full shrink-0"></div>
+		@daisyui.Skeleton(daisyui.SkeletonConfig{Class: "w-16 h-16 rounded-full shrink-0"})
 		<div class="flex flex-col gap-4">
-			<div class="skeleton h-4 w-20"></div>
-			<div class="skeleton h-4 w-28"></div>
+			@daisyui.Skeleton(daisyui.SkeletonConfig{Class: "h-4 w-20"})
+			@daisyui.Skeleton(daisyui.SkeletonConfig{Class: "h-4 w-28"})
 		</div>
 	</div>
-	<div class="skeleton h-32 w-full"></div>
-</div>`, templ.Raw(`
-		<div class="flex flex-col gap-4 w-52">
-			<div class="flex gap-4 items-center">
-				<div class="skeleton w-16 h-16 rounded-full shrink-0"></div>
-				<div class="flex flex-col gap-4">
-					<div class="skeleton h-4 w-20"></div>
-					<div class="skeleton h-4 w-28"></div>
-				</div>
-			</div>
-			<div class="skeleton h-32 w-full"></div>
-		</div>`)).Render(ctx, templ_7745c5c3_Buffer)
+	@daisyui.Skeleton(daisyui.SkeletonConfig{Class: "h-32 w-full"})
+</div>`, skeletonCircleWithContent()).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		templ_7745c5c3_Err = section("Skeleton - rectangle with content", `<div class="flex flex-col gap-4 w-52">
-	<div class="skeleton h-32 w-full"></div>
-	<div class="skeleton h-4 w-28"></div>
-	<div class="skeleton h-4 w-full"></div>
-	<div class="skeleton h-4 w-full"></div>
-</div>`, templ.Raw(`
-		<div class="flex flex-col gap-4 w-52">
-			<div class="skeleton h-32 w-full"></div>
-			<div class="skeleton h-4 w-28"></div>
-			<div class="skeleton h-4 w-full"></div>
-			<div class="skeleton h-4 w-full"></div>
-		</div>`)).Render(ctx, templ_7745c5c3_Buffer)
+	@daisyui.Skeleton(daisyui.SkeletonConfig{Class: "h-32 w-full"})
+	@daisyui.Skeleton(daisyui.SkeletonConfig{Class: "h-4 w-28"})
+	@daisyui.Skeleton(daisyui.SkeletonConfig{Class: "h-4 w-full"})
+	@daisyui.Skeleton(daisyui.SkeletonConfig{Class: "h-4 w-full"})
+</div>`, skeletonRectangleWithContent()).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -112,6 +96,112 @@ func skeletonBody(r links.LinkResolver) templ.Component {
 })`, daisyui.Skeleton(daisyui.SkeletonConfig{
 			Text: "AI is thinking harder...",
 		})).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
+func skeletonCircleWithContent() templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var3 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var3 == nil {
+			templ_7745c5c3_Var3 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<div class=\"flex flex-col gap-4 w-52\"><div class=\"flex gap-4 items-center\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Skeleton(daisyui.SkeletonConfig{Class: "w-16 h-16 rounded-full shrink-0"}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "<div class=\"flex flex-col gap-4\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Skeleton(daisyui.SkeletonConfig{Class: "h-4 w-20"}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Skeleton(daisyui.SkeletonConfig{Class: "h-4 w-28"}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "</div></div>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Skeleton(daisyui.SkeletonConfig{Class: "h-32 w-full"}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "</div>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
+func skeletonRectangleWithContent() templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var4 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var4 == nil {
+			templ_7745c5c3_Var4 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "<div class=\"flex flex-col gap-4 w-52\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Skeleton(daisyui.SkeletonConfig{Class: "h-32 w-full"}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Skeleton(daisyui.SkeletonConfig{Class: "h-4 w-28"}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Skeleton(daisyui.SkeletonConfig{Class: "h-4 w-full"}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Skeleton(daisyui.SkeletonConfig{Class: "h-4 w-full"}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "</div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

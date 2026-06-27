@@ -65,32 +65,39 @@ func joinBody(r links.LinkResolver) templ.Component {
 			templ_7745c5c3_Var2 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = section("Join", `<div class="join">
-	<button class="btn join-item">Button</button>
-	<button class="btn join-item">Button</button>
-	<button class="btn join-item">Button</button>
-</div>`, templ.Raw(`
-		<div class="join">
-			<button class="btn join-item">Button</button>
-			<button class="btn join-item">Button</button>
-			<button class="btn join-item">Button</button>
-		</div>`)).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Join", `@daisyui.Join(
+	[]templ.Component{
+		daisyui.Button(daisyui.ButtonConfig{Label: "Button", Class: "join-item"}),
+		daisyui.Button(daisyui.ButtonConfig{Label: "Button", Class: "join-item"}),
+		daisyui.Button(daisyui.ButtonConfig{Label: "Button", Class: "join-item"}),
+	},
+	"",
+	"",
+)`, daisyui.Join(
+			[]templ.Component{
+				daisyui.Button(daisyui.ButtonConfig{Label: "Button", Class: "join-item"}),
+				daisyui.Button(daisyui.ButtonConfig{Label: "Button", Class: "join-item"}),
+				daisyui.Button(daisyui.ButtonConfig{Label: "Button", Class: "join-item"}),
+			},
+			"",
+			"",
+		)).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		templ_7745c5c3_Err = section("Group items vertically", `@daisyui.Join(
 	[]templ.Component{
-		templ.Raw(...),
-		templ.Raw(...),
-		templ.Raw(...),
+		daisyui.Button(daisyui.ButtonConfig{Label: "Button", Class: "join-item"}),
+		daisyui.Button(daisyui.ButtonConfig{Label: "Button", Class: "join-item"}),
+		daisyui.Button(daisyui.ButtonConfig{Label: "Button", Class: "join-item"}),
 	},
 	"vertical",
 	"",
 )`, daisyui.Join(
 			[]templ.Component{
-				templ.Raw(`<button class="btn join-item">Button</button>`),
-				templ.Raw(`<button class="btn join-item">Button</button>`),
-				templ.Raw(`<button class="btn join-item">Button</button>`),
+				daisyui.Button(daisyui.ButtonConfig{Label: "Button", Class: "join-item"}),
+				daisyui.Button(daisyui.ButtonConfig{Label: "Button", Class: "join-item"}),
+				daisyui.Button(daisyui.ButtonConfig{Label: "Button", Class: "join-item"}),
 			},
 			"vertical",
 			"",
@@ -100,17 +107,17 @@ func joinBody(r links.LinkResolver) templ.Component {
 		}
 		templ_7745c5c3_Err = section("Responsive: vertical on small, horizontal on large", `@daisyui.Join(
 	[]templ.Component{
-		templ.Raw(...),
-		templ.Raw(...),
-		templ.Raw(...),
+		daisyui.Button(daisyui.ButtonConfig{Label: "Button", Class: "join-item"}),
+		daisyui.Button(daisyui.ButtonConfig{Label: "Button", Class: "join-item"}),
+		daisyui.Button(daisyui.ButtonConfig{Label: "Button", Class: "join-item"}),
 	},
 	"vertical lg:join-horizontal",
 	"",
 )`, daisyui.Join(
 			[]templ.Component{
-				templ.Raw(`<button class="btn join-item">Button</button>`),
-				templ.Raw(`<button class="btn join-item">Button</button>`),
-				templ.Raw(`<button class="btn join-item">Button</button>`),
+				daisyui.Button(daisyui.ButtonConfig{Label: "Button", Class: "join-item"}),
+				daisyui.Button(daisyui.ButtonConfig{Label: "Button", Class: "join-item"}),
+				daisyui.Button(daisyui.ButtonConfig{Label: "Button", Class: "join-item"}),
 			},
 			"vertical lg:join-horizontal",
 			"",
@@ -118,64 +125,132 @@ func joinBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("With extra elements in the group", `<div class="join">
+		templ_7745c5c3_Err = section("With extra elements in the group", `@daisyui.Join(
+	[]templ.Component{
+		joinSearchInput(),
+		daisyui.Select(daisyui.SelectConfig{
+			Placeholder: "Filter",
+			Options: []daisyui.SelectOption{
+				{Value: "Sci-fi"},
+				{Value: "Drama"},
+				{Value: "Action"},
+			},
+			Class: "join-item w-[5.8rem] md:w-auto",
+		}),
+		daisyui.Indicator(daisyui.IndicatorConfig{
+			Items: []daisyui.IndicatorItemConfig{
+				{Class: "badge badge-secondary", Children: templ.Raw("new")},
+			},
+			Children: daisyui.Button(daisyui.ButtonConfig{Label: "Search", Class: "join-item"}),
+		}),
+	},
+	"",
+	"",
+)
+
+templ joinSearchInput() {
 	<div>
 		<div>
-			<input class="input join-item w-[5.3rem] md:w-52" placeholder="Search"/>
+			@daisyui.Input(daisyui.InputConfig{Placeholder: "Search", Class: "join-item w-[5.3rem] md:w-52"})
 		</div>
 	</div>
-	<select class="select join-item w-[5.8rem] md:w-auto">
-		<option disabled selected>Filter</option>
-		<option>Sci-fi</option>
-		<option>Drama</option>
-		<option>Action</option>
-	</select>
-	<div class="indicator">
-		<span class="indicator-item badge badge-secondary">new</span>
-		<button class="btn join-item">Search</button>
-	</div>
-</div>`, templ.Raw(`
-		<div class="join">
-			<div>
-				<div>
-					<input class="input join-item w-[5.3rem] md:w-52" placeholder="Search"/>
-				</div>
-			</div>
-			<select class="select join-item w-[5.8rem] md:w-auto">
-				<option disabled selected>Filter</option>
-				<option>Sci-fi</option>
-				<option>Drama</option>
-				<option>Action</option>
-			</select>
-			<div class="indicator">
-				<span class="indicator-item badge badge-secondary">new</span>
-				<button class="btn join-item">Search</button>
-			</div>
-		</div>`)).Render(ctx, templ_7745c5c3_Buffer)
+}`, daisyui.Join(
+			[]templ.Component{
+				joinSearchInput(),
+				daisyui.Select(daisyui.SelectConfig{
+					Placeholder: "Filter",
+					Options: []daisyui.SelectOption{
+						{Value: "Sci-fi"},
+						{Value: "Drama"},
+						{Value: "Action"},
+					},
+					Class: "join-item w-[5.8rem] md:w-auto",
+				}),
+				daisyui.Indicator(daisyui.IndicatorConfig{
+					Items: []daisyui.IndicatorItemConfig{
+						{Class: "badge badge-secondary", Children: templ.Raw("new")},
+					},
+					Children: daisyui.Button(daisyui.ButtonConfig{Label: "Search", Class: "join-item"}),
+				}),
+			},
+			"",
+			"",
+		)).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Custom border radius", `<div class="join">
-	<input class="input join-item w-36 lg:w-52" placeholder="Email"/>
-	<button class="btn join-item rounded-r-full">Subscribe</button>
-</div>`, templ.Raw(`
-		<div class="join">
-			<input class="input join-item w-36 lg:w-52" placeholder="Email"/>
-			<button class="btn join-item rounded-r-full">Subscribe</button>
-		</div>`)).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Custom border radius", `@daisyui.Join(
+	[]templ.Component{
+		daisyui.Input(daisyui.InputConfig{Placeholder: "Email", Class: "join-item w-36 lg:w-52"}),
+		daisyui.Button(daisyui.ButtonConfig{Label: "Subscribe", Class: "join-item rounded-r-full"}),
+	},
+	"",
+	"",
+)`, daisyui.Join(
+			[]templ.Component{
+				daisyui.Input(daisyui.InputConfig{Placeholder: "Email", Class: "join-item w-36 lg:w-52"}),
+				daisyui.Button(daisyui.ButtonConfig{Label: "Subscribe", Class: "join-item rounded-r-full"}),
+			},
+			"",
+			"",
+		)).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Join radio inputs with btn style", `<div class="join">
-	<input class="join-item btn" type="radio" name="options" autocomplete="off" aria-label="Radio 1"/>
-	<input class="join-item btn" type="radio" name="options" autocomplete="off" aria-label="Radio 2"/>
-	<input class="join-item btn" type="radio" name="options" autocomplete="off" aria-label="Radio 3"/>
-</div>`, templ.Raw(`
-		<div class="join">
-			<input class="join-item btn" type="radio" name="options" autocomplete="off" aria-label="Radio 1"/>
-			<input class="join-item btn" type="radio" name="options" autocomplete="off" aria-label="Radio 2"/>
-			<input class="join-item btn" type="radio" name="options" autocomplete="off" aria-label="Radio 3"/>
-		</div>`)).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Join radio inputs with btn style", `@daisyui.Join(
+	[]templ.Component{
+		templ.Raw(...),
+		templ.Raw(...),
+		templ.Raw(...),
+	},
+	"",
+	"",
+)`, daisyui.Join(
+			[]templ.Component{
+				templ.Raw(`<input class="join-item btn" type="radio" name="options" autocomplete="off" aria-label="Radio 1"/>`),
+				templ.Raw(`<input class="join-item btn" type="radio" name="options" autocomplete="off" aria-label="Radio 2"/>`),
+				templ.Raw(`<input class="join-item btn" type="radio" name="options" autocomplete="off" aria-label="Radio 3"/>`),
+			},
+			"",
+			"",
+		)).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
+func joinSearchInput() templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var3 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var3 == nil {
+			templ_7745c5c3_Var3 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<div><div>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Input(daisyui.InputConfig{Placeholder: "Search", Class: "join-item w-[5.3rem] md:w-52"}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "</div></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

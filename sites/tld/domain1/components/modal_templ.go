@@ -191,14 +191,14 @@ func modalBody(r links.LinkResolver) templ.Component {
 	Title:        "Hello!",
 	Message:      "This modal works with anchor links",
 	TriggerLabel: "open modal",
-	Actions:      templ.Raw(...), // <a href="#" class="btn">Yay!</a>
+	Actions:      daisyui.Button(daisyui.ButtonConfig{Label: "Yay!", Href: "#"}),
 })`, daisyui.Modal(daisyui.ModalConfig{
 			ID:           "modal_8",
 			Method:       "anchor",
 			Title:        "Hello!",
 			Message:      "This modal works with anchor links",
 			TriggerLabel: "open modal",
-			Actions:      templ.Raw(`<a href="#" class="btn">Yay!</a>`),
+			Actions:      daisyui.Button(daisyui.ButtonConfig{Label: "Yay!", Href: "#"}),
 		})).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err

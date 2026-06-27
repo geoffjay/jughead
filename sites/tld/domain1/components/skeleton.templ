@@ -13,39 +13,45 @@ templ skeletonBody(r links.LinkResolver) {
 	@section("Skeleton", `@daisyui.Skeleton(daisyui.SkeletonConfig{Class: "w-32 h-32"})`, daisyui.Skeleton(daisyui.SkeletonConfig{Class: "w-32 h-32"}))
 	@section("Skeleton - circle with content", `<div class="flex flex-col gap-4 w-52">
 	<div class="flex gap-4 items-center">
-		<div class="skeleton w-16 h-16 rounded-full shrink-0"></div>
+		@daisyui.Skeleton(daisyui.SkeletonConfig{Class: "w-16 h-16 rounded-full shrink-0"})
 		<div class="flex flex-col gap-4">
-			<div class="skeleton h-4 w-20"></div>
-			<div class="skeleton h-4 w-28"></div>
+			@daisyui.Skeleton(daisyui.SkeletonConfig{Class: "h-4 w-20"})
+			@daisyui.Skeleton(daisyui.SkeletonConfig{Class: "h-4 w-28"})
 		</div>
 	</div>
-	<div class="skeleton h-32 w-full"></div>
-</div>`, templ.Raw(`
-		<div class="flex flex-col gap-4 w-52">
-			<div class="flex gap-4 items-center">
-				<div class="skeleton w-16 h-16 rounded-full shrink-0"></div>
-				<div class="flex flex-col gap-4">
-					<div class="skeleton h-4 w-20"></div>
-					<div class="skeleton h-4 w-28"></div>
-				</div>
-			</div>
-			<div class="skeleton h-32 w-full"></div>
-		</div>`))
+	@daisyui.Skeleton(daisyui.SkeletonConfig{Class: "h-32 w-full"})
+</div>`, skeletonCircleWithContent())
 	@section("Skeleton - rectangle with content", `<div class="flex flex-col gap-4 w-52">
-	<div class="skeleton h-32 w-full"></div>
-	<div class="skeleton h-4 w-28"></div>
-	<div class="skeleton h-4 w-full"></div>
-	<div class="skeleton h-4 w-full"></div>
-</div>`, templ.Raw(`
-		<div class="flex flex-col gap-4 w-52">
-			<div class="skeleton h-32 w-full"></div>
-			<div class="skeleton h-4 w-28"></div>
-			<div class="skeleton h-4 w-full"></div>
-			<div class="skeleton h-4 w-full"></div>
-		</div>`))
+	@daisyui.Skeleton(daisyui.SkeletonConfig{Class: "h-32 w-full"})
+	@daisyui.Skeleton(daisyui.SkeletonConfig{Class: "h-4 w-28"})
+	@daisyui.Skeleton(daisyui.SkeletonConfig{Class: "h-4 w-full"})
+	@daisyui.Skeleton(daisyui.SkeletonConfig{Class: "h-4 w-full"})
+</div>`, skeletonRectangleWithContent())
 	@section("skeleton-text - animated gradient text", `@daisyui.Skeleton(daisyui.SkeletonConfig{
 	Text: "AI is thinking harder...",
 })`, daisyui.Skeleton(daisyui.SkeletonConfig{
 		Text: "AI is thinking harder...",
 	}))
+}
+
+templ skeletonCircleWithContent() {
+	<div class="flex flex-col gap-4 w-52">
+		<div class="flex gap-4 items-center">
+			@daisyui.Skeleton(daisyui.SkeletonConfig{Class: "w-16 h-16 rounded-full shrink-0"})
+			<div class="flex flex-col gap-4">
+				@daisyui.Skeleton(daisyui.SkeletonConfig{Class: "h-4 w-20"})
+				@daisyui.Skeleton(daisyui.SkeletonConfig{Class: "h-4 w-28"})
+			</div>
+		</div>
+		@daisyui.Skeleton(daisyui.SkeletonConfig{Class: "h-32 w-full"})
+	</div>
+}
+
+templ skeletonRectangleWithContent() {
+	<div class="flex flex-col gap-4 w-52">
+		@daisyui.Skeleton(daisyui.SkeletonConfig{Class: "h-32 w-full"})
+		@daisyui.Skeleton(daisyui.SkeletonConfig{Class: "h-4 w-28"})
+		@daisyui.Skeleton(daisyui.SkeletonConfig{Class: "h-4 w-full"})
+		@daisyui.Skeleton(daisyui.SkeletonConfig{Class: "h-4 w-full"})
+	</div>
 }

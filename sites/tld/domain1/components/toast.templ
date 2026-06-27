@@ -1,6 +1,9 @@
 package components
 
-import "github.com/geoffjay/jughead/sites/links"
+import (
+	"github.com/geoffjay/jughead/sites/links"
+	"github.com/geoffjay/jughead/templates/components/daisyui"
+)
 
 templ ToastPage(r links.LinkResolver) {
 	@pageShell(r, "Toast", "Toast is a wrapper to stack elements, positioned on the corner of page.", toastBody(r))
@@ -8,120 +11,103 @@ templ ToastPage(r links.LinkResolver) {
 
 templ toastBody(r links.LinkResolver) {
 	@section("toast with alert inside", `<div class="w-full h-64 relative">
-	<div class="toast absolute">
-		<div class="alert alert-info">
-			<span>New message arrived.</span>
-		</div>
-	</div>
-</div>`, templ.Raw(`
-		<div class="w-full h-64 relative">
-			<div class="toast absolute">
-				<div class="alert alert-info">
-					<span>New message arrived.</span>
-				</div>
-			</div>
-		</div>`))
+	@daisyui.Toast(daisyui.ToastConfig{
+		Class:    "absolute",
+		Children: daisyui.Alert(daisyui.AlertConfig{Message: "New message arrived.", Color: "info"}),
+	})
+</div>`, toastSingleFrame())
 	@section("toast-top toast-start", `<div class="w-full h-64 relative">
-	<div class="toast toast-top toast-start absolute">
-		<div class="alert alert-info">
-			<span>New mail arrived.</span>
-		</div>
-		<div class="alert alert-success">
-			<span>Message sent successfully.</span>
-		</div>
-	</div>
-</div>`, toastFrame("toast-top toast-start"))
+	@daisyui.Toast(daisyui.ToastConfig{
+		Vertical:   "top",
+		Horizontal: "start",
+		Class:      "absolute",
+		Children:   toastAlerts(),
+	})
+</div>`, toastFrame("start", "top"))
 	@section("toast-top toast-center", `<div class="w-full h-64 relative">
-	<div class="toast toast-top toast-center absolute">
-		<div class="alert alert-info">
-			<span>New mail arrived.</span>
-		</div>
-		<div class="alert alert-success">
-			<span>Message sent successfully.</span>
-		</div>
-	</div>
-</div>`, toastFrame("toast-top toast-center"))
+	@daisyui.Toast(daisyui.ToastConfig{
+		Vertical:   "top",
+		Horizontal: "center",
+		Class:      "absolute",
+		Children:   toastAlerts(),
+	})
+</div>`, toastFrame("center", "top"))
 	@section("toast-top toast-end", `<div class="w-full h-64 relative">
-	<div class="toast toast-top toast-end absolute">
-		<div class="alert alert-info">
-			<span>New mail arrived.</span>
-		</div>
-		<div class="alert alert-success">
-			<span>Message sent successfully.</span>
-		</div>
-	</div>
-</div>`, toastFrame("toast-top toast-end"))
+	@daisyui.Toast(daisyui.ToastConfig{
+		Vertical:   "top",
+		Horizontal: "end",
+		Class:      "absolute",
+		Children:   toastAlerts(),
+	})
+</div>`, toastFrame("end", "top"))
 	@section("toast-start toast-middle", `<div class="w-full h-64 relative">
-	<div class="toast toast-start toast-middle absolute">
-		<div class="alert alert-info">
-			<span>New mail arrived.</span>
-		</div>
-		<div class="alert alert-success">
-			<span>Message sent successfully.</span>
-		</div>
-	</div>
-</div>`, toastFrame("toast-start toast-middle"))
+	@daisyui.Toast(daisyui.ToastConfig{
+		Vertical:   "middle",
+		Horizontal: "start",
+		Class:      "absolute",
+		Children:   toastAlerts(),
+	})
+</div>`, toastFrame("start", "middle"))
 	@section("toast-center toast-middle", `<div class="w-full h-64 relative">
-	<div class="toast toast-center toast-middle absolute">
-		<div class="alert alert-info">
-			<span>New mail arrived.</span>
-		</div>
-		<div class="alert alert-success">
-			<span>Message sent successfully.</span>
-		</div>
-	</div>
-</div>`, toastFrame("toast-center toast-middle"))
+	@daisyui.Toast(daisyui.ToastConfig{
+		Vertical:   "middle",
+		Horizontal: "center",
+		Class:      "absolute",
+		Children:   toastAlerts(),
+	})
+</div>`, toastFrame("center", "middle"))
 	@section("toast-end toast-middle", `<div class="w-full h-64 relative">
-	<div class="toast toast-end toast-middle absolute">
-		<div class="alert alert-info">
-			<span>New mail arrived.</span>
-		</div>
-		<div class="alert alert-success">
-			<span>Message sent successfully.</span>
-		</div>
-	</div>
-</div>`, toastFrame("toast-end toast-middle"))
+	@daisyui.Toast(daisyui.ToastConfig{
+		Vertical:   "middle",
+		Horizontal: "end",
+		Class:      "absolute",
+		Children:   toastAlerts(),
+	})
+</div>`, toastFrame("end", "middle"))
 	@section("toast-start toast-bottom (default)", `<div class="w-full h-64 relative">
-	<div class="toast toast-start absolute">
-		<div class="alert alert-info">
-			<span>New mail arrived.</span>
-		</div>
-		<div class="alert alert-success">
-			<span>Message sent successfully.</span>
-		</div>
-	</div>
-</div>`, toastFrame("toast-start"))
+	@daisyui.Toast(daisyui.ToastConfig{
+		Horizontal: "start",
+		Class:      "absolute",
+		Children:   toastAlerts(),
+	})
+</div>`, toastFrame("start", ""))
 	@section("toast-center toast-bottom (default)", `<div class="w-full h-64 relative">
-	<div class="toast toast-center absolute">
-		<div class="alert alert-info">
-			<span>New mail arrived.</span>
-		</div>
-		<div class="alert alert-success">
-			<span>Message sent successfully.</span>
-		</div>
-	</div>
-</div>`, toastFrame("toast-center"))
+	@daisyui.Toast(daisyui.ToastConfig{
+		Horizontal: "center",
+		Class:      "absolute",
+		Children:   toastAlerts(),
+	})
+</div>`, toastFrame("center", ""))
 	@section("toast-end (default) toast-bottom (default)", `<div class="w-full h-64 relative">
-	<div class="toast toast-end absolute">
-		<div class="alert alert-info">
-			<span>New mail arrived.</span>
-		</div>
-		<div class="alert alert-success">
-			<span>Message sent successfully.</span>
-		</div>
-	</div>
-</div>`, toastFrame("toast-end"))
+	@daisyui.Toast(daisyui.ToastConfig{
+		Horizontal: "end",
+		Class:      "absolute",
+		Children:   toastAlerts(),
+	})
+</div>`, toastFrame("end", ""))
 }
 
-templ toastFrame(position string) {
+templ toastAlerts() {
+	@daisyui.Alert(daisyui.AlertConfig{Message: "New mail arrived.", Color: "info"})
+	@daisyui.Alert(daisyui.AlertConfig{Message: "Message sent successfully.", Color: "success"})
+}
+
+templ toastSingleFrame() {
 	<div class="w-full h-64 relative">
-		<div class={ "toast " + position + " absolute" }>
-			<div class="alert alert-info">
-				<span>New mail arrived.</span>
-			</div>
-			<div class="alert alert-success">
-				<span>Message sent successfully.</span>
-			</div>
-		</div>
+		@daisyui.Toast(daisyui.ToastConfig{
+			Class:    "absolute",
+			Children: daisyui.Alert(daisyui.AlertConfig{Message: "New message arrived.", Color: "info"}),
+		})
+	</div>
+}
+
+templ toastFrame(horizontal, vertical string) {
+	<div class="w-full h-64 relative">
+		@daisyui.Toast(daisyui.ToastConfig{
+			Horizontal: horizontal,
+			Vertical:   vertical,
+			Class:      "absolute",
+			Children:   toastAlerts(),
+		})
 	</div>
 }

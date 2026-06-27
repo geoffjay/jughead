@@ -115,14 +115,14 @@ templ modalBody(r links.LinkResolver) {
 	Title:        "Hello!",
 	Message:      "This modal works with anchor links",
 	TriggerLabel: "open modal",
-	Actions:      templ.Raw(...), // <a href="#" class="btn">Yay!</a>
+	Actions:      daisyui.Button(daisyui.ButtonConfig{Label: "Yay!", Href: "#"}),
 })`, daisyui.Modal(daisyui.ModalConfig{
 		ID:           "modal_8",
 		Method:       "anchor",
 		Title:        "Hello!",
 		Message:      "This modal works with anchor links",
 		TriggerLabel: "open modal",
-		Actions:      templ.Raw(`<a href="#" class="btn">Yay!</a>`),
+		Actions:      daisyui.Button(daisyui.ButtonConfig{Label: "Yay!", Href: "#"}),
 	}))
 }
 

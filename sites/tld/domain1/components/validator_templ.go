@@ -66,11 +66,8 @@ func validatorBody(r links.LinkResolver) templ.Component {
 		}
 		ctx = templ.ClearChildren(ctx)
 		templ_7745c5c3_Err = section("Validator", `<form class="w-full max-w-xs">
-	<input class="input validator" type="email" required placeholder="mail@site.com" autocomplete="false" />
-</form>`, templ.Raw(`
-		<form class="w-full max-w-xs">
-			<input class="input validator" type="email" required placeholder="mail@site.com" autocomplete="false" />
-		</form>`)).Render(ctx, templ_7745c5c3_Buffer)
+	@daisyui.Validator(daisyui.ValidatorConfig{}, templ.Raw("<input class=\"input validator\" type=\"email\" required placeholder=\"mail@site.com\" autocomplete=\"false\" />"))
+</form>`, validatorBasicForm()).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -147,58 +144,181 @@ func validatorBody(r links.LinkResolver) templ.Component {
 			return templ_7745c5c3_Err
 		}
 		templ_7745c5c3_Err = section("Select requirement validator", `<form autocomplete="off" class="w-full max-w-xs" onsubmit="event.preventDefault()">
-	<select class="select validator" required>
-		<option disabled selected value="">Choose:</option>
-		<option>Tabs</option>
-		<option>Spaces</option>
-	</select>
-	<p class="validator-hint">Required</p>
-	<button class="btn" type="submit">Submit form</button>
-</form>`, templ.Raw(`
-		<form autocomplete="off" class="w-full max-w-xs" onsubmit="event.preventDefault()">
-			<select class="select validator" required>
-				<option disabled selected value="">Choose:</option>
-				<option>Tabs</option>
-				<option>Spaces</option>
-			</select>
-			<p class="validator-hint">Required</p>
-			<button class="btn" type="submit">Submit form</button>
-		</form>`)).Render(ctx, templ_7745c5c3_Buffer)
+	@daisyui.Validator(daisyui.ValidatorConfig{
+		Hint: "Required",
+	}, templ.Raw("<select class=\"select validator\" required>...</select>"))
+	@daisyui.Button(daisyui.ButtonConfig{Label: "Submit form", Type: "submit"})
+</form>`, validatorSelectForm()).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		templ_7745c5c3_Err = section("Form requirement validator", `<form autocomplete="off" class="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4" onsubmit="event.preventDefault()">
 	<fieldset class="fieldset">
 		<label class="label">Email</label>
-		<input type="email" class="input validator" placeholder="Email" required />
-		<p class="validator-hint hidden">Required</p>
+		@daisyui.Validator(daisyui.ValidatorConfig{
+			Hint:       "Required",
+			HintHidden: true,
+		}, templ.Raw("<input type=\"email\" class=\"input validator\" placeholder=\"Email\" required />"))
 	</fieldset>
 
 	<label class="fieldset">
 		<span class="label">Password</span>
-		<input type="password" class="input validator" placeholder="Password" required />
-		<span class="validator-hint hidden">Required</span>
+		@daisyui.Validator(daisyui.ValidatorConfig{
+			Hint:       "Required",
+			HintHidden: true,
+		}, templ.Raw("<input type=\"password\" class=\"input validator\" placeholder=\"Password\" required />"))
 	</label>
 
-	<button class="btn btn-neutral mt-4" type="submit">Login</button>
-	<button class="btn btn-ghost mt-1" type="reset">Reset</button>
-</form>`, templ.Raw(`
-		<form autocomplete="off" class="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4" onsubmit="event.preventDefault()">
-			<fieldset class="fieldset">
-				<label class="label">Email</label>
-				<input type="email" class="input validator" placeholder="Email" required />
-				<p class="validator-hint hidden">Required</p>
-			</fieldset>
+	@daisyui.Button(daisyui.ButtonConfig{Label: "Login", Color: "neutral", Type: "submit", Class: "mt-4"})
+	@daisyui.Button(daisyui.ButtonConfig{Label: "Reset", Style: "ghost", Type: "reset", Class: "mt-1"})
+</form>`, validatorLoginForm()).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
 
-			<label class="fieldset">
-				<span class="label">Password</span>
-				<input type="password" class="input validator" placeholder="Password" required />
-				<span class="validator-hint hidden">Required</span>
-			</label>
+func validatorBasicForm() templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var3 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var3 == nil {
+			templ_7745c5c3_Var3 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<form class=\"w-full max-w-xs\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Validator(daisyui.ValidatorConfig{}, templ.Raw(`<input class="input validator" type="email" required placeholder="mail@site.com" autocomplete="false" />`)).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "</form>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
 
-			<button class="btn btn-neutral mt-4" type="submit">Login</button>
-			<button class="btn btn-ghost mt-1" type="reset">Reset</button>
-		</form>`)).Render(ctx, templ_7745c5c3_Buffer)
+func validatorSelectForm() templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var4 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var4 == nil {
+			templ_7745c5c3_Var4 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "<form autocomplete=\"off\" class=\"w-full max-w-xs\" onsubmit=\"event.preventDefault()\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Validator(daisyui.ValidatorConfig{
+			Hint: "Required",
+		}, templ.Raw(`<select class="select validator" required>
+			<option disabled selected value="">Choose:</option>
+			<option>Tabs</option>
+			<option>Spaces</option>
+		</select>`)).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Button(daisyui.ButtonConfig{Label: "Submit form", Type: "submit"}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "</form>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
+func validatorLoginForm() templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var5 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var5 == nil {
+			templ_7745c5c3_Var5 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "<form autocomplete=\"off\" class=\"fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4\" onsubmit=\"event.preventDefault()\"><fieldset class=\"fieldset\"><label class=\"label\">Email</label>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Validator(daisyui.ValidatorConfig{
+			Hint:       "Required",
+			HintHidden: true,
+		}, templ.Raw(`<input type="email" class="input validator" placeholder="Email" required />`)).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "</fieldset><label class=\"fieldset\"><span class=\"label\">Password</span>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Validator(daisyui.ValidatorConfig{
+			Hint:       "Required",
+			HintHidden: true,
+		}, templ.Raw(`<input type="password" class="input validator" placeholder="Password" required />`)).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "</label>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Button(daisyui.ButtonConfig{Label: "Login", Color: "neutral", Type: "submit", Class: "mt-4"}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Button(daisyui.ButtonConfig{Label: "Reset", Style: "ghost", Type: "reset", Class: "mt-1"}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 8, "</form>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

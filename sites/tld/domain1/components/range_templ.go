@@ -74,23 +74,14 @@ func rangeBody(r links.LinkResolver) templ.Component {
 			return templ_7745c5c3_Err
 		}
 		templ_7745c5c3_Err = section("With steps and measure", `<div class="w-full max-w-xs">
-	<input type="range" min="0" max="100" value="25" class="range" step="25" />
+	@daisyui.Range(daisyui.RangeConfig{Min: "0", Max: "100", Value: "25", Step: "25"})
 	<div class="flex justify-between px-2.5 mt-2 text-xs">
 		<span>|</span><span>|</span><span>|</span><span>|</span><span>|</span>
 	</div>
 	<div class="flex justify-between px-2.5 mt-2 text-xs">
 		<span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
 	</div>
-</div>`, templ.Raw(`
-		<div class="w-full max-w-xs">
-			<input type="range" min="0" max="100" value="25" class="range" step="25" />
-			<div class="flex justify-between px-2.5 mt-2 text-xs">
-				<span>|</span><span>|</span><span>|</span><span>|</span><span>|</span>
-			</div>
-			<div class="flex justify-between px-2.5 mt-2 text-xs">
-				<span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
-			</div>
-		</div>`)).Render(ctx, templ_7745c5c3_Buffer)
+</div>`, rangeWithSteps()).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -148,7 +139,7 @@ func rangeBody(r links.LinkResolver) templ.Component {
 	})
 }
 
-func rangeSizeRow() templ.Component {
+func rangeWithSteps() templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -169,7 +160,44 @@ func rangeSizeRow() templ.Component {
 			templ_7745c5c3_Var3 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<div class=\"flex flex-col gap-4 w-full max-w-xs\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<div class=\"w-full max-w-xs\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Range(daisyui.RangeConfig{Min: "0", Max: "100", Value: "25", Step: "25"}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "<div class=\"flex justify-between px-2.5 mt-2 text-xs\"><span>|</span><span>|</span><span>|</span><span>|</span><span>|</span></div><div class=\"flex justify-between px-2.5 mt-2 text-xs\"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></div></div>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
+func rangeSizeRow() templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var4 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var4 == nil {
+			templ_7745c5c3_Var4 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "<div class=\"flex flex-col gap-4 w-full max-w-xs\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -193,7 +221,7 @@ func rangeSizeRow() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "</div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "</div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

@@ -16,23 +16,14 @@ templ rangeBody(r links.LinkResolver) {
 		Min: "0", Max: "100", Value: "40",
 	}))
 	@section("With steps and measure", `<div class="w-full max-w-xs">
-	<input type="range" min="0" max="100" value="25" class="range" step="25" />
+	@daisyui.Range(daisyui.RangeConfig{Min: "0", Max: "100", Value: "25", Step: "25"})
 	<div class="flex justify-between px-2.5 mt-2 text-xs">
 		<span>|</span><span>|</span><span>|</span><span>|</span><span>|</span>
 	</div>
 	<div class="flex justify-between px-2.5 mt-2 text-xs">
 		<span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
 	</div>
-</div>`, templ.Raw(`
-		<div class="w-full max-w-xs">
-			<input type="range" min="0" max="100" value="25" class="range" step="25" />
-			<div class="flex justify-between px-2.5 mt-2 text-xs">
-				<span>|</span><span>|</span><span>|</span><span>|</span><span>|</span>
-			</div>
-			<div class="flex justify-between px-2.5 mt-2 text-xs">
-				<span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
-			</div>
-		</div>`))
+</div>`, rangeWithSteps())
 	@section("Neutral color", `@daisyui.Range(daisyui.RangeConfig{Min: "0", Max: "100", Value: "40", Color: "neutral"})`, daisyui.Range(daisyui.RangeConfig{Min: "0", Max: "100", Value: "40", Color: "neutral"}))
 	@section("Primary color", `@daisyui.Range(daisyui.RangeConfig{Min: "0", Max: "100", Value: "40", Color: "primary"})`, daisyui.Range(daisyui.RangeConfig{Min: "0", Max: "100", Value: "40", Color: "primary"}))
 	@section("Secondary color", `@daisyui.Range(daisyui.RangeConfig{Min: "0", Max: "100", Value: "40", Color: "secondary"})`, daisyui.Range(daisyui.RangeConfig{Min: "0", Max: "100", Value: "40", Color: "secondary"}))
@@ -53,6 +44,18 @@ templ rangeBody(r links.LinkResolver) {
 		Min: "0", Max: "100", Value: "40",
 		Class: "text-blue-300 [--range-bg:orange] [--range-thumb:blue] [--range-fill:0]",
 	}))
+}
+
+templ rangeWithSteps() {
+	<div class="w-full max-w-xs">
+		@daisyui.Range(daisyui.RangeConfig{Min: "0", Max: "100", Value: "25", Step: "25"})
+		<div class="flex justify-between px-2.5 mt-2 text-xs">
+			<span>|</span><span>|</span><span>|</span><span>|</span><span>|</span>
+		</div>
+		<div class="flex justify-between px-2.5 mt-2 text-xs">
+			<span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
+		</div>
+	</div>
 }
 
 templ rangeSizeRow() {

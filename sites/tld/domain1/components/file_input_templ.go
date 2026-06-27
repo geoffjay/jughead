@@ -95,25 +95,10 @@ func fileInputBody(r links.LinkResolver) templ.Component {
 			return templ_7745c5c3_Err
 		}
 		templ_7745c5c3_Err = section("Primary color", `<div class="grid gap-2">
-	<input type="file" class="file-input file-input-primary" />
-	<input type="file" class="file-input file-input-secondary" />
-	<input type="file" class="file-input file-input-accent" />
-	<input type="file" class="file-input file-input-neutral" />
-	<input type="file" class="file-input file-input-info" />
-	<input type="file" class="file-input file-input-success" />
-	<input type="file" class="file-input file-input-warning" />
-	<input type="file" class="file-input file-input-error" />
-</div>`, templ.Raw(`
-		<div class="grid gap-2">
-			<input type="file" class="file-input file-input-primary" />
-			<input type="file" class="file-input file-input-secondary" />
-			<input type="file" class="file-input file-input-accent" />
-			<input type="file" class="file-input file-input-neutral" />
-			<input type="file" class="file-input file-input-info" />
-			<input type="file" class="file-input file-input-success" />
-			<input type="file" class="file-input file-input-warning" />
-			<input type="file" class="file-input file-input-error" />
-		</div>`)).Render(ctx, templ_7745c5c3_Buffer)
+	@daisyui.FileInput(daisyui.FileInputConfig{Color: "primary"})
+	@daisyui.FileInput(daisyui.FileInputConfig{Color: "secondary"})
+	// ... one per color
+</div>`, fileInputColorRow()).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -171,6 +156,71 @@ func fileInputSizeRow() templ.Component {
 			return templ_7745c5c3_Err
 		}
 		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "</div>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
+func fileInputColorRow() templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var4 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var4 == nil {
+			templ_7745c5c3_Var4 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "<div class=\"grid gap-2\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.FileInput(daisyui.FileInputConfig{Color: "primary"}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.FileInput(daisyui.FileInputConfig{Color: "secondary"}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.FileInput(daisyui.FileInputConfig{Color: "accent"}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.FileInput(daisyui.FileInputConfig{Color: "neutral"}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.FileInput(daisyui.FileInputConfig{Color: "info"}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.FileInput(daisyui.FileInputConfig{Color: "success"}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.FileInput(daisyui.FileInputConfig{Color: "warning"}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.FileInput(daisyui.FileInputConfig{Color: "error"}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "</div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

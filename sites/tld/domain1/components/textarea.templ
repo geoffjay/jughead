@@ -21,15 +21,15 @@ templ textareaBody(r links.LinkResolver) {
 	@section("With form control and labels", `@daisyui.Fieldset(daisyui.FieldsetConfig{
 	Legend: "Your bio",
 	Class:  "w-xs",
-}, templ.Raw(...)) {
-	<textarea class="textarea h-24" placeholder="Bio"></textarea>
+}, textareaFieldsetBody())
+
+templ textareaFieldsetBody() {
+	@daisyui.Textarea(daisyui.TextareaConfig{Placeholder: "Bio", Class: "h-24"})
 	<div class="label">Optional</div>
 }`, daisyui.Fieldset(daisyui.FieldsetConfig{
 		Legend: "Your bio",
 		Class:  "w-xs",
-	}, templ.Raw(`
-		<textarea class="textarea h-24" placeholder="Bio"></textarea>
-		<div class="label">Optional</div>`)))
+	}, textareaFieldsetBody()))
 	@section("Textarea colors", `<div class="grid gap-4 w-xs">
 	@daisyui.Textarea(daisyui.TextareaConfig{Placeholder: "Primary", Color: "primary"})
 	@daisyui.Textarea(daisyui.TextareaConfig{Placeholder: "Secondary", Color: "secondary"})
@@ -47,6 +47,11 @@ templ textareaBody(r links.LinkResolver) {
 		Placeholder: "Bio",
 		Disabled:    true,
 	}))
+}
+
+templ textareaFieldsetBody() {
+	@daisyui.Textarea(daisyui.TextareaConfig{Placeholder: "Bio", Class: "h-24"})
+	<div class="label">Optional</div>
 }
 
 templ textareaColorRow() {

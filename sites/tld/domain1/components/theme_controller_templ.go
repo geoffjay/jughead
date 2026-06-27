@@ -87,91 +87,208 @@ func themeControllerBody(r links.LinkResolver) templ.Component {
 		}
 		templ_7745c5c3_Err = section("Theme Controller using a toggle with text", `<label class="flex cursor-pointer gap-2">
 	<span class="label-text">Default</span>
-	<input type="checkbox" autocomplete="off" value="synthwave" class="toggle theme-controller"/>
+	@daisyui.ThemeController(daisyui.ThemeControllerConfig{InputClass: "toggle", Value: "synthwave"})
 	<span class="label-text">Synthwave</span>
-</label>`, templ.Raw(`
-		<label class="flex cursor-pointer gap-2">
-			<span class="label-text">Default</span>
-			<input type="checkbox" autocomplete="off" value="synthwave" class="toggle theme-controller"/>
-			<span class="label-text">Synthwave</span>
-		</label>`)).Render(ctx, templ_7745c5c3_Buffer)
+</label>`, themeControllerToggleWithText()).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		templ_7745c5c3_Err = section("Theme Controller using a toggle with icons", `<label class="flex cursor-pointer gap-2">
-	<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/></svg>
-	<input type="checkbox" autocomplete="off" value="synthwave" class="toggle theme-controller"/>
-	<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-</label>`, templ.Raw(`
-		<label class="flex cursor-pointer gap-2">
-			<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/></svg>
-			<input type="checkbox" autocomplete="off" value="synthwave" class="toggle theme-controller"/>
-			<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-		</label>`)).Render(ctx, templ_7745c5c3_Buffer)
+	<svg ...>...</svg>
+	@daisyui.ThemeController(daisyui.ThemeControllerConfig{InputClass: "toggle", Value: "synthwave"})
+	<svg ...>...</svg>
+</label>`, themeControllerToggleWithIcons()).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		templ_7745c5c3_Err = section("Theme Controller using a radio input", `<fieldset class="fieldset">
 	<label class="flex gap-2 cursor-pointer items-center">
-		<input type="radio" name="theme-radios" autocomplete="off" class="radio radio-sm theme-controller" value="default"/>
+		@daisyui.ThemeController(daisyui.ThemeControllerConfig{AsRadio: true, Name: "theme-radios", InputClass: "radio radio-sm", Value: "default"})
 		Default
 	</label>
-	<label class="flex gap-2 cursor-pointer items-center">
-		<input type="radio" name="theme-radios" autocomplete="off" class="radio radio-sm theme-controller" value="retro"/>
-		Retro
-	</label>
-	<label class="flex gap-2 cursor-pointer items-center">
-		<input type="radio" name="theme-radios" autocomplete="off" class="radio radio-sm theme-controller" value="cyberpunk"/>
-		Cyberpunk
-	</label>
-	<label class="flex gap-2 cursor-pointer items-center">
-		<input type="radio" name="theme-radios" autocomplete="off" class="radio radio-sm theme-controller" value="valentine"/>
-		Valentine
-	</label>
-	<label class="flex gap-2 cursor-pointer items-center">
-		<input type="radio" name="theme-radios" autocomplete="off" class="radio radio-sm theme-controller" value="aqua"/>
-		Aqua
-	</label>
-</fieldset>`, templ.Raw(`
-		<fieldset class="fieldset">
-			<label class="flex gap-2 cursor-pointer items-center">
-				<input type="radio" name="theme-radios" autocomplete="off" class="radio radio-sm theme-controller" value="default"/>
-				Default
-			</label>
-			<label class="flex gap-2 cursor-pointer items-center">
-				<input type="radio" name="theme-radios" autocomplete="off" class="radio radio-sm theme-controller" value="retro"/>
-				Retro
-			</label>
-			<label class="flex gap-2 cursor-pointer items-center">
-				<input type="radio" name="theme-radios" autocomplete="off" class="radio radio-sm theme-controller" value="cyberpunk"/>
-				Cyberpunk
-			</label>
-			<label class="flex gap-2 cursor-pointer items-center">
-				<input type="radio" name="theme-radios" autocomplete="off" class="radio radio-sm theme-controller" value="valentine"/>
-				Valentine
-			</label>
-			<label class="flex gap-2 cursor-pointer items-center">
-				<input type="radio" name="theme-radios" autocomplete="off" class="radio radio-sm theme-controller" value="aqua"/>
-				Aqua
-			</label>
-		</fieldset>`)).Render(ctx, templ_7745c5c3_Buffer)
+	// ... one label per theme
+</fieldset>`, themeControllerRadioInput()).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		templ_7745c5c3_Err = section("Theme Controller using a radio button", `<div class="join join-vertical">
 	<input type="radio" name="theme-buttons" autocomplete="off" class="btn theme-controller join-item" aria-label="Default" value="default"/>
-	<input type="radio" name="theme-buttons" autocomplete="off" class="btn theme-controller join-item" aria-label="Retro" value="retro"/>
-	<input type="radio" name="theme-buttons" autocomplete="off" class="btn theme-controller join-item" aria-label="Cyberpunk" value="cyberpunk"/>
-	<input type="radio" name="theme-buttons" autocomplete="off" class="btn theme-controller join-item" aria-label="Valentine" value="valentine"/>
-	<input type="radio" name="theme-buttons" autocomplete="off" class="btn theme-controller join-item" aria-label="Aqua" value="aqua"/>
-</div>`, templ.Raw(`
-		<div class="join join-vertical">
-			<input type="radio" name="theme-buttons" autocomplete="off" class="btn theme-controller join-item" aria-label="Default" value="default"/>
-			<input type="radio" name="theme-buttons" autocomplete="off" class="btn theme-controller join-item" aria-label="Retro" value="retro"/>
-			<input type="radio" name="theme-buttons" autocomplete="off" class="btn theme-controller join-item" aria-label="Cyberpunk" value="cyberpunk"/>
-			<input type="radio" name="theme-buttons" autocomplete="off" class="btn theme-controller join-item" aria-label="Valentine" value="valentine"/>
-			<input type="radio" name="theme-buttons" autocomplete="off" class="btn theme-controller join-item" aria-label="Aqua" value="aqua"/>
-		</div>`)).Render(ctx, templ_7745c5c3_Buffer)
+	// ... one per theme
+</div>`, themeControllerRadioButton()).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
+func themeControllerToggleWithText() templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var3 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var3 == nil {
+			templ_7745c5c3_Var3 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<label class=\"flex cursor-pointer gap-2\"><span class=\"label-text\">Default</span>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.ThemeController(daisyui.ThemeControllerConfig{InputClass: "toggle", Value: "synthwave"}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "<span class=\"label-text\">Synthwave</span></label>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
+func themeControllerToggleWithIcons() templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var4 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var4 == nil {
+			templ_7745c5c3_Var4 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "<label class=\"flex cursor-pointer gap-2\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"5\"></circle><path d=\"M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4\"></path></svg>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.ThemeController(daisyui.ThemeControllerConfig{InputClass: "toggle", Value: "synthwave"}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z\"></path></svg></label>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
+func themeControllerRadioInput() templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var5 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var5 == nil {
+			templ_7745c5c3_Var5 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "<fieldset class=\"fieldset\"><label class=\"flex gap-2 cursor-pointer items-center\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.ThemeController(daisyui.ThemeControllerConfig{AsRadio: true, Name: "theme-radios", InputClass: "radio radio-sm", Value: "default"}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "Default</label> <label class=\"flex gap-2 cursor-pointer items-center\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.ThemeController(daisyui.ThemeControllerConfig{AsRadio: true, Name: "theme-radios", InputClass: "radio radio-sm", Value: "retro"}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "Retro</label> <label class=\"flex gap-2 cursor-pointer items-center\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.ThemeController(daisyui.ThemeControllerConfig{AsRadio: true, Name: "theme-radios", InputClass: "radio radio-sm", Value: "cyberpunk"}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 8, "Cyberpunk</label> <label class=\"flex gap-2 cursor-pointer items-center\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.ThemeController(daisyui.ThemeControllerConfig{AsRadio: true, Name: "theme-radios", InputClass: "radio radio-sm", Value: "valentine"}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 9, "Valentine</label> <label class=\"flex gap-2 cursor-pointer items-center\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.ThemeController(daisyui.ThemeControllerConfig{AsRadio: true, Name: "theme-radios", InputClass: "radio radio-sm", Value: "aqua"}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 10, "Aqua</label></fieldset>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
+// themeControllerRadioButton uses raw inputs because the rendered button text
+// comes from the aria-label attribute, which ThemeControllerConfig does not expose.
+func themeControllerRadioButton() templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var6 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var6 == nil {
+			templ_7745c5c3_Var6 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 11, "<div class=\"join join-vertical\"><input type=\"radio\" name=\"theme-buttons\" autocomplete=\"off\" class=\"btn theme-controller join-item\" aria-label=\"Default\" value=\"default\"> <input type=\"radio\" name=\"theme-buttons\" autocomplete=\"off\" class=\"btn theme-controller join-item\" aria-label=\"Retro\" value=\"retro\"> <input type=\"radio\" name=\"theme-buttons\" autocomplete=\"off\" class=\"btn theme-controller join-item\" aria-label=\"Cyberpunk\" value=\"cyberpunk\"> <input type=\"radio\" name=\"theme-buttons\" autocomplete=\"off\" class=\"btn theme-controller join-item\" aria-label=\"Valentine\" value=\"valentine\"> <input type=\"radio\" name=\"theme-buttons\" autocomplete=\"off\" class=\"btn theme-controller join-item\" aria-label=\"Aqua\" value=\"aqua\"></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

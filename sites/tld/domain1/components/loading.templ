@@ -40,22 +40,25 @@ templ loadingBody(r links.LinkResolver) {
 	@daisyui.Loading("infinity", "sm", "", "")
 	// ... one per size
 </div>`, loadingRow("infinity"))
-	@section("Loading with colors", `<span class="loading loading-spinner text-primary"></span>
-<span class="loading loading-spinner text-secondary"></span>
-<span class="loading loading-spinner text-accent"></span>
-<span class="loading loading-spinner text-neutral"></span>
-<span class="loading loading-spinner text-info"></span>
-<span class="loading loading-spinner text-success"></span>
-<span class="loading loading-spinner text-warning"></span>
-<span class="loading loading-spinner text-error"></span>`, templ.Raw(`
-		<span class="loading loading-spinner text-primary"></span>
-		<span class="loading loading-spinner text-secondary"></span>
-		<span class="loading loading-spinner text-accent"></span>
-		<span class="loading loading-spinner text-neutral"></span>
-		<span class="loading loading-spinner text-info"></span>
-		<span class="loading loading-spinner text-success"></span>
-		<span class="loading loading-spinner text-warning"></span>
-		<span class="loading loading-spinner text-error"></span>`))
+	@section("Loading with colors", `@daisyui.Loading("spinner", "", "text-primary", "")
+@daisyui.Loading("spinner", "", "text-secondary", "")
+@daisyui.Loading("spinner", "", "text-accent", "")
+@daisyui.Loading("spinner", "", "text-neutral", "")
+@daisyui.Loading("spinner", "", "text-info", "")
+@daisyui.Loading("spinner", "", "text-success", "")
+@daisyui.Loading("spinner", "", "text-warning", "")
+@daisyui.Loading("spinner", "", "text-error", "")`, loadingColorRow())
+}
+
+templ loadingColorRow() {
+	@daisyui.Loading("spinner", "", "text-primary", "")
+	@daisyui.Loading("spinner", "", "text-secondary", "")
+	@daisyui.Loading("spinner", "", "text-accent", "")
+	@daisyui.Loading("spinner", "", "text-neutral", "")
+	@daisyui.Loading("spinner", "", "text-info", "")
+	@daisyui.Loading("spinner", "", "text-success", "")
+	@daisyui.Loading("spinner", "", "text-warning", "")
+	@daisyui.Loading("spinner", "", "text-error", "")
 }
 
 templ loadingRow(shape string) {

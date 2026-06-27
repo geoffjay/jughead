@@ -16,59 +16,29 @@ templ checkboxBody(r links.LinkResolver) {
 	Class:  "p-4 bg-base-100 border border-base-300 rounded-box w-64",
 }, templ.Raw(...)) {
 	<label class="label">
-		<input type="checkbox" checked="checked" class="checkbox" />
+		@daisyui.Checkbox(daisyui.CheckboxConfig{Checked: true})
 		Remember me
 	</label>
 }`, daisyui.Fieldset(daisyui.FieldsetConfig{
 		Legend: "Login options",
 		Class:  "p-4 bg-base-100 border border-base-300 rounded-box w-64",
-	}, templ.Raw(`
-		<label class="label">
-			<input type="checkbox" checked="checked" class="checkbox" />
-			Remember me
-		</label>`)))
+	}, checkboxFieldsetLabel()))
 	@section("Sizes", `<div class="flex gap-4">
-	<input type="checkbox" checked="checked" class="checkbox checkbox-xs" />
-	<input type="checkbox" checked="checked" class="checkbox checkbox-sm" />
-	<input type="checkbox" checked="checked" class="checkbox checkbox-md" />
-	<input type="checkbox" checked="checked" class="checkbox checkbox-lg" />
-	<input type="checkbox" checked="checked" class="checkbox checkbox-xl" />
-</div>`, templ.Raw(`
-		<div class="flex gap-4">
-			<input type="checkbox" checked="checked" class="checkbox checkbox-xs" />
-			<input type="checkbox" checked="checked" class="checkbox checkbox-sm" />
-			<input type="checkbox" checked="checked" class="checkbox checkbox-md" />
-			<input type="checkbox" checked="checked" class="checkbox checkbox-lg" />
-			<input type="checkbox" checked="checked" class="checkbox checkbox-xl" />
-		</div>`))
+	@daisyui.Checkbox(daisyui.CheckboxConfig{Checked: true, Size: "xs"})
+	@daisyui.Checkbox(daisyui.CheckboxConfig{Checked: true, Size: "sm"})
+	@daisyui.Checkbox(daisyui.CheckboxConfig{Checked: true, Size: "md"})
+	@daisyui.Checkbox(daisyui.CheckboxConfig{Checked: true, Size: "lg"})
+	@daisyui.Checkbox(daisyui.CheckboxConfig{Checked: true, Size: "xl"})
+</div>`, checkboxSizeRow())
 	@section("Colors", `<div class="flex gap-4">
-	<input type="checkbox" checked="checked" class="checkbox checkbox-primary" />
-	<input type="checkbox" checked="checked" class="checkbox checkbox-secondary" />
-	<input type="checkbox" checked="checked" class="checkbox checkbox-accent" />
-	<input type="checkbox" checked="checked" class="checkbox checkbox-neutral" />
-	<input type="checkbox" checked="checked" class="checkbox checkbox-info" />
-	<input type="checkbox" checked="checked" class="checkbox checkbox-success" />
-	<input type="checkbox" checked="checked" class="checkbox checkbox-warning" />
-	<input type="checkbox" checked="checked" class="checkbox checkbox-error" />
-</div>`, templ.Raw(`
-		<div class="flex gap-4">
-			<input type="checkbox" checked="checked" class="checkbox checkbox-primary" />
-			<input type="checkbox" checked="checked" class="checkbox checkbox-secondary" />
-			<input type="checkbox" checked="checked" class="checkbox checkbox-accent" />
-			<input type="checkbox" checked="checked" class="checkbox checkbox-neutral" />
-			<input type="checkbox" checked="checked" class="checkbox checkbox-info" />
-			<input type="checkbox" checked="checked" class="checkbox checkbox-success" />
-			<input type="checkbox" checked="checked" class="checkbox checkbox-warning" />
-			<input type="checkbox" checked="checked" class="checkbox checkbox-error" />
-		</div>`))
+	@daisyui.Checkbox(daisyui.CheckboxConfig{Checked: true, Color: "primary"})
+	@daisyui.Checkbox(daisyui.CheckboxConfig{Checked: true, Color: "secondary"})
+	// ... one per color
+</div>`, checkboxColorRow())
 	@section("Disabled", `<div class="flex gap-4">
-	<input type="checkbox" disabled="disabled" class="checkbox" />
-	<input type="checkbox" disabled="disabled" class="checkbox" checked="checked" />
-</div>`, templ.Raw(`
-		<div class="flex gap-4">
-			<input type="checkbox" disabled="disabled" class="checkbox" />
-			<input type="checkbox" disabled="disabled" class="checkbox" checked="checked" />
-		</div>`))
+	@daisyui.Checkbox(daisyui.CheckboxConfig{Disabled: true})
+	@daisyui.Checkbox(daisyui.CheckboxConfig{Disabled: true, Checked: true})
+</div>`, checkboxDisabledRow())
 	@section("Checkbox with custom colors", `@daisyui.Checkbox(daisyui.CheckboxConfig{
 	Checked: true,
 	Class:   "border-indigo-600 bg-indigo-500 checked:bg-orange-400 checked:text-orange-800 checked:border-orange-500",
@@ -76,4 +46,41 @@ templ checkboxBody(r links.LinkResolver) {
 		Checked: true,
 		Class:   "border-indigo-600 bg-indigo-500 checked:bg-orange-400 checked:text-orange-800 checked:border-orange-500",
 	}))
+}
+
+templ checkboxFieldsetLabel() {
+	<label class="label">
+		@daisyui.Checkbox(daisyui.CheckboxConfig{Checked: true})
+		Remember me
+	</label>
+}
+
+templ checkboxSizeRow() {
+	<div class="flex gap-4">
+		@daisyui.Checkbox(daisyui.CheckboxConfig{Checked: true, Size: "xs"})
+		@daisyui.Checkbox(daisyui.CheckboxConfig{Checked: true, Size: "sm"})
+		@daisyui.Checkbox(daisyui.CheckboxConfig{Checked: true, Size: "md"})
+		@daisyui.Checkbox(daisyui.CheckboxConfig{Checked: true, Size: "lg"})
+		@daisyui.Checkbox(daisyui.CheckboxConfig{Checked: true, Size: "xl"})
+	</div>
+}
+
+templ checkboxColorRow() {
+	<div class="flex gap-4">
+		@daisyui.Checkbox(daisyui.CheckboxConfig{Checked: true, Color: "primary"})
+		@daisyui.Checkbox(daisyui.CheckboxConfig{Checked: true, Color: "secondary"})
+		@daisyui.Checkbox(daisyui.CheckboxConfig{Checked: true, Color: "accent"})
+		@daisyui.Checkbox(daisyui.CheckboxConfig{Checked: true, Color: "neutral"})
+		@daisyui.Checkbox(daisyui.CheckboxConfig{Checked: true, Color: "info"})
+		@daisyui.Checkbox(daisyui.CheckboxConfig{Checked: true, Color: "success"})
+		@daisyui.Checkbox(daisyui.CheckboxConfig{Checked: true, Color: "warning"})
+		@daisyui.Checkbox(daisyui.CheckboxConfig{Checked: true, Color: "error"})
+	</div>
+}
+
+templ checkboxDisabledRow() {
+	<div class="flex gap-4">
+		@daisyui.Checkbox(daisyui.CheckboxConfig{Disabled: true})
+		@daisyui.Checkbox(daisyui.CheckboxConfig{Disabled: true, Checked: true})
+	</div>
 }

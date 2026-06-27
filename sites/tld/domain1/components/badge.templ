@@ -11,32 +11,18 @@ templ BadgePage(r links.LinkResolver) {
 
 templ badgeBody(r links.LinkResolver) {
 	@section("Badge", `@daisyui.Badge(daisyui.BadgeConfig{Text: "Badge"})`, daisyui.Badge(daisyui.BadgeConfig{Text: "Badge"}))
-	@section("Badge sizes", `<div class="badge badge-xs">Xsmall</div>
-<div class="badge badge-sm">Small</div>
-<div class="badge badge-md">Medium</div>
-<div class="badge badge-lg">Large</div>
-<div class="badge badge-xl">Xlarge</div>`, templ.Raw(`
-		<div class="badge badge-xs">Xsmall</div>
-		<div class="badge badge-sm">Small</div>
-		<div class="badge badge-md">Medium</div>
-		<div class="badge badge-lg">Large</div>
-		<div class="badge badge-xl">Xlarge</div>`))
-	@section("Badge with colors", `<div class="badge badge-primary">Primary</div>
-<div class="badge badge-secondary">Secondary</div>
-<div class="badge badge-accent">Accent</div>
-<div class="badge badge-neutral">Neutral</div>
-<div class="badge badge-info">Info</div>
-<div class="badge badge-success">Success</div>
-<div class="badge badge-warning">Warning</div>
-<div class="badge badge-error">Error</div>`, templ.Raw(`
-		<div class="badge badge-primary">Primary</div>
-		<div class="badge badge-secondary">Secondary</div>
-		<div class="badge badge-accent">Accent</div>
-		<div class="badge badge-neutral">Neutral</div>
-		<div class="badge badge-info">Info</div>
-		<div class="badge badge-success">Success</div>
-		<div class="badge badge-warning">Warning</div>
-		<div class="badge badge-error">Error</div>`))
+	@section("Badge sizes", `<div class="flex flex-wrap items-center gap-2">
+	@daisyui.Badge(daisyui.BadgeConfig{Text: "Xsmall", Size: "xs"})
+	@daisyui.Badge(daisyui.BadgeConfig{Text: "Small", Size: "sm"})
+	@daisyui.Badge(daisyui.BadgeConfig{Text: "Medium"})
+	@daisyui.Badge(daisyui.BadgeConfig{Text: "Large", Size: "lg"})
+	@daisyui.Badge(daisyui.BadgeConfig{Text: "Xlarge", Size: "xl"})
+</div>`, badgeSizeRow())
+	@section("Badge with colors", `<div class="flex flex-wrap gap-2">
+	@daisyui.Badge(daisyui.BadgeConfig{Text: "Primary", Color: "primary"})
+	@daisyui.Badge(daisyui.BadgeConfig{Text: "Secondary", Color: "secondary"})
+	// ... one per color
+</div>`, badgeColorRow())
 	@section("Badge with soft style", `<div class="flex flex-wrap gap-2">
 	@daisyui.Badge(daisyui.BadgeConfig{Text: "Primary", Style: "soft", Color: "primary"})
 	@daisyui.Badge(daisyui.BadgeConfig{Text: "Secondary", Style: "soft", Color: "secondary"})
@@ -53,14 +39,12 @@ templ badgeBody(r links.LinkResolver) {
 	// ... one per color
 </div>`, badgeDashRow())
 	@section("Badge ghost", `@daisyui.Badge(daisyui.BadgeConfig{Text: "ghost", Style: "ghost"})`, daisyui.Badge(daisyui.BadgeConfig{Text: "ghost", Style: "ghost"}))
-	@section("Empty badge", `<div class="badge badge-primary badge-lg"></div>
-<div class="badge badge-primary badge-md"></div>
-<div class="badge badge-primary badge-sm"></div>
-<div class="badge badge-primary badge-xs"></div>`, templ.Raw(`
-		<div class="badge badge-primary badge-lg"></div>
-		<div class="badge badge-primary badge-md"></div>
-		<div class="badge badge-primary badge-sm"></div>
-		<div class="badge badge-primary badge-xs"></div>`))
+	@section("Empty badge", `<div class="flex flex-wrap items-center gap-2">
+	@daisyui.Badge(daisyui.BadgeConfig{Color: "primary", Size: "lg"})
+	@daisyui.Badge(daisyui.BadgeConfig{Color: "primary"})
+	@daisyui.Badge(daisyui.BadgeConfig{Color: "primary", Size: "sm"})
+	@daisyui.Badge(daisyui.BadgeConfig{Color: "primary", Size: "xs"})
+</div>`, badgeEmptyRow())
 	@section("Badge with icon", `<div class="flex flex-wrap gap-2">
 	@daisyui.Badge(daisyui.BadgeConfig{
 		Color:    "info",
@@ -72,25 +56,101 @@ templ badgeBody(r links.LinkResolver) {
 	})
 </div>`, badgeIconRow())
 	@section("Badge in a text", `<div class="grid">
-	<span class="text-xl font-semibold">Heading 1 <span class="badge badge-xl">Badge</span></span>
-	<span class="text-lg font-semibold">Heading 2 <span class="badge badge-lg">Badge</span></span>
-	<span class="text-base font-semibold">Heading 3 <span class="badge badge-md">Badge</span></span>
-	<span class="text-sm font-semibold">Heading 4 <span class="badge badge-sm">Badge</span></span>
-	<span class="text-xs font-semibold">Heading 5 <span class="badge badge-xs">Badge</span></span>
-	<p class="text-xs">Paragraph <span class="badge badge-xs">Badge</span></p>
-</div>`, templ.Raw(`
-		<div class="grid">
-			<span class="text-xl font-semibold">Heading 1 <span class="badge badge-xl">Badge</span></span>
-			<span class="text-lg font-semibold">Heading 2 <span class="badge badge-lg">Badge</span></span>
-			<span class="text-base font-semibold">Heading 3 <span class="badge badge-md">Badge</span></span>
-			<span class="text-sm font-semibold">Heading 4 <span class="badge badge-sm">Badge</span></span>
-			<span class="text-xs font-semibold">Heading 5 <span class="badge badge-xs">Badge</span></span>
-			<p class="text-xs">Paragraph <span class="badge badge-xs">Badge</span></p>
-		</div>`))
-	@section("Badge in a button", `<button class="btn">Inbox <div class="badge badge-sm">+99</div></button>
-<button class="btn">Inbox <div class="badge badge-sm badge-secondary">+99</div></button>`, templ.Raw(`
-		<button class="btn">Inbox <div class="badge badge-sm">+99</div></button>
-		<button class="btn">Inbox <div class="badge badge-sm badge-secondary">+99</div></button>`))
+	<span class="text-xl font-semibold">
+		Heading 1 @daisyui.Badge(daisyui.BadgeConfig{Text: "Badge", Size: "xl"})
+	</span>
+	<span class="text-lg font-semibold">
+		Heading 2 @daisyui.Badge(daisyui.BadgeConfig{Text: "Badge", Size: "lg"})
+	</span>
+	// ... one per heading size
+</div>`, badgeInTextRow())
+	@section("Badge in a button", `<div class="flex flex-wrap gap-2">
+	@daisyui.Button(daisyui.ButtonConfig{
+		Label:    "Inbox ",
+		Children: ...,
+	})
+	@daisyui.Button(daisyui.ButtonConfig{
+		Label:    "Inbox ",
+		Children: ...,
+	})
+</div>`, badgeInButtonRow())
+}
+
+templ badgeSizeRow() {
+	<div class="flex flex-wrap items-center gap-2">
+		@daisyui.Badge(daisyui.BadgeConfig{Text: "Xsmall", Size: "xs"})
+		@daisyui.Badge(daisyui.BadgeConfig{Text: "Small", Size: "sm"})
+		@daisyui.Badge(daisyui.BadgeConfig{Text: "Medium"})
+		@daisyui.Badge(daisyui.BadgeConfig{Text: "Large", Size: "lg"})
+		@daisyui.Badge(daisyui.BadgeConfig{Text: "Xlarge", Size: "xl"})
+	</div>
+}
+
+templ badgeColorRow() {
+	<div class="flex flex-wrap gap-2">
+		@daisyui.Badge(daisyui.BadgeConfig{Text: "Primary", Color: "primary"})
+		@daisyui.Badge(daisyui.BadgeConfig{Text: "Secondary", Color: "secondary"})
+		@daisyui.Badge(daisyui.BadgeConfig{Text: "Accent", Color: "accent"})
+		@daisyui.Badge(daisyui.BadgeConfig{Text: "Neutral", Color: "neutral"})
+		@daisyui.Badge(daisyui.BadgeConfig{Text: "Info", Color: "info"})
+		@daisyui.Badge(daisyui.BadgeConfig{Text: "Success", Color: "success"})
+		@daisyui.Badge(daisyui.BadgeConfig{Text: "Warning", Color: "warning"})
+		@daisyui.Badge(daisyui.BadgeConfig{Text: "Error", Color: "error"})
+	</div>
+}
+
+templ badgeEmptyRow() {
+	<div class="flex flex-wrap items-center gap-2">
+		@daisyui.Badge(daisyui.BadgeConfig{Color: "primary", Size: "lg"})
+		@daisyui.Badge(daisyui.BadgeConfig{Color: "primary"})
+		@daisyui.Badge(daisyui.BadgeConfig{Color: "primary", Size: "sm"})
+		@daisyui.Badge(daisyui.BadgeConfig{Color: "primary", Size: "xs"})
+	</div>
+}
+
+templ badgeInTextRow() {
+	<div class="grid">
+		<span class="text-xl font-semibold">
+			Heading 1
+			@daisyui.Badge(daisyui.BadgeConfig{Text: "Badge", Size: "xl"})
+		</span>
+		<span class="text-lg font-semibold">
+			Heading 2
+			@daisyui.Badge(daisyui.BadgeConfig{Text: "Badge", Size: "lg"})
+		</span>
+		<span class="text-base font-semibold">
+			Heading 3
+			@daisyui.Badge(daisyui.BadgeConfig{Text: "Badge"})
+		</span>
+		<span class="text-sm font-semibold">
+			Heading 4
+			@daisyui.Badge(daisyui.BadgeConfig{Text: "Badge", Size: "sm"})
+		</span>
+		<span class="text-xs font-semibold">
+			Heading 5
+			@daisyui.Badge(daisyui.BadgeConfig{Text: "Badge", Size: "xs"})
+		</span>
+		<p class="text-xs">
+			Paragraph
+			@daisyui.Badge(daisyui.BadgeConfig{Text: "Badge", Size: "xs"})
+		</p>
+	</div>
+}
+
+templ badgeInButtonRow() {
+	<div class="flex flex-wrap gap-2">
+		@daisyui.Button(daisyui.ButtonConfig{
+			Children: badgeInboxLabel(""),
+		})
+		@daisyui.Button(daisyui.ButtonConfig{
+			Children: badgeInboxLabel("secondary"),
+		})
+	</div>
+}
+
+templ badgeInboxLabel(color string) {
+	Inbox
+	@daisyui.Badge(daisyui.BadgeConfig{Text: "+99", Size: "sm", Color: color})
 }
 
 templ badgeSoftRow() {

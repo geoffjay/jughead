@@ -82,19 +82,12 @@ func radioBody(r links.LinkResolver) templ.Component {
 			return templ_7745c5c3_Err
 		}
 		templ_7745c5c3_Err = section("Radio sizes", `<div class="flex gap-4">
-	<input type="radio" name="radio-2" class="radio radio-xs" checked="checked" />
-	<input type="radio" name="radio-2.1" class="radio radio-sm" checked="checked" />
-	<input type="radio" name="radio-2.2" class="radio radio-md" checked="checked" />
-	<input type="radio" name="radio-2.3" class="radio radio-lg" checked="checked" />
-	<input type="radio" name="radio-2.4" class="radio radio-xl" checked="checked" />
-</div>`, templ.Raw(`
-		<div class="flex gap-4">
-			<input type="radio" name="radio-2" class="radio radio-xs" checked="checked" />
-			<input type="radio" name="radio-2.1" class="radio radio-sm" checked="checked" />
-			<input type="radio" name="radio-2.2" class="radio radio-md" checked="checked" />
-			<input type="radio" name="radio-2.3" class="radio radio-lg" checked="checked" />
-			<input type="radio" name="radio-2.4" class="radio radio-xl" checked="checked" />
-		</div>`)).Render(ctx, templ_7745c5c3_Buffer)
+	@daisyui.RadioSingle(daisyui.RadioSingleConfig{Name: "radio-2", Size: "xs", Checked: true})
+	@daisyui.RadioSingle(daisyui.RadioSingleConfig{Name: "radio-2.1", Size: "sm", Checked: true})
+	@daisyui.RadioSingle(daisyui.RadioSingleConfig{Name: "radio-2.2", Size: "md", Checked: true})
+	@daisyui.RadioSingle(daisyui.RadioSingleConfig{Name: "radio-2.3", Size: "lg", Checked: true})
+	@daisyui.RadioSingle(daisyui.RadioSingleConfig{Name: "radio-2.4", Size: "xl", Checked: true})
+</div>`, radioSizesRow()).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -243,24 +236,151 @@ func radioBody(r links.LinkResolver) templ.Component {
 			return templ_7745c5c3_Err
 		}
 		templ_7745c5c3_Err = section("Disabled", `<div class="flex gap-4">
-	<input type="radio" name="radio-11" class="radio" disabled checked="checked" />
-	<input type="radio" name="radio-11" class="radio" disabled />
-</div>`, templ.Raw(`
-		<div class="flex gap-4">
-			<input type="radio" name="radio-11" class="radio" disabled checked="checked" />
-			<input type="radio" name="radio-11" class="radio" disabled />
-		</div>`)).Render(ctx, templ_7745c5c3_Buffer)
+	@daisyui.RadioSingle(daisyui.RadioSingleConfig{Name: "radio-11", Disabled: true, Checked: true})
+	@daisyui.RadioSingle(daisyui.RadioSingleConfig{Name: "radio-11", Disabled: true})
+</div>`, radioDisabledRow()).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		templ_7745c5c3_Err = section("Radio with custom colors", `<div class="flex gap-4">
-	<input type="radio" name="radio-12" class="radio bg-red-100 border-red-300 checked:bg-red-200 checked:text-red-600 checked:border-red-600" checked="checked" />
-	<input type="radio" name="radio-12" class="radio bg-blue-100 border-blue-300 checked:bg-blue-200 checked:text-blue-600 checked:border-blue-600" checked="checked" />
-</div>`, templ.Raw(`
-		<div class="flex gap-4">
-			<input type="radio" name="radio-12" class="radio bg-red-100 border-red-300 checked:bg-red-200 checked:text-red-600 checked:border-red-600" checked="checked" />
-			<input type="radio" name="radio-12" class="radio bg-blue-100 border-blue-300 checked:bg-blue-200 checked:text-blue-600 checked:border-blue-600" checked="checked" />
-		</div>`)).Render(ctx, templ_7745c5c3_Buffer)
+	@daisyui.RadioSingle(daisyui.RadioSingleConfig{Name: "radio-12", Class: "bg-red-100 border-red-300 checked:bg-red-200 checked:text-red-600 checked:border-red-600", Checked: true})
+	@daisyui.RadioSingle(daisyui.RadioSingleConfig{Name: "radio-12", Class: "bg-blue-100 border-blue-300 checked:bg-blue-200 checked:text-blue-600 checked:border-blue-600", Checked: true})
+</div>`, radioCustomColorsRow()).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
+func radioSizesRow() templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var3 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var3 == nil {
+			templ_7745c5c3_Var3 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<div class=\"flex gap-4\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.RadioSingle(daisyui.RadioSingleConfig{Name: "radio-2", Size: "xs", Checked: true}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.RadioSingle(daisyui.RadioSingleConfig{Name: "radio-2.1", Size: "sm", Checked: true}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.RadioSingle(daisyui.RadioSingleConfig{Name: "radio-2.2", Size: "md", Checked: true}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.RadioSingle(daisyui.RadioSingleConfig{Name: "radio-2.3", Size: "lg", Checked: true}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.RadioSingle(daisyui.RadioSingleConfig{Name: "radio-2.4", Size: "xl", Checked: true}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "</div>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
+func radioDisabledRow() templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var4 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var4 == nil {
+			templ_7745c5c3_Var4 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "<div class=\"flex gap-4\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.RadioSingle(daisyui.RadioSingleConfig{Name: "radio-11", Disabled: true, Checked: true}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.RadioSingle(daisyui.RadioSingleConfig{Name: "radio-11", Disabled: true}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "</div>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
+func radioCustomColorsRow() templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var5 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var5 == nil {
+			templ_7745c5c3_Var5 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "<div class=\"flex gap-4\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.RadioSingle(daisyui.RadioSingleConfig{Name: "radio-12", Class: "bg-red-100 border-red-300 checked:bg-red-200 checked:text-red-600 checked:border-red-600", Checked: true}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.RadioSingle(daisyui.RadioSingleConfig{Name: "radio-12", Class: "bg-blue-100 border-blue-300 checked:bg-blue-200 checked:text-blue-600 checked:border-blue-600", Checked: true}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "</div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

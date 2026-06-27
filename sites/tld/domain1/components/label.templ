@@ -11,43 +11,24 @@ templ LabelPage(r links.LinkResolver) {
 
 templ labelBody(r links.LinkResolver) {
 	@section("Label for input", `<label class="input">
-	<span class="label">https://</span>
+	@daisyui.Label(daisyui.LabelConfig{Text: "https://"})
 	<input type="text" placeholder="URL" />
-</label>`, templ.Raw(`
-		<label class="input">
-			<span class="label">https://</span>
-			<input type="text" placeholder="URL" />
-		</label>`))
+</label>`, labelForInput())
 	@section("Label for input at the end", `<label class="input">
 	<input type="text" placeholder="domain name" />
-	<span class="label">.com</span>
-</label>`, templ.Raw(`
-		<label class="input">
-			<input type="text" placeholder="domain name" />
-			<span class="label">.com</span>
-		</label>`))
+	@daisyui.Label(daisyui.LabelConfig{Text: ".com"})
+</label>`, labelForInputEnd())
 	@section("Label for select", `<label class="select">
-	<span class="label">Type</span>
+	@daisyui.Label(daisyui.LabelConfig{Text: "Type"})
 	<select>
 		<option>Personal</option>
 		<option>Business</option>
 	</select>
-</label>`, templ.Raw(`
-		<label class="select">
-			<span class="label">Type</span>
-			<select>
-				<option>Personal</option>
-				<option>Business</option>
-			</select>
-		</label>`))
+</label>`, labelForSelect())
 	@section("Label for date input", `<label class="input">
-	<span class="label">Publish date</span>
+	@daisyui.Label(daisyui.LabelConfig{Text: "Publish date"})
 	<input type="date" />
-</label>`, templ.Raw(`
-		<label class="input">
-			<span class="label">Publish date</span>
-			<input type="date" />
-		</label>`))
+</label>`, labelForDate())
 	@section("Floating Label", `@daisyui.FloatingLabel(daisyui.FloatingLabelConfig{
 	Label:       "Your Email",
 	InputType:   "email",
@@ -62,36 +43,49 @@ templ labelBody(r links.LinkResolver) {
 		Class:       "w-full max-w-xs",
 	}))
 	@section("Floating Label with Different Sizes", `<div class="grid gap-4 w-xs">
-	<label class="floating-label">
-		<input type="text" placeholder="Extra Small" class="input input-xs" />
-		<span>Extra Small</span>
-	</label>
-	<label class="floating-label">
-		<input type="text" placeholder="Small" class="input input-sm" />
-		<span>Small</span>
-	</label>
+	@daisyui.FloatingLabel(daisyui.FloatingLabelConfig{Label: "Extra Small", Placeholder: "Extra Small", InputClass: "input input-xs"})
+	@daisyui.FloatingLabel(daisyui.FloatingLabelConfig{Label: "Small", Placeholder: "Small", InputClass: "input input-sm"})
 	// ... one per size
-</div>`, templ.Raw(`
-		<div class="grid gap-4 w-xs">
-			<label class="floating-label">
-				<input type="text" placeholder="Extra Small" class="input input-xs" />
-				<span>Extra Small</span>
-			</label>
-			<label class="floating-label">
-				<input type="text" placeholder="Small" class="input input-sm" />
-				<span>Small</span>
-			</label>
-			<label class="floating-label">
-				<input type="text" placeholder="Medium" class="input input-md" />
-				<span>Medium</span>
-			</label>
-			<label class="floating-label">
-				<input type="text" placeholder="Large" class="input input-lg" />
-				<span>Large</span>
-			</label>
-			<label class="floating-label">
-				<input type="text" placeholder="Extra Large" class="input input-xl" />
-				<span>Extra Large</span>
-			</label>
-		</div>`))
+</div>`, floatingLabelSizeRow())
+}
+
+templ labelForInput() {
+	<label class="input">
+		@daisyui.Label(daisyui.LabelConfig{Text: "https://"})
+		<input type="text" placeholder="URL"/>
+	</label>
+}
+
+templ labelForInputEnd() {
+	<label class="input">
+		<input type="text" placeholder="domain name"/>
+		@daisyui.Label(daisyui.LabelConfig{Text: ".com"})
+	</label>
+}
+
+templ labelForSelect() {
+	<label class="select">
+		@daisyui.Label(daisyui.LabelConfig{Text: "Type"})
+		<select>
+			<option>Personal</option>
+			<option>Business</option>
+		</select>
+	</label>
+}
+
+templ labelForDate() {
+	<label class="input">
+		@daisyui.Label(daisyui.LabelConfig{Text: "Publish date"})
+		<input type="date"/>
+	</label>
+}
+
+templ floatingLabelSizeRow() {
+	<div class="grid gap-4 w-xs">
+		@daisyui.FloatingLabel(daisyui.FloatingLabelConfig{Label: "Extra Small", Placeholder: "Extra Small", InputClass: "input input-xs"})
+		@daisyui.FloatingLabel(daisyui.FloatingLabelConfig{Label: "Small", Placeholder: "Small", InputClass: "input input-sm"})
+		@daisyui.FloatingLabel(daisyui.FloatingLabelConfig{Label: "Medium", Placeholder: "Medium", InputClass: "input input-md"})
+		@daisyui.FloatingLabel(daisyui.FloatingLabelConfig{Label: "Large", Placeholder: "Large", InputClass: "input input-lg"})
+		@daisyui.FloatingLabel(daisyui.FloatingLabelConfig{Label: "Extra Large", Placeholder: "Extra Large", InputClass: "input input-xl"})
+	</div>
 }

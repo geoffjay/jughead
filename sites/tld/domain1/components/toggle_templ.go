@@ -72,65 +72,40 @@ func toggleBody(r links.LinkResolver) templ.Component {
 		templ_7745c5c3_Err = section("With fieldset and label", `@daisyui.Fieldset(daisyui.FieldsetConfig{
 	Legend: "Login options",
 	Class:  "p-4 bg-base-100 border border-base-300 rounded-box w-64",
-}, templ.Raw(...))`, daisyui.Fieldset(daisyui.FieldsetConfig{
+}, templ.Raw(...)) {
+	<label class="label">
+		@daisyui.Toggle(daisyui.ToggleConfig{Checked: true})
+		Remember me
+	</label>
+}`, daisyui.Fieldset(daisyui.FieldsetConfig{
 			Legend: "Login options",
 			Class:  "p-4 bg-base-100 border border-base-300 rounded-box w-64",
-		}, templ.Raw(`
-		<label class="label">
-			<input type="checkbox" checked="checked" class="toggle" />
-			Remember me
-		</label>`))).Render(ctx, templ_7745c5c3_Buffer)
+		}, toggleFieldsetLabel())).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		templ_7745c5c3_Err = section("Sizes", `<div class="flex gap-4">
-	<input type="checkbox" checked="checked" class="toggle toggle-xs" />
-	<input type="checkbox" checked="checked" class="toggle toggle-sm" />
-	<input type="checkbox" checked="checked" class="toggle toggle-md" />
-	<input type="checkbox" checked="checked" class="toggle toggle-lg" />
-	<input type="checkbox" checked="checked" class="toggle toggle-xl" />
-</div>`, templ.Raw(`
-		<div class="flex gap-4">
-			<input type="checkbox" checked="checked" class="toggle toggle-xs" />
-			<input type="checkbox" checked="checked" class="toggle toggle-sm" />
-			<input type="checkbox" checked="checked" class="toggle toggle-md" />
-			<input type="checkbox" checked="checked" class="toggle toggle-lg" />
-			<input type="checkbox" checked="checked" class="toggle toggle-xl" />
-		</div>`)).Render(ctx, templ_7745c5c3_Buffer)
+	@daisyui.Toggle(daisyui.ToggleConfig{Checked: true, Size: "xs"})
+	@daisyui.Toggle(daisyui.ToggleConfig{Checked: true, Size: "sm"})
+	@daisyui.Toggle(daisyui.ToggleConfig{Checked: true, Size: "md"})
+	@daisyui.Toggle(daisyui.ToggleConfig{Checked: true, Size: "lg"})
+	@daisyui.Toggle(daisyui.ToggleConfig{Checked: true, Size: "xl"})
+</div>`, toggleSizeRow()).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		templ_7745c5c3_Err = section("Colors", `<div class="flex gap-4">
-	<input type="checkbox" checked="checked" class="toggle toggle-primary" />
-	<input type="checkbox" checked="checked" class="toggle toggle-secondary" />
-	<input type="checkbox" checked="checked" class="toggle toggle-accent" />
-	<input type="checkbox" checked="checked" class="toggle toggle-neutral" />
-	<input type="checkbox" checked="checked" class="toggle toggle-info" />
-	<input type="checkbox" checked="checked" class="toggle toggle-success" />
-	<input type="checkbox" checked="checked" class="toggle toggle-warning" />
-	<input type="checkbox" checked="checked" class="toggle toggle-error" />
-</div>`, templ.Raw(`
-		<div class="flex gap-4">
-			<input type="checkbox" checked="checked" class="toggle toggle-primary" />
-			<input type="checkbox" checked="checked" class="toggle toggle-secondary" />
-			<input type="checkbox" checked="checked" class="toggle toggle-accent" />
-			<input type="checkbox" checked="checked" class="toggle toggle-neutral" />
-			<input type="checkbox" checked="checked" class="toggle toggle-info" />
-			<input type="checkbox" checked="checked" class="toggle toggle-success" />
-			<input type="checkbox" checked="checked" class="toggle toggle-warning" />
-			<input type="checkbox" checked="checked" class="toggle toggle-error" />
-		</div>`)).Render(ctx, templ_7745c5c3_Buffer)
+	@daisyui.Toggle(daisyui.ToggleConfig{Checked: true, Color: "primary"})
+	@daisyui.Toggle(daisyui.ToggleConfig{Checked: true, Color: "secondary"})
+	// ... one per color
+</div>`, toggleColorRow()).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		templ_7745c5c3_Err = section("Disabled", `<div class="flex gap-4">
-	<input type="checkbox" disabled="disabled" class="toggle" />
-	<input type="checkbox" disabled="disabled" class="toggle" checked="checked" />
-</div>`, templ.Raw(`
-		<div class="flex gap-4">
-			<input type="checkbox" disabled="disabled" class="toggle" />
-			<input type="checkbox" disabled="disabled" class="toggle" checked="checked" />
-		</div>`)).Render(ctx, templ_7745c5c3_Buffer)
+	@daisyui.Toggle(daisyui.ToggleConfig{Disabled: true})
+	@daisyui.Toggle(daisyui.ToggleConfig{Disabled: true, Checked: true})
+</div>`, toggleDisabledRow()).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -141,6 +116,202 @@ func toggleBody(r links.LinkResolver) templ.Component {
 			Checked: true,
 			Class:   "border-indigo-600 bg-indigo-500 checked:bg-orange-400 checked:text-orange-800 checked:border-orange-500",
 		})).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
+func toggleFieldsetLabel() templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var3 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var3 == nil {
+			templ_7745c5c3_Var3 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<label class=\"label\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Toggle(daisyui.ToggleConfig{Checked: true}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "Remember me</label>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
+func toggleSizeRow() templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var4 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var4 == nil {
+			templ_7745c5c3_Var4 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "<div class=\"flex gap-4\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Toggle(daisyui.ToggleConfig{Checked: true, Size: "xs"}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Toggle(daisyui.ToggleConfig{Checked: true, Size: "sm"}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Toggle(daisyui.ToggleConfig{Checked: true, Size: "md"}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Toggle(daisyui.ToggleConfig{Checked: true, Size: "lg"}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Toggle(daisyui.ToggleConfig{Checked: true, Size: "xl"}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "</div>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
+func toggleColorRow() templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var5 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var5 == nil {
+			templ_7745c5c3_Var5 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "<div class=\"flex gap-4\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Toggle(daisyui.ToggleConfig{Checked: true, Color: "primary"}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Toggle(daisyui.ToggleConfig{Checked: true, Color: "secondary"}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Toggle(daisyui.ToggleConfig{Checked: true, Color: "accent"}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Toggle(daisyui.ToggleConfig{Checked: true, Color: "neutral"}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Toggle(daisyui.ToggleConfig{Checked: true, Color: "info"}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Toggle(daisyui.ToggleConfig{Checked: true, Color: "success"}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Toggle(daisyui.ToggleConfig{Checked: true, Color: "warning"}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Toggle(daisyui.ToggleConfig{Checked: true, Color: "error"}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "</div>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
+func toggleDisabledRow() templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var6 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var6 == nil {
+			templ_7745c5c3_Var6 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "<div class=\"flex gap-4\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Toggle(daisyui.ToggleConfig{Disabled: true}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Toggle(daisyui.ToggleConfig{Disabled: true, Checked: true}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 8, "</div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
