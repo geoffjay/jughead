@@ -62,7 +62,11 @@ func dividerBody(r links.LinkResolver) templ.Component {
 			templ_7745c5c3_Var2 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = section("Divider", templ.Raw(`
+		templ_7745c5c3_Err = section("Divider", `<div class="flex flex-col w-full">
+	<div class="grid h-20 card bg-base-300 rounded-box place-items-center">content</div>
+	<div class="divider">OR</div>
+	<div class="grid h-20 card bg-base-300 rounded-box place-items-center">content</div>
+</div>`, templ.Raw(`
 		<div class="flex flex-col w-full">
 			<div class="grid h-20 card bg-base-300 rounded-box place-items-center">content</div>
 			<div class="divider">OR</div>
@@ -71,7 +75,11 @@ func dividerBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Divider horizontal", templ.Raw(`
+		templ_7745c5c3_Err = section("Divider horizontal", `<div class="flex w-full">
+	<div class="grid h-20 grow card bg-base-300 rounded-box place-items-center">content</div>
+	<div class="divider divider-horizontal">OR</div>
+	<div class="grid h-20 grow card bg-base-300 rounded-box place-items-center">content</div>
+</div>`, templ.Raw(`
 		<div class="flex w-full">
 			<div class="grid h-20 grow card bg-base-300 rounded-box place-items-center">content</div>
 			<div class="divider divider-horizontal">OR</div>
@@ -80,7 +88,11 @@ func dividerBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Divider with no text", templ.Raw(`
+		templ_7745c5c3_Err = section("Divider with no text", `<div class="flex flex-col w-full">
+	<div class="grid h-20 card bg-base-300 rounded-box place-items-center">content</div>
+	<div class="divider"></div>
+	<div class="grid h-20 card bg-base-300 rounded-box place-items-center">content</div>
+</div>`, templ.Raw(`
 		<div class="flex flex-col w-full">
 			<div class="grid h-20 card bg-base-300 rounded-box place-items-center">content</div>
 			<div class="divider"></div>
@@ -89,7 +101,11 @@ func dividerBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Responsive (lg:divider-horizontal)", templ.Raw(`
+		templ_7745c5c3_Err = section("Responsive (lg:divider-horizontal)", `<div class="flex flex-col w-full lg:flex-row">
+	<div class="grid grow h-32 card bg-base-300 rounded-box place-items-center">content</div>
+	<div class="divider lg:divider-horizontal">OR</div>
+	<div class="grid grow h-32 card bg-base-300 rounded-box place-items-center">content</div>
+</div>`, templ.Raw(`
 		<div class="flex flex-col w-full lg:flex-row">
 			<div class="grid grow h-32 card bg-base-300 rounded-box place-items-center">content</div>
 			<div class="divider lg:divider-horizontal">OR</div>
@@ -98,7 +114,17 @@ func dividerBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Divider with colors", templ.Raw(`
+		templ_7745c5c3_Err = section("Divider with colors", `<div class="flex flex-col w-full">
+	<div class="divider">Default</div>
+	<div class="divider divider-neutral">Neutral</div>
+	<div class="divider divider-primary">Primary</div>
+	<div class="divider divider-secondary">Secondary</div>
+	<div class="divider divider-accent">Accent</div>
+	<div class="divider divider-success">Success</div>
+	<div class="divider divider-warning">Warning</div>
+	<div class="divider divider-info">Info</div>
+	<div class="divider divider-error">Error</div>
+</div>`, templ.Raw(`
 		<div class="flex flex-col w-full">
 			<div class="divider">Default</div>
 			<div class="divider divider-neutral">Neutral</div>
@@ -113,7 +139,11 @@ func dividerBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Divider in different positions", templ.Raw(`
+		templ_7745c5c3_Err = section("Divider in different positions", `<div class="flex flex-col w-full">
+	<div class="divider divider-start">Start</div>
+	<div class="divider">Default</div>
+	<div class="divider divider-end">End</div>
+</div>`, templ.Raw(`
 		<div class="flex flex-col w-full">
 			<div class="divider divider-start">Start</div>
 			<div class="divider">Default</div>
@@ -122,7 +152,11 @@ func dividerBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Divider in different positions (horizontal)", templ.Raw(`
+		templ_7745c5c3_Err = section("Divider in different positions (horizontal)", `<div class="flex w-full justify-center h-52">
+	<div class="divider divider-horizontal divider-start">Start</div>
+	<div class="divider divider-horizontal">Default</div>
+	<div class="divider divider-horizontal divider-end">End</div>
+</div>`, templ.Raw(`
 		<div class="flex w-full justify-center h-52">
 			<div class="divider divider-horizontal divider-start">Start</div>
 			<div class="divider divider-horizontal">Default</div>

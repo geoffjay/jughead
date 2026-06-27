@@ -10,10 +10,28 @@ templ InputFieldPage(r links.LinkResolver) {
 }
 
 templ inputFieldBody(r links.LinkResolver) {
-	@section("Text input", daisyui.Input(daisyui.InputConfig{
+	@section("Text input", `@daisyui.Input(daisyui.InputConfig{
+	Placeholder: "Type here",
+})`, daisyui.Input(daisyui.InputConfig{
 		Placeholder: "Type here",
 	}))
-	@section("Text input with text label inside", templ.Raw(`
+	@section("Text input with text label inside", `<div class="grid gap-4 w-xs">
+	<label class="input">
+		<svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g stroke-linejoin="round" stroke-linecap="round" stroke-width="2.5" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></g></svg>
+		<input type="search" class="grow" placeholder="Search" />
+		<kbd class="kbd kbd-sm">⌘</kbd>
+		<kbd class="kbd kbd-sm">K</kbd>
+	</label>
+	<label class="input">
+		<svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g stroke-linejoin="round" stroke-linecap="round" stroke-width="2.5" fill="none" stroke="currentColor"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"></path><path d="M14 2v4a2 2 0 0 0 2 2h4"></path></g></svg>
+		<input type="text" class="grow" placeholder="index.php" />
+	</label>
+	<label class="input">
+		Path
+		<input type="text" class="grow" placeholder="src/app/" />
+		<span class="badge badge-neutral badge-xs">Optional</span>
+	</label>
+</div>`, templ.Raw(`
 		<div class="grid gap-4 w-xs">
 			<label class="input">
 				<svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g stroke-linejoin="round" stroke-linecap="round" stroke-width="2.5" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></g></svg>
@@ -31,26 +49,52 @@ templ inputFieldBody(r links.LinkResolver) {
 				<span class="badge badge-neutral badge-xs">Optional</span>
 			</label>
 		</div>`))
-	@section("Ghost style", daisyui.Input(daisyui.InputConfig{
+	@section("Ghost style", `@daisyui.Input(daisyui.InputConfig{
+	Placeholder: "Type here",
+	Style:       "ghost",
+})`, daisyui.Input(daisyui.InputConfig{
 		Placeholder: "Type here",
 		Style:       "ghost",
 	}))
-	@section("With fieldset and fieldset-legend", daisyui.Fieldset(daisyui.FieldsetConfig{
+	@section("With fieldset and fieldset-legend", `@daisyui.Fieldset(daisyui.FieldsetConfig{
+	Legend: "What is your name?",
+	Class:  "w-xs",
+}, templ.Raw("<input type=\"text\" class=\"input\" placeholder=\"Type here\" /><p class=\"label\">Optional</p>"))`, daisyui.Fieldset(daisyui.FieldsetConfig{
 		Legend: "What is your name?",
 		Class:  "w-xs",
 	}, templ.Raw(`
 		<input type="text" class="input" placeholder="Type here" />
 		<p class="label">Optional</p>`)))
-	@section("Input colors", inputColorRow())
-	@section("Sizes", inputSizeRow())
-	@section("Disabled", daisyui.Input(daisyui.InputConfig{
+	@section("Input colors", `<div class="grid gap-4 w-xs">
+	@daisyui.Input(daisyui.InputConfig{Placeholder: "neutral", Color: "neutral"})
+	@daisyui.Input(daisyui.InputConfig{Placeholder: "Primary", Color: "primary"})
+	// ... one per color
+</div>`, inputColorRow())
+	@section("Sizes", `<div class="grid gap-4 w-xs">
+	@daisyui.Input(daisyui.InputConfig{Placeholder: "Xsmall", Size: "xs"})
+	@daisyui.Input(daisyui.InputConfig{Placeholder: "Small", Size: "sm"})
+	// ... one per size
+</div>`, inputSizeRow())
+	@section("Disabled", `@daisyui.Input(daisyui.InputConfig{
+	Placeholder: "You can't touch this",
+	Disabled:    true,
+})`, daisyui.Input(daisyui.InputConfig{
 		Placeholder: "You can't touch this",
 		Disabled:    true,
 	}))
-	@section("Date input", daisyui.Input(daisyui.InputConfig{Type: "date"}))
-	@section("Time input", daisyui.Input(daisyui.InputConfig{Type: "time"}))
-	@section("datetime-local input", daisyui.Input(daisyui.InputConfig{Type: "datetime-local"}))
-	@section("Username text input with icon and validator", templ.Raw(`
+	@section("Date input", `@daisyui.Input(daisyui.InputConfig{Type: "date"})`, daisyui.Input(daisyui.InputConfig{Type: "date"}))
+	@section("Time input", `@daisyui.Input(daisyui.InputConfig{Type: "time"})`, daisyui.Input(daisyui.InputConfig{Type: "time"}))
+	@section("datetime-local input", `@daisyui.Input(daisyui.InputConfig{Type: "datetime-local"})`, daisyui.Input(daisyui.InputConfig{Type: "datetime-local"}))
+	@section("Username text input with icon and validator", `<form class="w-full max-w-xs">
+	<label class="input validator">
+		<svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g stroke-linejoin="round" stroke-linecap="round" stroke-width="2.5" fill="none" stroke="currentColor"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></g></svg>
+		<input type="text" required placeholder="Username" pattern="[A-Za-z][A-Za-z0-9\-]*" minlength="3" maxlength="30" title="Only letters, numbers or dash" />
+	</label>
+	<p class="validator-hint">
+		Must be 3 to 30 characters
+		<br/>containing only letters, numbers or dash
+	</p>
+</form>`, templ.Raw(`
 		<form class="w-full max-w-xs">
 			<label class="input validator">
 				<svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g stroke-linejoin="round" stroke-linecap="round" stroke-width="2.5" fill="none" stroke="currentColor"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></g></svg>
@@ -61,7 +105,12 @@ templ inputFieldBody(r links.LinkResolver) {
 				<br/>containing only letters, numbers or dash
 			</p>
 		</form>`))
-	@section("Search input with icon", templ.Raw(`
+	@section("Search input with icon", `<form class="w-full max-w-xs">
+	<label class="input">
+		<svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g stroke-linejoin="round" stroke-linecap="round" stroke-width="2.5" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></g></svg>
+		<input type="search" required placeholder="Search"/>
+	</label>
+</form>`, templ.Raw(`
 		<form class="w-full max-w-xs">
 			<label class="input">
 				<svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g stroke-linejoin="round" stroke-linecap="round" stroke-width="2.5" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></g></svg>

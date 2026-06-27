@@ -24,53 +24,122 @@ templ timelineCheckIconPrimary() {
 }
 
 templ timelineBody(r links.LinkResolver) {
-	@section("Timeline with text on both sides and icon", daisyui.Timeline(daisyui.TimelineConfig{
+	@section("Timeline with text on both sides and icon", `@daisyui.Timeline(daisyui.TimelineConfig{
+	Items: timelineBothSidesItems(),
+})
+
+// timelineBothSidesItems returns []daisyui.TimelineItem:
+{Side: daisyui.TimelineSideStart, Icon: timelineCheckIcon(), Content: raw("1984"), Box: false, HRAfter: true}
+{Side: daisyui.TimelineSideStart, Icon: timelineCheckIcon(), Content: raw("1998"), HRBefore: true, HRAfter: true}
+// ... one per year`, daisyui.Timeline(daisyui.TimelineConfig{
 		Items: timelineBothSidesItems(),
 	}))
-	@section("Timeline with bottom side only", daisyui.Timeline(daisyui.TimelineConfig{
+	@section("Timeline with bottom side only", `@daisyui.Timeline(daisyui.TimelineConfig{
+	Items: timelineBottomOnlyItems(),
+})
+
+// timelineBottomOnlyItems returns one item per event, all on the end side:
+{Side: daisyui.TimelineSideEnd, Icon: timelineCheckIcon(), Content: raw("First Macintosh computer"), Box: true, HRAfter: true}
+// ... one per event`, daisyui.Timeline(daisyui.TimelineConfig{
 		Items: timelineBottomOnlyItems(),
 	}))
-	@section("Timeline with top side only", daisyui.Timeline(daisyui.TimelineConfig{
+	@section("Timeline with top side only", `@daisyui.Timeline(daisyui.TimelineConfig{
+	Items: timelineTopOnlyItems(),
+})
+
+// timelineTopOnlyItems returns one item per event, all on the start side:
+{Side: daisyui.TimelineSideStart, Icon: timelineCheckIcon(), Content: raw("First Macintosh computer"), Box: true, HRAfter: true}
+// ... one per event`, daisyui.Timeline(daisyui.TimelineConfig{
 		Items: timelineTopOnlyItems(),
 	}))
-	@section("Timeline with different sides", daisyui.Timeline(daisyui.TimelineConfig{
+	@section("Timeline with different sides", `@daisyui.Timeline(daisyui.TimelineConfig{
+	Items: timelineDifferentSidesItems(),
+})
+
+// timelineDifferentSidesItems alternates start/end:
+{Side: daisyui.TimelineSideStart, Icon: timelineCheckIcon(), Content: raw("First Macintosh computer"), Box: true, HRAfter: true}
+{Side: daisyui.TimelineSideEnd, Icon: timelineCheckIcon(), Content: raw("iMac"), Box: true, HRBefore: true, HRAfter: true}
+// ... alternating sides`, daisyui.Timeline(daisyui.TimelineConfig{
 		Items: timelineDifferentSidesItems(),
 	}))
-	@section("Timeline with colorful lines", daisyui.Timeline(daisyui.TimelineConfig{
+	@section("Timeline with colorful lines", `@daisyui.Timeline(daisyui.TimelineConfig{
+	Items: timelineColorfulItems(),
+})
+
+// timelineColorfulItems uses HRClass to color the connecting lines:
+{Side: daisyui.TimelineSideStart, Icon: timelineCheckIconPrimary(), Content: raw("First Macintosh computer"), Box: true, HRAfter: true, HRClass: "bg-primary"}
+// ... HRClass: "bg-primary" on colored segments`, daisyui.Timeline(daisyui.TimelineConfig{
 		Items: timelineColorfulItems(),
 	}))
-	@section("Timeline without icons", daisyui.Timeline(daisyui.TimelineConfig{
+	@section("Timeline without icons", `@daisyui.Timeline(daisyui.TimelineConfig{
+	Items: timelineNoIconsItems(),
+})
+
+// timelineNoIconsItems omits the Icon field:
+{Side: daisyui.TimelineSideStart, Content: raw("First Macintosh computer"), Box: true, HRAfter: true}
+// ... one per event, no Icon`, daisyui.Timeline(daisyui.TimelineConfig{
 		Items: timelineNoIconsItems(),
 	}))
-	@section("Vertical timeline with text on both sides and icon", daisyui.Timeline(daisyui.TimelineConfig{
+	@section("Vertical timeline with text on both sides and icon", `@daisyui.Timeline(daisyui.TimelineConfig{
+	Direction: "vertical",
+	Items:     timelineBothSidesItems(),
+})`, daisyui.Timeline(daisyui.TimelineConfig{
 		Direction: "vertical",
 		Items:     timelineBothSidesItems(),
 	}))
-	@section("Vertical timeline with right side only", daisyui.Timeline(daisyui.TimelineConfig{
+	@section("Vertical timeline with right side only", `@daisyui.Timeline(daisyui.TimelineConfig{
+	Direction: "vertical",
+	Items:     timelineBottomOnlyItems(),
+})`, daisyui.Timeline(daisyui.TimelineConfig{
 		Direction: "vertical",
 		Items:     timelineBottomOnlyItems(),
 	}))
-	@section("Vertical timeline with left side only", daisyui.Timeline(daisyui.TimelineConfig{
+	@section("Vertical timeline with left side only", `@daisyui.Timeline(daisyui.TimelineConfig{
+	Direction: "vertical",
+	Items:     timelineTopOnlyItems(),
+})`, daisyui.Timeline(daisyui.TimelineConfig{
 		Direction: "vertical",
 		Items:     timelineTopOnlyItems(),
 	}))
-	@section("Vertical timeline with different sides", daisyui.Timeline(daisyui.TimelineConfig{
+	@section("Vertical timeline with different sides", `@daisyui.Timeline(daisyui.TimelineConfig{
+	Direction: "vertical",
+	Items:     timelineDifferentSidesItems(),
+})`, daisyui.Timeline(daisyui.TimelineConfig{
 		Direction: "vertical",
 		Items:     timelineDifferentSidesItems(),
 	}))
-	@section("Vertical timeline with colorful lines", daisyui.Timeline(daisyui.TimelineConfig{
+	@section("Vertical timeline with colorful lines", `@daisyui.Timeline(daisyui.TimelineConfig{
+	Direction: "vertical",
+	Items:     timelineColorfulItems(),
+})`, daisyui.Timeline(daisyui.TimelineConfig{
 		Direction: "vertical",
 		Items:     timelineColorfulItems(),
 	}))
-	@section("Vertical timeline without icons", daisyui.Timeline(daisyui.TimelineConfig{
+	@section("Vertical timeline without icons", `@daisyui.Timeline(daisyui.TimelineConfig{
+	Direction: "vertical",
+	Items:     timelineNoIconsItems(),
+})`, daisyui.Timeline(daisyui.TimelineConfig{
 		Direction: "vertical",
 		Items:     timelineNoIconsItems(),
 	}))
-	@section("Responsive: vertical by default, horizontal on large screen", daisyui.Timeline(daisyui.TimelineConfig{
+	@section("Responsive: vertical by default, horizontal on large screen", `@daisyui.Timeline(daisyui.TimelineConfig{
+	Class: "timeline-vertical lg:timeline-horizontal",
+	Items: timelineBothSidesItems(),
+})`, daisyui.Timeline(daisyui.TimelineConfig{
 		Class: "timeline-vertical lg:timeline-horizontal",
 		Items: timelineBothSidesItems(),
 	}))
-	@section("Timeline with icon snapped to the start", daisyui.Timeline(daisyui.TimelineConfig{
+	@section("Timeline with icon snapped to the start", `@daisyui.Timeline(daisyui.TimelineConfig{
+	Direction: "vertical",
+	Modifier:  "snap-icon",
+	Class:     "max-md:timeline-compact",
+	Items:     timelineSnapItems(),
+})
+
+// timelineSnapItems uses rich Content via timelineSnapStartContent/timelineSnapEndContent:
+{Side: daisyui.TimelineSideStart, Icon: timelineCheckIcon(), Content: timelineSnapStartContent("1984", "First Macintosh computer", "..."), HRAfter: true}
+{Side: daisyui.TimelineSideEnd, Icon: timelineCheckIcon(), Content: timelineSnapEndContent("1998", "iMac", "..."), HRBefore: true, HRAfter: true}
+// ... alternating sides`, daisyui.Timeline(daisyui.TimelineConfig{
 		Direction: "vertical",
 		Modifier:  "snap-icon",
 		Class:     "max-md:timeline-compact",

@@ -67,63 +67,63 @@ func maskBody(r links.LinkResolver) templ.Component {
 			templ_7745c5c3_Var2 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = section("Squircle", daisyui.MaskImage(maskImgURL, "Squircle CSS mask", "squircle", "", "w-40 h-40")).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Squircle", `@daisyui.MaskImage(maskImgURL, "Squircle CSS mask", "squircle", "", "w-40 h-40")`, daisyui.MaskImage(maskImgURL, "Squircle CSS mask", "squircle", "", "w-40 h-40")).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Heart", daisyui.MaskImage(maskImgURL, "Heart CSS mask", "heart", "", "w-40 h-40")).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Heart", `@daisyui.MaskImage(maskImgURL, "Heart CSS mask", "heart", "", "w-40 h-40")`, daisyui.MaskImage(maskImgURL, "Heart CSS mask", "heart", "", "w-40 h-40")).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Hexagon", daisyui.MaskImage(maskImgURL, "Hexagon CSS mask", "hexagon", "", "w-40 h-40")).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Hexagon", `@daisyui.MaskImage(maskImgURL, "Hexagon CSS mask", "hexagon", "", "w-40 h-40")`, daisyui.MaskImage(maskImgURL, "Hexagon CSS mask", "hexagon", "", "w-40 h-40")).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Hexagon-2 (horizontal hexagon)", daisyui.MaskImage(maskImgURL, "Hexagon-2 CSS mask", "hexagon-2", "", "w-40 h-40")).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Hexagon-2 (horizontal hexagon)", `@daisyui.MaskImage(maskImgURL, "Hexagon-2 CSS mask", "hexagon-2", "", "w-40 h-40")`, daisyui.MaskImage(maskImgURL, "Hexagon-2 CSS mask", "hexagon-2", "", "w-40 h-40")).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Decagon", daisyui.MaskImage(maskImgURL, "Decagon CSS mask", "decagon", "", "w-40 h-40")).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Decagon", `@daisyui.MaskImage(maskImgURL, "Decagon CSS mask", "decagon", "", "w-40 h-40")`, daisyui.MaskImage(maskImgURL, "Decagon CSS mask", "decagon", "", "w-40 h-40")).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Pentagon", daisyui.MaskImage(maskImgURL, "Pentagon CSS mask", "pentagon", "", "w-40 h-40")).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Pentagon", `@daisyui.MaskImage(maskImgURL, "Pentagon CSS mask", "pentagon", "", "w-40 h-40")`, daisyui.MaskImage(maskImgURL, "Pentagon CSS mask", "pentagon", "", "w-40 h-40")).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Diamond", daisyui.MaskImage(maskImgURL, "Diamond CSS mask", "diamond", "", "w-40 h-40")).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Diamond", `@daisyui.MaskImage(maskImgURL, "Diamond CSS mask", "diamond", "", "w-40 h-40")`, daisyui.MaskImage(maskImgURL, "Diamond CSS mask", "diamond", "", "w-40 h-40")).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Square", daisyui.MaskImage(maskImgURL, "Square CSS mask", "square", "", "w-40 h-40")).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Square", `@daisyui.MaskImage(maskImgURL, "Square CSS mask", "square", "", "w-40 h-40")`, daisyui.MaskImage(maskImgURL, "Square CSS mask", "square", "", "w-40 h-40")).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Circle", daisyui.MaskImage(maskImgURL, "Circle CSS mask", "circle", "", "w-40 h-40")).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Circle", `@daisyui.MaskImage(maskImgURL, "Circle CSS mask", "circle", "", "w-40 h-40")`, daisyui.MaskImage(maskImgURL, "Circle CSS mask", "circle", "", "w-40 h-40")).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Star", daisyui.MaskImage(maskImgURL, "Star CSS mask", "star", "", "w-40 h-40")).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Star", `@daisyui.MaskImage(maskImgURL, "Star CSS mask", "star", "", "w-40 h-40")`, daisyui.MaskImage(maskImgURL, "Star CSS mask", "star", "", "w-40 h-40")).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Star-2 (bold star)", daisyui.MaskImage(maskImgURL, "Star-2 CSS mask", "star-2", "", "w-40 h-40")).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Star-2 (bold star)", `@daisyui.MaskImage(maskImgURL, "Star-2 CSS mask", "star-2", "", "w-40 h-40")`, daisyui.MaskImage(maskImgURL, "Star-2 CSS mask", "star-2", "", "w-40 h-40")).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Triangle (pointing top)", daisyui.MaskImage(maskImgURL, "Triangle CSS mask", "triangle", "", "w-40 h-40")).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Triangle (pointing top)", `@daisyui.MaskImage(maskImgURL, "Triangle CSS mask", "triangle", "", "w-40 h-40")`, daisyui.MaskImage(maskImgURL, "Triangle CSS mask", "triangle", "", "w-40 h-40")).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Triangle-2 (pointing down)", daisyui.MaskImage(maskImgURL, "Triangle-2 CSS mask", "triangle-2", "", "w-40 h-40")).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Triangle-2 (pointing down)", `@daisyui.MaskImage(maskImgURL, "Triangle-2 CSS mask", "triangle-2", "", "w-40 h-40")`, daisyui.MaskImage(maskImgURL, "Triangle-2 CSS mask", "triangle-2", "", "w-40 h-40")).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Triangle-3 (pointing left)", daisyui.MaskImage(maskImgURL, "Triangle-3 CSS mask", "triangle-3", "", "w-40 h-40")).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Triangle-3 (pointing left)", `@daisyui.MaskImage(maskImgURL, "Triangle-3 CSS mask", "triangle-3", "", "w-40 h-40")`, daisyui.MaskImage(maskImgURL, "Triangle-3 CSS mask", "triangle-3", "", "w-40 h-40")).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Triangle-4 (pointing right)", daisyui.MaskImage(maskImgURL, "Triangle-4 CSS mask", "triangle-4", "", "w-40 h-40")).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Triangle-4 (pointing right)", `@daisyui.MaskImage(maskImgURL, "Triangle-4 CSS mask", "triangle-4", "", "w-40 h-40")`, daisyui.MaskImage(maskImgURL, "Triangle-4 CSS mask", "triangle-4", "", "w-40 h-40")).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

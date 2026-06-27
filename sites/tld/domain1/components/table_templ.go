@@ -67,7 +67,25 @@ func tableBody(r links.LinkResolver) templ.Component {
 			templ_7745c5c3_Var2 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = section("Table", daisyui.Table(daisyui.TableConfig{
+		templ_7745c5c3_Err = section("Table", `@daisyui.Table(daisyui.TableConfig{
+	Headers: []daisyui.TableCell{
+		{Text: ""},
+		{Text: "Name"},
+		{Text: "Job"},
+		{Text: "Favorite Color"},
+	},
+	Rows: []daisyui.TableRow{
+		{
+			Cells: []daisyui.TableCell{
+				{Text: "1", Header: true},
+				{Text: "Cy Ganderton"},
+				{Text: "Quality Control Specialist"},
+				{Text: "Blue"},
+			},
+		},
+		// ... one row per person
+	},
+})`, daisyui.Table(daisyui.TableConfig{
 			Headers: []daisyui.TableCell{
 				{Text: ""},
 				{Text: "Name"},
@@ -104,7 +122,14 @@ func tableBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Table with border and background", daisyui.Table(daisyui.TableConfig{
+		templ_7745c5c3_Err = section("Table with border and background", `@daisyui.Table(daisyui.TableConfig{
+	Headers: []daisyui.TableCell{{Text: ""}, {Text: "Name"}, {Text: "Job"}, {Text: "Favorite Color"}},
+	Rows: []daisyui.TableRow{
+		{Cells: []daisyui.TableCell{{Text: "1", Header: true}, {Text: "Cy Ganderton"}, {Text: "Quality Control Specialist"}, {Text: "Blue"}}},
+		// ... one row per person
+	},
+	Class: "rounded-box border border-base-content/5 bg-base-100",
+})`, daisyui.Table(daisyui.TableConfig{
 			Headers: []daisyui.TableCell{{Text: ""}, {Text: "Name"}, {Text: "Job"}, {Text: "Favorite Color"}},
 			Rows: []daisyui.TableRow{
 				{Cells: []daisyui.TableCell{{Text: "1", Header: true}, {Text: "Cy Ganderton"}, {Text: "Quality Control Specialist"}, {Text: "Blue"}}},
@@ -116,7 +141,13 @@ func tableBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Table with an active row", daisyui.Table(daisyui.TableConfig{
+		templ_7745c5c3_Err = section("Table with an active row", `@daisyui.Table(daisyui.TableConfig{
+	Headers: []daisyui.TableCell{{Text: ""}, {Text: "Name"}, {Text: "Job"}, {Text: "Favorite Color"}},
+	Rows: []daisyui.TableRow{
+		{Class: "bg-base-200", Cells: []daisyui.TableCell{{Text: "1", Header: true}, {Text: "Cy Ganderton"}, {Text: "Quality Control Specialist"}, {Text: "Blue"}}},
+		// ... one row per person
+	},
+})`, daisyui.Table(daisyui.TableConfig{
 			Headers: []daisyui.TableCell{{Text: ""}, {Text: "Name"}, {Text: "Job"}, {Text: "Favorite Color"}},
 			Rows: []daisyui.TableRow{
 				{Class: "bg-base-200", Cells: []daisyui.TableCell{{Text: "1", Header: true}, {Text: "Cy Ganderton"}, {Text: "Quality Control Specialist"}, {Text: "Blue"}}},
@@ -127,7 +158,14 @@ func tableBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Table with a row that highlights on hover", daisyui.Table(daisyui.TableConfig{
+		templ_7745c5c3_Err = section("Table with a row that highlights on hover", `@daisyui.Table(daisyui.TableConfig{
+	Headers: []daisyui.TableCell{{Text: ""}, {Text: "Name"}, {Text: "Job"}, {Text: "Favorite Color"}},
+	Rows: []daisyui.TableRow{
+		{Cells: []daisyui.TableCell{{Text: "1", Header: true}, {Text: "Cy Ganderton"}, {Text: "Quality Control Specialist"}, {Text: "Blue"}}},
+		{Class: "hover:bg-base-300", Cells: []daisyui.TableCell{{Text: "2", Header: true}, {Text: "Hart Hagerty"}, {Text: "Desktop Support Technician"}, {Text: "Purple"}}},
+		// ... more rows
+	},
+})`, daisyui.Table(daisyui.TableConfig{
 			Headers: []daisyui.TableCell{{Text: ""}, {Text: "Name"}, {Text: "Job"}, {Text: "Favorite Color"}},
 			Rows: []daisyui.TableRow{
 				{Cells: []daisyui.TableCell{{Text: "1", Header: true}, {Text: "Cy Ganderton"}, {Text: "Quality Control Specialist"}, {Text: "Blue"}}},
@@ -138,7 +176,14 @@ func tableBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Zebra", daisyui.Table(daisyui.TableConfig{
+		templ_7745c5c3_Err = section("Zebra", `@daisyui.Table(daisyui.TableConfig{
+	Modifier: "zebra",
+	Headers:  []daisyui.TableCell{{Text: ""}, {Text: "Name"}, {Text: "Job"}, {Text: "Favorite Color"}},
+	Rows: []daisyui.TableRow{
+		{Cells: []daisyui.TableCell{{Text: "1", Header: true}, {Text: "Cy Ganderton"}, {Text: "Quality Control Specialist"}, {Text: "Blue"}}},
+		// ... one row per person
+	},
+})`, daisyui.Table(daisyui.TableConfig{
 			Modifier: "zebra",
 			Headers:  []daisyui.TableCell{{Text: ""}, {Text: "Name"}, {Text: "Job"}, {Text: "Favorite Color"}},
 			Rows: []daisyui.TableRow{
@@ -150,11 +195,35 @@ func tableBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Table with visual elements", tableVisual()).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Table with visual elements", `@daisyui.Table(daisyui.TableConfig{
+	Headers: []daisyui.TableCell{
+		{HTML: checkboxCell()},
+		{Text: "Name"},
+		{Text: "Job"},
+		{Text: "Favorite Color"},
+		{Text: ""},
+	},
+	Rows: []daisyui.TableRow{
+		{Cells: []daisyui.TableCell{
+			{HTML: checkboxCell()},
+			{HTML: avatarNameCell("Hart Hagerty", "United States", "https://...2@94.webp")},
+			{HTML: jobCell("Zemlak, Daniel and Leannon", "Desktop Support Technician")},
+			{Text: "Purple"},
+			{HTML: detailsButtonCell()},
+		}},
+		// ... one row per person
+	},
+	Footers: []daisyui.TableCell{{Text: ""}, {Text: "Name"}, {Text: "Job"}, {Text: "Favorite Color"}, {Text: ""}},
+})`, tableVisual()).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Table xs", daisyui.Table(daisyui.TableConfig{
+		templ_7745c5c3_Err = section("Table xs", `@daisyui.Table(daisyui.TableConfig{
+	Size:    "xs",
+	Headers: []daisyui.TableCell{{Text: ""}, {Text: "Name"}, {Text: "Job"}, {Text: "company"}, {Text: "location"}, {Text: "Last Login"}, {Text: "Favorite Color"}},
+	Rows:    tableXsRows(),
+	Footers: []daisyui.TableCell{{Text: ""}, {Text: "Name"}, {Text: "Job"}, {Text: "company"}, {Text: "location"}, {Text: "Last Login"}, {Text: "Favorite Color"}},
+})`, daisyui.Table(daisyui.TableConfig{
 			Size:    "xs",
 			Headers: []daisyui.TableCell{{Text: ""}, {Text: "Name"}, {Text: "Job"}, {Text: "company"}, {Text: "location"}, {Text: "Last Login"}, {Text: "Favorite Color"}},
 			Rows:    tableXsRows(),
@@ -163,7 +232,13 @@ func tableBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Table with pinned-rows", daisyui.Table(daisyui.TableConfig{
+		templ_7745c5c3_Err = section("Table with pinned-rows", `@daisyui.Table(daisyui.TableConfig{
+	Modifier:  "pin-rows",
+	Class:     "bg-base-200",
+	Wrap:      true,
+	WrapClass: "h-96",
+	Rows:      tablePinnedRows(),
+})`, daisyui.Table(daisyui.TableConfig{
 			Modifier:  "pin-rows",
 			Class:     "bg-base-200",
 			Wrap:      true,
@@ -173,7 +248,16 @@ func tableBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Table with pinned-rows and pinned-cols", daisyui.Table(daisyui.TableConfig{
+		templ_7745c5c3_Err = section("Table with pinned-rows and pinned-cols", `@daisyui.Table(daisyui.TableConfig{
+	Size:      "xs",
+	Modifier:  "pin-rows",
+	Class:     "table-pin-cols",
+	Wrap:      true,
+	WrapClass: "h-96 w-96",
+	Headers:   []daisyui.TableCell{{Text: ""}, {Text: "Name"}, {Text: "Job"}, {Text: "company"}, {Text: "location"}, {Text: "Last Login"}, {Text: "Favorite Color"}, {Text: ""}},
+	Rows:      tablePinnedColsRows(),
+	Footers:   []daisyui.TableCell{{Text: ""}, {Text: "Name"}, {Text: "Job"}, {Text: "company"}, {Text: "location"}, {Text: "Last Login"}, {Text: "Favorite Color"}, {Text: ""}},
+})`, daisyui.Table(daisyui.TableConfig{
 			Size:      "xs",
 			Modifier:  "pin-rows",
 			Class:     "table-pin-cols",
@@ -315,7 +399,7 @@ func avatarNameCell(name, country, src string) templ.Component {
 		var templ_7745c5c3_Var6 string
 		templ_7745c5c3_Var6, templ_7745c5c3_Err = templ.ResolveAttributeValue(templ.SafeURL(src))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/components/table.templ`, Line: 160, Col: 33}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/components/table.templ`, Line: 244, Col: 33}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var6)
 		if templ_7745c5c3_Err != nil {
@@ -328,7 +412,7 @@ func avatarNameCell(name, country, src string) templ.Component {
 		var templ_7745c5c3_Var7 string
 		templ_7745c5c3_Var7, templ_7745c5c3_Err = templ.ResolveAttributeValue(name)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/components/table.templ`, Line: 160, Col: 46}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/components/table.templ`, Line: 244, Col: 46}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var7)
 		if templ_7745c5c3_Err != nil {
@@ -341,7 +425,7 @@ func avatarNameCell(name, country, src string) templ.Component {
 		var templ_7745c5c3_Var8 string
 		templ_7745c5c3_Var8, templ_7745c5c3_Err = templ.JoinStringErrs(name)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/components/table.templ`, Line: 164, Col: 32}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/components/table.templ`, Line: 248, Col: 32}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var8))
 		if templ_7745c5c3_Err != nil {
@@ -354,7 +438,7 @@ func avatarNameCell(name, country, src string) templ.Component {
 		var templ_7745c5c3_Var9 string
 		templ_7745c5c3_Var9, templ_7745c5c3_Err = templ.JoinStringErrs(country)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/components/table.templ`, Line: 165, Col: 44}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/components/table.templ`, Line: 249, Col: 44}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var9))
 		if templ_7745c5c3_Err != nil {
@@ -392,7 +476,7 @@ func jobCell(company, role string) templ.Component {
 		var templ_7745c5c3_Var11 string
 		templ_7745c5c3_Var11, templ_7745c5c3_Err = templ.JoinStringErrs(company)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/components/table.templ`, Line: 171, Col: 10}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/components/table.templ`, Line: 255, Col: 10}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var11))
 		if templ_7745c5c3_Err != nil {
@@ -405,7 +489,7 @@ func jobCell(company, role string) templ.Component {
 		var templ_7745c5c3_Var12 string
 		templ_7745c5c3_Var12, templ_7745c5c3_Err = templ.JoinStringErrs(role)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/components/table.templ`, Line: 173, Col: 48}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/components/table.templ`, Line: 257, Col: 48}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var12))
 		if templ_7745c5c3_Err != nil {

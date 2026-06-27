@@ -65,7 +65,11 @@ func joinBody(r links.LinkResolver) templ.Component {
 			templ_7745c5c3_Var2 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = section("Join", templ.Raw(`
+		templ_7745c5c3_Err = section("Join", `<div class="join">
+	<button class="btn join-item">Button</button>
+	<button class="btn join-item">Button</button>
+	<button class="btn join-item">Button</button>
+</div>`, templ.Raw(`
 		<div class="join">
 			<button class="btn join-item">Button</button>
 			<button class="btn join-item">Button</button>
@@ -74,7 +78,15 @@ func joinBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Group items vertically", daisyui.Join(
+		templ_7745c5c3_Err = section("Group items vertically", `@daisyui.Join(
+	[]templ.Component{
+		templ.Raw(...),
+		templ.Raw(...),
+		templ.Raw(...),
+	},
+	"vertical",
+	"",
+)`, daisyui.Join(
 			[]templ.Component{
 				templ.Raw(`<button class="btn join-item">Button</button>`),
 				templ.Raw(`<button class="btn join-item">Button</button>`),
@@ -86,7 +98,15 @@ func joinBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Responsive: vertical on small, horizontal on large", daisyui.Join(
+		templ_7745c5c3_Err = section("Responsive: vertical on small, horizontal on large", `@daisyui.Join(
+	[]templ.Component{
+		templ.Raw(...),
+		templ.Raw(...),
+		templ.Raw(...),
+	},
+	"vertical lg:join-horizontal",
+	"",
+)`, daisyui.Join(
 			[]templ.Component{
 				templ.Raw(`<button class="btn join-item">Button</button>`),
 				templ.Raw(`<button class="btn join-item">Button</button>`),
@@ -98,7 +118,23 @@ func joinBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("With extra elements in the group", templ.Raw(`
+		templ_7745c5c3_Err = section("With extra elements in the group", `<div class="join">
+	<div>
+		<div>
+			<input class="input join-item w-[5.3rem] md:w-52" placeholder="Search"/>
+		</div>
+	</div>
+	<select class="select join-item w-[5.8rem] md:w-auto">
+		<option disabled selected>Filter</option>
+		<option>Sci-fi</option>
+		<option>Drama</option>
+		<option>Action</option>
+	</select>
+	<div class="indicator">
+		<span class="indicator-item badge badge-secondary">new</span>
+		<button class="btn join-item">Search</button>
+	</div>
+</div>`, templ.Raw(`
 		<div class="join">
 			<div>
 				<div>
@@ -119,7 +155,10 @@ func joinBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Custom border radius", templ.Raw(`
+		templ_7745c5c3_Err = section("Custom border radius", `<div class="join">
+	<input class="input join-item w-36 lg:w-52" placeholder="Email"/>
+	<button class="btn join-item rounded-r-full">Subscribe</button>
+</div>`, templ.Raw(`
 		<div class="join">
 			<input class="input join-item w-36 lg:w-52" placeholder="Email"/>
 			<button class="btn join-item rounded-r-full">Subscribe</button>
@@ -127,7 +166,11 @@ func joinBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Join radio inputs with btn style", templ.Raw(`
+		templ_7745c5c3_Err = section("Join radio inputs with btn style", `<div class="join">
+	<input class="join-item btn" type="radio" name="options" autocomplete="off" aria-label="Radio 1"/>
+	<input class="join-item btn" type="radio" name="options" autocomplete="off" aria-label="Radio 2"/>
+	<input class="join-item btn" type="radio" name="options" autocomplete="off" aria-label="Radio 3"/>
+</div>`, templ.Raw(`
 		<div class="join">
 			<input class="join-item btn" type="radio" name="options" autocomplete="off" aria-label="Radio 1"/>
 			<input class="join-item btn" type="radio" name="options" autocomplete="off" aria-label="Radio 2"/>

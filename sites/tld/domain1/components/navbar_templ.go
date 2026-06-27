@@ -70,13 +70,24 @@ func navbarBody(r links.LinkResolver) templ.Component {
 			templ_7745c5c3_Var2 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = section("Navbar with title only", daisyui.Navbar(
+		templ_7745c5c3_Err = section("Navbar with title only", `@daisyui.Navbar(
+	daisyui.NavbarData{Title: "daisyUI"},
+)`, daisyui.Navbar(
 			daisyui.NavbarData{Title: "daisyUI"},
 		)).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Navbar with title and icon", templ.Raw(`
+		templ_7745c5c3_Err = section("Navbar with title and icon", `<div class="navbar bg-base-100 shadow-sm">
+	<div class="flex-1">
+		<button class="btn btn-ghost text-xl">daisyUI</button>
+	</div>
+	<div class="flex-none">
+		<button class="btn btn-square btn-ghost">
+			<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-5 h-5 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path></svg>
+		</button>
+	</div>
+</div>`, templ.Raw(`
     <section class="space-y-4">
       <h2 class="text-2xl font-semibold"></h2>
       <div class="navbar bg-base-100 shadow-sm">
@@ -93,7 +104,20 @@ func navbarBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Navbar with menu and submenu", daisyui.Navbar(
+		templ_7745c5c3_Err = section("Navbar with menu and submenu", `@daisyui.Navbar(
+	daisyui.NavbarData{
+		Title: "daisyUI",
+		EndDropdowns: []daisyui.NavDropdown{
+			{
+				Label: "Parent",
+				Items: []daisyui.NavItem{
+					{Label: "Link 1", Href: "#"},
+					{Label: "Link 2", Href: "#"},
+				},
+			},
+		},
+		End: []daisyui.NavItem{{Label: "Link", Href: "#"}},
+	})`, daisyui.Navbar(
 			daisyui.NavbarData{
 				Title: "daisyUI",
 				EndDropdowns: []daisyui.NavDropdown{
@@ -110,7 +134,20 @@ func navbarBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Navbar with search input and dropdown", daisyui.Navbar(
+		templ_7745c5c3_Err = section("Navbar with search input and dropdown", `@daisyui.Navbar(
+	daisyui.NavbarData{
+		Title:             "daisyUI",
+		SearchPlaceholder: "Search",
+		EndDropdowns: []daisyui.NavDropdown{
+			{
+				Label: "Profile",
+				Items: []daisyui.NavItem{
+					{Label: "Settings", Href: "#"},
+					{Label: "Logout", Href: "#"},
+				},
+			},
+		},
+	})`, daisyui.Navbar(
 			daisyui.NavbarData{
 				Title:             "daisyUI",
 				SearchPlaceholder: "Search",
@@ -127,7 +164,15 @@ func navbarBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Navbar with colors", templ.Raw(`
+		templ_7745c5c3_Err = section("Navbar with colors", `<div class="navbar bg-neutral text-neutral-content">
+	<button class="btn btn-ghost text-xl">daisyui</button>
+</div>
+<div class="navbar bg-base-300">
+	<button class="btn btn-ghost text-xl">daisyui</button>
+</div>
+<div class="navbar bg-primary text-primary-content">
+	<button class="btn btn-ghost text-xl">daisyui</button>
+</div>`, templ.Raw(`
     <section class="space-y-4">
       <h2 class="text-2xl font-semibold"></h2>
       <div class="navbar bg-neutral text-neutral-content">

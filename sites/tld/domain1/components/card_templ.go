@@ -71,7 +71,14 @@ func cardBody(r links.LinkResolver) templ.Component {
 			templ_7745c5c3_Var2 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = section("Card", daisyui.Card(daisyui.CardConfig{
+		templ_7745c5c3_Err = section("Card", `@daisyui.Card(daisyui.CardConfig{
+	ImageSrc: cardImg,
+	ImageAlt: "Shoes",
+	Title:    "Card Title",
+	Desc:     "A card component has a figure, a body part, and inside body there are title and actions parts",
+	Class:    "w-96 bg-base-100 shadow-sm",
+	Actions:  daisyui.Button(daisyui.ButtonConfig{Label: "Buy Now", Color: "primary"}),
+})`, daisyui.Card(daisyui.CardConfig{
 			ImageSrc: cardImg,
 			ImageAlt: "Shoes",
 			Title:    "Card Title",
@@ -82,18 +89,60 @@ func cardBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Pricing card", daisyui.Card(daisyui.CardConfig{
+		templ_7745c5c3_Err = section("Pricing card", `@daisyui.Card(daisyui.CardConfig{
+	Class: "w-96 bg-base-100 shadow-sm",
+	Body:  pricingCardBody(),
+})
+
+// pricingCardBody renders:
+<span class="badge badge-xs badge-warning">Most Popular</span>
+<div class="flex justify-between">
+	<h2 class="text-3xl font-bold">Premium</h2>
+	<span class="text-xl">$29/mo</span>
+</div>
+<ul class="mt-6 flex flex-col gap-2 text-xs">
+	<li>
+		<svg class="size-4 me-2 inline-block text-success" ...></svg>
+		<span>High-resolution image generation</span>
+	</li>
+	// ... one per feature
+</ul>
+<div class="mt-6">
+	@daisyui.Button(daisyui.ButtonConfig{Label: "Subscribe", Color: "primary", Modifier: "block"})
+</div>`, daisyui.Card(daisyui.CardConfig{
 			Class: "w-96 bg-base-100 shadow-sm",
 			Body:  pricingCardBody(),
 		})).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Card sizes", cardSizes()).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Card sizes", `<div class="grid gap-6">
+	@daisyui.Card(daisyui.CardConfig{
+		Size:    "xs",
+		Class:   "w-96 bg-base-100 shadow-sm",
+		Title:   "Xsmall Card",
+		Desc:    "A card component has a figure, a body part, and inside body there are title and actions parts",
+		Actions: daisyui.Button(daisyui.ButtonConfig{Label: "Buy Now", Color: "primary"}),
+	})
+	@daisyui.Card(daisyui.CardConfig{
+		Size:    "sm",
+		Class:   "w-96 bg-base-100 shadow-sm",
+		Title:   "Small Card",
+		Desc:    "A card component has a figure, a body part, and inside body there are title and actions parts",
+		Actions: daisyui.Button(daisyui.ButtonConfig{Label: "Buy Now", Color: "primary"}),
+	})
+	// ... one per size (md, lg, xl)
+</div>`, cardSizes()).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Card with a card-border", daisyui.Card(daisyui.CardConfig{
+		templ_7745c5c3_Err = section("Card with a card-border", `@daisyui.Card(daisyui.CardConfig{
+	Style:   "border",
+	Class:   "w-96 bg-base-100",
+	Title:   "Card Title",
+	Desc:    "A card component has a figure, a body part, and inside body there are title and actions parts",
+	Actions: daisyui.Button(daisyui.ButtonConfig{Label: "Buy Now", Color: "primary"}),
+})`, daisyui.Card(daisyui.CardConfig{
 			Style:   "border",
 			Class:   "w-96 bg-base-100",
 			Title:   "Card Title",
@@ -103,7 +152,13 @@ func cardBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Card with a dash border", daisyui.Card(daisyui.CardConfig{
+		templ_7745c5c3_Err = section("Card with a dash border", `@daisyui.Card(daisyui.CardConfig{
+	Style:   "dash",
+	Class:   "w-96 bg-base-100",
+	Title:   "Card Title",
+	Desc:    "A card component has a figure, a body part, and inside body there are title and actions parts",
+	Actions: daisyui.Button(daisyui.ButtonConfig{Label: "Buy Now", Color: "primary"}),
+})`, daisyui.Card(daisyui.CardConfig{
 			Style:   "dash",
 			Class:   "w-96 bg-base-100",
 			Title:   "Card Title",
@@ -113,7 +168,23 @@ func cardBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Card with badge", daisyui.Card(daisyui.CardConfig{
+		templ_7745c5c3_Err = section("Card with badge", `@daisyui.Card(daisyui.CardConfig{
+	ImageSrc: cardImg,
+	ImageAlt: "Shoes",
+	Class:    "w-96 bg-base-100 shadow-sm",
+	Body:     cardBadgeBody(),
+})
+
+// cardBadgeBody renders:
+<h2 class="card-title">
+	Card Title
+	<div class="badge badge-secondary">NEW</div>
+</h2>
+<p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
+<div class="justify-end card-actions">
+	<div class="badge badge-outline">Fashion</div>
+	<div class="badge badge-outline">Products</div>
+</div>`, daisyui.Card(daisyui.CardConfig{
 			ImageSrc: cardImg,
 			ImageAlt: "Shoes",
 			Class:    "w-96 bg-base-100 shadow-sm",
@@ -122,7 +193,14 @@ func cardBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Card with bottom image", daisyui.Card(daisyui.CardConfig{
+		templ_7745c5c3_Err = section("Card with bottom image", `@daisyui.Card(daisyui.CardConfig{
+	ImageSrc:    cardImg,
+	ImageAlt:    "Shoes",
+	ImageBottom: true,
+	Title:       "Card Title",
+	Desc:        "A card component has a figure, a body part, and inside body there are title and actions parts",
+	Class:       "w-96 bg-base-100 shadow-sm",
+})`, daisyui.Card(daisyui.CardConfig{
 			ImageSrc:    cardImg,
 			ImageAlt:    "Shoes",
 			ImageBottom: true,
@@ -133,7 +211,15 @@ func cardBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Card with centered content and paddings", daisyui.Card(daisyui.CardConfig{
+		templ_7745c5c3_Err = section("Card with centered content and paddings", `@daisyui.Card(daisyui.CardConfig{
+	ImageSrc:   cardImg,
+	ImageAlt:   "Shoes",
+	ImageClass: "px-10 pt-10",
+	Title:      "Card Title",
+	Desc:       "A card component has a figure, a body part, and inside body there are title and actions parts",
+	Class:      "w-96 bg-base-100 shadow-sm",
+	Actions:    daisyui.Button(daisyui.ButtonConfig{Label: "Buy Now", Color: "primary"}),
+})`, daisyui.Card(daisyui.CardConfig{
 			ImageSrc:   cardImg,
 			ImageAlt:   "Shoes",
 			ImageClass: "px-10 pt-10",
@@ -145,7 +231,15 @@ func cardBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Card with image overlay", daisyui.Card(daisyui.CardConfig{
+		templ_7745c5c3_Err = section("Card with image overlay", `@daisyui.Card(daisyui.CardConfig{
+	ImageSrc: cardImg,
+	ImageAlt: "Shoes",
+	Modifier: "image-full",
+	Title:    "Card Title",
+	Desc:     "A card component has a figure, a body part, and inside body there are title and actions parts",
+	Class:    "w-96 bg-base-100 shadow-sm",
+	Actions:  daisyui.Button(daisyui.ButtonConfig{Label: "Buy Now", Color: "primary"}),
+})`, daisyui.Card(daisyui.CardConfig{
 			ImageSrc: cardImg,
 			ImageAlt: "Shoes",
 			Modifier: "image-full",
@@ -157,7 +251,12 @@ func cardBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Card with no image", daisyui.Card(daisyui.CardConfig{
+		templ_7745c5c3_Err = section("Card with no image", `@daisyui.Card(daisyui.CardConfig{
+	Class:   "w-96 bg-base-100 shadow-sm",
+	Title:   "Card title!",
+	Desc:    "A card component has a figure, a body part, and inside body there are title and actions parts",
+	Actions: daisyui.Button(daisyui.ButtonConfig{Label: "Buy Now", Color: "primary"}),
+})`, daisyui.Card(daisyui.CardConfig{
 			Class:   "w-96 bg-base-100 shadow-sm",
 			Title:   "Card title!",
 			Desc:    "A card component has a figure, a body part, and inside body there are title and actions parts",
@@ -166,7 +265,12 @@ func cardBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Card with custom color", daisyui.Card(daisyui.CardConfig{
+		templ_7745c5c3_Err = section("Card with custom color", `@daisyui.Card(daisyui.CardConfig{
+	Class:   "w-96 bg-primary text-primary-content",
+	Title:   "Card title!",
+	Desc:    "A card component has a figure, a body part, and inside body there are title and actions parts",
+	Actions: daisyui.Button(daisyui.ButtonConfig{Label: "Buy Now"}),
+})`, daisyui.Card(daisyui.CardConfig{
 			Class:   "w-96 bg-primary text-primary-content",
 			Title:   "Card title!",
 			Desc:    "A card component has a figure, a body part, and inside body there are title and actions parts",
@@ -175,21 +279,55 @@ func cardBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Centered card with neutral color", daisyui.Card(daisyui.CardConfig{
+		templ_7745c5c3_Err = section("Centered card with neutral color", `@daisyui.Card(daisyui.CardConfig{
+	Class: "w-96 bg-neutral text-neutral-content",
+	Body:  cookiesBody(),
+})
+
+// cookiesBody renders:
+<div class="items-center text-center">
+	<h2 class="card-title">Cookies!</h2>
+	<p>We are using cookies for no reason.</p>
+	<div class="justify-end card-actions">
+		@daisyui.Button(daisyui.ButtonConfig{Label: "Accept", Color: "primary"})
+		@daisyui.Button(daisyui.ButtonConfig{Label: "Deny", Style: "ghost"})
+	</div>
+</div>`, daisyui.Card(daisyui.CardConfig{
 			Class: "w-96 bg-neutral text-neutral-content",
 			Body:  cookiesBody(),
 		})).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Card with action on top", daisyui.Card(daisyui.CardConfig{
+		templ_7745c5c3_Err = section("Card with action on top", `@daisyui.Card(daisyui.CardConfig{
+	Class: "w-96 bg-base-100 shadow-sm",
+	Body:  cardActionOnTopBody(),
+})
+
+// cardActionOnTopBody renders:
+<div>
+	<div class="justify-end card-actions">
+		<button class="btn btn-square btn-sm">
+			<svg class="h-6 w-6" ...></svg>
+		</button>
+	</div>
+	<p>We are using cookies for no reason.</p>
+</div>`, daisyui.Card(daisyui.CardConfig{
 			Class: "w-96 bg-base-100 shadow-sm",
 			Body:  cardActionOnTopBody(),
 		})).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Card with image on side", daisyui.Card(daisyui.CardConfig{
+		templ_7745c5c3_Err = section("Card with image on side", `@daisyui.Card(daisyui.CardConfig{
+	ImageSrc: cardImg2,
+	ImageAlt: "Movie",
+	Modifier: "side",
+	Class:    "bg-base-100 shadow-sm",
+	Title:    "New movie is released!",
+	Desc:     "Click the button to watch on Jetflix app.",
+	Actions:  daisyui.Button(daisyui.ButtonConfig{Label: "Watch", Color: "primary"}),
+})`, daisyui.Card(daisyui.CardConfig{
 			ImageSrc: cardImg2,
 			ImageAlt: "Movie",
 			Modifier: "side",
@@ -201,7 +339,14 @@ func cardBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Responsive card (vertical on small screen, horizontal on large screen)", daisyui.Card(daisyui.CardConfig{
+		templ_7745c5c3_Err = section("Responsive card (vertical on small screen, horizontal on large screen)", `@daisyui.Card(daisyui.CardConfig{
+	ImageSrc: cardImg3,
+	ImageAlt: "Album",
+	Class:    "lg:card-side bg-base-100 shadow-sm",
+	Title:    "New album is released!",
+	Desc:     "Click the button to listen on Spotiwhy app.",
+	Actions:  daisyui.Button(daisyui.ButtonConfig{Label: "Listen", Color: "primary"}),
+})`, daisyui.Card(daisyui.CardConfig{
 			ImageSrc: cardImg3,
 			ImageAlt: "Album",
 			Class:    "lg:card-side bg-base-100 shadow-sm",

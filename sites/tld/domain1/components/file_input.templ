@@ -10,15 +10,33 @@ templ FileInputPage(r links.LinkResolver) {
 }
 
 templ fileInputBody(r links.LinkResolver) {
-	@section("File input", daisyui.FileInput(daisyui.FileInputConfig{}))
-	@section("File input ghost", daisyui.FileInput(daisyui.FileInputConfig{Style: "ghost"}))
-	@section("With fieldset and label", daisyui.Fieldset(daisyui.FieldsetConfig{
+	@section("File input", `@daisyui.FileInput(daisyui.FileInputConfig{})`, daisyui.FileInput(daisyui.FileInputConfig{}))
+	@section("File input ghost", `@daisyui.FileInput(daisyui.FileInputConfig{Style: "ghost"})`, daisyui.FileInput(daisyui.FileInputConfig{Style: "ghost"}))
+	@section("With fieldset and label", `@daisyui.Fieldset(daisyui.FieldsetConfig{
+	Legend: "Pick a file",
+}, templ.Raw(...)) {
+	<input type="file" class="file-input" />
+	<label class="label">Max size 2MB</label>
+}`, daisyui.Fieldset(daisyui.FieldsetConfig{
 		Legend: "Pick a file",
 	}, templ.Raw(`
 		<input type="file" class="file-input" />
 		<label class="label">Max size 2MB</label>`)))
-	@section("Sizes", fileInputSizeRow())
-	@section("Primary color", templ.Raw(`
+	@section("Sizes", `<div class="flex flex-col gap-4 w-full items-center">
+	@daisyui.FileInput(daisyui.FileInputConfig{Size: "xs"})
+	@daisyui.FileInput(daisyui.FileInputConfig{Size: "sm"})
+	// ... one per size
+</div>`, fileInputSizeRow())
+	@section("Primary color", `<div class="grid gap-2">
+	<input type="file" class="file-input file-input-primary" />
+	<input type="file" class="file-input file-input-secondary" />
+	<input type="file" class="file-input file-input-accent" />
+	<input type="file" class="file-input file-input-neutral" />
+	<input type="file" class="file-input file-input-info" />
+	<input type="file" class="file-input file-input-success" />
+	<input type="file" class="file-input file-input-warning" />
+	<input type="file" class="file-input file-input-error" />
+</div>`, templ.Raw(`
 		<div class="grid gap-2">
 			<input type="file" class="file-input file-input-primary" />
 			<input type="file" class="file-input file-input-secondary" />
@@ -29,7 +47,7 @@ templ fileInputBody(r links.LinkResolver) {
 			<input type="file" class="file-input file-input-warning" />
 			<input type="file" class="file-input file-input-error" />
 		</div>`))
-	@section("Disabled", daisyui.FileInput(daisyui.FileInputConfig{Disabled: true}))
+	@section("Disabled", `@daisyui.FileInput(daisyui.FileInputConfig{Disabled: true})`, daisyui.FileInput(daisyui.FileInputConfig{Disabled: true}))
 }
 
 templ fileInputSizeRow() {

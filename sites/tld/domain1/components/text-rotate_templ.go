@@ -65,7 +65,13 @@ func textRotateBody(r links.LinkResolver) templ.Component {
 			templ_7745c5c3_Var2 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = section("Rotates through 3 words in 10 seconds", daisyui.TextRotate(daisyui.TextRotateConfig{
+		templ_7745c5c3_Err = section("Rotates through 3 words in 10 seconds", `@daisyui.TextRotate(daisyui.TextRotateConfig{
+	Lines: []daisyui.TextRotateLine{
+		{Text: "ONE"},
+		{Text: "TWO"},
+		{Text: "THREE"},
+	},
+})`, daisyui.TextRotate(daisyui.TextRotateConfig{
 			Lines: []daisyui.TextRotateLine{
 				{Text: "ONE"},
 				{Text: "TWO"},
@@ -75,7 +81,18 @@ func textRotateBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Rotating 6 words (big, centered)", daisyui.TextRotate(daisyui.TextRotateConfig{
+		templ_7745c5c3_Err = section("Rotating 6 words (big, centered)", `@daisyui.TextRotate(daisyui.TextRotateConfig{
+	Class:      "max-md:text-3xl text-7xl font-title",
+	InnerClass: "justify-items-center",
+	Lines: []daisyui.TextRotateLine{
+		{Text: "DESIGN"},
+		{Text: "DEVELOP"},
+		{Text: "DEPLOY"},
+		{Text: "SCALE"},
+		{Text: "MAINTAIN"},
+		{Text: "REPEAT"},
+	},
+})`, daisyui.TextRotate(daisyui.TextRotateConfig{
 			Class:      "max-md:text-3xl text-7xl font-title",
 			InnerClass: "justify-items-center",
 			Lines: []daisyui.TextRotateLine{
@@ -90,11 +107,27 @@ func textRotateBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Rotating words in a sentence", textRotateInSentence()).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Rotating words in a sentence", `<div class="text-lg">
+	Providing AI Agents for
+	@daisyui.TextRotate(daisyui.TextRotateConfig{
+		Lines: []daisyui.TextRotateLine{
+			{Text: "Designers", Class: "bg-teal-400 text-teal-800 px-2"},
+			{Text: "Developers", Class: "bg-red-400 text-red-800 px-2"},
+			{Text: "Managers", Class: "bg-blue-400 text-blue-800 px-2"},
+		},
+	})
+</div>`, textRotateInSentence()).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Custom duration (6s)", daisyui.TextRotate(daisyui.TextRotateConfig{
+		templ_7745c5c3_Err = section("Custom duration (6s)", `@daisyui.TextRotate(daisyui.TextRotateConfig{
+	Class:      "max-md:text-3xl text-7xl font-title duration-6000",
+	InnerClass: "justify-items-center",
+	Lines: []daisyui.TextRotateLine{
+		{Text: "BLAZING"},
+		{Text: "FAST ▶︎▶︎", Class: "font-bold italic px-2"},
+	},
+})`, daisyui.TextRotate(daisyui.TextRotateConfig{
 			Class:      "max-md:text-3xl text-7xl font-title duration-6000",
 			InnerClass: "justify-items-center",
 			Lines: []daisyui.TextRotateLine{
@@ -105,7 +138,18 @@ func textRotateBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Custom line height", daisyui.TextRotate(daisyui.TextRotateConfig{
+		templ_7745c5c3_Err = section("Custom line height", `@daisyui.TextRotate(daisyui.TextRotateConfig{
+	Class:      "max-md:text-3xl text-7xl font-title leading-[2]",
+	InnerClass: "justify-items-center",
+	Lines: []daisyui.TextRotateLine{
+		{Text: "📐 DESIGN"},
+		{Text: "⌨️ DEVELOP"},
+		{Text: "🌎 DEPLOY"},
+		{Text: "🌱 SCALE"},
+		{Text: "🔧 MAINTAIN"},
+		{Text: "♻️ REPEAT"},
+	},
+})`, daisyui.TextRotate(daisyui.TextRotateConfig{
 			Class:      "max-md:text-3xl text-7xl font-title leading-[2]",
 			InnerClass: "justify-items-center",
 			Lines: []daisyui.TextRotateLine{

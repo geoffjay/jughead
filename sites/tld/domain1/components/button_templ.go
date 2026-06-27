@@ -65,11 +65,15 @@ func buttonBody(r links.LinkResolver) templ.Component {
 			templ_7745c5c3_Var2 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = section("Button", daisyui.Button(daisyui.ButtonConfig{Label: "Default"})).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Button", `@daisyui.Button(daisyui.ButtonConfig{Label: "Default"})`, daisyui.Button(daisyui.ButtonConfig{Label: "Default"})).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Button sizes", templ.Raw(`
+		templ_7745c5c3_Err = section("Button sizes", `<button class="btn btn-xs">Xsmall</button>
+<button class="btn btn-sm">Small</button>
+<button class="btn">Medium</button>
+<button class="btn btn-lg">Large</button>
+<button class="btn btn-xl">Xlarge</button>`, templ.Raw(`
 		<button class="btn btn-xs">Xsmall</button>
 		<button class="btn btn-sm">Small</button>
 		<button class="btn">Medium</button>
@@ -78,44 +82,81 @@ func buttonBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Responsive button", daisyui.Button(daisyui.ButtonConfig{
+		templ_7745c5c3_Err = section("Responsive button", `@daisyui.Button(daisyui.ButtonConfig{
+	Label: "Responsive",
+	Class: "btn-xs sm:btn-sm md:btn-md lg:btn-lg xl:btn-xl",
+})`, daisyui.Button(daisyui.ButtonConfig{
 			Label: "Responsive",
 			Class: "btn-xs sm:btn-sm md:btn-md lg:btn-lg xl:btn-xl",
 		})).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Button colors", buttonColorRow()).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Button colors", `<div class="flex flex-wrap gap-2">
+	@daisyui.Button(daisyui.ButtonConfig{Label: "Neutral", Color: "neutral"})
+	@daisyui.Button(daisyui.ButtonConfig{Label: "Primary", Color: "primary"})
+	@daisyui.Button(daisyui.ButtonConfig{Label: "Secondary", Color: "secondary"})
+	@daisyui.Button(daisyui.ButtonConfig{Label: "Accent", Color: "accent"})
+	@daisyui.Button(daisyui.ButtonConfig{Label: "Info", Color: "info"})
+	@daisyui.Button(daisyui.ButtonConfig{Label: "Success", Color: "success"})
+	@daisyui.Button(daisyui.ButtonConfig{Label: "Warning", Color: "warning"})
+	@daisyui.Button(daisyui.ButtonConfig{Label: "Error", Color: "error"})
+</div>`, buttonColorRow()).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Soft buttons", buttonSoftRow()).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Soft buttons", `<div class="flex flex-wrap gap-2">
+	@daisyui.Button(daisyui.ButtonConfig{Label: "Default", Style: "soft"})
+	@daisyui.Button(daisyui.ButtonConfig{Label: "Primary", Style: "soft", Color: "primary"})
+	// ... one per color
+</div>`, buttonSoftRow()).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Outline buttons", buttonOutlineRow()).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Outline buttons", `<div class="flex flex-wrap gap-2">
+	@daisyui.Button(daisyui.ButtonConfig{Label: "Default", Style: "outline"})
+	@daisyui.Button(daisyui.ButtonConfig{Label: "Primary", Style: "outline", Color: "primary"})
+	// ... one per color
+</div>`, buttonOutlineRow()).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Dash buttons", buttonDashRow()).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Dash buttons", `<div class="flex flex-wrap gap-2">
+	@daisyui.Button(daisyui.ButtonConfig{Label: "Default", Style: "dash"})
+	@daisyui.Button(daisyui.ButtonConfig{Label: "Primary", Style: "dash", Color: "primary"})
+	// ... one per color
+</div>`, buttonDashRow()).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Active buttons", buttonActiveRow()).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Active buttons", `<div class="flex flex-wrap gap-2">
+	@daisyui.Button(daisyui.ButtonConfig{Label: "Default", Active: true})
+	@daisyui.Button(daisyui.ButtonConfig{Label: "Primary", Color: "primary", Active: true})
+	// ... one per color
+</div>`, buttonActiveRow()).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Ghost and link", templ.Raw(`
+		templ_7745c5c3_Err = section("Ghost and link", `<button class="btn btn-ghost">Ghost</button>
+<button class="btn btn-link">Link</button>`, templ.Raw(`
 		<button class="btn btn-ghost">Ghost</button>
 		<button class="btn btn-link">Link</button>`)).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Wide button", daisyui.Button(daisyui.ButtonConfig{Label: "Wide", Modifier: "wide"})).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Wide button", `@daisyui.Button(daisyui.ButtonConfig{Label: "Wide", Modifier: "wide"})`, daisyui.Button(daisyui.ButtonConfig{Label: "Wide", Modifier: "wide"})).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Buttons with any HTML tags", templ.Raw(`
+		templ_7745c5c3_Err = section("Buttons with any HTML tags", `<a href="/components/button/" role="button" class="btn">Link</a>
+<button type="submit" class="btn">Button</button>
+<input type="button" value="Input" class="btn"/>
+<input type="submit" value="Submit" class="btn"/>
+<form style="display:contents" autocomplete="off">
+	<input type="radio" aria-label="Radio" class="btn"/>
+	<input type="checkbox" aria-label="Checkbox" class="btn"/>
+	<input type="reset" value="Reset" class="btn"/>
+</form>`, templ.Raw(`
 		<a href="/components/button/" role="button" class="btn">Link</a>
 		<button type="submit" class="btn">Button</button>
 		<input type="button" value="Input" class="btn"/>
@@ -128,13 +169,19 @@ func buttonBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Disabled buttons", templ.Raw(`
+		templ_7745c5c3_Err = section("Disabled buttons", `<button class="btn" disabled="disabled">Disabled using attribute</button>
+<button class="btn btn-disabled" tabindex="-1" aria-disabled="true">Disabled using class name</button>`, templ.Raw(`
 		<button class="btn" disabled="disabled">Disabled using attribute</button>
 		<button class="btn btn-disabled" tabindex="-1" aria-disabled="true">Disabled using class name</button>`)).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Square and circle", templ.Raw(`
+		templ_7745c5c3_Err = section("Square and circle", `<button class="btn btn-square">
+	<svg ... class="size-[1.2em]">...</svg>
+</button>
+<button class="btn btn-circle">
+	<svg ... class="size-[1.2em]">...</svg>
+</button>`, templ.Raw(`
 		<button class="btn btn-square">
 			<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="size-[1.2em]"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"/></svg>
 		</button>
@@ -144,18 +191,27 @@ func buttonBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Button with icon", daisyui.Button(daisyui.ButtonConfig{
+		templ_7745c5c3_Err = section("Button with icon", `@daisyui.Button(daisyui.ButtonConfig{
+	Label:    "Like",
+	Children: templ.Raw(`+"`<svg ...>...</svg>`"+`),
+})`, daisyui.Button(daisyui.ButtonConfig{
 			Label:    "Like",
 			Children: templ.Raw(`<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="size-[1.2em]"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"/></svg>`),
 		})).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Button block", daisyui.Button(daisyui.ButtonConfig{Label: "block", Modifier: "block"})).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Button block", `@daisyui.Button(daisyui.ButtonConfig{Label: "block", Modifier: "block"})`, daisyui.Button(daisyui.ButtonConfig{Label: "block", Modifier: "block"})).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Button with loading spinner", templ.Raw(`
+		templ_7745c5c3_Err = section("Button with loading spinner", `<button class="btn btn-square">
+	<span class="loading loading-spinner"></span>
+</button>
+<button class="btn">
+	<span class="loading loading-spinner"></span>
+	loading
+</button>`, templ.Raw(`
 		<button class="btn btn-square">
 			<span class="loading loading-spinner"></span>
 		</button>

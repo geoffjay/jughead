@@ -65,7 +65,11 @@ func alertBody(r links.LinkResolver) templ.Component {
 			templ_7745c5c3_Var2 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = section("Alert", daisyui.Alert(daisyui.AlertConfig{
+		templ_7745c5c3_Err = section("Alert", `@daisyui.Alert(daisyui.AlertConfig{
+	Message: "12 unread messages. Tap to see.",
+	Class:   "w-full",
+	Icon:    templ.Raw(...),
+})`, daisyui.Alert(daisyui.AlertConfig{
 			Message: "12 unread messages. Tap to see.",
 			Class:   "w-full",
 			Icon:    templ.Raw(`<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-info shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>`),
@@ -73,7 +77,12 @@ func alertBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Info color", daisyui.Alert(daisyui.AlertConfig{
+		templ_7745c5c3_Err = section("Info color", `@daisyui.Alert(daisyui.AlertConfig{
+	Message: "New software update available.",
+	Color:   "info",
+	Class:   "w-full",
+	Icon:    templ.Raw(...),
+})`, daisyui.Alert(daisyui.AlertConfig{
 			Message: "New software update available.",
 			Color:   "info",
 			Class:   "w-full",
@@ -82,7 +91,12 @@ func alertBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Success color", daisyui.Alert(daisyui.AlertConfig{
+		templ_7745c5c3_Err = section("Success color", `@daisyui.Alert(daisyui.AlertConfig{
+	Message: "Your purchase has been confirmed!",
+	Color:   "success",
+	Class:   "w-full",
+	Icon:    templ.Raw(...),
+})`, daisyui.Alert(daisyui.AlertConfig{
 			Message: "Your purchase has been confirmed!",
 			Color:   "success",
 			Class:   "w-full",
@@ -91,7 +105,12 @@ func alertBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Warning color", daisyui.Alert(daisyui.AlertConfig{
+		templ_7745c5c3_Err = section("Warning color", `@daisyui.Alert(daisyui.AlertConfig{
+	Message: "Warning: Invalid email address!",
+	Color:   "warning",
+	Class:   "w-full",
+	Icon:    templ.Raw(...),
+})`, daisyui.Alert(daisyui.AlertConfig{
 			Message: "Warning: Invalid email address!",
 			Color:   "warning",
 			Class:   "w-full",
@@ -100,7 +119,12 @@ func alertBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Error color", daisyui.Alert(daisyui.AlertConfig{
+		templ_7745c5c3_Err = section("Error color", `@daisyui.Alert(daisyui.AlertConfig{
+	Message: "Error! Task failed successfully.",
+	Color:   "error",
+	Class:   "w-full",
+	Icon:    templ.Raw(...),
+})`, daisyui.Alert(daisyui.AlertConfig{
 			Message: "Error! Task failed successfully.",
 			Color:   "error",
 			Class:   "w-full",
@@ -109,19 +133,36 @@ func alertBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Alert soft style", alertSoftRow()).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Alert soft style", `<div class="flex flex-col gap-2">
+	@daisyui.Alert(daisyui.AlertConfig{Message: "12 unread messages. Tap to see.", Color: "info", Style: "soft", Class: "w-full"})
+	@daisyui.Alert(daisyui.AlertConfig{Message: "Your purchase has been confirmed!", Color: "success", Style: "soft", Class: "w-full"})
+	// ... one per color
+</div>`, alertSoftRow()).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Alert outline style", alertOutlineRow()).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Alert outline style", `<div class="flex flex-col gap-2">
+	@daisyui.Alert(daisyui.AlertConfig{Message: "12 unread messages. Tap to see.", Color: "info", Style: "outline", Class: "w-full"})
+	@daisyui.Alert(daisyui.AlertConfig{Message: "Your purchase has been confirmed!", Color: "success", Style: "outline", Class: "w-full"})
+	// ... one per color
+</div>`, alertOutlineRow()).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Alert dash style", alertDashRow()).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Alert dash style", `<div class="flex flex-col gap-2">
+	@daisyui.Alert(daisyui.AlertConfig{Message: "12 unread messages. Tap to see.", Color: "info", Style: "dash", Class: "w-full"})
+	@daisyui.Alert(daisyui.AlertConfig{Message: "Your purchase has been confirmed!", Color: "success", Style: "dash", Class: "w-full"})
+	// ... one per color
+</div>`, alertDashRow()).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Alert with buttons + responsive", daisyui.Alert(daisyui.AlertConfig{
+		templ_7745c5c3_Err = section("Alert with buttons + responsive", `@daisyui.Alert(daisyui.AlertConfig{
+	Message: "we use cookies for no reason.",
+	Class:   "w-full alert-vertical sm:alert-horizontal",
+	Icon:    templ.Raw(...),
+	Actions: templ.Raw(...),
+})`, daisyui.Alert(daisyui.AlertConfig{
 			Message: "we use cookies for no reason.",
 			Class:   "w-full alert-vertical sm:alert-horizontal",
 			Icon:    templ.Raw(`<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-info shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>`),
@@ -130,7 +171,13 @@ func alertBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Alert with title and description", daisyui.Alert(daisyui.AlertConfig{
+		templ_7745c5c3_Err = section("Alert with title and description", `@daisyui.Alert(daisyui.AlertConfig{
+	Title:   "New message!",
+	Desc:    "You have 1 unread message",
+	Class:   "w-full alert-vertical sm:alert-horizontal",
+	Icon:    templ.Raw(...),
+	Actions: templ.Raw(...),
+})`, daisyui.Alert(daisyui.AlertConfig{
 			Title:   "New message!",
 			Desc:    "You have 1 unread message",
 			Class:   "w-full alert-vertical sm:alert-horizontal",

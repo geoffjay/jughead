@@ -65,7 +65,13 @@ func radioBody(r links.LinkResolver) templ.Component {
 			templ_7745c5c3_Var2 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = section("Radio", daisyui.Radio(daisyui.RadioConfig{
+		templ_7745c5c3_Err = section("Radio", `@daisyui.Radio(daisyui.RadioConfig{
+	Name: "radio-1",
+	Options: []daisyui.RadioOption{
+		{Value: "a", Checked: true},
+		{Value: "b"},
+	},
+})`, daisyui.Radio(daisyui.RadioConfig{
 			Name: "radio-1",
 			Options: []daisyui.RadioOption{
 				{Value: "a", Checked: true},
@@ -75,7 +81,13 @@ func radioBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Radio sizes", templ.Raw(`
+		templ_7745c5c3_Err = section("Radio sizes", `<div class="flex gap-4">
+	<input type="radio" name="radio-2" class="radio radio-xs" checked="checked" />
+	<input type="radio" name="radio-2.1" class="radio radio-sm" checked="checked" />
+	<input type="radio" name="radio-2.2" class="radio radio-md" checked="checked" />
+	<input type="radio" name="radio-2.3" class="radio radio-lg" checked="checked" />
+	<input type="radio" name="radio-2.4" class="radio radio-xl" checked="checked" />
+</div>`, templ.Raw(`
 		<div class="flex gap-4">
 			<input type="radio" name="radio-2" class="radio radio-xs" checked="checked" />
 			<input type="radio" name="radio-2.1" class="radio radio-sm" checked="checked" />
@@ -86,7 +98,14 @@ func radioBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Neutral color", daisyui.Radio(daisyui.RadioConfig{
+		templ_7745c5c3_Err = section("Neutral color", `@daisyui.Radio(daisyui.RadioConfig{
+	Name:  "radio-3",
+	Color: "neutral",
+	Options: []daisyui.RadioOption{
+		{Value: "a", Checked: true},
+		{Value: "b"},
+	},
+})`, daisyui.Radio(daisyui.RadioConfig{
 			Name:  "radio-3",
 			Color: "neutral",
 			Options: []daisyui.RadioOption{
@@ -97,7 +116,14 @@ func radioBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Primary color", daisyui.Radio(daisyui.RadioConfig{
+		templ_7745c5c3_Err = section("Primary color", `@daisyui.Radio(daisyui.RadioConfig{
+	Name:  "radio-4",
+	Color: "primary",
+	Options: []daisyui.RadioOption{
+		{Value: "a", Checked: true},
+		{Value: "b"},
+	},
+})`, daisyui.Radio(daisyui.RadioConfig{
 			Name:  "radio-4",
 			Color: "primary",
 			Options: []daisyui.RadioOption{
@@ -108,7 +134,14 @@ func radioBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Secondary color", daisyui.Radio(daisyui.RadioConfig{
+		templ_7745c5c3_Err = section("Secondary color", `@daisyui.Radio(daisyui.RadioConfig{
+	Name:  "radio-5",
+	Color: "secondary",
+	Options: []daisyui.RadioOption{
+		{Value: "a", Checked: true},
+		{Value: "b"},
+	},
+})`, daisyui.Radio(daisyui.RadioConfig{
 			Name:  "radio-5",
 			Color: "secondary",
 			Options: []daisyui.RadioOption{
@@ -119,7 +152,14 @@ func radioBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Accent color", daisyui.Radio(daisyui.RadioConfig{
+		templ_7745c5c3_Err = section("Accent color", `@daisyui.Radio(daisyui.RadioConfig{
+	Name:  "radio-6",
+	Color: "accent",
+	Options: []daisyui.RadioOption{
+		{Value: "a", Checked: true},
+		{Value: "b"},
+	},
+})`, daisyui.Radio(daisyui.RadioConfig{
 			Name:  "radio-6",
 			Color: "accent",
 			Options: []daisyui.RadioOption{
@@ -130,7 +170,14 @@ func radioBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Success color", daisyui.Radio(daisyui.RadioConfig{
+		templ_7745c5c3_Err = section("Success color", `@daisyui.Radio(daisyui.RadioConfig{
+	Name:  "radio-7",
+	Color: "success",
+	Options: []daisyui.RadioOption{
+		{Value: "a", Checked: true},
+		{Value: "b"},
+	},
+})`, daisyui.Radio(daisyui.RadioConfig{
 			Name:  "radio-7",
 			Color: "success",
 			Options: []daisyui.RadioOption{
@@ -141,7 +188,14 @@ func radioBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Warning color", daisyui.Radio(daisyui.RadioConfig{
+		templ_7745c5c3_Err = section("Warning color", `@daisyui.Radio(daisyui.RadioConfig{
+	Name:  "radio-8",
+	Color: "warning",
+	Options: []daisyui.RadioOption{
+		{Value: "a", Checked: true},
+		{Value: "b"},
+	},
+})`, daisyui.Radio(daisyui.RadioConfig{
 			Name:  "radio-8",
 			Color: "warning",
 			Options: []daisyui.RadioOption{
@@ -152,7 +206,14 @@ func radioBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Info color", daisyui.Radio(daisyui.RadioConfig{
+		templ_7745c5c3_Err = section("Info color", `@daisyui.Radio(daisyui.RadioConfig{
+	Name:  "radio-9",
+	Color: "info",
+	Options: []daisyui.RadioOption{
+		{Value: "a", Checked: true},
+		{Value: "b"},
+	},
+})`, daisyui.Radio(daisyui.RadioConfig{
 			Name:  "radio-9",
 			Color: "info",
 			Options: []daisyui.RadioOption{
@@ -163,7 +224,14 @@ func radioBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Error color", daisyui.Radio(daisyui.RadioConfig{
+		templ_7745c5c3_Err = section("Error color", `@daisyui.Radio(daisyui.RadioConfig{
+	Name:  "radio-10",
+	Color: "error",
+	Options: []daisyui.RadioOption{
+		{Value: "a", Checked: true},
+		{Value: "b"},
+	},
+})`, daisyui.Radio(daisyui.RadioConfig{
 			Name:  "radio-10",
 			Color: "error",
 			Options: []daisyui.RadioOption{
@@ -174,7 +242,10 @@ func radioBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Disabled", templ.Raw(`
+		templ_7745c5c3_Err = section("Disabled", `<div class="flex gap-4">
+	<input type="radio" name="radio-11" class="radio" disabled checked="checked" />
+	<input type="radio" name="radio-11" class="radio" disabled />
+</div>`, templ.Raw(`
 		<div class="flex gap-4">
 			<input type="radio" name="radio-11" class="radio" disabled checked="checked" />
 			<input type="radio" name="radio-11" class="radio" disabled />
@@ -182,7 +253,10 @@ func radioBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Radio with custom colors", templ.Raw(`
+		templ_7745c5c3_Err = section("Radio with custom colors", `<div class="flex gap-4">
+	<input type="radio" name="radio-12" class="radio bg-red-100 border-red-300 checked:bg-red-200 checked:text-red-600 checked:border-red-600" checked="checked" />
+	<input type="radio" name="radio-12" class="radio bg-blue-100 border-blue-300 checked:bg-blue-200 checked:text-blue-600 checked:border-blue-600" checked="checked" />
+</div>`, templ.Raw(`
 		<div class="flex gap-4">
 			<input type="radio" name="radio-12" class="radio bg-red-100 border-red-300 checked:bg-red-200 checked:text-red-600 checked:border-red-600" checked="checked" />
 			<input type="radio" name="radio-12" class="radio bg-blue-100 border-blue-300 checked:bg-blue-200 checked:text-blue-600 checked:border-blue-600" checked="checked" />

@@ -65,18 +65,27 @@ func textareaBody(r links.LinkResolver) templ.Component {
 			templ_7745c5c3_Var2 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = section("Textarea", daisyui.Textarea(daisyui.TextareaConfig{Placeholder: "Bio"})).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Textarea", `@daisyui.Textarea(daisyui.TextareaConfig{Placeholder: "Bio"})`, daisyui.Textarea(daisyui.TextareaConfig{Placeholder: "Bio"})).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Ghost (no background)", daisyui.Textarea(daisyui.TextareaConfig{
+		templ_7745c5c3_Err = section("Ghost (no background)", `@daisyui.Textarea(daisyui.TextareaConfig{
+	Placeholder: "Bio",
+	Style:       "ghost",
+})`, daisyui.Textarea(daisyui.TextareaConfig{
 			Placeholder: "Bio",
 			Style:       "ghost",
 		})).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("With form control and labels", daisyui.Fieldset(daisyui.FieldsetConfig{
+		templ_7745c5c3_Err = section("With form control and labels", `@daisyui.Fieldset(daisyui.FieldsetConfig{
+	Legend: "Your bio",
+	Class:  "w-xs",
+}, templ.Raw(...)) {
+	<textarea class="textarea h-24" placeholder="Bio"></textarea>
+	<div class="label">Optional</div>
+}`, daisyui.Fieldset(daisyui.FieldsetConfig{
 			Legend: "Your bio",
 			Class:  "w-xs",
 		}, templ.Raw(`
@@ -85,15 +94,26 @@ func textareaBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Textarea colors", textareaColorRow()).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Textarea colors", `<div class="grid gap-4 w-xs">
+	@daisyui.Textarea(daisyui.TextareaConfig{Placeholder: "Primary", Color: "primary"})
+	@daisyui.Textarea(daisyui.TextareaConfig{Placeholder: "Secondary", Color: "secondary"})
+	// ... one per color
+</div>`, textareaColorRow()).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Sizes", textareaSizeRow()).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Sizes", `<div class="flex flex-col gap-4 w-full items-center">
+	@daisyui.Textarea(daisyui.TextareaConfig{Placeholder: "Xsmall", Size: "xs"})
+	@daisyui.Textarea(daisyui.TextareaConfig{Placeholder: "Small", Size: "sm"})
+	// ... one per size
+</div>`, textareaSizeRow()).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Disabled", daisyui.Textarea(daisyui.TextareaConfig{
+		templ_7745c5c3_Err = section("Disabled", `@daisyui.Textarea(daisyui.TextareaConfig{
+	Placeholder: "Bio",
+	Disabled:    true,
+})`, daisyui.Textarea(daisyui.TextareaConfig{
 			Placeholder: "Bio",
 			Disabled:    true,
 		})).Render(ctx, templ_7745c5c3_Buffer)

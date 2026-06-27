@@ -65,7 +65,11 @@ func dropdownBody(r links.LinkResolver) templ.Component {
 			templ_7745c5c3_Var2 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = section("Dropdown", daisyui.Dropdown(daisyui.DropdownConfig{
+		templ_7745c5c3_Err = section("Dropdown", `@daisyui.Dropdown(daisyui.DropdownConfig{
+	Label:    "Click me",
+	Items:    []daisyui.DropdownItem{{Label: "Item 1", Href: "#"}, {Label: "Item 2", Href: "#"}},
+	Resolver: r,
+})`, daisyui.Dropdown(daisyui.DropdownConfig{
 			Label:    "Click me",
 			Items:    []daisyui.DropdownItem{{Label: "Item 1", Href: "#"}, {Label: "Item 2", Href: "#"}},
 			Resolver: r,
@@ -73,7 +77,12 @@ func dropdownBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Dropdown with hover", daisyui.Dropdown(daisyui.DropdownConfig{
+		templ_7745c5c3_Err = section("Dropdown with hover", `@daisyui.Dropdown(daisyui.DropdownConfig{
+	Label:    "Hover me",
+	Modifier: "hover",
+	Items:    []daisyui.DropdownItem{{Label: "Item 1", Href: "#"}, {Label: "Item 2", Href: "#"}},
+	Resolver: r,
+})`, daisyui.Dropdown(daisyui.DropdownConfig{
 			Label:    "Hover me",
 			Modifier: "hover",
 			Items:    []daisyui.DropdownItem{{Label: "Item 1", Href: "#"}, {Label: "Item 2", Href: "#"}},
@@ -82,7 +91,12 @@ func dropdownBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Dropdown open", daisyui.Dropdown(daisyui.DropdownConfig{
+		templ_7745c5c3_Err = section("Dropdown open", `@daisyui.Dropdown(daisyui.DropdownConfig{
+	Label:    "Always open",
+	Modifier: "open",
+	Items:    []daisyui.DropdownItem{{Label: "Item 1", Href: "#"}, {Label: "Item 2", Href: "#"}},
+	Resolver: r,
+})`, daisyui.Dropdown(daisyui.DropdownConfig{
 			Label:    "Always open",
 			Modifier: "open",
 			Items:    []daisyui.DropdownItem{{Label: "Item 1", Href: "#"}, {Label: "Item 2", Href: "#"}},
@@ -91,7 +105,12 @@ func dropdownBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Dropdown with details/summary", daisyui.Dropdown(daisyui.DropdownConfig{
+		templ_7745c5c3_Err = section("Dropdown with details/summary", `@daisyui.Dropdown(daisyui.DropdownConfig{
+	Label:      "Details trigger",
+	UseDetails: true,
+	Items:      []daisyui.DropdownItem{{Label: "Item 1", Href: "#"}, {Label: "Item 2", Href: "#"}},
+	Resolver:   r,
+})`, daisyui.Dropdown(daisyui.DropdownConfig{
 			Label:      "Details trigger",
 			UseDetails: true,
 			Items:      []daisyui.DropdownItem{{Label: "Item 1", Href: "#"}, {Label: "Item 2", Href: "#"}},
@@ -100,7 +119,12 @@ func dropdownBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Dropdown placement (top end)", daisyui.Dropdown(daisyui.DropdownConfig{
+		templ_7745c5c3_Err = section("Dropdown placement (top end)", `@daisyui.Dropdown(daisyui.DropdownConfig{
+	Label:     "Top end",
+	Placement: "top end",
+	Items:     []daisyui.DropdownItem{{Label: "Item 1", Href: "#"}, {Label: "Item 2", Href: "#"}},
+	Resolver:  r,
+})`, daisyui.Dropdown(daisyui.DropdownConfig{
 			Label:     "Top end",
 			Placement: "top end",
 			Items:     []daisyui.DropdownItem{{Label: "Item 1", Href: "#"}, {Label: "Item 2", Href: "#"}},
@@ -109,7 +133,12 @@ func dropdownBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Dropdown placement (bottom center)", daisyui.Dropdown(daisyui.DropdownConfig{
+		templ_7745c5c3_Err = section("Dropdown placement (bottom center)", `@daisyui.Dropdown(daisyui.DropdownConfig{
+	Label:     "Bottom center",
+	Placement: "bottom center",
+	Items:     []daisyui.DropdownItem{{Label: "Item 1", Href: "#"}, {Label: "Item 2", Href: "#"}},
+	Resolver:  r,
+})`, daisyui.Dropdown(daisyui.DropdownConfig{
 			Label:     "Bottom center",
 			Placement: "bottom center",
 			Items:     []daisyui.DropdownItem{{Label: "Item 1", Href: "#"}, {Label: "Item 2", Href: "#"}},
@@ -118,7 +147,12 @@ func dropdownBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Dropdown with custom trigger class", daisyui.Dropdown(daisyui.DropdownConfig{
+		templ_7745c5c3_Err = section("Dropdown with custom trigger class", `@daisyui.Dropdown(daisyui.DropdownConfig{
+	Label:        "Custom trigger",
+	TriggerClass: "btn btn-primary",
+	Items:        []daisyui.DropdownItem{{Label: "Item 1", Href: "#"}, {Label: "Item 2", Href: "#"}},
+	Resolver:     r,
+})`, daisyui.Dropdown(daisyui.DropdownConfig{
 			Label:        "Custom trigger",
 			TriggerClass: "btn btn-primary",
 			Items:        []daisyui.DropdownItem{{Label: "Item 1", Href: "#"}, {Label: "Item 2", Href: "#"}},
@@ -127,21 +161,31 @@ func dropdownBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Dropdown with buttons (no href)", daisyui.Dropdown(daisyui.DropdownConfig{
+		templ_7745c5c3_Err = section("Dropdown with buttons (no href)", `@daisyui.Dropdown(daisyui.DropdownConfig{
+	Label: "Buttons",
+	Items: []daisyui.DropdownItem{{Label: "Action 1"}, {Label: "Action 2"}, {Label: "Action 3"}},
+})`, daisyui.Dropdown(daisyui.DropdownConfig{
 			Label: "Buttons",
 			Items: []daisyui.DropdownItem{{Label: "Action 1"}, {Label: "Action 2"}, {Label: "Action 3"}},
 		})).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Dropdown with custom content", daisyui.Dropdown(daisyui.DropdownConfig{
+		templ_7745c5c3_Err = section("Dropdown with custom content", `@daisyui.Dropdown(daisyui.DropdownConfig{
+	Label:   "Custom content",
+	Content: dropdownCustomCard(),
+})`, daisyui.Dropdown(daisyui.DropdownConfig{
 			Label:   "Custom content",
 			Content: dropdownCustomCard(),
 		})).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Dropdown with items + resolver", daisyui.Dropdown(daisyui.DropdownConfig{
+		templ_7745c5c3_Err = section("Dropdown with items + resolver", `@daisyui.Dropdown(daisyui.DropdownConfig{
+	Label:    "Resolved links",
+	Items:    []daisyui.DropdownItem{{Label: "Home", Href: "/"}, {Label: "About", Href: "/about"}, {Label: "Contact", Href: "/contact"}},
+	Resolver: r,
+})`, daisyui.Dropdown(daisyui.DropdownConfig{
 			Label:    "Resolved links",
 			Items:    []daisyui.DropdownItem{{Label: "Home", Href: "/"}, {Label: "About", Href: "/about"}, {Label: "Contact", Href: "/contact"}},
 			Resolver: r,

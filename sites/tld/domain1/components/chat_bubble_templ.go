@@ -65,7 +65,12 @@ func chatBubbleBody(r links.LinkResolver) templ.Component {
 			templ_7745c5c3_Var2 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = section("chat-start and chat-end", templ.Raw(`
+		templ_7745c5c3_Err = section("chat-start and chat-end", `<div class="chat chat-start">
+	<div class="chat-bubble">It's over Anakin, <br/>I have the high ground.</div>
+</div>
+<div class="chat chat-end">
+	<div class="chat-bubble">You underestimate my power!</div>
+</div>`, templ.Raw(`
 		<div class="w-full">
 			<div class="chat chat-start">
 				<div class="chat-bubble">It's over Anakin, <br/>I have the high ground.</div>
@@ -77,7 +82,15 @@ func chatBubbleBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Chat with image", templ.Raw(`
+		templ_7745c5c3_Err = section("Chat with image", `<div class="chat chat-start">
+	<div class="chat-image avatar">
+		<div class="w-10 rounded-full">
+			<img alt="Tailwind CSS chat bubble component" src="https://img.daisyui.com/images/profile/demo/kenobee@192.webp" />
+		</div>
+	</div>
+	<div class="chat-bubble">It was said that you would, destroy the Sith, not join them.</div>
+</div>
+<!-- ... more chat-start bubbles -->`, templ.Raw(`
 		<div class="w-full">
 			<div class="chat chat-start">
 				<div class="chat-image avatar">
@@ -107,7 +120,20 @@ func chatBubbleBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Chat with image, header and footer", templ.Raw(`
+		templ_7745c5c3_Err = section("Chat with image, header and footer", `<div class="chat chat-start">
+	<div class="chat-image avatar">
+		<div class="w-10 rounded-full">
+			<img alt="Tailwind CSS chat bubble component" src="https://img.daisyui.com/images/profile/demo/kenobee@192.webp" />
+		</div>
+	</div>
+	<div class="chat-header">
+		Obi-Wan Kenobi
+		<time class="text-xs opacity-50">12:45</time>
+	</div>
+	<div class="chat-bubble">You were the Chosen One!</div>
+	<div class="chat-footer opacity-50">Delivered</div>
+</div>
+<!-- ... a chat-end bubble for Anakin -->`, templ.Raw(`
 		<div class="w-full">
 			<div class="chat chat-start">
 				<div class="chat-image avatar">
@@ -139,7 +165,15 @@ func chatBubbleBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Chat with header and footer", templ.Raw(`
+		templ_7745c5c3_Err = section("Chat with header and footer", `<div class="chat chat-start">
+	<div class="chat-header">
+		Obi-Wan Kenobi
+		<time class="text-xs opacity-50">2 hours ago</time>
+	</div>
+	<div class="chat-bubble">You were my brother, Anakin.</div>
+	<div class="chat-footer opacity-50">Seen</div>
+</div>
+<!-- ... another chat-start bubble -->`, templ.Raw(`
 		<div class="w-full">
 			<div class="chat chat-start">
 				<div class="chat-header">
@@ -161,7 +195,10 @@ func chatBubbleBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Chat Bubble with colors", chatBubbleColorsRow()).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Chat Bubble with colors", `@daisyui.ChatBubble(daisyui.ChatBubbleConfig{Color: "primary", Message: "What kind of nonsense is this"})
+@daisyui.ChatBubble(daisyui.ChatBubbleConfig{Color: "secondary", Message: "Put me on the Council and not make me a Master!??"})
+@daisyui.ChatBubble(daisyui.ChatBubbleConfig{Color: "accent", Message: "That's never been done in the history of the Jedi."})
+// ... one per color`, chatBubbleColorsRow()).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

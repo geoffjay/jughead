@@ -67,14 +67,21 @@ func hover3DBody(r links.LinkResolver) templ.Component {
 			templ_7745c5c3_Var2 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = section("3D image hover effect", daisyui.Hover3DCard(daisyui.Hover3DConfig{
+		templ_7745c5c3_Err = section("3D image hover effect", `@daisyui.Hover3DCard(daisyui.Hover3DConfig{
+	Class:    "my-6 mx-2",
+	Children: hover3DFigure(),
+})`, daisyui.Hover3DCard(daisyui.Hover3DConfig{
 			Class:    "my-6 mx-2",
 			Children: hover3DFigure(),
 		})).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("The whole card can be a link", daisyui.Hover3DCard(daisyui.Hover3DConfig{
+		templ_7745c5c3_Err = section("The whole card can be a link", `@daisyui.Hover3DCard(daisyui.Hover3DConfig{
+	Href:     "/components/hover-3d-card",
+	Class:    "my-6 mx-2 cursor-pointer",
+	Children: hover3DCreditCard(),
+})`, daisyui.Hover3DCard(daisyui.Hover3DConfig{
 			Href:     "/components/hover-3d-card",
 			Class:    "my-6 mx-2 cursor-pointer",
 			Children: hover3DCreditCard(),
@@ -82,7 +89,12 @@ func hover3DBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("3D hover effect for image gallery", hover3DGallery()).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("3D hover effect for image gallery", `<div class="flex max-sm:flex-col gap-10 p-4 max-sm:w-70">
+	@daisyui.Hover3DCard(daisyui.Hover3DConfig{
+		Children: hover3DGalleryItem(".../card-1.webp", "Tailwind CSS 3D card"),
+	})
+	// ... one per gallery image
+</div>`, hover3DGallery()).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -118,7 +130,7 @@ func hover3DFigure() templ.Component {
 		var templ_7745c5c3_Var4 string
 		templ_7745c5c3_Var4, templ_7745c5c3_Err = templ.ResolveAttributeValue(templ.SafeURL(creditCardImg))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/components/hover-3d-card.templ`, Line: 29, Col: 41}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/components/hover-3d-card.templ`, Line: 41, Col: 41}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var4)
 		if templ_7745c5c3_Err != nil {
@@ -240,7 +252,7 @@ func hover3DGalleryItem(src, alt string) templ.Component {
 		var templ_7745c5c3_Var8 string
 		templ_7745c5c3_Var8, templ_7745c5c3_Err = templ.ResolveAttributeValue(templ.SafeURL(src))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/components/hover-3d-card.templ`, Line: 71, Col: 31}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/components/hover-3d-card.templ`, Line: 83, Col: 31}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var8)
 		if templ_7745c5c3_Err != nil {
@@ -253,7 +265,7 @@ func hover3DGalleryItem(src, alt string) templ.Component {
 		var templ_7745c5c3_Var9 string
 		templ_7745c5c3_Var9, templ_7745c5c3_Err = templ.ResolveAttributeValue(alt)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/components/hover-3d-card.templ`, Line: 71, Col: 43}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/components/hover-3d-card.templ`, Line: 83, Col: 43}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var9)
 		if templ_7745c5c3_Err != nil {

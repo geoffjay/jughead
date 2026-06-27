@@ -65,7 +65,12 @@ func codeBody(r links.LinkResolver) templ.Component {
 			templ_7745c5c3_Var2 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = section("mockup code with line prefix", daisyui.Code(daisyui.CodeConfig{
+		templ_7745c5c3_Err = section("mockup code with line prefix", `@daisyui.Code(daisyui.CodeConfig{
+	Class: "w-full",
+	Lines: []daisyui.CodeLine{
+		{Prefix: "$", Text: "npm i daisyui"},
+	},
+})`, daisyui.Code(daisyui.CodeConfig{
 			Class: "w-full",
 			Lines: []daisyui.CodeLine{
 				{Prefix: "$", Text: "npm i daisyui"},
@@ -74,7 +79,14 @@ func codeBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Multi line", daisyui.Code(daisyui.CodeConfig{
+		templ_7745c5c3_Err = section("Multi line", `@daisyui.Code(daisyui.CodeConfig{
+	Class: "w-full",
+	Lines: []daisyui.CodeLine{
+		{Prefix: "$", Text: "npm i daisyui"},
+		{Prefix: ">", Text: "installing...", Class: "text-warning"},
+		{Prefix: ">", Text: "Done!", Class: "text-success"},
+	},
+})`, daisyui.Code(daisyui.CodeConfig{
 			Class: "w-full",
 			Lines: []daisyui.CodeLine{
 				{Prefix: "$", Text: "npm i daisyui"},
@@ -85,7 +97,14 @@ func codeBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Highlighted line", daisyui.Code(daisyui.CodeConfig{
+		templ_7745c5c3_Err = section("Highlighted line", `@daisyui.Code(daisyui.CodeConfig{
+	Class: "w-full",
+	Lines: []daisyui.CodeLine{
+		{Prefix: "1", Text: "npm i daisyui"},
+		{Prefix: "2", Text: "installing..."},
+		{Prefix: "3", Text: "Error!", Class: "bg-warning text-warning-content"},
+	},
+})`, daisyui.Code(daisyui.CodeConfig{
 			Class: "w-full",
 			Lines: []daisyui.CodeLine{
 				{Prefix: "1", Text: "npm i daisyui"},
@@ -96,7 +115,12 @@ func codeBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Long line will scroll", daisyui.Code(daisyui.CodeConfig{
+		templ_7745c5c3_Err = section("Long line will scroll", `@daisyui.Code(daisyui.CodeConfig{
+	Class: "w-full",
+	Lines: []daisyui.CodeLine{
+		{Prefix: "~", Text: "Magnam dolore beatae necessitatibus nemopsum itaque sit. Et porro quae qui et et dolore ratione."},
+	},
+})`, daisyui.Code(daisyui.CodeConfig{
 			Class: "w-full",
 			Lines: []daisyui.CodeLine{
 				{Prefix: "~", Text: "Magnam dolore beatae necessitatibus nemopsum itaque sit. Et porro quae qui et et dolore ratione."},
@@ -105,7 +129,12 @@ func codeBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Without prefix", daisyui.Code(daisyui.CodeConfig{
+		templ_7745c5c3_Err = section("Without prefix", `@daisyui.Code(daisyui.CodeConfig{
+	Class: "w-full",
+	Lines: []daisyui.CodeLine{
+		{Text: "without prefix"},
+	},
+})`, daisyui.Code(daisyui.CodeConfig{
 			Class: "w-full",
 			Lines: []daisyui.CodeLine{
 				{Text: "without prefix"},
@@ -114,7 +143,12 @@ func codeBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("With color", daisyui.Code(daisyui.CodeConfig{
+		templ_7745c5c3_Err = section("With color", `@daisyui.Code(daisyui.CodeConfig{
+	Class: "bg-primary text-primary-content w-full",
+	Lines: []daisyui.CodeLine{
+		{Text: "can be any color!"},
+	},
+})`, daisyui.Code(daisyui.CodeConfig{
 			Class: "bg-primary text-primary-content w-full",
 			Lines: []daisyui.CodeLine{
 				{Text: "can be any color!"},

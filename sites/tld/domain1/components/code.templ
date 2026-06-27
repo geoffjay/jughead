@@ -10,13 +10,25 @@ templ CodePage(r links.LinkResolver) {
 }
 
 templ codeBody(r links.LinkResolver) {
-	@section("mockup code with line prefix", daisyui.Code(daisyui.CodeConfig{
+	@section("mockup code with line prefix", `@daisyui.Code(daisyui.CodeConfig{
+	Class: "w-full",
+	Lines: []daisyui.CodeLine{
+		{Prefix: "$", Text: "npm i daisyui"},
+	},
+})`, daisyui.Code(daisyui.CodeConfig{
 		Class: "w-full",
 		Lines: []daisyui.CodeLine{
 			{Prefix: "$", Text: "npm i daisyui"},
 		},
 	}))
-	@section("Multi line", daisyui.Code(daisyui.CodeConfig{
+	@section("Multi line", `@daisyui.Code(daisyui.CodeConfig{
+	Class: "w-full",
+	Lines: []daisyui.CodeLine{
+		{Prefix: "$", Text: "npm i daisyui"},
+		{Prefix: ">", Text: "installing...", Class: "text-warning"},
+		{Prefix: ">", Text: "Done!", Class: "text-success"},
+	},
+})`, daisyui.Code(daisyui.CodeConfig{
 		Class: "w-full",
 		Lines: []daisyui.CodeLine{
 			{Prefix: "$", Text: "npm i daisyui"},
@@ -24,7 +36,14 @@ templ codeBody(r links.LinkResolver) {
 			{Prefix: ">", Text: "Done!", Class: "text-success"},
 		},
 	}))
-	@section("Highlighted line", daisyui.Code(daisyui.CodeConfig{
+	@section("Highlighted line", `@daisyui.Code(daisyui.CodeConfig{
+	Class: "w-full",
+	Lines: []daisyui.CodeLine{
+		{Prefix: "1", Text: "npm i daisyui"},
+		{Prefix: "2", Text: "installing..."},
+		{Prefix: "3", Text: "Error!", Class: "bg-warning text-warning-content"},
+	},
+})`, daisyui.Code(daisyui.CodeConfig{
 		Class: "w-full",
 		Lines: []daisyui.CodeLine{
 			{Prefix: "1", Text: "npm i daisyui"},
@@ -32,19 +51,34 @@ templ codeBody(r links.LinkResolver) {
 			{Prefix: "3", Text: "Error!", Class: "bg-warning text-warning-content"},
 		},
 	}))
-	@section("Long line will scroll", daisyui.Code(daisyui.CodeConfig{
+	@section("Long line will scroll", `@daisyui.Code(daisyui.CodeConfig{
+	Class: "w-full",
+	Lines: []daisyui.CodeLine{
+		{Prefix: "~", Text: "Magnam dolore beatae necessitatibus nemopsum itaque sit. Et porro quae qui et et dolore ratione."},
+	},
+})`, daisyui.Code(daisyui.CodeConfig{
 		Class: "w-full",
 		Lines: []daisyui.CodeLine{
 			{Prefix: "~", Text: "Magnam dolore beatae necessitatibus nemopsum itaque sit. Et porro quae qui et et dolore ratione."},
 		},
 	}))
-	@section("Without prefix", daisyui.Code(daisyui.CodeConfig{
+	@section("Without prefix", `@daisyui.Code(daisyui.CodeConfig{
+	Class: "w-full",
+	Lines: []daisyui.CodeLine{
+		{Text: "without prefix"},
+	},
+})`, daisyui.Code(daisyui.CodeConfig{
 		Class: "w-full",
 		Lines: []daisyui.CodeLine{
 			{Text: "without prefix"},
 		},
 	}))
-	@section("With color", daisyui.Code(daisyui.CodeConfig{
+	@section("With color", `@daisyui.Code(daisyui.CodeConfig{
+	Class: "bg-primary text-primary-content w-full",
+	Lines: []daisyui.CodeLine{
+		{Text: "can be any color!"},
+	},
+})`, daisyui.Code(daisyui.CodeConfig{
 		Class: "bg-primary text-primary-content w-full",
 		Lines: []daisyui.CodeLine{
 			{Text: "can be any color!"},

@@ -65,7 +65,16 @@ func ratingBody(r links.LinkResolver) templ.Component {
 			templ_7745c5c3_Var2 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = section("Rating", daisyui.Rating(daisyui.RatingConfig{
+		templ_7745c5c3_Err = section("Rating", `@daisyui.Rating(daisyui.RatingConfig{
+	Name: "rating-1",
+	Items: []daisyui.RatingItem{
+		{Mask: "star", AriaLabel: "1 star"},
+		{Mask: "star", AriaLabel: "2 star", Checked: true},
+		{Mask: "star", AriaLabel: "3 star"},
+		{Mask: "star", AriaLabel: "4 star"},
+		{Mask: "star", AriaLabel: "5 star"},
+	},
+})`, daisyui.Rating(daisyui.RatingConfig{
 			Name: "rating-1",
 			Items: []daisyui.RatingItem{
 				{Mask: "star", AriaLabel: "1 star"},
@@ -78,7 +87,13 @@ func ratingBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Read-only Rating", templ.Raw(`
+		templ_7745c5c3_Err = section("Read-only Rating", `<div class="rating">
+	<div class="mask mask-star" aria-label="1 star"></div>
+	<div class="mask mask-star" aria-label="2 star"></div>
+	<div class="mask mask-star" aria-label="3 star" aria-current="true"></div>
+	<div class="mask mask-star" aria-label="4 star"></div>
+	<div class="mask mask-star" aria-label="5 star"></div>
+</div>`, templ.Raw(`
 		<div class="rating">
 			<div class="mask mask-star" aria-label="1 star"></div>
 			<div class="mask mask-star" aria-label="2 star"></div>
@@ -89,7 +104,16 @@ func ratingBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("mask-star-2 with warning color", daisyui.Rating(daisyui.RatingConfig{
+		templ_7745c5c3_Err = section("mask-star-2 with warning color", `@daisyui.Rating(daisyui.RatingConfig{
+	Name: "rating-2",
+	Items: []daisyui.RatingItem{
+		{Mask: "star-2", AriaLabel: "1 star", ColorClass: "bg-orange-400"},
+		{Mask: "star-2", AriaLabel: "2 star", ColorClass: "bg-orange-400", Checked: true},
+		{Mask: "star-2", AriaLabel: "3 star", ColorClass: "bg-orange-400"},
+		{Mask: "star-2", AriaLabel: "4 star", ColorClass: "bg-orange-400"},
+		{Mask: "star-2", AriaLabel: "5 star", ColorClass: "bg-orange-400"},
+	},
+})`, daisyui.Rating(daisyui.RatingConfig{
 			Name: "rating-2",
 			Items: []daisyui.RatingItem{
 				{Mask: "star-2", AriaLabel: "1 star", ColorClass: "bg-orange-400"},
@@ -102,7 +126,17 @@ func ratingBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("mask-heart with multiple colors", daisyui.Rating(daisyui.RatingConfig{
+		templ_7745c5c3_Err = section("mask-heart with multiple colors", `@daisyui.Rating(daisyui.RatingConfig{
+	Name:  "rating-3",
+	Class: "gap-1",
+	Items: []daisyui.RatingItem{
+		{Mask: "heart", AriaLabel: "1 star", ColorClass: "bg-red-400"},
+		{Mask: "heart", AriaLabel: "2 star", ColorClass: "bg-orange-400", Checked: true},
+		{Mask: "heart", AriaLabel: "3 star", ColorClass: "bg-yellow-400"},
+		{Mask: "heart", AriaLabel: "4 star", ColorClass: "bg-lime-400"},
+		{Mask: "heart", AriaLabel: "5 star", ColorClass: "bg-green-400"},
+	},
+})`, daisyui.Rating(daisyui.RatingConfig{
 			Name:  "rating-3",
 			Class: "gap-1",
 			Items: []daisyui.RatingItem{
@@ -116,7 +150,16 @@ func ratingBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("mask-star-2 with green-500 color", daisyui.Rating(daisyui.RatingConfig{
+		templ_7745c5c3_Err = section("mask-star-2 with green-500 color", `@daisyui.Rating(daisyui.RatingConfig{
+	Name: "rating-4",
+	Items: []daisyui.RatingItem{
+		{Mask: "star-2", AriaLabel: "1 star", ColorClass: "bg-green-500"},
+		{Mask: "star-2", AriaLabel: "2 star", ColorClass: "bg-green-500", Checked: true},
+		{Mask: "star-2", AriaLabel: "3 star", ColorClass: "bg-green-500"},
+		{Mask: "star-2", AriaLabel: "4 star", ColorClass: "bg-green-500"},
+		{Mask: "star-2", AriaLabel: "5 star", ColorClass: "bg-green-500"},
+	},
+})`, daisyui.Rating(daisyui.RatingConfig{
 			Name: "rating-4",
 			Items: []daisyui.RatingItem{
 				{Mask: "star-2", AriaLabel: "1 star", ColorClass: "bg-green-500"},
@@ -129,11 +172,25 @@ func ratingBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Sizes", ratingSizeRow()).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Sizes", `<div class="flex flex-col gap-2 items-center">
+	@daisyui.Rating(daisyui.RatingConfig{Name: "rating-5", Size: "xs", Items: ratingStarItems("rating-5", "bg-orange-400", 2)})
+	@daisyui.Rating(daisyui.RatingConfig{Name: "rating-6", Size: "sm", Items: ratingStarItems("rating-6", "bg-orange-400", 2)})
+	// ... one per size (md, lg, xl)
+</div>`, ratingSizeRow()).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("with rating-hidden", daisyui.Rating(daisyui.RatingConfig{
+		templ_7745c5c3_Err = section("with rating-hidden", `@daisyui.Rating(daisyui.RatingConfig{
+	Name: "rating-10", Size: "lg",
+	Items: []daisyui.RatingItem{
+		{Hidden: true, AriaLabel: "clear"},
+		{Mask: "star-2", AriaLabel: "1 star"},
+		{Mask: "star-2", AriaLabel: "2 star", Checked: true},
+		{Mask: "star-2", AriaLabel: "3 star"},
+		{Mask: "star-2", AriaLabel: "4 star"},
+		{Mask: "star-2", AriaLabel: "5 star"},
+	},
+})`, daisyui.Rating(daisyui.RatingConfig{
 			Name: "rating-10", Size: "lg",
 			Items: []daisyui.RatingItem{
 				{Hidden: true, AriaLabel: "clear"},
@@ -147,7 +204,17 @@ func ratingBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("half stars", daisyui.Rating(daisyui.RatingConfig{
+		templ_7745c5c3_Err = section("half stars", `@daisyui.Rating(daisyui.RatingConfig{
+	Name: "rating-11", Size: "lg", Half: true,
+	Items: []daisyui.RatingItem{
+		{Hidden: true, AriaLabel: "clear"},
+		{Mask: "star-2", Modifier: "half-1", AriaLabel: "0.5 star", ColorClass: "bg-green-500"},
+		{Mask: "star-2", Modifier: "half-2", AriaLabel: "1 star", ColorClass: "bg-green-500"},
+		{Mask: "star-2", Modifier: "half-1", AriaLabel: "1.5 star", ColorClass: "bg-green-500", Checked: true},
+		{Mask: "star-2", Modifier: "half-2", AriaLabel: "2 star", ColorClass: "bg-green-500"},
+		// ... one per half step up to 5 star
+	},
+})`, daisyui.Rating(daisyui.RatingConfig{
 			Name: "rating-11", Size: "lg", Half: true,
 			Items: []daisyui.RatingItem{
 				{Hidden: true, AriaLabel: "clear"},

@@ -10,47 +10,83 @@ templ CollapsePage(r links.LinkResolver) {
 }
 
 templ collapseBody(r links.LinkResolver) {
-	@section("Collapse with focus", daisyui.Collapse(
+	@section("Collapse with focus", `@daisyui.Collapse(
+	daisyui.CollapseConfig{Class: "bg-base-100 border border-base-300"},
+	"How do I create an account?",
+	"Click the \"Sign Up\" button in the top right corner and follow the registration process.",
+)`, daisyui.Collapse(
 		daisyui.CollapseConfig{Class: "bg-base-100 border border-base-300"},
 		"How do I create an account?",
 		`Click the "Sign Up" button in the top right corner and follow the registration process.`,
 	))
-	@section("Collapse with checkbox", daisyui.Collapse(
+	@section("Collapse with checkbox", `@daisyui.Collapse(
+	daisyui.CollapseConfig{Mode: "checkbox", Class: "bg-base-100 border border-base-300"},
+	"How do I create an account?",
+	"Click the \"Sign Up\" button in the top right corner and follow the registration process.",
+)`, daisyui.Collapse(
 		daisyui.CollapseConfig{Mode: "checkbox", Class: "bg-base-100 border border-base-300"},
 		"How do I create an account?",
 		`Click the "Sign Up" button in the top right corner and follow the registration process.`,
 	))
-	@section("Collapse using details and summary tag", daisyui.Collapse(
+	@section("Collapse using details and summary tag", `@daisyui.Collapse(
+	daisyui.CollapseConfig{Mode: "details", Class: "bg-base-100 border border-base-300"},
+	"How do I create an account?",
+	"Click the \"Sign Up\" button in the top right corner and follow the registration process.",
+)`, daisyui.Collapse(
 		daisyui.CollapseConfig{Mode: "details", Class: "bg-base-100 border border-base-300"},
 		"How do I create an account?",
 		`Click the "Sign Up" button in the top right corner and follow the registration process.`,
 	))
-	@section("Without border and background color", daisyui.Collapse(
+	@section("Without border and background color", `@daisyui.Collapse(
+	daisyui.CollapseConfig{},
+	"How do I create an account?",
+	"Click the \"Sign Up\" button in the top right corner and follow the registration process.",
+)`, daisyui.Collapse(
 		daisyui.CollapseConfig{},
 		"How do I create an account?",
 		`Click the "Sign Up" button in the top right corner and follow the registration process.`,
 	))
-	@section("With arrow icon", daisyui.Collapse(
+	@section("With arrow icon", `@daisyui.Collapse(
+	daisyui.CollapseConfig{Icon: "arrow", Class: "bg-base-100 border border-base-300"},
+	"How do I create an account?",
+	"Click the \"Sign Up\" button in the top right corner and follow the registration process.",
+)`, daisyui.Collapse(
 		daisyui.CollapseConfig{Icon: "arrow", Class: "bg-base-100 border border-base-300"},
 		"How do I create an account?",
 		`Click the "Sign Up" button in the top right corner and follow the registration process.`,
 	))
-	@section("With arrow plus/minus icon", daisyui.Collapse(
+	@section("With arrow plus/minus icon", `@daisyui.Collapse(
+	daisyui.CollapseConfig{Icon: "plus", Class: "bg-base-100 border border-base-300"},
+	"How do I create an account?",
+	"Click the \"Sign Up\" button in the top right corner and follow the registration process.",
+)`, daisyui.Collapse(
 		daisyui.CollapseConfig{Icon: "plus", Class: "bg-base-100 border border-base-300"},
 		"How do I create an account?",
 		`Click the "Sign Up" button in the top right corner and follow the registration process.`,
 	))
-	@section("Force open", daisyui.Collapse(
+	@section("Force open", `@daisyui.Collapse(
+	daisyui.CollapseConfig{Open: true, Class: "bg-base-100 border border-base-300"},
+	"I have collapse-open class",
+	"Click the \"Sign Up\" button in the top right corner and follow the registration process.",
+)`, daisyui.Collapse(
 		daisyui.CollapseConfig{Open: true, Class: "bg-base-100 border border-base-300"},
 		"I have collapse-open class",
 		`Click the "Sign Up" button in the top right corner and follow the registration process.`,
 	))
-	@section("Force close", daisyui.Collapse(
+	@section("Force close", `@daisyui.Collapse(
+	daisyui.CollapseConfig{Close: true, Class: "bg-base-100 border border-base-300"},
+	"I have collapse-close class",
+	"Click the \"Sign Up\" button in the top right corner and follow the registration process.",
+)`, daisyui.Collapse(
 		daisyui.CollapseConfig{Close: true, Class: "bg-base-100 border border-base-300"},
 		"I have collapse-close class",
 		`Click the "Sign Up" button in the top right corner and follow the registration process.`,
 	))
-	@section("Custom colors for collapse that works with focus", daisyui.Collapse(
+	@section("Custom colors for collapse that works with focus", `@daisyui.Collapse(
+	daisyui.CollapseConfig{Class: "bg-primary text-primary-content focus:bg-secondary focus:text-secondary-content"},
+	"How do I create an account?",
+	"Click the \"Sign Up\" button in the top right corner and follow the registration process.",
+)`, daisyui.Collapse(
 		daisyui.CollapseConfig{Class: "bg-primary text-primary-content focus:bg-secondary focus:text-secondary-content"},
 		"How do I create an account?",
 		`Click the "Sign Up" button in the top right corner and follow the registration process.`,

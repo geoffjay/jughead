@@ -67,7 +67,11 @@ func phoneBody(r links.LinkResolver) templ.Component {
 			templ_7745c5c3_Var2 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = section("iPhone mockup", daisyui.Phone(daisyui.PhoneConfig{
+		templ_7745c5c3_Err = section("iPhone mockup", `@daisyui.Phone(daisyui.PhoneConfig{
+	Camera:       true,
+	DisplayClass: "text-white bg-neutral-900 grid place-content-center",
+	Children:     phoneGlowtime(),
+})`, daisyui.Phone(daisyui.PhoneConfig{
 			Camera:       true,
 			DisplayClass: "text-white bg-neutral-900 grid place-content-center",
 			Children:     phoneGlowtime(),
@@ -75,7 +79,11 @@ func phoneBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("With color and wallpaper", daisyui.Phone(daisyui.PhoneConfig{
+		templ_7745c5c3_Err = section("With color and wallpaper", `@daisyui.Phone(daisyui.PhoneConfig{
+	Camera:       true,
+	Class:        "border-[#ff8938]",
+	WallpaperSrc: phoneWallpaper,
+})`, daisyui.Phone(daisyui.PhoneConfig{
 			Camera:       true,
 			Class:        "border-[#ff8938]",
 			WallpaperSrc: phoneWallpaper,
@@ -83,7 +91,11 @@ func phoneBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Phone with custom content", daisyui.Phone(daisyui.PhoneConfig{
+		templ_7745c5c3_Err = section("Phone with custom content", `@daisyui.Phone(daisyui.PhoneConfig{
+	Camera:       true,
+	DisplayClass: "bg-base-100",
+	Children:     phoneCustomContent(),
+})`, daisyui.Phone(daisyui.PhoneConfig{
 			Camera:       true,
 			DisplayClass: "bg-base-100",
 			Children:     phoneCustomContent(),

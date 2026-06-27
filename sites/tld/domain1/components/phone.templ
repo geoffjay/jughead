@@ -12,17 +12,29 @@ templ PhonePage(r links.LinkResolver) {
 const phoneWallpaper = "https://img.daisyui.com/images/stock/453966.webp"
 
 templ phoneBody(r links.LinkResolver) {
-	@section("iPhone mockup", daisyui.Phone(daisyui.PhoneConfig{
+	@section("iPhone mockup", `@daisyui.Phone(daisyui.PhoneConfig{
+	Camera:       true,
+	DisplayClass: "text-white bg-neutral-900 grid place-content-center",
+	Children:     phoneGlowtime(),
+})`, daisyui.Phone(daisyui.PhoneConfig{
 		Camera:       true,
 		DisplayClass: "text-white bg-neutral-900 grid place-content-center",
 		Children:     phoneGlowtime(),
 	}))
-	@section("With color and wallpaper", daisyui.Phone(daisyui.PhoneConfig{
+	@section("With color and wallpaper", `@daisyui.Phone(daisyui.PhoneConfig{
+	Camera:       true,
+	Class:        "border-[#ff8938]",
+	WallpaperSrc: phoneWallpaper,
+})`, daisyui.Phone(daisyui.PhoneConfig{
 		Camera:       true,
 		Class:        "border-[#ff8938]",
 		WallpaperSrc: phoneWallpaper,
 	}))
-	@section("Phone with custom content", daisyui.Phone(daisyui.PhoneConfig{
+	@section("Phone with custom content", `@daisyui.Phone(daisyui.PhoneConfig{
+	Camera:       true,
+	DisplayClass: "bg-base-100",
+	Children:     phoneCustomContent(),
+})`, daisyui.Phone(daisyui.PhoneConfig{
 		Camera:       true,
 		DisplayClass: "bg-base-100",
 		Children:     phoneCustomContent(),

@@ -65,7 +65,14 @@ func listBody(r links.LinkResolver) templ.Component {
 			templ_7745c5c3_Var2 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = section("List (second column grows - default)", daisyui.List(daisyui.ListConfig{
+		templ_7745c5c3_Err = section("List (second column grows - default)", `@daisyui.List(daisyui.ListConfig{
+	Class:  "bg-base-100 rounded-box shadow-md",
+	Header: listHeader(),
+	Items: []daisyui.ListItem{
+		listSongRow(".../1@94.webp", "Dio Lupa", "Remaining Reason"),
+		// ... one row per song
+	},
+})`, daisyui.List(daisyui.ListConfig{
 			Class:  "bg-base-100 rounded-box shadow-md",
 			Header: listHeader(),
 			Items: []daisyui.ListItem{
@@ -77,7 +84,14 @@ func listBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("List (third column grows)", daisyui.List(daisyui.ListConfig{
+		templ_7745c5c3_Err = section("List (third column grows)", `@daisyui.List(daisyui.ListConfig{
+	Class:  "bg-base-100 rounded-box shadow-md",
+	Header: listHeader(),
+	Items: []daisyui.ListItem{
+		listNumberedRow("01", ".../1@94.webp", "Dio Lupa", "Remaining Reason"),
+		// ... one numbered row per song
+	},
+})`, daisyui.List(daisyui.ListConfig{
 			Class:  "bg-base-100 rounded-box shadow-md",
 			Header: listHeader(),
 			Items: []daisyui.ListItem{
@@ -89,7 +103,14 @@ func listBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("List (third column wraps to next row)", daisyui.List(daisyui.ListConfig{
+		templ_7745c5c3_Err = section("List (third column wraps to next row)", `@daisyui.List(daisyui.ListConfig{
+	Class:  "bg-base-100 rounded-box shadow-md",
+	Header: listHeader(),
+	Items: []daisyui.ListItem{
+		listWrapRow(".../1@94.webp", "Dio Lupa", "Remaining Reason", "Long description that wraps to the next row..."),
+		// ... one wrapping row per song
+	},
+})`, daisyui.List(daisyui.ListConfig{
 			Class:  "bg-base-100 rounded-box shadow-md",
 			Header: listHeader(),
 			Items: []daisyui.ListItem{
@@ -196,7 +217,7 @@ func listThumb(src string) templ.Component {
 		var templ_7745c5c3_Var5 string
 		templ_7745c5c3_Var5, templ_7745c5c3_Err = templ.ResolveAttributeValue(templ.SafeURL(src))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/components/list.templ`, Line: 81, Col: 63}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/components/list.templ`, Line: 102, Col: 63}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var5)
 		if templ_7745c5c3_Err != nil {
@@ -238,7 +259,7 @@ func listNameBlock(name, title string) templ.Component {
 		var templ_7745c5c3_Var7 string
 		templ_7745c5c3_Var7, templ_7745c5c3_Err = templ.JoinStringErrs(name)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/components/list.templ`, Line: 86, Col: 13}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/components/list.templ`, Line: 107, Col: 13}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var7))
 		if templ_7745c5c3_Err != nil {
@@ -251,7 +272,7 @@ func listNameBlock(name, title string) templ.Component {
 		var templ_7745c5c3_Var8 string
 		templ_7745c5c3_Var8, templ_7745c5c3_Err = templ.JoinStringErrs(title)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/components/list.templ`, Line: 87, Col: 65}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/components/list.templ`, Line: 108, Col: 65}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var8))
 		if templ_7745c5c3_Err != nil {

@@ -65,13 +65,23 @@ func rangeBody(r links.LinkResolver) templ.Component {
 			templ_7745c5c3_Var2 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = section("Range", daisyui.Range(daisyui.RangeConfig{
+		templ_7745c5c3_Err = section("Range", `@daisyui.Range(daisyui.RangeConfig{
+	Min: "0", Max: "100", Value: "40",
+})`, daisyui.Range(daisyui.RangeConfig{
 			Min: "0", Max: "100", Value: "40",
 		})).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("With steps and measure", templ.Raw(`
+		templ_7745c5c3_Err = section("With steps and measure", `<div class="w-full max-w-xs">
+	<input type="range" min="0" max="100" value="25" class="range" step="25" />
+	<div class="flex justify-between px-2.5 mt-2 text-xs">
+		<span>|</span><span>|</span><span>|</span><span>|</span><span>|</span>
+	</div>
+	<div class="flex justify-between px-2.5 mt-2 text-xs">
+		<span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
+	</div>
+</div>`, templ.Raw(`
 		<div class="w-full max-w-xs">
 			<input type="range" min="0" max="100" value="25" class="range" step="25" />
 			<div class="flex justify-between px-2.5 mt-2 text-xs">
@@ -84,43 +94,50 @@ func rangeBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Neutral color", daisyui.Range(daisyui.RangeConfig{Min: "0", Max: "100", Value: "40", Color: "neutral"})).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Neutral color", `@daisyui.Range(daisyui.RangeConfig{Min: "0", Max: "100", Value: "40", Color: "neutral"})`, daisyui.Range(daisyui.RangeConfig{Min: "0", Max: "100", Value: "40", Color: "neutral"})).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Primary color", daisyui.Range(daisyui.RangeConfig{Min: "0", Max: "100", Value: "40", Color: "primary"})).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Primary color", `@daisyui.Range(daisyui.RangeConfig{Min: "0", Max: "100", Value: "40", Color: "primary"})`, daisyui.Range(daisyui.RangeConfig{Min: "0", Max: "100", Value: "40", Color: "primary"})).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Secondary color", daisyui.Range(daisyui.RangeConfig{Min: "0", Max: "100", Value: "40", Color: "secondary"})).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Secondary color", `@daisyui.Range(daisyui.RangeConfig{Min: "0", Max: "100", Value: "40", Color: "secondary"})`, daisyui.Range(daisyui.RangeConfig{Min: "0", Max: "100", Value: "40", Color: "secondary"})).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Accent color", daisyui.Range(daisyui.RangeConfig{Min: "0", Max: "100", Value: "40", Color: "accent"})).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Accent color", `@daisyui.Range(daisyui.RangeConfig{Min: "0", Max: "100", Value: "40", Color: "accent"})`, daisyui.Range(daisyui.RangeConfig{Min: "0", Max: "100", Value: "40", Color: "accent"})).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Success color", daisyui.Range(daisyui.RangeConfig{Min: "0", Max: "100", Value: "40", Color: "success"})).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Success color", `@daisyui.Range(daisyui.RangeConfig{Min: "0", Max: "100", Value: "40", Color: "success"})`, daisyui.Range(daisyui.RangeConfig{Min: "0", Max: "100", Value: "40", Color: "success"})).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Warning color", daisyui.Range(daisyui.RangeConfig{Min: "0", Max: "100", Value: "40", Color: "warning"})).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Warning color", `@daisyui.Range(daisyui.RangeConfig{Min: "0", Max: "100", Value: "40", Color: "warning"})`, daisyui.Range(daisyui.RangeConfig{Min: "0", Max: "100", Value: "40", Color: "warning"})).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Info color", daisyui.Range(daisyui.RangeConfig{Min: "0", Max: "100", Value: "40", Color: "info"})).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Info color", `@daisyui.Range(daisyui.RangeConfig{Min: "0", Max: "100", Value: "40", Color: "info"})`, daisyui.Range(daisyui.RangeConfig{Min: "0", Max: "100", Value: "40", Color: "info"})).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Error color", daisyui.Range(daisyui.RangeConfig{Min: "0", Max: "100", Value: "40", Color: "error"})).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Error color", `@daisyui.Range(daisyui.RangeConfig{Min: "0", Max: "100", Value: "40", Color: "error"})`, daisyui.Range(daisyui.RangeConfig{Min: "0", Max: "100", Value: "40", Color: "error"})).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Sizes", rangeSizeRow()).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Sizes", `<div class="flex flex-col gap-4 w-full max-w-xs">
+	@daisyui.Range(daisyui.RangeConfig{Min: "0", Max: "100", Value: "30", Size: "xs"})
+	@daisyui.Range(daisyui.RangeConfig{Min: "0", Max: "100", Value: "40", Size: "sm"})
+	// ... one per size
+</div>`, rangeSizeRow()).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Range with custom color and no fill", daisyui.Range(daisyui.RangeConfig{
+		templ_7745c5c3_Err = section("Range with custom color and no fill", `@daisyui.Range(daisyui.RangeConfig{
+	Min: "0", Max: "100", Value: "40",
+	Class: "text-blue-300 [--range-bg:orange] [--range-thumb:blue] [--range-fill:0]",
+})`, daisyui.Range(daisyui.RangeConfig{
 			Min: "0", Max: "100", Value: "40",
 			Class: "text-blue-300 [--range-bg:orange] [--range-thumb:blue] [--range-fill:0]",
 		})).Render(ctx, templ_7745c5c3_Buffer)

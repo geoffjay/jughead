@@ -65,20 +65,32 @@ func countdownBody(r links.LinkResolver) templ.Component {
 			templ_7745c5c3_Var2 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = section("Countdown", daisyui.Countdown(daisyui.CountdownConfig{
+		templ_7745c5c3_Err = section("Countdown", `@daisyui.Countdown(daisyui.CountdownConfig{
+	Items: []daisyui.CountdownItem{{Value: "59"}},
+})`, daisyui.Countdown(daisyui.CountdownConfig{
 			Items: []daisyui.CountdownItem{{Value: "59"}},
 		})).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Large text with 2 digits", daisyui.Countdown(daisyui.CountdownConfig{
+		templ_7745c5c3_Err = section("Large text with 2 digits", `@daisyui.Countdown(daisyui.CountdownConfig{
+	Class: "font-mono text-6xl",
+	Items: []daisyui.CountdownItem{{Value: "59", Digits: "2"}},
+})`, daisyui.Countdown(daisyui.CountdownConfig{
 			Class: "font-mono text-6xl",
 			Items: []daisyui.CountdownItem{{Value: "59", Digits: "2"}},
 		})).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Clock countdown", daisyui.Countdown(daisyui.CountdownConfig{
+		templ_7745c5c3_Err = section("Clock countdown", `@daisyui.Countdown(daisyui.CountdownConfig{
+	Class: "font-mono text-2xl",
+	Items: []daisyui.CountdownItem{
+		{Value: "10", Suffix: "h "},
+		{Value: "24", Suffix: "m "},
+		{Value: "59", Suffix: "s"},
+	},
+})`, daisyui.Countdown(daisyui.CountdownConfig{
 			Class: "font-mono text-2xl",
 			Items: []daisyui.CountdownItem{
 				{Value: "10", Suffix: "h "},
@@ -89,7 +101,14 @@ func countdownBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Clock countdown with colons", daisyui.Countdown(daisyui.CountdownConfig{
+		templ_7745c5c3_Err = section("Clock countdown with colons", `@daisyui.Countdown(daisyui.CountdownConfig{
+	Class: "font-mono text-2xl",
+	Items: []daisyui.CountdownItem{
+		{Value: "10", Suffix: ":"},
+		{Value: "24", Digits: "2", Suffix: ":"},
+		{Value: "59", Digits: "2"},
+	},
+})`, daisyui.Countdown(daisyui.CountdownConfig{
 			Class: "font-mono text-2xl",
 			Items: []daisyui.CountdownItem{
 				{Value: "10", Suffix: ":"},
@@ -100,7 +119,32 @@ func countdownBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Large text with labels", templ.Raw(`
+		templ_7745c5c3_Err = section("Large text with labels", `<div class="flex gap-5">
+	<div>
+		<span class="font-mono text-4xl countdown">
+			<span style="--value:15;" aria-live="polite" aria-label="15">15</span>
+		</span>
+		days
+	</div>
+	<div>
+		<span class="font-mono text-4xl countdown">
+			<span style="--value:10;" aria-live="polite" aria-label="10">10</span>
+		</span>
+		hours
+	</div>
+	<div>
+		<span class="font-mono text-4xl countdown">
+			<span style="--value:24;" aria-live="polite" aria-label="24">24</span>
+		</span>
+		minutes
+	</div>
+	<div>
+		<span class="font-mono text-4xl countdown">
+			<span style="--value:59;" aria-live="polite" aria-label="59">59</span>
+		</span>
+		sec
+	</div>
+</div>`, templ.Raw(`
 		<div class="flex gap-5">
 			<div>
 				<span class="font-mono text-4xl countdown">
@@ -130,7 +174,32 @@ func countdownBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Large text with labels under", templ.Raw(`
+		templ_7745c5c3_Err = section("Large text with labels under", `<div class="grid grid-flow-col gap-5 text-center auto-cols-max">
+	<div class="flex flex-col">
+		<span class="font-mono text-5xl countdown">
+			<span style="--value:15;" aria-live="polite" aria-label="15">15</span>
+		</span>
+		days
+	</div>
+	<div class="flex flex-col">
+		<span class="font-mono text-5xl countdown">
+			<span style="--value:10;" aria-live="polite" aria-label="10">10</span>
+		</span>
+		hours
+	</div>
+	<div class="flex flex-col">
+		<span class="font-mono text-5xl countdown">
+			<span style="--value:24;" aria-live="polite" aria-label="24">24</span>
+		</span>
+		min
+	</div>
+	<div class="flex flex-col">
+		<span class="font-mono text-5xl countdown">
+			<span style="--value:59;" aria-live="polite" aria-label="59">59</span>
+		</span>
+		sec
+	</div>
+</div>`, templ.Raw(`
 		<div class="grid grid-flow-col gap-5 text-center auto-cols-max">
 			<div class="flex flex-col">
 				<span class="font-mono text-5xl countdown">
@@ -160,7 +229,32 @@ func countdownBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("In boxes", templ.Raw(`
+		templ_7745c5c3_Err = section("In boxes", `<div class="grid grid-flow-col gap-5 text-center auto-cols-max">
+	<div class="flex flex-col p-2 bg-neutral rounded-box text-neutral-content">
+		<span class="font-mono text-5xl countdown">
+			<span style="--value:15;" aria-live="polite" aria-label="15">15</span>
+		</span>
+		days
+	</div>
+	<div class="flex flex-col p-2 bg-neutral rounded-box text-neutral-content">
+		<span class="font-mono text-5xl countdown">
+			<span style="--value:10;" aria-live="polite" aria-label="10">10</span>
+		</span>
+		hours
+	</div>
+	<div class="flex flex-col p-2 bg-neutral rounded-box text-neutral-content">
+		<span class="font-mono text-5xl countdown">
+			<span style="--value:24;" aria-live="polite" aria-label="24">24</span>
+		</span>
+		min
+	</div>
+	<div class="flex flex-col p-2 bg-neutral rounded-box text-neutral-content">
+		<span class="font-mono text-5xl countdown">
+			<span style="--value:59;" aria-live="polite" aria-label="59">59</span>
+		</span>
+		sec
+	</div>
+</div>`, templ.Raw(`
 		<div class="grid grid-flow-col gap-5 text-center auto-cols-max">
 			<div class="flex flex-col p-2 bg-neutral rounded-box text-neutral-content">
 				<span class="font-mono text-5xl countdown">

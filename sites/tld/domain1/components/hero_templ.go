@@ -70,7 +70,13 @@ func heroBody(r links.LinkResolver) templ.Component {
 			templ_7745c5c3_Var2 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = section("Centered hero", daisyui.Hero(daisyui.HeroConfig{
+		templ_7745c5c3_Err = section("Centered hero", `@daisyui.Hero(daisyui.HeroConfig{
+	Title:        "Hello there",
+	Subtitle:     "Provident cupiditate voluptatem et in...",
+	Class:        "min-h-[30rem] rounded bg-base-200",
+	ContentClass: "text-center",
+	Actions:      daisyui.Button(daisyui.ButtonConfig{Label: "Get Started", Color: "primary"}),
+})`, daisyui.Hero(daisyui.HeroConfig{
 			Title:        "Hello there",
 			Subtitle:     "Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.",
 			Class:        "min-h-[30rem] rounded bg-base-200",
@@ -80,7 +86,19 @@ func heroBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Hero with figure", daisyui.Hero(daisyui.HeroConfig{
+		templ_7745c5c3_Err = section("Hero with figure", `@daisyui.Hero(daisyui.HeroConfig{
+	Class:        "min-h-[30rem] rounded bg-base-200",
+	ContentClass: "flex-col lg:flex-row",
+	Content:      heroWithFigureContent(),
+})
+
+// heroWithFigureContent renders:
+<img src={ heroFigureImg } class="max-w-sm rounded-lg shadow-2xl" alt="Tailwind CSS hero component"/>
+<div>
+	<h3 class="text-5xl font-bold">Box Office News!</h3>
+	<p class="py-6">Provident cupiditate voluptatem et in...</p>
+	@daisyui.Button(daisyui.ButtonConfig{Label: "Get Started", Color: "primary"})
+</div>`, daisyui.Hero(daisyui.HeroConfig{
 			Class:        "min-h-[30rem] rounded bg-base-200",
 			ContentClass: "flex-col lg:flex-row",
 			Content:      heroWithFigureContent(),
@@ -88,7 +106,11 @@ func heroBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Hero with figure but reverse order", daisyui.Hero(daisyui.HeroConfig{
+		templ_7745c5c3_Err = section("Hero with figure but reverse order", `@daisyui.Hero(daisyui.HeroConfig{
+	Class:        "min-h-[30rem] rounded bg-base-200",
+	ContentClass: "flex-col lg:flex-row-reverse",
+	Content:      heroWithFigureContent(),
+})`, daisyui.Hero(daisyui.HeroConfig{
 			Class:        "min-h-[30rem] rounded bg-base-200",
 			ContentClass: "flex-col lg:flex-row-reverse",
 			Content:      heroWithFigureContent(),
@@ -96,7 +118,29 @@ func heroBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Hero with form", daisyui.Hero(daisyui.HeroConfig{
+		templ_7745c5c3_Err = section("Hero with form", `@daisyui.Hero(daisyui.HeroConfig{
+	Class:        "min-h-[30rem] rounded bg-base-200",
+	ContentClass: "flex-col lg:flex-row-reverse",
+	Content:      heroWithFormContent(),
+})
+
+// heroWithFormContent renders:
+<div class="text-center lg:text-left">
+	<h3 class="text-5xl font-bold">Login now!</h3>
+	<p class="py-6">Provident cupiditate voluptatem et in...</p>
+</div>
+<div class="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+	<div class="card-body">
+		<fieldset class="fieldset">
+			<label class="label">Email</label>
+			<input type="email" class="input" placeholder="Email"/>
+			<label class="label">Password</label>
+			<input type="password" class="input" placeholder="Password"/>
+			<div><span class="link link-hover">Forgot password?</span></div>
+			<button class="btn btn-neutral mt-4">Login</button>
+		</fieldset>
+	</div>
+</div>`, daisyui.Hero(daisyui.HeroConfig{
 			Class:        "min-h-[30rem] rounded bg-base-200",
 			ContentClass: "flex-col lg:flex-row-reverse",
 			Content:      heroWithFormContent(),
@@ -104,7 +148,15 @@ func heroBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Hero with overlay image", daisyui.Hero(daisyui.HeroConfig{
+		templ_7745c5c3_Err = section("Hero with overlay image", `@daisyui.Hero(daisyui.HeroConfig{
+	Class:           "min-h-[30rem] rounded",
+	Overlay:         true,
+	BackgroundImage: heroOverlayImg,
+	ContentClass:    "text-center text-neutral-content",
+	Title:           "Hello there",
+	Subtitle:        "Provident cupiditate voluptatem et in...",
+	Actions:         daisyui.Button(daisyui.ButtonConfig{Label: "Get Started", Color: "primary"}),
+})`, daisyui.Hero(daisyui.HeroConfig{
 			Class:           "min-h-[30rem] rounded",
 			Overlay:         true,
 			BackgroundImage: heroOverlayImg,
@@ -148,7 +200,7 @@ func heroWithFigureContent() templ.Component {
 		var templ_7745c5c3_Var4 string
 		templ_7745c5c3_Var4, templ_7745c5c3_Err = templ.ResolveAttributeValue(templ.SafeURL(heroFigureImg))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/components/hero.templ`, Line: 50, Col: 40}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/components/hero.templ`, Line: 102, Col: 40}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var4)
 		if templ_7745c5c3_Err != nil {

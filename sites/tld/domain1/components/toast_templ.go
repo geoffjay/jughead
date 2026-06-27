@@ -62,7 +62,13 @@ func toastBody(r links.LinkResolver) templ.Component {
 			templ_7745c5c3_Var2 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = section("toast with alert inside", templ.Raw(`
+		templ_7745c5c3_Err = section("toast with alert inside", `<div class="w-full h-64 relative">
+	<div class="toast absolute">
+		<div class="alert alert-info">
+			<span>New message arrived.</span>
+		</div>
+	</div>
+</div>`, templ.Raw(`
 		<div class="w-full h-64 relative">
 			<div class="toast absolute">
 				<div class="alert alert-info">
@@ -73,39 +79,120 @@ func toastBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("toast-top toast-start", toastFrame("toast-top toast-start")).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("toast-top toast-start", `<div class="w-full h-64 relative">
+	<div class="toast toast-top toast-start absolute">
+		<div class="alert alert-info">
+			<span>New mail arrived.</span>
+		</div>
+		<div class="alert alert-success">
+			<span>Message sent successfully.</span>
+		</div>
+	</div>
+</div>`, toastFrame("toast-top toast-start")).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("toast-top toast-center", toastFrame("toast-top toast-center")).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("toast-top toast-center", `<div class="w-full h-64 relative">
+	<div class="toast toast-top toast-center absolute">
+		<div class="alert alert-info">
+			<span>New mail arrived.</span>
+		</div>
+		<div class="alert alert-success">
+			<span>Message sent successfully.</span>
+		</div>
+	</div>
+</div>`, toastFrame("toast-top toast-center")).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("toast-top toast-end", toastFrame("toast-top toast-end")).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("toast-top toast-end", `<div class="w-full h-64 relative">
+	<div class="toast toast-top toast-end absolute">
+		<div class="alert alert-info">
+			<span>New mail arrived.</span>
+		</div>
+		<div class="alert alert-success">
+			<span>Message sent successfully.</span>
+		</div>
+	</div>
+</div>`, toastFrame("toast-top toast-end")).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("toast-start toast-middle", toastFrame("toast-start toast-middle")).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("toast-start toast-middle", `<div class="w-full h-64 relative">
+	<div class="toast toast-start toast-middle absolute">
+		<div class="alert alert-info">
+			<span>New mail arrived.</span>
+		</div>
+		<div class="alert alert-success">
+			<span>Message sent successfully.</span>
+		</div>
+	</div>
+</div>`, toastFrame("toast-start toast-middle")).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("toast-center toast-middle", toastFrame("toast-center toast-middle")).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("toast-center toast-middle", `<div class="w-full h-64 relative">
+	<div class="toast toast-center toast-middle absolute">
+		<div class="alert alert-info">
+			<span>New mail arrived.</span>
+		</div>
+		<div class="alert alert-success">
+			<span>Message sent successfully.</span>
+		</div>
+	</div>
+</div>`, toastFrame("toast-center toast-middle")).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("toast-end toast-middle", toastFrame("toast-end toast-middle")).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("toast-end toast-middle", `<div class="w-full h-64 relative">
+	<div class="toast toast-end toast-middle absolute">
+		<div class="alert alert-info">
+			<span>New mail arrived.</span>
+		</div>
+		<div class="alert alert-success">
+			<span>Message sent successfully.</span>
+		</div>
+	</div>
+</div>`, toastFrame("toast-end toast-middle")).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("toast-start toast-bottom (default)", toastFrame("toast-start")).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("toast-start toast-bottom (default)", `<div class="w-full h-64 relative">
+	<div class="toast toast-start absolute">
+		<div class="alert alert-info">
+			<span>New mail arrived.</span>
+		</div>
+		<div class="alert alert-success">
+			<span>Message sent successfully.</span>
+		</div>
+	</div>
+</div>`, toastFrame("toast-start")).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("toast-center toast-bottom (default)", toastFrame("toast-center")).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("toast-center toast-bottom (default)", `<div class="w-full h-64 relative">
+	<div class="toast toast-center absolute">
+		<div class="alert alert-info">
+			<span>New mail arrived.</span>
+		</div>
+		<div class="alert alert-success">
+			<span>Message sent successfully.</span>
+		</div>
+	</div>
+</div>`, toastFrame("toast-center")).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("toast-end (default) toast-bottom (default)", toastFrame("toast-end")).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("toast-end (default) toast-bottom (default)", `<div class="w-full h-64 relative">
+	<div class="toast toast-end absolute">
+		<div class="alert alert-info">
+			<span>New mail arrived.</span>
+		</div>
+		<div class="alert alert-success">
+			<span>Message sent successfully.</span>
+		</div>
+	</div>
+</div>`, toastFrame("toast-end")).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

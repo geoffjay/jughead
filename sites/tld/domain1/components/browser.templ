@@ -12,19 +12,33 @@ templ BrowserPage(r links.LinkResolver) {
 const browserWallpaper = "https://img.daisyui.com/images/stock/photo-1559703248-dcaaec9fab78.webp"
 
 templ browserBody(r links.LinkResolver) {
-	@section("Browser mockup with border", daisyui.Browser(daisyui.BrowserConfig{
+	@section("Browser mockup with border", `@daisyui.Browser(daisyui.BrowserConfig{
+	URL:      "https://daisyui.com",
+	Bordered: true,
+	Children: browserContent(),
+})`, daisyui.Browser(daisyui.BrowserConfig{
 		URL:      "https://daisyui.com",
 		Bordered: true,
 		Children: browserContent(),
 	}))
-	@section("Browser mockup with background color", daisyui.Browser(daisyui.BrowserConfig{
+	@section("Browser mockup with background color", `@daisyui.Browser(daisyui.BrowserConfig{
+	URL:        "https://daisyui.com",
+	Bordered:   true,
+	Background: true,
+	BodyClass:  "h-80",
+	Children:   browserContent(),
+})`, daisyui.Browser(daisyui.BrowserConfig{
 		URL:        "https://daisyui.com",
 		Bordered:   true,
 		Background: true,
 		BodyClass:  "h-80",
 		Children:   browserContent(),
 	}))
-	@section("With custom toolbar content", daisyui.Browser(daisyui.BrowserConfig{
+	@section("With custom toolbar content", `@daisyui.Browser(daisyui.BrowserConfig{
+	Bordered: true,
+	Toolbar:  browserToolbar(),
+	Children: browserContent(),
+})`, daisyui.Browser(daisyui.BrowserConfig{
 		Bordered: true,
 		Toolbar:  browserToolbar(),
 		Children: browserContent(),

@@ -10,7 +10,14 @@ templ SelectPage(r links.LinkResolver) {
 }
 
 templ selectBody(r links.LinkResolver) {
-	@section("Select", daisyui.Select(daisyui.SelectConfig{
+	@section("Select", `@daisyui.Select(daisyui.SelectConfig{
+	Placeholder: "Pick a color",
+	Options: []daisyui.SelectOption{
+		{Value: "Crimson"},
+		{Value: "Amber"},
+		{Value: "Velvet"},
+	},
+})`, daisyui.Select(daisyui.SelectConfig{
 		Placeholder: "Pick a color",
 		Options: []daisyui.SelectOption{
 			{Value: "Crimson"},
@@ -18,7 +25,15 @@ templ selectBody(r links.LinkResolver) {
 			{Value: "Velvet"},
 		},
 	}))
-	@section("Ghost (no background)", daisyui.Select(daisyui.SelectConfig{
+	@section("Ghost (no background)", `@daisyui.Select(daisyui.SelectConfig{
+	Placeholder: "Pick a font",
+	Style:       "ghost",
+	Options: []daisyui.SelectOption{
+		{Value: "Inter"},
+		{Value: "Poppins"},
+		{Value: "Raleway"},
+	},
+})`, daisyui.Select(daisyui.SelectConfig{
 		Placeholder: "Pick a font",
 		Style:       "ghost",
 		Options: []daisyui.SelectOption{
@@ -27,7 +42,17 @@ templ selectBody(r links.LinkResolver) {
 			{Value: "Raleway"},
 		},
 	}))
-	@section("With fieldset and labels", daisyui.Fieldset(daisyui.FieldsetConfig{
+	@section("With fieldset and labels", `@daisyui.Fieldset(daisyui.FieldsetConfig{
+	Legend: "Browsers",
+	Class:  "w-xs",
+}, templ.Raw(...)) // children:
+<select class="select">
+	<option disabled selected>Pick a Browser</option>
+	<option>Chrome</option>
+	<option>FireFox</option>
+	<option>Safari</option>
+</select>
+<span class="label">Optional</span>`, daisyui.Fieldset(daisyui.FieldsetConfig{
 		Legend: "Browsers",
 		Class:  "w-xs",
 	}, templ.Raw(`
@@ -38,7 +63,15 @@ templ selectBody(r links.LinkResolver) {
 			<option>Safari</option>
 		</select>
 		<span class="label">Optional</span>`)))
-	@section("Primary color", daisyui.Select(daisyui.SelectConfig{
+	@section("Primary color", `@daisyui.Select(daisyui.SelectConfig{
+	Placeholder: "Pick a text editor",
+	Color:       "primary",
+	Options: []daisyui.SelectOption{
+		{Value: "VScode"},
+		{Value: "VScode fork"},
+		{Value: "Another VScode fork"},
+	},
+})`, daisyui.Select(daisyui.SelectConfig{
 		Placeholder: "Pick a text editor",
 		Color:       "primary",
 		Options: []daisyui.SelectOption{
@@ -47,7 +80,15 @@ templ selectBody(r links.LinkResolver) {
 			{Value: "Another VScode fork"},
 		},
 	}))
-	@section("Secondary color", daisyui.Select(daisyui.SelectConfig{
+	@section("Secondary color", `@daisyui.Select(daisyui.SelectConfig{
+	Placeholder: "Pick a language",
+	Color:       "secondary",
+	Options: []daisyui.SelectOption{
+		{Value: "Zig"},
+		{Value: "Go"},
+		{Value: "Rust"},
+	},
+})`, daisyui.Select(daisyui.SelectConfig{
 		Placeholder: "Pick a language",
 		Color:       "secondary",
 		Options: []daisyui.SelectOption{
@@ -56,7 +97,15 @@ templ selectBody(r links.LinkResolver) {
 			{Value: "Rust"},
 		},
 	}))
-	@section("Accent color", daisyui.Select(daisyui.SelectConfig{
+	@section("Accent color", `@daisyui.Select(daisyui.SelectConfig{
+	Placeholder: "Color scheme",
+	Color:       "accent",
+	Options: []daisyui.SelectOption{
+		{Value: "Light mode"},
+		{Value: "Dark mode"},
+		{Value: "System"},
+	},
+})`, daisyui.Select(daisyui.SelectConfig{
 		Placeholder: "Color scheme",
 		Color:       "accent",
 		Options: []daisyui.SelectOption{
@@ -65,7 +114,15 @@ templ selectBody(r links.LinkResolver) {
 			{Value: "System"},
 		},
 	}))
-	@section("Neutral color", daisyui.Select(daisyui.SelectConfig{
+	@section("Neutral color", `@daisyui.Select(daisyui.SelectConfig{
+	Placeholder: "Server location",
+	Color:       "neutral",
+	Options: []daisyui.SelectOption{
+		{Value: "North America"},
+		{Value: "EU west"},
+		{Value: "South East Asia"},
+	},
+})`, daisyui.Select(daisyui.SelectConfig{
 		Placeholder: "Server location",
 		Color:       "neutral",
 		Options: []daisyui.SelectOption{
@@ -74,7 +131,15 @@ templ selectBody(r links.LinkResolver) {
 			{Value: "South East Asia"},
 		},
 	}))
-	@section("Info color", daisyui.Select(daisyui.SelectConfig{
+	@section("Info color", `@daisyui.Select(daisyui.SelectConfig{
+	Placeholder: "Pick a Framework",
+	Color:       "info",
+	Options: []daisyui.SelectOption{
+		{Value: "React"},
+		{Value: "Vue"},
+		{Value: "Angular"},
+	},
+})`, daisyui.Select(daisyui.SelectConfig{
 		Placeholder: "Pick a Framework",
 		Color:       "info",
 		Options: []daisyui.SelectOption{
@@ -83,7 +148,15 @@ templ selectBody(r links.LinkResolver) {
 			{Value: "Angular"},
 		},
 	}))
-	@section("Success color", daisyui.Select(daisyui.SelectConfig{
+	@section("Success color", `@daisyui.Select(daisyui.SelectConfig{
+	Placeholder: "Pick a Runtime",
+	Color:       "success",
+	Options: []daisyui.SelectOption{
+		{Value: "npm"},
+		{Value: "Bun"},
+		{Value: "yarn"},
+	},
+})`, daisyui.Select(daisyui.SelectConfig{
 		Placeholder: "Pick a Runtime",
 		Color:       "success",
 		Options: []daisyui.SelectOption{
@@ -92,7 +165,15 @@ templ selectBody(r links.LinkResolver) {
 			{Value: "yarn"},
 		},
 	}))
-	@section("Warning color", daisyui.Select(daisyui.SelectConfig{
+	@section("Warning color", `@daisyui.Select(daisyui.SelectConfig{
+	Placeholder: "Pick an OS",
+	Color:       "warning",
+	Options: []daisyui.SelectOption{
+		{Value: "Windows"},
+		{Value: "MacOS"},
+		{Value: "Linux"},
+	},
+})`, daisyui.Select(daisyui.SelectConfig{
 		Placeholder: "Pick an OS",
 		Color:       "warning",
 		Options: []daisyui.SelectOption{
@@ -101,7 +182,15 @@ templ selectBody(r links.LinkResolver) {
 			{Value: "Linux"},
 		},
 	}))
-	@section("Error color", daisyui.Select(daisyui.SelectConfig{
+	@section("Error color", `@daisyui.Select(daisyui.SelectConfig{
+	Placeholder: "Pick an AI Model",
+	Color:       "error",
+	Options: []daisyui.SelectOption{
+		{Value: "GPT-4"},
+		{Value: "Claude"},
+		{Value: "Llama"},
+	},
+})`, daisyui.Select(daisyui.SelectConfig{
 		Placeholder: "Pick an AI Model",
 		Color:       "error",
 		Options: []daisyui.SelectOption{
@@ -110,12 +199,27 @@ templ selectBody(r links.LinkResolver) {
 			{Value: "Llama"},
 		},
 	}))
-	@section("Sizes", selectSizeRow())
-	@section("Disabled", daisyui.Select(daisyui.SelectConfig{
+	@section("Sizes", `<div class="flex flex-col gap-4 w-full items-center">
+	@daisyui.Select(daisyui.SelectConfig{Placeholder: "Xsmall", Size: "xs", Options: []daisyui.SelectOption{{Value: "Xsmall Apple"}}})
+	@daisyui.Select(daisyui.SelectConfig{Placeholder: "Small", Size: "sm", Options: []daisyui.SelectOption{{Value: "Small Apple"}}})
+	// ... one per size (md, lg, xl)
+</div>`, selectSizeRow())
+	@section("Disabled", `@daisyui.Select(daisyui.SelectConfig{
+	Placeholder: "You can't touch this",
+	Disabled:    true,
+})`, daisyui.Select(daisyui.SelectConfig{
 		Placeholder: "You can't touch this",
 		Disabled:    true,
 	}))
-	@section("Using OS native style for the options dropdown", daisyui.Select(daisyui.SelectConfig{
+	@section("Using OS native style for the options dropdown", `@daisyui.Select(daisyui.SelectConfig{
+	Placeholder: "Pick a color",
+	Class:       "appearance-none",
+	Options: []daisyui.SelectOption{
+		{Value: "Crimson"},
+		{Value: "Amber"},
+		{Value: "Velvet"},
+	},
+})`, daisyui.Select(daisyui.SelectConfig{
 		Placeholder: "Pick a color",
 		Class:       "appearance-none",
 		Options: []daisyui.SelectOption{

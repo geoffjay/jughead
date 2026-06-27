@@ -72,7 +72,13 @@ func hoverGalleryBody(r links.LinkResolver) templ.Component {
 			templ_7745c5c3_Var2 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = section("Hover Gallery", daisyui.HoverGallery(daisyui.HoverGalleryConfig{
+		templ_7745c5c3_Err = section("Hover Gallery", `@daisyui.HoverGallery(daisyui.HoverGalleryConfig{
+	Class: "max-w-60",
+	Images: []daisyui.HoverGalleryImage{
+		{Src: galleryHat1, Alt: "Tailwind CSS image hover gallery"},
+		// ... one per image
+	},
+})`, daisyui.HoverGallery(daisyui.HoverGalleryConfig{
 			Class: "max-w-60",
 			Images: []daisyui.HoverGalleryImage{
 				{Src: galleryHat1, Alt: "Tailwind CSS image hover gallery"},
@@ -84,7 +90,18 @@ func hoverGalleryBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Hover Gallery in a card", hoverGalleryInCard()).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Hover Gallery in a card", `<div class="card card-sm bg-base-200 max-w-60 shadow">
+	@daisyui.HoverGallery(daisyui.HoverGalleryConfig{
+		Images: []daisyui.HoverGalleryImage{
+			{Src: galleryHat1, Alt: "Tailwind CSS image hover gallery"},
+			// ... one per image
+		},
+	})
+	<div class="card-body">
+		<h2 class="card-title flex justify-between">daisyUI Hat <span class="font-normal">$25</span></h2>
+		<p>High Quality classic cap hat with stitch logo</p>
+	</div>
+</div>`, hoverGalleryInCard()).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

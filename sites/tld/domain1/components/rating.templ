@@ -10,7 +10,16 @@ templ RatingPage(r links.LinkResolver) {
 }
 
 templ ratingBody(r links.LinkResolver) {
-	@section("Rating", daisyui.Rating(daisyui.RatingConfig{
+	@section("Rating", `@daisyui.Rating(daisyui.RatingConfig{
+	Name: "rating-1",
+	Items: []daisyui.RatingItem{
+		{Mask: "star", AriaLabel: "1 star"},
+		{Mask: "star", AriaLabel: "2 star", Checked: true},
+		{Mask: "star", AriaLabel: "3 star"},
+		{Mask: "star", AriaLabel: "4 star"},
+		{Mask: "star", AriaLabel: "5 star"},
+	},
+})`, daisyui.Rating(daisyui.RatingConfig{
 		Name: "rating-1",
 		Items: []daisyui.RatingItem{
 			{Mask: "star", AriaLabel: "1 star"},
@@ -20,7 +29,13 @@ templ ratingBody(r links.LinkResolver) {
 			{Mask: "star", AriaLabel: "5 star"},
 		},
 	}))
-	@section("Read-only Rating", templ.Raw(`
+	@section("Read-only Rating", `<div class="rating">
+	<div class="mask mask-star" aria-label="1 star"></div>
+	<div class="mask mask-star" aria-label="2 star"></div>
+	<div class="mask mask-star" aria-label="3 star" aria-current="true"></div>
+	<div class="mask mask-star" aria-label="4 star"></div>
+	<div class="mask mask-star" aria-label="5 star"></div>
+</div>`, templ.Raw(`
 		<div class="rating">
 			<div class="mask mask-star" aria-label="1 star"></div>
 			<div class="mask mask-star" aria-label="2 star"></div>
@@ -28,7 +43,16 @@ templ ratingBody(r links.LinkResolver) {
 			<div class="mask mask-star" aria-label="4 star"></div>
 			<div class="mask mask-star" aria-label="5 star"></div>
 		</div>`))
-	@section("mask-star-2 with warning color", daisyui.Rating(daisyui.RatingConfig{
+	@section("mask-star-2 with warning color", `@daisyui.Rating(daisyui.RatingConfig{
+	Name: "rating-2",
+	Items: []daisyui.RatingItem{
+		{Mask: "star-2", AriaLabel: "1 star", ColorClass: "bg-orange-400"},
+		{Mask: "star-2", AriaLabel: "2 star", ColorClass: "bg-orange-400", Checked: true},
+		{Mask: "star-2", AriaLabel: "3 star", ColorClass: "bg-orange-400"},
+		{Mask: "star-2", AriaLabel: "4 star", ColorClass: "bg-orange-400"},
+		{Mask: "star-2", AriaLabel: "5 star", ColorClass: "bg-orange-400"},
+	},
+})`, daisyui.Rating(daisyui.RatingConfig{
 		Name: "rating-2",
 		Items: []daisyui.RatingItem{
 			{Mask: "star-2", AriaLabel: "1 star", ColorClass: "bg-orange-400"},
@@ -38,7 +62,17 @@ templ ratingBody(r links.LinkResolver) {
 			{Mask: "star-2", AriaLabel: "5 star", ColorClass: "bg-orange-400"},
 		},
 	}))
-	@section("mask-heart with multiple colors", daisyui.Rating(daisyui.RatingConfig{
+	@section("mask-heart with multiple colors", `@daisyui.Rating(daisyui.RatingConfig{
+	Name:  "rating-3",
+	Class: "gap-1",
+	Items: []daisyui.RatingItem{
+		{Mask: "heart", AriaLabel: "1 star", ColorClass: "bg-red-400"},
+		{Mask: "heart", AriaLabel: "2 star", ColorClass: "bg-orange-400", Checked: true},
+		{Mask: "heart", AriaLabel: "3 star", ColorClass: "bg-yellow-400"},
+		{Mask: "heart", AriaLabel: "4 star", ColorClass: "bg-lime-400"},
+		{Mask: "heart", AriaLabel: "5 star", ColorClass: "bg-green-400"},
+	},
+})`, daisyui.Rating(daisyui.RatingConfig{
 		Name:  "rating-3",
 		Class: "gap-1",
 		Items: []daisyui.RatingItem{
@@ -49,7 +83,16 @@ templ ratingBody(r links.LinkResolver) {
 			{Mask: "heart", AriaLabel: "5 star", ColorClass: "bg-green-400"},
 		},
 	}))
-	@section("mask-star-2 with green-500 color", daisyui.Rating(daisyui.RatingConfig{
+	@section("mask-star-2 with green-500 color", `@daisyui.Rating(daisyui.RatingConfig{
+	Name: "rating-4",
+	Items: []daisyui.RatingItem{
+		{Mask: "star-2", AriaLabel: "1 star", ColorClass: "bg-green-500"},
+		{Mask: "star-2", AriaLabel: "2 star", ColorClass: "bg-green-500", Checked: true},
+		{Mask: "star-2", AriaLabel: "3 star", ColorClass: "bg-green-500"},
+		{Mask: "star-2", AriaLabel: "4 star", ColorClass: "bg-green-500"},
+		{Mask: "star-2", AriaLabel: "5 star", ColorClass: "bg-green-500"},
+	},
+})`, daisyui.Rating(daisyui.RatingConfig{
 		Name: "rating-4",
 		Items: []daisyui.RatingItem{
 			{Mask: "star-2", AriaLabel: "1 star", ColorClass: "bg-green-500"},
@@ -59,8 +102,22 @@ templ ratingBody(r links.LinkResolver) {
 			{Mask: "star-2", AriaLabel: "5 star", ColorClass: "bg-green-500"},
 		},
 	}))
-	@section("Sizes", ratingSizeRow())
-	@section("with rating-hidden", daisyui.Rating(daisyui.RatingConfig{
+	@section("Sizes", `<div class="flex flex-col gap-2 items-center">
+	@daisyui.Rating(daisyui.RatingConfig{Name: "rating-5", Size: "xs", Items: ratingStarItems("rating-5", "bg-orange-400", 2)})
+	@daisyui.Rating(daisyui.RatingConfig{Name: "rating-6", Size: "sm", Items: ratingStarItems("rating-6", "bg-orange-400", 2)})
+	// ... one per size (md, lg, xl)
+</div>`, ratingSizeRow())
+	@section("with rating-hidden", `@daisyui.Rating(daisyui.RatingConfig{
+	Name: "rating-10", Size: "lg",
+	Items: []daisyui.RatingItem{
+		{Hidden: true, AriaLabel: "clear"},
+		{Mask: "star-2", AriaLabel: "1 star"},
+		{Mask: "star-2", AriaLabel: "2 star", Checked: true},
+		{Mask: "star-2", AriaLabel: "3 star"},
+		{Mask: "star-2", AriaLabel: "4 star"},
+		{Mask: "star-2", AriaLabel: "5 star"},
+	},
+})`, daisyui.Rating(daisyui.RatingConfig{
 		Name: "rating-10", Size: "lg",
 		Items: []daisyui.RatingItem{
 			{Hidden: true, AriaLabel: "clear"},
@@ -71,7 +128,17 @@ templ ratingBody(r links.LinkResolver) {
 			{Mask: "star-2", AriaLabel: "5 star"},
 		},
 	}))
-	@section("half stars", daisyui.Rating(daisyui.RatingConfig{
+	@section("half stars", `@daisyui.Rating(daisyui.RatingConfig{
+	Name: "rating-11", Size: "lg", Half: true,
+	Items: []daisyui.RatingItem{
+		{Hidden: true, AriaLabel: "clear"},
+		{Mask: "star-2", Modifier: "half-1", AriaLabel: "0.5 star", ColorClass: "bg-green-500"},
+		{Mask: "star-2", Modifier: "half-2", AriaLabel: "1 star", ColorClass: "bg-green-500"},
+		{Mask: "star-2", Modifier: "half-1", AriaLabel: "1.5 star", ColorClass: "bg-green-500", Checked: true},
+		{Mask: "star-2", Modifier: "half-2", AriaLabel: "2 star", ColorClass: "bg-green-500"},
+		// ... one per half step up to 5 star
+	},
+})`, daisyui.Rating(daisyui.RatingConfig{
 		Name: "rating-11", Size: "lg", Half: true,
 		Items: []daisyui.RatingItem{
 			{Hidden: true, AriaLabel: "clear"},

@@ -65,7 +65,11 @@ func collapseBody(r links.LinkResolver) templ.Component {
 			templ_7745c5c3_Var2 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = section("Collapse with focus", daisyui.Collapse(
+		templ_7745c5c3_Err = section("Collapse with focus", `@daisyui.Collapse(
+	daisyui.CollapseConfig{Class: "bg-base-100 border border-base-300"},
+	"How do I create an account?",
+	"Click the \"Sign Up\" button in the top right corner and follow the registration process.",
+)`, daisyui.Collapse(
 			daisyui.CollapseConfig{Class: "bg-base-100 border border-base-300"},
 			"How do I create an account?",
 			`Click the "Sign Up" button in the top right corner and follow the registration process.`,
@@ -73,7 +77,11 @@ func collapseBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Collapse with checkbox", daisyui.Collapse(
+		templ_7745c5c3_Err = section("Collapse with checkbox", `@daisyui.Collapse(
+	daisyui.CollapseConfig{Mode: "checkbox", Class: "bg-base-100 border border-base-300"},
+	"How do I create an account?",
+	"Click the \"Sign Up\" button in the top right corner and follow the registration process.",
+)`, daisyui.Collapse(
 			daisyui.CollapseConfig{Mode: "checkbox", Class: "bg-base-100 border border-base-300"},
 			"How do I create an account?",
 			`Click the "Sign Up" button in the top right corner and follow the registration process.`,
@@ -81,7 +89,11 @@ func collapseBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Collapse using details and summary tag", daisyui.Collapse(
+		templ_7745c5c3_Err = section("Collapse using details and summary tag", `@daisyui.Collapse(
+	daisyui.CollapseConfig{Mode: "details", Class: "bg-base-100 border border-base-300"},
+	"How do I create an account?",
+	"Click the \"Sign Up\" button in the top right corner and follow the registration process.",
+)`, daisyui.Collapse(
 			daisyui.CollapseConfig{Mode: "details", Class: "bg-base-100 border border-base-300"},
 			"How do I create an account?",
 			`Click the "Sign Up" button in the top right corner and follow the registration process.`,
@@ -89,7 +101,11 @@ func collapseBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Without border and background color", daisyui.Collapse(
+		templ_7745c5c3_Err = section("Without border and background color", `@daisyui.Collapse(
+	daisyui.CollapseConfig{},
+	"How do I create an account?",
+	"Click the \"Sign Up\" button in the top right corner and follow the registration process.",
+)`, daisyui.Collapse(
 			daisyui.CollapseConfig{},
 			"How do I create an account?",
 			`Click the "Sign Up" button in the top right corner and follow the registration process.`,
@@ -97,7 +113,11 @@ func collapseBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("With arrow icon", daisyui.Collapse(
+		templ_7745c5c3_Err = section("With arrow icon", `@daisyui.Collapse(
+	daisyui.CollapseConfig{Icon: "arrow", Class: "bg-base-100 border border-base-300"},
+	"How do I create an account?",
+	"Click the \"Sign Up\" button in the top right corner and follow the registration process.",
+)`, daisyui.Collapse(
 			daisyui.CollapseConfig{Icon: "arrow", Class: "bg-base-100 border border-base-300"},
 			"How do I create an account?",
 			`Click the "Sign Up" button in the top right corner and follow the registration process.`,
@@ -105,7 +125,11 @@ func collapseBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("With arrow plus/minus icon", daisyui.Collapse(
+		templ_7745c5c3_Err = section("With arrow plus/minus icon", `@daisyui.Collapse(
+	daisyui.CollapseConfig{Icon: "plus", Class: "bg-base-100 border border-base-300"},
+	"How do I create an account?",
+	"Click the \"Sign Up\" button in the top right corner and follow the registration process.",
+)`, daisyui.Collapse(
 			daisyui.CollapseConfig{Icon: "plus", Class: "bg-base-100 border border-base-300"},
 			"How do I create an account?",
 			`Click the "Sign Up" button in the top right corner and follow the registration process.`,
@@ -113,7 +137,11 @@ func collapseBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Force open", daisyui.Collapse(
+		templ_7745c5c3_Err = section("Force open", `@daisyui.Collapse(
+	daisyui.CollapseConfig{Open: true, Class: "bg-base-100 border border-base-300"},
+	"I have collapse-open class",
+	"Click the \"Sign Up\" button in the top right corner and follow the registration process.",
+)`, daisyui.Collapse(
 			daisyui.CollapseConfig{Open: true, Class: "bg-base-100 border border-base-300"},
 			"I have collapse-open class",
 			`Click the "Sign Up" button in the top right corner and follow the registration process.`,
@@ -121,7 +149,11 @@ func collapseBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Force close", daisyui.Collapse(
+		templ_7745c5c3_Err = section("Force close", `@daisyui.Collapse(
+	daisyui.CollapseConfig{Close: true, Class: "bg-base-100 border border-base-300"},
+	"I have collapse-close class",
+	"Click the \"Sign Up\" button in the top right corner and follow the registration process.",
+)`, daisyui.Collapse(
 			daisyui.CollapseConfig{Close: true, Class: "bg-base-100 border border-base-300"},
 			"I have collapse-close class",
 			`Click the "Sign Up" button in the top right corner and follow the registration process.`,
@@ -129,7 +161,11 @@ func collapseBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Custom colors for collapse that works with focus", daisyui.Collapse(
+		templ_7745c5c3_Err = section("Custom colors for collapse that works with focus", `@daisyui.Collapse(
+	daisyui.CollapseConfig{Class: "bg-primary text-primary-content focus:bg-secondary focus:text-secondary-content"},
+	"How do I create an account?",
+	"Click the \"Sign Up\" button in the top right corner and follow the registration process.",
+)`, daisyui.Collapse(
 			daisyui.CollapseConfig{Class: "bg-primary text-primary-content focus:bg-secondary focus:text-secondary-content"},
 			"How do I create an account?",
 			`Click the "Sign Up" button in the top right corner and follow the registration process.`,

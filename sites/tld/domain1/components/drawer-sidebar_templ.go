@@ -65,7 +65,15 @@ func drawerSidebarBody(r links.LinkResolver) templ.Component {
 			templ_7745c5c3_Var2 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = section("Drawer with default menu items", daisyui.Drawer(daisyui.DrawerConfig{
+		templ_7745c5c3_Err = section("Drawer with default menu items", `@daisyui.Drawer(daisyui.DrawerConfig{
+	ButtonLabel: "Open drawer",
+	SideItems: []daisyui.DrawerSidebarItem{
+		{Label: "Item 1", Href: "#"},
+		{Label: "Item 2", Href: "#"},
+		{Label: "Item 3", Href: "#"},
+	},
+	Resolver: r,
+})`, daisyui.Drawer(daisyui.DrawerConfig{
 			ButtonLabel: "Open drawer",
 			SideItems: []daisyui.DrawerSidebarItem{
 				{Label: "Item 1", Href: "#"},
@@ -77,7 +85,17 @@ func drawerSidebarBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Drawer that's always open (large screens)", daisyui.Drawer(daisyui.DrawerConfig{
+		templ_7745c5c3_Err = section("Drawer that's always open (large screens)", `@daisyui.Drawer(daisyui.DrawerConfig{
+	ButtonLabel: "Content",
+	Open:        false,
+	Class:       "lg:drawer-open",
+	SideItems: []daisyui.DrawerSidebarItem{
+		{Label: "Home", Href: "#"},
+		{Label: "About", Href: "#"},
+		{Label: "Contact", Href: "#"},
+	},
+	Resolver: r,
+})`, daisyui.Drawer(daisyui.DrawerConfig{
 			ButtonLabel: "Content",
 			Open:        false,
 			Class:       "lg:drawer-open",
@@ -91,7 +109,15 @@ func drawerSidebarBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Drawer forced open", daisyui.Drawer(daisyui.DrawerConfig{
+		templ_7745c5c3_Err = section("Drawer forced open", `@daisyui.Drawer(daisyui.DrawerConfig{
+	ButtonLabel: "Open drawer",
+	Open:        true,
+	SideItems: []daisyui.DrawerSidebarItem{
+		{Label: "Item 1", Href: "#"},
+		{Label: "Item 2", Href: "#"},
+	},
+	Resolver: r,
+})`, daisyui.Drawer(daisyui.DrawerConfig{
 			ButtonLabel: "Open drawer",
 			Open:        true,
 			SideItems: []daisyui.DrawerSidebarItem{
@@ -103,7 +129,15 @@ func drawerSidebarBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Drawer end (right side)", daisyui.Drawer(daisyui.DrawerConfig{
+		templ_7745c5c3_Err = section("Drawer end (right side)", `@daisyui.Drawer(daisyui.DrawerConfig{
+	ButtonLabel: "Open right drawer",
+	End:         true,
+	SideItems: []daisyui.DrawerSidebarItem{
+		{Label: "Settings", Href: "#"},
+		{Label: "Profile", Href: "#"},
+	},
+	Resolver: r,
+})`, daisyui.Drawer(daisyui.DrawerConfig{
 			ButtonLabel: "Open right drawer",
 			End:         true,
 			SideItems: []daisyui.DrawerSidebarItem{
@@ -115,7 +149,11 @@ func drawerSidebarBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Drawer with custom side content", daisyui.Drawer(daisyui.DrawerConfig{
+		templ_7745c5c3_Err = section("Drawer with custom side content", `@daisyui.Drawer(daisyui.DrawerConfig{
+	ButtonLabel: "Open custom drawer",
+	Side:        drawerCustomSide(r),
+	Resolver:    r,
+})`, daisyui.Drawer(daisyui.DrawerConfig{
 			ButtonLabel: "Open custom drawer",
 			Side:        drawerCustomSide(r),
 			Resolver:    r,
@@ -123,7 +161,15 @@ func drawerSidebarBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Drawer with custom toggle ID", daisyui.Drawer(daisyui.DrawerConfig{
+		templ_7745c5c3_Err = section("Drawer with custom toggle ID", `@daisyui.Drawer(daisyui.DrawerConfig{
+	ToggleID:    "my-drawer",
+	ButtonLabel: "Custom ID drawer",
+	SideItems: []daisyui.DrawerSidebarItem{
+		{Label: "Item 1", Href: "#"},
+		{Label: "Item 2", Href: "#"},
+	},
+	Resolver: r,
+})`, daisyui.Drawer(daisyui.DrawerConfig{
 			ToggleID:    "my-drawer",
 			ButtonLabel: "Custom ID drawer",
 			SideItems: []daisyui.DrawerSidebarItem{
@@ -135,7 +181,15 @@ func drawerSidebarBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Drawer with custom content", daisyui.Drawer(daisyui.DrawerConfig{
+		templ_7745c5c3_Err = section("Drawer with custom content", `@daisyui.Drawer(daisyui.DrawerConfig{
+	Content: drawerPageContent(),
+	SideItems: []daisyui.DrawerSidebarItem{
+		{Label: "Dashboard", Href: "#"},
+		{Label: "Statistics", Href: "#"},
+		{Label: "Settings", Href: "#"},
+	},
+	Resolver: r,
+})`, daisyui.Drawer(daisyui.DrawerConfig{
 			Content: drawerPageContent(),
 			SideItems: []daisyui.DrawerSidebarItem{
 				{Label: "Dashboard", Href: "#"},
@@ -147,7 +201,16 @@ func drawerSidebarBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Drawer responsive end + open", daisyui.Drawer(daisyui.DrawerConfig{
+		templ_7745c5c3_Err = section("Drawer responsive end + open", `@daisyui.Drawer(daisyui.DrawerConfig{
+	ButtonLabel: "Open",
+	End:         true,
+	Class:       "lg:drawer-open",
+	SideItems: []daisyui.DrawerSidebarItem{
+		{Label: "Notifications", Href: "#"},
+		{Label: "Account", Href: "#"},
+	},
+	Resolver: r,
+})`, daisyui.Drawer(daisyui.DrawerConfig{
 			ButtonLabel: "Open",
 			End:         true,
 			Class:       "lg:drawer-open",

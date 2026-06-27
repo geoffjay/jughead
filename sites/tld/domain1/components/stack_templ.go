@@ -65,7 +65,15 @@ func stackBody(r links.LinkResolver) templ.Component {
 			templ_7745c5c3_Var2 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = section("3 divs in a stack", daisyui.Stack(
+		templ_7745c5c3_Err = section("3 divs in a stack", `@daisyui.Stack(
+	[]templ.Component{
+		templ.Raw(...), // <div class="grid rounded-box bg-primary text-primary-content place-content-center">1</div>
+		templ.Raw(...), // <div class="grid rounded-box bg-accent text-accent-content place-content-center">2</div>
+		templ.Raw(...), // <div class="grid rounded-box bg-secondary text-secondary-content place-content-center">3</div>
+	},
+	"",
+	"h-20 w-32",
+)`, daisyui.Stack(
 			[]templ.Component{
 				templ.Raw(`<div class="grid rounded-box bg-primary text-primary-content place-content-center">1</div>`),
 				templ.Raw(`<div class="grid rounded-box bg-accent text-accent-content place-content-center">2</div>`),
@@ -77,7 +85,15 @@ func stackBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Stacked images", daisyui.Stack(
+		templ_7745c5c3_Err = section("Stacked images", `@daisyui.Stack(
+	[]templ.Component{
+		templ.Raw(...), // <img src="...photo-1572635148818-ef6fd45eb394.webp" alt="Stack image 1" class="rounded-box"/>
+		templ.Raw(...), // <img src="...photo-1565098772267-60af42b81ef2.webp" alt="Stack image 2" class="rounded-box"/>
+		templ.Raw(...), // <img src="...photo-1559703248-dcaaec9fab78.webp" alt="Stack image 3" class="rounded-box"/>
+	},
+	"",
+	"mb-4 w-48",
+)`, daisyui.Stack(
 			[]templ.Component{
 				templ.Raw(`<img src="https://img.daisyui.com/images/stock/photo-1572635148818-ef6fd45eb394.webp" alt="Stack image 1" class="rounded-box"/>`),
 				templ.Raw(`<img src="https://img.daisyui.com/images/stock/photo-1565098772267-60af42b81ef2.webp" alt="Stack image 2" class="rounded-box"/>`),
@@ -89,7 +105,14 @@ func stackBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Stacked cards", daisyui.Stack(
+		templ_7745c5c3_Err = section("Stacked cards", `@daisyui.Stack(
+	[]templ.Component{
+		templ.Raw(...), // <div class="text-center border border-base-content card bg-base-100"><div class="card-body">A</div></div>
+		templ.Raw(...), // ... one per card (B, C)
+	},
+	"",
+	"mb-4 size-28",
+)`, daisyui.Stack(
 			[]templ.Component{
 				templ.Raw(`<div class="text-center border border-base-content card bg-base-100"><div class="card-body">A</div></div>`),
 				templ.Raw(`<div class="text-center border border-base-content card bg-base-100"><div class="card-body">B</div></div>`),
@@ -101,7 +124,14 @@ func stackBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Stacked cards (top direction)", daisyui.Stack(
+		templ_7745c5c3_Err = section("Stacked cards (top direction)", `@daisyui.Stack(
+	[]templ.Component{
+		templ.Raw(...), // <div class="text-center border border-base-content card bg-base-100"><div class="card-body">A</div></div>
+		templ.Raw(...), // ... one per card (B, C)
+	},
+	"top",
+	"mb-4 size-28",
+)`, daisyui.Stack(
 			[]templ.Component{
 				templ.Raw(`<div class="text-center border border-base-content card bg-base-100"><div class="card-body">A</div></div>`),
 				templ.Raw(`<div class="text-center border border-base-content card bg-base-100"><div class="card-body">B</div></div>`),
@@ -113,7 +143,14 @@ func stackBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Stacked cards (start direction)", daisyui.Stack(
+		templ_7745c5c3_Err = section("Stacked cards (start direction)", `@daisyui.Stack(
+	[]templ.Component{
+		templ.Raw(...), // <div class="text-center border border-base-content card bg-base-100"><div class="card-body">A</div></div>
+		templ.Raw(...), // ... one per card (B, C)
+	},
+	"start",
+	"mb-4 size-28",
+)`, daisyui.Stack(
 			[]templ.Component{
 				templ.Raw(`<div class="text-center border border-base-content card bg-base-100"><div class="card-body">A</div></div>`),
 				templ.Raw(`<div class="text-center border border-base-content card bg-base-100"><div class="card-body">B</div></div>`),
@@ -125,7 +162,14 @@ func stackBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Stacked cards (end direction)", daisyui.Stack(
+		templ_7745c5c3_Err = section("Stacked cards (end direction)", `@daisyui.Stack(
+	[]templ.Component{
+		templ.Raw(...), // <div class="text-center border border-base-content card bg-base-100"><div class="card-body">A</div></div>
+		templ.Raw(...), // ... one per card (B, C)
+	},
+	"end",
+	"mb-4 size-28",
+)`, daisyui.Stack(
 			[]templ.Component{
 				templ.Raw(`<div class="text-center border border-base-content card bg-base-100"><div class="card-body">A</div></div>`),
 				templ.Raw(`<div class="text-center border border-base-content card bg-base-100"><div class="card-body">B</div></div>`),
@@ -137,7 +181,15 @@ func stackBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Stacked cards with shadow", daisyui.Stack(
+		templ_7745c5c3_Err = section("Stacked cards with shadow", `@daisyui.Stack(
+	[]templ.Component{
+		templ.Raw(...), // <div class="text-center shadow-md card bg-base-200"><div class="card-body">A</div></div>
+		templ.Raw(...), // <div class="text-center shadow card bg-base-200"><div class="card-body">B</div></div>
+		templ.Raw(...), // <div class="text-center shadow-sm card bg-base-200"><div class="card-body">C</div></div>
+	},
+	"",
+	"mb-4",
+)`, daisyui.Stack(
 			[]templ.Component{
 				templ.Raw(`<div class="text-center shadow-md card bg-base-200"><div class="card-body">A</div></div>`),
 				templ.Raw(`<div class="text-center shadow card bg-base-200"><div class="card-body">B</div></div>`),

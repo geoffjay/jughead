@@ -65,7 +65,12 @@ func statBody(r links.LinkResolver) templ.Component {
 			templ_7745c5c3_Var2 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = section("Stat", daisyui.Stat(daisyui.StatConfig{
+		templ_7745c5c3_Err = section("Stat", `@daisyui.Stat(daisyui.StatConfig{
+	Class: "shadow",
+	Items: []daisyui.StatItem{
+		{Title: "Total Page Views", Value: "89,400", Desc: "21% more than last month"},
+	},
+})`, daisyui.Stat(daisyui.StatConfig{
 			Class: "shadow",
 			Items: []daisyui.StatItem{
 				{Title: "Total Page Views", Value: "89,400", Desc: "21% more than last month"},
@@ -74,7 +79,35 @@ func statBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Stat with icons or image", daisyui.Stat(daisyui.StatConfig{
+		templ_7745c5c3_Err = section("Stat with icons or image", `@daisyui.Stat(daisyui.StatConfig{
+	Class: "shadow",
+	Items: []daisyui.StatItem{
+		{
+			Title:       "Total Likes",
+			Value:       "25.6K",
+			ValueClass:  "text-primary",
+			Desc:        "21% more than last month",
+			Figure:      heartIcon(),
+			FigureClass: "text-primary",
+		},
+		{
+			Title:       "Page Views",
+			Value:       "2.6M",
+			ValueClass:  "text-secondary",
+			Desc:        "21% more than last month",
+			Figure:      boltIcon(),
+			FigureClass: "text-secondary",
+		},
+		{
+			Title:       "Tasks done",
+			Value:       "86%",
+			Desc:        "31 tasks remaining",
+			DescClass:   "text-secondary",
+			Figure:      statAvatar(),
+			FigureClass: "text-secondary",
+		},
+	},
+})`, daisyui.Stat(daisyui.StatConfig{
 			Class: "shadow",
 			Items: []daisyui.StatItem{
 				{
@@ -106,7 +139,14 @@ func statBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Stat (downloads)", daisyui.Stat(daisyui.StatConfig{
+		templ_7745c5c3_Err = section("Stat (downloads)", `@daisyui.Stat(daisyui.StatConfig{
+	Class: "shadow",
+	Items: []daisyui.StatItem{
+		{Title: "Downloads", Value: "31K", Desc: "Jan 1st - Feb 1st", Figure: downloadIcon(), FigureClass: "text-secondary"},
+		{Title: "New Users", Value: "4,200", Desc: "↗︎ 400 (22%)", Figure: userIcon(), FigureClass: "text-secondary"},
+		{Title: "New Registers", Value: "1,200", Desc: "↘︎ 90 (14%)", Figure: registerIcon(), FigureClass: "text-secondary"},
+	},
+})`, daisyui.Stat(daisyui.StatConfig{
 			Class: "shadow",
 			Items: []daisyui.StatItem{
 				{Title: "Downloads", Value: "31K", Desc: "Jan 1st - Feb 1st", Figure: downloadIcon(), FigureClass: "text-secondary"},
@@ -117,7 +157,14 @@ func statBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Centered items", daisyui.Stat(daisyui.StatConfig{
+		templ_7745c5c3_Err = section("Centered items", `@daisyui.Stat(daisyui.StatConfig{
+	Class: "shadow",
+	Items: []daisyui.StatItem{
+		{Title: "Downloads", Value: "31K", Desc: "From January 1st to February 1st", ItemClass: "place-items-center"},
+		{Title: "Users", Value: "4,200", ValueClass: "text-secondary", Desc: "↗︎ 40 (2%)", DescClass: "text-secondary", ItemClass: "place-items-center"},
+		{Title: "New Registers", Value: "1,200", Desc: "↘︎ 90 (14%)", ItemClass: "place-items-center"},
+	},
+})`, daisyui.Stat(daisyui.StatConfig{
 			Class: "shadow",
 			Items: []daisyui.StatItem{
 				{Title: "Downloads", Value: "31K", Desc: "From January 1st to February 1st", ItemClass: "place-items-center"},
@@ -128,7 +175,15 @@ func statBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Vertical", daisyui.Stat(daisyui.StatConfig{
+		templ_7745c5c3_Err = section("Vertical", `@daisyui.Stat(daisyui.StatConfig{
+	Class:     "shadow",
+	Direction: "vertical",
+	Items: []daisyui.StatItem{
+		{Title: "Downloads", Value: "31K", Desc: "Jan 1st - Feb 1st"},
+		{Title: "New Users", Value: "4,200", Desc: "↗︎ 400 (22%)"},
+		{Title: "New Registers", Value: "1,200", Desc: "↘︎ 90 (14%)"},
+	},
+})`, daisyui.Stat(daisyui.StatConfig{
 			Class:     "shadow",
 			Direction: "vertical",
 			Items: []daisyui.StatItem{
@@ -140,7 +195,14 @@ func statBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Responsive (vertical on small screen, horizontal on large screen)", daisyui.Stat(daisyui.StatConfig{
+		templ_7745c5c3_Err = section("Responsive (vertical on small screen, horizontal on large screen)", `@daisyui.Stat(daisyui.StatConfig{
+	Class: "shadow stats-vertical lg:stats-horizontal",
+	Items: []daisyui.StatItem{
+		{Title: "Downloads", Value: "31K", Desc: "Jan 1st - Feb 1st"},
+		{Title: "New Users", Value: "4,200", Desc: "↗︎ 400 (22%)"},
+		{Title: "New Registers", Value: "1,200", Desc: "↘︎ 90 (14%)"},
+	},
+})`, daisyui.Stat(daisyui.StatConfig{
 			Class: "shadow stats-vertical lg:stats-horizontal",
 			Items: []daisyui.StatItem{
 				{Title: "Downloads", Value: "31K", Desc: "Jan 1st - Feb 1st"},
@@ -151,7 +213,21 @@ func statBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("With custom colors and button", daisyui.Stat(daisyui.StatConfig{
+		templ_7745c5c3_Err = section("With custom colors and button", `@daisyui.Stat(daisyui.StatConfig{
+	Class: "bg-base-100 border border-base-300",
+	Items: []daisyui.StatItem{
+		{
+			Title:   "Account balance",
+			Value:   "$89,400",
+			Actions: daisyui.Button(daisyui.ButtonConfig{Label: "Add funds", Size: "xs", Color: "success"}),
+		},
+		{
+			Title:   "Current balance",
+			Value:   "$89,400",
+			Actions: statBalanceButtons(),
+		},
+	},
+})`, daisyui.Stat(daisyui.StatConfig{
 			Class: "bg-base-100 border border-base-300",
 			Items: []daisyui.StatItem{
 				{

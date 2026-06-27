@@ -70,7 +70,15 @@ func diffBody(r links.LinkResolver) templ.Component {
 			templ_7745c5c3_Var2 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = section("Diff", daisyui.Diff(daisyui.DiffConfig{
+		templ_7745c5c3_Err = section("Diff", `@daisyui.Diff(daisyui.DiffConfig{
+	Item1: daisyui.DiffItem{
+		Children: templ.Raw("<img alt=\"daisy\" src=\"" + diffImgA + "\"/>"),
+		Tabindex: true,
+	},
+	Item2: daisyui.DiffItem{
+		Children: templ.Raw("<img alt=\"daisy\" src=\"" + diffImgB + "\"/>"),
+	},
+})`, daisyui.Diff(daisyui.DiffConfig{
 			Item1: daisyui.DiffItem{
 				Children: templ.Raw(`<img alt="daisy" src="` + diffImgA + `"/>`),
 				Tabindex: true,
@@ -82,7 +90,14 @@ func diffBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Diff text", daisyui.Diff(daisyui.DiffConfig{
+		templ_7745c5c3_Err = section("Diff text", `@daisyui.Diff(daisyui.DiffConfig{
+	Item1: daisyui.DiffItem{
+		Children: templ.Raw("<div class=\"bg-primary text-primary-content text-4xl lg:text-9xl font-black grid place-content-center\">DAISY</div>"),
+	},
+	Item2: daisyui.DiffItem{
+		Children: templ.Raw("<div class=\"bg-base-200 text-4xl lg:text-9xl font-black grid place-content-center\">DAISY</div>"),
+	},
+})`, daisyui.Diff(daisyui.DiffConfig{
 			Item1: daisyui.DiffItem{
 				Children: templ.Raw(`<div class="bg-primary text-primary-content text-4xl lg:text-9xl font-black grid place-content-center">DAISY</div>`),
 			},

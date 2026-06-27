@@ -65,7 +65,14 @@ func filterBody(r links.LinkResolver) templ.Component {
 			templ_7745c5c3_Var2 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = section("Filter", daisyui.Filter(daisyui.FilterConfig{
+		templ_7745c5c3_Err = section("Filter", `@daisyui.Filter(daisyui.FilterConfig{
+	Name: "filter-1",
+	Options: []daisyui.FilterOption{
+		{Label: "All"},
+		{Label: "Free", Checked: true},
+		{Label: "Paid"},
+	},
+})`, daisyui.Filter(daisyui.FilterConfig{
 			Name: "filter-1",
 			Options: []daisyui.FilterOption{
 				{Label: "All"},
@@ -76,7 +83,12 @@ func filterBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Filter with reset (form)", daisyui.Filter(daisyui.FilterConfig{
+		templ_7745c5c3_Err = section("Filter with reset (form)", `@daisyui.Filter(daisyui.FilterConfig{
+	Name:    "filter-2",
+	Reset:   true,
+	AsForm:  true,
+	Options: []daisyui.FilterOption{{Label: "Latest"}, {Label: "Popular", Checked: true}, {Label: "Trending"}},
+})`, daisyui.Filter(daisyui.FilterConfig{
 			Name:    "filter-2",
 			Reset:   true,
 			AsForm:  true,
@@ -85,7 +97,12 @@ func filterBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Filter with reset (radio)", daisyui.Filter(daisyui.FilterConfig{
+		templ_7745c5c3_Err = section("Filter with reset (radio)", `@daisyui.Filter(daisyui.FilterConfig{
+	Name:    "filter-3",
+	Reset:   true,
+	AsForm:  false,
+	Options: []daisyui.FilterOption{{Label: "A"}, {Label: "B"}, {Label: "C", Checked: true}},
+})`, daisyui.Filter(daisyui.FilterConfig{
 			Name:    "filter-3",
 			Reset:   true,
 			AsForm:  false,
@@ -94,14 +111,21 @@ func filterBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Filter with one option", daisyui.Filter(daisyui.FilterConfig{
+		templ_7745c5c3_Err = section("Filter with one option", `@daisyui.Filter(daisyui.FilterConfig{
+	Name:    "filter-4",
+	Options: []daisyui.FilterOption{{Label: "Single", Checked: true}},
+})`, daisyui.Filter(daisyui.FilterConfig{
 			Name:    "filter-4",
 			Options: []daisyui.FilterOption{{Label: "Single", Checked: true}},
 		})).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Filter with extra class", daisyui.Filter(daisyui.FilterConfig{
+		templ_7745c5c3_Err = section("Filter with extra class", `@daisyui.Filter(daisyui.FilterConfig{
+	Name:    "filter-5",
+	Class:   "filter-primary",
+	Options: []daisyui.FilterOption{{Label: "One", Checked: true}, {Label: "Two"}, {Label: "Three"}},
+})`, daisyui.Filter(daisyui.FilterConfig{
 			Name:    "filter-5",
 			Class:   "filter-primary",
 			Options: []daisyui.FilterOption{{Label: "One", Checked: true}, {Label: "Two"}, {Label: "Three"}},
@@ -109,7 +133,11 @@ func filterBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Filter as <div> (no reset)", daisyui.Filter(daisyui.FilterConfig{
+		templ_7745c5c3_Err = section("Filter as <div> (no reset)", `@daisyui.Filter(daisyui.FilterConfig{
+	Name:    "filter-6",
+	AsForm:  false,
+	Options: []daisyui.FilterOption{{Label: "Red"}, {Label: "Green", Checked: true}, {Label: "Blue"}},
+})`, daisyui.Filter(daisyui.FilterConfig{
 			Name:    "filter-6",
 			AsForm:  false,
 			Options: []daisyui.FilterOption{{Label: "Red"}, {Label: "Green", Checked: true}, {Label: "Blue"}},
@@ -117,7 +145,13 @@ func filterBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Filter with icons via aria-label", daisyui.Filter(daisyui.FilterConfig{
+		templ_7745c5c3_Err = section("Filter with icons via aria-label", `@daisyui.Filter(daisyui.FilterConfig{
+	Name: "filter-icons",
+	Options: []daisyui.FilterOption{
+		{Label: "Grid", Checked: true},
+		{Label: "List"},
+	},
+})`, daisyui.Filter(daisyui.FilterConfig{
 			Name: "filter-icons",
 			Options: []daisyui.FilterOption{
 				{Label: "Grid", Checked: true},

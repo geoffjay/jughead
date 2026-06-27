@@ -65,11 +65,22 @@ func calendarBody(r links.LinkResolver) templ.Component {
 			templ_7745c5c3_Var2 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = section("Cally calendar example", calendarCallyExample()).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Cally calendar example", `<div>
+	<p class="mb-2 text-sm text-base-content/70">
+		Load the Cally web component from CDN to make this interactive:
+		<code class="kbd kbd-xs">&lt;script type="module" src="https://unpkg.com/cally"&gt;&lt;/script&gt;</code>
+	</p>
+	@daisyui.Calendar(daisyui.CalendarConfig{
+		Class: "bg-base-100 border border-base-300 shadow-lg rounded-box",
+	})
+</div>`, calendarCallyExample()).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Pikaday input", daisyui.Calendar(daisyui.CalendarConfig{
+		templ_7745c5c3_Err = section("Pikaday input", `@daisyui.Calendar(daisyui.CalendarConfig{
+	Variant: "pikaday",
+	Value:   "Pick a day",
+})`, daisyui.Calendar(daisyui.CalendarConfig{
 			Variant: "pikaday",
 			Value:   "Pick a day",
 		})).Render(ctx, templ_7745c5c3_Buffer)

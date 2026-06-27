@@ -65,11 +65,15 @@ func kbdBody(r links.LinkResolver) templ.Component {
 			templ_7745c5c3_Var2 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = section("Kbd", daisyui.Kbd("K", "", "")).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Kbd", `@daisyui.Kbd("K", "", "")`, daisyui.Kbd("K", "", "")).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Kbd sizes", templ.Raw(`
+		templ_7745c5c3_Err = section("Kbd sizes", `<kbd class="kbd kbd-xs">Xsmall</kbd>
+<kbd class="kbd kbd-sm">Small</kbd>
+<kbd class="kbd kbd-md">Medium</kbd>
+<kbd class="kbd kbd-lg">Large</kbd>
+<kbd class="kbd kbd-xl">Xlarge</kbd>`, templ.Raw(`
 		<kbd class="kbd kbd-xs">Xsmall</kbd>
 		<kbd class="kbd kbd-sm">Small</kbd>
 		<kbd class="kbd kbd-md">Medium</kbd>
@@ -78,15 +82,18 @@ func kbdBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("In text", templ.Raw(`<span>Press <kbd class="kbd kbd-sm">F</kbd> to pay respects.</span>`)).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("In text", `<span>Press <kbd class="kbd kbd-sm">F</kbd> to pay respects.</span>`, templ.Raw(`<span>Press <kbd class="kbd kbd-sm">F</kbd> to pay respects.</span>`)).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Key combination", daisyui.KbdCombo([]string{"ctrl", "shift", "del"}, "", "")).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Key combination", `@daisyui.KbdCombo([]string{"ctrl", "shift", "del"}, "", "")`, daisyui.KbdCombo([]string{"ctrl", "shift", "del"}, "", "")).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Function keys", templ.Raw(`
+		templ_7745c5c3_Err = section("Function keys", `<kbd class="kbd">&#8984;</kbd>
+<kbd class="kbd">&#8997;</kbd>
+<kbd class="kbd">&#8679;</kbd>
+<kbd class="kbd">&#8963;</kbd>`, templ.Raw(`
 		<kbd class="kbd">&#8984;</kbd>
 		<kbd class="kbd">&#8997;</kbd>
 		<kbd class="kbd">&#8679;</kbd>
@@ -94,7 +101,22 @@ func kbdBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("A full keyboard", templ.Raw(`
+		templ_7745c5c3_Err = section("A full keyboard", `<div class="overflow-x-auto">
+	<div class="flex justify-center gap-1 w-full mb-1">
+		<kbd class="kbd">q</kbd><kbd class="kbd">w</kbd><kbd class="kbd">e</kbd><kbd class="kbd">r</kbd>
+		<kbd class="kbd">t</kbd><kbd class="kbd">y</kbd><kbd class="kbd">u</kbd><kbd class="kbd">i</kbd>
+		<kbd class="kbd">o</kbd><kbd class="kbd">p</kbd>
+	</div>
+	<div class="flex justify-center gap-1 w-full mb-1">
+		<kbd class="kbd">a</kbd><kbd class="kbd">s</kbd><kbd class="kbd">d</kbd><kbd class="kbd">f</kbd>
+		<kbd class="kbd">g</kbd><kbd class="kbd">h</kbd><kbd class="kbd">j</kbd><kbd class="kbd">k</kbd>
+		<kbd class="kbd">l</kbd>
+	</div>
+	<div class="flex justify-center gap-1 w-full mb-1">
+		<kbd class="kbd">z</kbd><kbd class="kbd">x</kbd><kbd class="kbd">c</kbd><kbd class="kbd">v</kbd>
+		<kbd class="kbd">b</kbd><kbd class="kbd">n</kbd><kbd class="kbd">m</kbd><kbd class="kbd">/</kbd>
+	</div>
+</div>`, templ.Raw(`
 		<div class="overflow-x-auto">
 			<div class="flex justify-center gap-1 w-full mb-1">
 				<kbd class="kbd">q</kbd><kbd class="kbd">w</kbd><kbd class="kbd">e</kbd><kbd class="kbd">r</kbd>
@@ -114,7 +136,9 @@ func kbdBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Arrow keys", templ.Raw(`
+		templ_7745c5c3_Err = section("Arrow keys", `<div class="flex justify-center w-full"><kbd class="kbd">&#9650;</kbd></div>
+<div class="flex justify-center gap-12 w-full"><kbd class="kbd">&#9664;&#65038;</kbd><kbd class="kbd">&#9654;&#65038;</kbd></div>
+<div class="flex justify-center w-full"><kbd class="kbd">&#9660;</kbd></div>`, templ.Raw(`
 		<div class="flex justify-center w-full"><kbd class="kbd">&#9650;</kbd></div>
 		<div class="flex justify-center gap-12 w-full"><kbd class="kbd">&#9664;&#65038;</kbd><kbd class="kbd">&#9654;&#65038;</kbd></div>
 		<div class="flex justify-center w-full"><kbd class="kbd">&#9660;</kbd></div>`)).Render(ctx, templ_7745c5c3_Buffer)

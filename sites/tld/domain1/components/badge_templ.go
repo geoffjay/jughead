@@ -65,11 +65,15 @@ func badgeBody(r links.LinkResolver) templ.Component {
 			templ_7745c5c3_Var2 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = section("Badge", daisyui.Badge(daisyui.BadgeConfig{Text: "Badge"})).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Badge", `@daisyui.Badge(daisyui.BadgeConfig{Text: "Badge"})`, daisyui.Badge(daisyui.BadgeConfig{Text: "Badge"})).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Badge sizes", templ.Raw(`
+		templ_7745c5c3_Err = section("Badge sizes", `<div class="badge badge-xs">Xsmall</div>
+<div class="badge badge-sm">Small</div>
+<div class="badge badge-md">Medium</div>
+<div class="badge badge-lg">Large</div>
+<div class="badge badge-xl">Xlarge</div>`, templ.Raw(`
 		<div class="badge badge-xs">Xsmall</div>
 		<div class="badge badge-sm">Small</div>
 		<div class="badge badge-md">Medium</div>
@@ -78,7 +82,14 @@ func badgeBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Badge with colors", templ.Raw(`
+		templ_7745c5c3_Err = section("Badge with colors", `<div class="badge badge-primary">Primary</div>
+<div class="badge badge-secondary">Secondary</div>
+<div class="badge badge-accent">Accent</div>
+<div class="badge badge-neutral">Neutral</div>
+<div class="badge badge-info">Info</div>
+<div class="badge badge-success">Success</div>
+<div class="badge badge-warning">Warning</div>
+<div class="badge badge-error">Error</div>`, templ.Raw(`
 		<div class="badge badge-primary">Primary</div>
 		<div class="badge badge-secondary">Secondary</div>
 		<div class="badge badge-accent">Accent</div>
@@ -90,23 +101,38 @@ func badgeBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Badge with soft style", badgeSoftRow()).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Badge with soft style", `<div class="flex flex-wrap gap-2">
+	@daisyui.Badge(daisyui.BadgeConfig{Text: "Primary", Style: "soft", Color: "primary"})
+	@daisyui.Badge(daisyui.BadgeConfig{Text: "Secondary", Style: "soft", Color: "secondary"})
+	// ... one per color
+</div>`, badgeSoftRow()).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Badge with outline style", badgeOutlineRow()).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Badge with outline style", `<div class="flex flex-wrap gap-2">
+	@daisyui.Badge(daisyui.BadgeConfig{Text: "Primary", Style: "outline", Color: "primary"})
+	@daisyui.Badge(daisyui.BadgeConfig{Text: "Secondary", Style: "outline", Color: "secondary"})
+	// ... one per color
+</div>`, badgeOutlineRow()).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Badge with dash style", badgeDashRow()).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Badge with dash style", `<div class="flex flex-wrap gap-2">
+	@daisyui.Badge(daisyui.BadgeConfig{Text: "Primary", Style: "dash", Color: "primary"})
+	@daisyui.Badge(daisyui.BadgeConfig{Text: "Secondary", Style: "dash", Color: "secondary"})
+	// ... one per color
+</div>`, badgeDashRow()).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Badge ghost", daisyui.Badge(daisyui.BadgeConfig{Text: "ghost", Style: "ghost"})).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Badge ghost", `@daisyui.Badge(daisyui.BadgeConfig{Text: "ghost", Style: "ghost"})`, daisyui.Badge(daisyui.BadgeConfig{Text: "ghost", Style: "ghost"})).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Empty badge", templ.Raw(`
+		templ_7745c5c3_Err = section("Empty badge", `<div class="badge badge-primary badge-lg"></div>
+<div class="badge badge-primary badge-md"></div>
+<div class="badge badge-primary badge-sm"></div>
+<div class="badge badge-primary badge-xs"></div>`, templ.Raw(`
 		<div class="badge badge-primary badge-lg"></div>
 		<div class="badge badge-primary badge-md"></div>
 		<div class="badge badge-primary badge-sm"></div>
@@ -114,11 +140,27 @@ func badgeBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Badge with icon", badgeIconRow()).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Badge with icon", `<div class="flex flex-wrap gap-2">
+	@daisyui.Badge(daisyui.BadgeConfig{
+		Color:    "info",
+		Children: templ.Raw(...),
+	})
+	@daisyui.Badge(daisyui.BadgeConfig{
+		Color:    "success",
+		Children: templ.Raw(...),
+	})
+</div>`, badgeIconRow()).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Badge in a text", templ.Raw(`
+		templ_7745c5c3_Err = section("Badge in a text", `<div class="grid">
+	<span class="text-xl font-semibold">Heading 1 <span class="badge badge-xl">Badge</span></span>
+	<span class="text-lg font-semibold">Heading 2 <span class="badge badge-lg">Badge</span></span>
+	<span class="text-base font-semibold">Heading 3 <span class="badge badge-md">Badge</span></span>
+	<span class="text-sm font-semibold">Heading 4 <span class="badge badge-sm">Badge</span></span>
+	<span class="text-xs font-semibold">Heading 5 <span class="badge badge-xs">Badge</span></span>
+	<p class="text-xs">Paragraph <span class="badge badge-xs">Badge</span></p>
+</div>`, templ.Raw(`
 		<div class="grid">
 			<span class="text-xl font-semibold">Heading 1 <span class="badge badge-xl">Badge</span></span>
 			<span class="text-lg font-semibold">Heading 2 <span class="badge badge-lg">Badge</span></span>
@@ -130,7 +172,8 @@ func badgeBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Badge in a button", templ.Raw(`
+		templ_7745c5c3_Err = section("Badge in a button", `<button class="btn">Inbox <div class="badge badge-sm">+99</div></button>
+<button class="btn">Inbox <div class="badge badge-sm badge-secondary">+99</div></button>`, templ.Raw(`
 		<button class="btn">Inbox <div class="badge badge-sm">+99</div></button>
 		<button class="btn">Inbox <div class="badge badge-sm badge-secondary">+99</div></button>`)).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {

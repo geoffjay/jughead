@@ -65,7 +65,14 @@ func footerBody(r links.LinkResolver) templ.Component {
 			templ_7745c5c3_Var2 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = section("Footer", daisyui.Footer(daisyui.FooterConfig{
+		templ_7745c5c3_Err = section("Footer", `@daisyui.Footer(daisyui.FooterConfig{
+	Sections: []daisyui.FooterSection{
+		{Title: "Services", Links: []daisyui.FooterLink{{Label: "Branding", Href: "#"}, {Label: "Design", Href: "#"}, {Label: "Marketing", Href: "#"}, {Label: "Advertisement", Href: "#"}}},
+		{Title: "Company", Links: []daisyui.FooterLink{{Label: "About", Href: "/about"}, {Label: "Contact", Href: "/contact"}, {Label: "Jobs", Href: "#"}, {Label: "Press kit", Href: "#"}}},
+		{Title: "Legal", Links: []daisyui.FooterLink{{Label: "Terms of use", Href: "#"}, {Label: "Privacy policy", Href: "#"}, {Label: "Cookie policy", Href: "#"}}},
+	},
+	Resolver: r,
+})`, daisyui.Footer(daisyui.FooterConfig{
 			Sections: []daisyui.FooterSection{
 				{Title: "Services", Links: []daisyui.FooterLink{{Label: "Branding", Href: "#"}, {Label: "Design", Href: "#"}, {Label: "Marketing", Href: "#"}, {Label: "Advertisement", Href: "#"}}},
 				{Title: "Company", Links: []daisyui.FooterLink{{Label: "About", Href: "/about"}, {Label: "Contact", Href: "/contact"}, {Label: "Jobs", Href: "#"}, {Label: "Press kit", Href: "#"}}},
@@ -76,7 +83,15 @@ func footerBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Footer with logo/aside", daisyui.Footer(daisyui.FooterConfig{
+		templ_7745c5c3_Err = section("Footer with logo/aside", `@daisyui.Footer(daisyui.FooterConfig{
+	Aside: footerAside(),
+	Sections: []daisyui.FooterSection{
+		{Title: "Services", Links: []daisyui.FooterLink{{Label: "Branding", Href: "#"}, {Label: "Design", Href: "#"}}},
+		{Title: "Company", Links: []daisyui.FooterLink{{Label: "About", Href: "#"}, {Label: "Contact", Href: "#"}}},
+		{Title: "Legal", Links: []daisyui.FooterLink{{Label: "Terms", Href: "#"}, {Label: "Privacy", Href: "#"}}},
+	},
+	Resolver: r,
+})`, daisyui.Footer(daisyui.FooterConfig{
 			Aside: footerAside(),
 			Sections: []daisyui.FooterSection{
 				{Title: "Services", Links: []daisyui.FooterLink{{Label: "Branding", Href: "#"}, {Label: "Design", Href: "#"}}},
@@ -88,7 +103,14 @@ func footerBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Footer with copyright", daisyui.Footer(daisyui.FooterConfig{
+		templ_7745c5c3_Err = section("Footer with copyright", `@daisyui.Footer(daisyui.FooterConfig{
+	Copyright: "Copyright © 2026 - All rights reserved by ACME Industries",
+	Sections: []daisyui.FooterSection{
+		{Title: "Company", Links: []daisyui.FooterLink{{Label: "About", Href: "#"}, {Label: "Contact", Href: "#"}}},
+		{Title: "Legal", Links: []daisyui.FooterLink{{Label: "Terms", Href: "#"}, {Label: "Privacy", Href: "#"}}},
+	},
+	Resolver: r,
+})`, daisyui.Footer(daisyui.FooterConfig{
 			Copyright: "Copyright © 2026 - All rights reserved by ACME Industries",
 			Sections: []daisyui.FooterSection{
 				{Title: "Company", Links: []daisyui.FooterLink{{Label: "About", Href: "#"}, {Label: "Contact", Href: "#"}}},
@@ -99,7 +121,15 @@ func footerBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Footer centered", daisyui.Footer(daisyui.FooterConfig{
+		templ_7745c5c3_Err = section("Footer centered", `@daisyui.Footer(daisyui.FooterConfig{
+	Center: true,
+	Sections: []daisyui.FooterSection{
+		{Title: "Company", Links: []daisyui.FooterLink{{Label: "About us", Href: "#"}, {Label: "Contact", Href: "#"}, {Label: "Jobs", Href: "#"}}},
+		{Title: "Legal", Links: []daisyui.FooterLink{{Label: "Terms", Href: "#"}, {Label: "Privacy", Href: "#"}}},
+	},
+	Copyright: "Copyright © 2026 - All right reserved by ACME Industries Ltd",
+	Resolver:  r,
+})`, daisyui.Footer(daisyui.FooterConfig{
 			Center: true,
 			Sections: []daisyui.FooterSection{
 				{Title: "Company", Links: []daisyui.FooterLink{{Label: "About us", Href: "#"}, {Label: "Contact", Href: "#"}, {Label: "Jobs", Href: "#"}}},
@@ -111,7 +141,17 @@ func footerBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Footer horizontal direction", daisyui.Footer(daisyui.FooterConfig{
+		templ_7745c5c3_Err = section("Footer horizontal direction", `@daisyui.Footer(daisyui.FooterConfig{
+	Direction: "horizontal",
+	Aside:     footerAside(),
+	Sections: []daisyui.FooterSection{
+		{Title: "Services", Links: []daisyui.FooterLink{{Label: "Branding", Href: "#"}, {Label: "Design", Href: "#"}}},
+		{Title: "Company", Links: []daisyui.FooterLink{{Label: "About", Href: "#"}, {Label: "Contact", Href: "#"}}},
+		{Title: "Legal", Links: []daisyui.FooterLink{{Label: "Terms", Href: "#"}, {Label: "Privacy", Href: "#"}}},
+	},
+	Copyright: "Copyright © 2026 - All rights reserved",
+	Resolver:  r,
+})`, daisyui.Footer(daisyui.FooterConfig{
 			Direction: "horizontal",
 			Aside:     footerAside(),
 			Sections: []daisyui.FooterSection{
@@ -125,7 +165,16 @@ func footerBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Footer with colored background", daisyui.Footer(daisyui.FooterConfig{
+		templ_7745c5c3_Err = section("Footer with colored background", `@daisyui.Footer(daisyui.FooterConfig{
+	Class: "p-10 bg-neutral text-neutral-content",
+	Sections: []daisyui.FooterSection{
+		{Title: "Services", Links: []daisyui.FooterLink{{Label: "Branding", Href: "#"}, {Label: "Design", Href: "#"}}},
+		{Title: "Company", Links: []daisyui.FooterLink{{Label: "About", Href: "#"}, {Label: "Contact", Href: "#"}}},
+		{Title: "Legal", Links: []daisyui.FooterLink{{Label: "Terms", Href: "#"}, {Label: "Privacy", Href: "#"}}},
+	},
+	Copyright: "Copyright © 2026 - All rights reserved",
+	Resolver:  r,
+})`, daisyui.Footer(daisyui.FooterConfig{
 			Class: "p-10 bg-neutral text-neutral-content",
 			Sections: []daisyui.FooterSection{
 				{Title: "Services", Links: []daisyui.FooterLink{{Label: "Branding", Href: "#"}, {Label: "Design", Href: "#"}}},
@@ -138,7 +187,14 @@ func footerBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Footer responsive direction", daisyui.Footer(daisyui.FooterConfig{
+		templ_7745c5c3_Err = section("Footer responsive direction", `@daisyui.Footer(daisyui.FooterConfig{
+	Class: "sm:footer-horizontal",
+	Sections: []daisyui.FooterSection{
+		{Title: "Company", Links: []daisyui.FooterLink{{Label: "About", Href: "#"}, {Label: "Contact", Href: "#"}}},
+		{Title: "Legal", Links: []daisyui.FooterLink{{Label: "Terms", Href: "#"}, {Label: "Privacy", Href: "#"}}},
+	},
+	Resolver: r,
+})`, daisyui.Footer(daisyui.FooterConfig{
 			Class: "sm:footer-horizontal",
 			Sections: []daisyui.FooterSection{
 				{Title: "Company", Links: []daisyui.FooterLink{{Label: "About", Href: "#"}, {Label: "Contact", Href: "#"}}},

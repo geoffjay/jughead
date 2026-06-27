@@ -70,7 +70,16 @@ func accordionBody(r links.LinkResolver) templ.Component {
 			templ_7745c5c3_Var2 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = section("Accordion using radio inputs", daisyui.Accordion(
+		templ_7745c5c3_Err = section("Accordion using radio inputs", `@daisyui.Accordion(
+	"my-accordion-1",
+	[]daisyui.AccordionItem{
+		{Title: "How do I create an account?", Content: "Click the \"Sign Up\" button...", Open: true},
+		{Title: "I forgot my password. What should I do?", Content: "Click on \"Forgot Password\"..."},
+		{Title: "How do I update my profile information?", Content: "Go to \"My Account\" settings..."},
+	},
+	"",
+	false,
+)`, daisyui.Accordion(
 			"my-accordion-1",
 			[]daisyui.AccordionItem{
 				{Title: "How do I create an account?", Content: "Click the \"Sign Up\" button in the top right corner and follow the registration process.", Open: true},
@@ -83,7 +92,16 @@ func accordionBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Accordion with arrow icon", daisyui.Accordion(
+		templ_7745c5c3_Err = section("Accordion with arrow icon", `@daisyui.Accordion(
+	"my-accordion-2",
+	[]daisyui.AccordionItem{
+		{Title: "How do I create an account?", Content: "Click the \"Sign Up\" button...", Open: true},
+		{Title: "I forgot my password. What should I do?", Content: "Click on \"Forgot Password\"..."},
+		{Title: "How do I update my profile information?", Content: "Go to \"My Account\" settings..."},
+	},
+	"arrow",
+	false,
+)`, daisyui.Accordion(
 			"my-accordion-2",
 			[]daisyui.AccordionItem{
 				{Title: "How do I create an account?", Content: "Click the \"Sign Up\" button in the top right corner and follow the registration process.", Open: true},
@@ -96,7 +114,16 @@ func accordionBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Accordion with plus/minus icon", daisyui.Accordion(
+		templ_7745c5c3_Err = section("Accordion with plus/minus icon", `@daisyui.Accordion(
+	"my-accordion-3",
+	[]daisyui.AccordionItem{
+		{Title: "How do I create an account?", Content: "Click the \"Sign Up\" button...", Open: true},
+		{Title: "I forgot my password. What should I do?", Content: "Click on \"Forgot Password\"..."},
+		{Title: "How do I update my profile information?", Content: "Go to \"My Account\" settings..."},
+	},
+	"plus",
+	false,
+)`, daisyui.Accordion(
 			"my-accordion-3",
 			[]daisyui.AccordionItem{
 				{Title: "How do I create an account?", Content: "Click the \"Sign Up\" button in the top right corner and follow the registration process.", Open: true},
@@ -109,7 +136,16 @@ func accordionBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Accordion joined", daisyui.Accordion(
+		templ_7745c5c3_Err = section("Accordion joined", `@daisyui.Accordion(
+	"my-accordion-4",
+	[]daisyui.AccordionItem{
+		{Title: "How do I create an account?", Content: "Click the \"Sign Up\" button...", Open: true},
+		{Title: "I forgot my password. What should I do?", Content: "Click on \"Forgot Password\"..."},
+		{Title: "How do I update my profile information?", Content: "Go to \"My Account\" settings..."},
+	},
+	"arrow",
+	true,
+)`, daisyui.Accordion(
 			"my-accordion-4",
 			[]daisyui.AccordionItem{
 				{Title: "How do I create an account?", Content: "Click the \"Sign Up\" button in the top right corner and follow the registration process.", Open: true},

@@ -10,14 +10,25 @@ templ StatusPage(r links.LinkResolver) {
 }
 
 templ statusBody(r links.LinkResolver) {
-	@section("Status", daisyui.Status("", "", "", "", ""))
-	@section("Status sizes", templ.Raw(`
+	@section("Status", `@daisyui.Status("", "", "", "", "")`, daisyui.Status("", "", "", "", ""))
+	@section("Status sizes", `<div aria-label="status" class="status status-xs"></div>
+<div aria-label="status" class="status status-sm"></div>
+<div aria-label="status" class="status status-md"></div>
+<div aria-label="status" class="status status-lg"></div>
+<div aria-label="status" class="status status-xl"></div>`, templ.Raw(`
 		<div aria-label="status" class="status status-xs"></div>
 		<div aria-label="status" class="status status-sm"></div>
 		<div aria-label="status" class="status status-md"></div>
 		<div aria-label="status" class="status status-lg"></div>
 		<div aria-label="status" class="status status-xl"></div>`))
-	@section("Status with colors", templ.Raw(`
+	@section("Status with colors", `<div aria-label="status" class="status status-primary"></div>
+<div aria-label="status" class="status status-secondary"></div>
+<div aria-label="status" class="status status-accent"></div>
+<div aria-label="status" class="status status-neutral"></div>
+<div aria-label="info" class="status status-info"></div>
+<div aria-label="success" class="status status-success"></div>
+<div aria-label="warning" class="status status-warning"></div>
+<div aria-label="error" class="status status-error"></div>`, templ.Raw(`
 		<div aria-label="status" class="status status-primary"></div>
 		<div aria-label="status" class="status status-secondary"></div>
 		<div aria-label="status" class="status status-accent"></div>
@@ -26,6 +37,6 @@ templ statusBody(r links.LinkResolver) {
 		<div aria-label="success" class="status status-success"></div>
 		<div aria-label="warning" class="status status-warning"></div>
 		<div aria-label="error" class="status status-error"></div>`))
-	@section("Status with ping animation", daisyui.Status("error", "", "animate-ping", "status", ""))
-	@section("Status with bounce animation", daisyui.Status("info", "", "animate-bounce", "status", ""))
+	@section("Status with ping animation", `@daisyui.Status("error", "", "animate-ping", "status", "")`, daisyui.Status("error", "", "animate-ping", "status", ""))
+	@section("Status with bounce animation", `@daisyui.Status("info", "", "animate-bounce", "status", "")`, daisyui.Status("info", "", "animate-bounce", "status", ""))
 }

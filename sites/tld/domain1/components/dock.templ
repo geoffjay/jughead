@@ -10,7 +10,15 @@ templ DockPage(r links.LinkResolver) {
 }
 
 templ dockBody(r links.LinkResolver) {
-	@section("Dock", daisyui.Dock(daisyui.DockConfig{
+	@section("Dock", `@daisyui.Dock(daisyui.DockConfig{
+	Items: []daisyui.DockItem{
+		{Label: "Home", Href: "#", Icon: dockHomeIcon(), Active: true},
+		{Label: "Search", Href: "#", Icon: dockSearchIcon()},
+		{Label: "Notifications", Href: "#", Icon: dockBellIcon()},
+		{Label: "Profile", Href: "#", Icon: dockUserIcon()},
+	},
+	Resolver: r,
+})`, daisyui.Dock(daisyui.DockConfig{
 		Items: []daisyui.DockItem{
 			{Label: "Home", Href: "#", Icon: dockHomeIcon(), Active: true},
 			{Label: "Search", Href: "#", Icon: dockSearchIcon()},
@@ -19,7 +27,16 @@ templ dockBody(r links.LinkResolver) {
 		},
 		Resolver: r,
 	}))
-	@section("Dock with colored background", daisyui.Dock(daisyui.DockConfig{
+	@section("Dock with colored background", `@daisyui.Dock(daisyui.DockConfig{
+	Items: []daisyui.DockItem{
+		{Label: "Home", Href: "#", Icon: dockHomeIcon(), Active: true},
+		{Label: "Wallet", Href: "#", Icon: dockWalletIcon()},
+		{Label: "Stats", Href: "#", Icon: dockChartIcon()},
+		{Label: "Profile", Href: "#", Icon: dockUserIcon()},
+	},
+	Class:    "bg-neutral text-neutral-content",
+	Resolver: r,
+})`, daisyui.Dock(daisyui.DockConfig{
 		Items: []daisyui.DockItem{
 			{Label: "Home", Href: "#", Icon: dockHomeIcon(), Active: true},
 			{Label: "Wallet", Href: "#", Icon: dockWalletIcon()},
@@ -29,15 +46,37 @@ templ dockBody(r links.LinkResolver) {
 		Class:    "bg-neutral text-neutral-content",
 		Resolver: r,
 	}))
-	@section("Dock with buttons (no href)", daisyui.Dock(daisyui.DockConfig{
+	@section("Dock with buttons (no href)", `@daisyui.Dock(daisyui.DockConfig{
+	Items: []daisyui.DockItem{
+		{Label: "Play", Icon: dockPlayIcon(), Active: true},
+		{Label: "Pause", Icon: dockPauseIcon()},
+		{Label: "Stop", Icon: dockStopIcon()},
+	},
+})`, daisyui.Dock(daisyui.DockConfig{
 		Items: []daisyui.DockItem{
 			{Label: "Play", Icon: dockPlayIcon(), Active: true},
 			{Label: "Pause", Icon: dockPauseIcon()},
 			{Label: "Stop", Icon: dockStopIcon()},
 		},
 	}))
-	@section("Dock sizes", dockSizes(r))
-	@section("Dock without labels (icon-only)", daisyui.Dock(daisyui.DockConfig{
+	@section("Dock sizes", `@daisyui.Dock(daisyui.DockConfig{
+	Items: []daisyui.DockItem{
+		{Icon: dockHomeIcon(), Href: "#", Active: true, Label: "XS"},
+		{Icon: dockSearchIcon(), Href: "#", Label: "Tab"},
+	},
+	Size: "xs", Resolver: r,
+})
+// ... one per size (sm, lg, xl)`, dockSizes(r))
+	@section("Dock without labels (icon-only)", `@daisyui.Dock(daisyui.DockConfig{
+	Items: []daisyui.DockItem{
+		{Icon: dockHomeIcon(), Href: "#", Active: true},
+		{Icon: dockSearchIcon(), Href: "#"},
+		{Icon: dockBellIcon(), Href: "#"},
+		{Icon: dockUserIcon(), Href: "#"},
+	},
+	Class:    "bg-base-300",
+	Resolver: r,
+})`, daisyui.Dock(daisyui.DockConfig{
 		Items: []daisyui.DockItem{
 			{Icon: dockHomeIcon(), Href: "#", Active: true},
 			{Icon: dockSearchIcon(), Href: "#"},

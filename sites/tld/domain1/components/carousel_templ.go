@@ -157,14 +157,21 @@ func carouselBody(r links.LinkResolver) templ.Component {
 			templ_7745c5c3_Var2 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = section("Snap to start (default)", daisyui.Carousel(daisyui.CarouselConfig{
+		templ_7745c5c3_Err = section("Snap to start (default)", `@daisyui.Carousel(daisyui.CarouselConfig{
+	Class:  "rounded-box",
+	Slides: carouselSlides(),
+})`, daisyui.Carousel(daisyui.CarouselConfig{
 			Class:  "rounded-box",
 			Slides: carouselSlides(),
 		})).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Snap to center", daisyui.Carousel(daisyui.CarouselConfig{
+		templ_7745c5c3_Err = section("Snap to center", `@daisyui.Carousel(daisyui.CarouselConfig{
+	Snap:   "center",
+	Class:  "rounded-box",
+	Slides: carouselSlides(),
+})`, daisyui.Carousel(daisyui.CarouselConfig{
 			Snap:   "center",
 			Class:  "rounded-box",
 			Slides: carouselSlides(),
@@ -172,7 +179,11 @@ func carouselBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Snap to end", daisyui.Carousel(daisyui.CarouselConfig{
+		templ_7745c5c3_Err = section("Snap to end", `@daisyui.Carousel(daisyui.CarouselConfig{
+	Snap:   "end",
+	Class:  "rounded-box",
+	Slides: carouselSlides(),
+})`, daisyui.Carousel(daisyui.CarouselConfig{
 			Snap:   "end",
 			Class:  "rounded-box",
 			Slides: carouselSlides(),
@@ -180,14 +191,21 @@ func carouselBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Carousel with full width items", daisyui.Carousel(daisyui.CarouselConfig{
+		templ_7745c5c3_Err = section("Carousel with full width items", `@daisyui.Carousel(daisyui.CarouselConfig{
+	Class:  "w-64 rounded-box",
+	Slides: carouselFullSlides(),
+})`, daisyui.Carousel(daisyui.CarouselConfig{
 			Class:  "w-64 rounded-box",
 			Slides: carouselFullSlides(),
 		})).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Vertical carousel", daisyui.Carousel(daisyui.CarouselConfig{
+		templ_7745c5c3_Err = section("Vertical carousel", `@daisyui.Carousel(daisyui.CarouselConfig{
+	Direction: "vertical",
+	Class:     "h-96 rounded-box",
+	Slides:    carouselVerticalSlides(),
+})`, daisyui.Carousel(daisyui.CarouselConfig{
 			Direction: "vertical",
 			Class:     "h-96 rounded-box",
 			Slides:    carouselVerticalSlides(),
@@ -195,14 +213,21 @@ func carouselBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Carousel with half width items", daisyui.Carousel(daisyui.CarouselConfig{
+		templ_7745c5c3_Err = section("Carousel with half width items", `@daisyui.Carousel(daisyui.CarouselConfig{
+	Class:  "w-96 rounded-box",
+	Slides: carouselHalfSlides(),
+})`, daisyui.Carousel(daisyui.CarouselConfig{
 			Class:  "w-96 rounded-box",
 			Slides: carouselHalfSlides(),
 		})).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Full-bleed carousel", daisyui.Carousel(daisyui.CarouselConfig{
+		templ_7745c5c3_Err = section("Full-bleed carousel", `@daisyui.Carousel(daisyui.CarouselConfig{
+	Snap:   "center",
+	Class:  "max-w-md p-4 space-x-4 bg-neutral rounded-box",
+	Slides: carouselFullBleedSlides(),
+})`, daisyui.Carousel(daisyui.CarouselConfig{
 			Snap:   "center",
 			Class:  "max-w-md p-4 space-x-4 bg-neutral rounded-box",
 			Slides: carouselFullBleedSlides(),
@@ -210,7 +235,11 @@ func carouselBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Carousel with indicator buttons", daisyui.Carousel(daisyui.CarouselConfig{
+		templ_7745c5c3_Err = section("Carousel with indicator buttons", `@daisyui.Carousel(daisyui.CarouselConfig{
+	Class:      "w-full",
+	Slides:     carouselIndicatorSlides(),
+	Indicators: true,
+})`, daisyui.Carousel(daisyui.CarouselConfig{
 			Class:      "w-full",
 			Slides:     carouselIndicatorSlides(),
 			Indicators: true,
@@ -218,7 +247,11 @@ func carouselBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Carousel with next/prev buttons", daisyui.Carousel(daisyui.CarouselConfig{
+		templ_7745c5c3_Err = section("Carousel with next/prev buttons", `@daisyui.Carousel(daisyui.CarouselConfig{
+	Class:    "w-full",
+	Slides:   carouselNextPrevSlides(),
+	Controls: true,
+})`, daisyui.Carousel(daisyui.CarouselConfig{
 			Class:    "w-full",
 			Slides:   carouselNextPrevSlides(),
 			Controls: true,

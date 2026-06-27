@@ -13,7 +13,15 @@ const diffImgA = "https://img.daisyui.com/images/stock/photo-1560717789-0ac7c58a
 const diffImgB = "https://img.daisyui.com/images/stock/photo-1560717789-0ac7c58ac90a-blur.webp"
 
 templ diffBody(r links.LinkResolver) {
-	@section("Diff", daisyui.Diff(daisyui.DiffConfig{
+	@section("Diff", `@daisyui.Diff(daisyui.DiffConfig{
+	Item1: daisyui.DiffItem{
+		Children: templ.Raw("<img alt=\"daisy\" src=\"" + diffImgA + "\"/>"),
+		Tabindex: true,
+	},
+	Item2: daisyui.DiffItem{
+		Children: templ.Raw("<img alt=\"daisy\" src=\"" + diffImgB + "\"/>"),
+	},
+})`, daisyui.Diff(daisyui.DiffConfig{
 		Item1: daisyui.DiffItem{
 			Children: templ.Raw(`<img alt="daisy" src="` + diffImgA + `"/>`),
 			Tabindex: true,
@@ -22,7 +30,14 @@ templ diffBody(r links.LinkResolver) {
 			Children: templ.Raw(`<img alt="daisy" src="` + diffImgB + `"/>`),
 		},
 	}))
-	@section("Diff text", daisyui.Diff(daisyui.DiffConfig{
+	@section("Diff text", `@daisyui.Diff(daisyui.DiffConfig{
+	Item1: daisyui.DiffItem{
+		Children: templ.Raw("<div class=\"bg-primary text-primary-content text-4xl lg:text-9xl font-black grid place-content-center\">DAISY</div>"),
+	},
+	Item2: daisyui.DiffItem{
+		Children: templ.Raw("<div class=\"bg-base-200 text-4xl lg:text-9xl font-black grid place-content-center\">DAISY</div>"),
+	},
+})`, daisyui.Diff(daisyui.DiffConfig{
 		Item1: daisyui.DiffItem{
 			Children: templ.Raw(`<div class="bg-primary text-primary-content text-4xl lg:text-9xl font-black grid place-content-center">DAISY</div>`),
 		},

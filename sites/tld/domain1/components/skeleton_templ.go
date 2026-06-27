@@ -65,11 +65,20 @@ func skeletonBody(r links.LinkResolver) templ.Component {
 			templ_7745c5c3_Var2 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = section("Skeleton", daisyui.Skeleton(daisyui.SkeletonConfig{Class: "w-32 h-32"})).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Skeleton", `@daisyui.Skeleton(daisyui.SkeletonConfig{Class: "w-32 h-32"})`, daisyui.Skeleton(daisyui.SkeletonConfig{Class: "w-32 h-32"})).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Skeleton - circle with content", templ.Raw(`
+		templ_7745c5c3_Err = section("Skeleton - circle with content", `<div class="flex flex-col gap-4 w-52">
+	<div class="flex gap-4 items-center">
+		<div class="skeleton w-16 h-16 rounded-full shrink-0"></div>
+		<div class="flex flex-col gap-4">
+			<div class="skeleton h-4 w-20"></div>
+			<div class="skeleton h-4 w-28"></div>
+		</div>
+	</div>
+	<div class="skeleton h-32 w-full"></div>
+</div>`, templ.Raw(`
 		<div class="flex flex-col gap-4 w-52">
 			<div class="flex gap-4 items-center">
 				<div class="skeleton w-16 h-16 rounded-full shrink-0"></div>
@@ -83,7 +92,12 @@ func skeletonBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Skeleton - rectangle with content", templ.Raw(`
+		templ_7745c5c3_Err = section("Skeleton - rectangle with content", `<div class="flex flex-col gap-4 w-52">
+	<div class="skeleton h-32 w-full"></div>
+	<div class="skeleton h-4 w-28"></div>
+	<div class="skeleton h-4 w-full"></div>
+	<div class="skeleton h-4 w-full"></div>
+</div>`, templ.Raw(`
 		<div class="flex flex-col gap-4 w-52">
 			<div class="skeleton h-32 w-full"></div>
 			<div class="skeleton h-4 w-28"></div>
@@ -93,7 +107,9 @@ func skeletonBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("skeleton-text - animated gradient text", daisyui.Skeleton(daisyui.SkeletonConfig{
+		templ_7745c5c3_Err = section("skeleton-text - animated gradient text", `@daisyui.Skeleton(daisyui.SkeletonConfig{
+	Text: "AI is thinking harder...",
+})`, daisyui.Skeleton(daisyui.SkeletonConfig{
 			Text: "AI is thinking harder...",
 		})).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {

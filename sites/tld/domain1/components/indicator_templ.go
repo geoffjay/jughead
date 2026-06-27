@@ -65,7 +65,12 @@ func indicatorBody(r links.LinkResolver) templ.Component {
 			templ_7745c5c3_Var2 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = section("Status Indicator", daisyui.Indicator(daisyui.IndicatorConfig{
+		templ_7745c5c3_Err = section("Status Indicator", `@daisyui.Indicator(daisyui.IndicatorConfig{
+	Items: []daisyui.IndicatorItemConfig{
+		{Class: "status status-success"},
+	},
+	Children: templ.Raw(...),
+})`, daisyui.Indicator(daisyui.IndicatorConfig{
 			Items: []daisyui.IndicatorItemConfig{
 				{Class: "status status-success"},
 			},
@@ -74,7 +79,12 @@ func indicatorBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Badge as indicator", daisyui.Indicator(daisyui.IndicatorConfig{
+		templ_7745c5c3_Err = section("Badge as indicator", `@daisyui.Indicator(daisyui.IndicatorConfig{
+	Items: []daisyui.IndicatorItemConfig{
+		{Class: "badge badge-primary", Children: templ.Raw("New")},
+	},
+	Children: templ.Raw(...),
+})`, daisyui.Indicator(daisyui.IndicatorConfig{
 			Items: []daisyui.IndicatorItemConfig{
 				{Class: "badge badge-primary", Children: templ.Raw("New")},
 			},
@@ -83,7 +93,12 @@ func indicatorBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("for button", daisyui.Indicator(daisyui.IndicatorConfig{
+		templ_7745c5c3_Err = section("for button", `@daisyui.Indicator(daisyui.IndicatorConfig{
+	Items: []daisyui.IndicatorItemConfig{
+		{Class: "badge badge-secondary", Children: templ.Raw("12")},
+	},
+	Children: templ.Raw(...),
+})`, daisyui.Indicator(daisyui.IndicatorConfig{
 			Items: []daisyui.IndicatorItemConfig{
 				{Class: "badge badge-secondary", Children: templ.Raw("12")},
 			},
@@ -92,7 +107,12 @@ func indicatorBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("for an input", daisyui.Indicator(daisyui.IndicatorConfig{
+		templ_7745c5c3_Err = section("for an input", `@daisyui.Indicator(daisyui.IndicatorConfig{
+	Items: []daisyui.IndicatorItemConfig{
+		{Class: "badge", Children: templ.Raw("Required")},
+	},
+	Children: templ.Raw(...),
+})`, daisyui.Indicator(daisyui.IndicatorConfig{
 			Items: []daisyui.IndicatorItemConfig{
 				{Class: "badge", Children: templ.Raw("Required")},
 			},
@@ -101,7 +121,13 @@ func indicatorBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("A button as an indicator for a card", daisyui.Indicator(daisyui.IndicatorConfig{
+		templ_7745c5c3_Err = section("A button as an indicator for a card", `@daisyui.Indicator(daisyui.IndicatorConfig{
+	Class: "my-6 mx-10",
+	Items: []daisyui.IndicatorItemConfig{
+		{Vertical: "bottom", Children: templ.Raw(...)},
+	},
+	Children: templ.Raw(...),
+})`, daisyui.Indicator(daisyui.IndicatorConfig{
 			Class: "my-6 mx-10",
 			Items: []daisyui.IndicatorItemConfig{
 				{Vertical: "bottom", Children: templ.Raw(`<button class="btn btn-primary">Apply</button>`)},
@@ -111,7 +137,13 @@ func indicatorBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("in center of an image", daisyui.Indicator(daisyui.IndicatorConfig{
+		templ_7745c5c3_Err = section("in center of an image", `@daisyui.Indicator(daisyui.IndicatorConfig{
+	Class: "max-w-xs",
+	Items: []daisyui.IndicatorItemConfig{
+		{Horizontal: "center", Vertical: "middle", Class: "badge", Children: templ.Raw("Only available for Pro users")},
+	},
+	Children: templ.Raw(...),
+})`, daisyui.Indicator(daisyui.IndicatorConfig{
 			Class: "max-w-xs",
 			Items: []daisyui.IndicatorItemConfig{
 				{Horizontal: "center", Vertical: "middle", Class: "badge", Children: templ.Raw("Only available for Pro users")},
@@ -121,7 +153,12 @@ func indicatorBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("indicator-top (default) indicator-start", daisyui.Indicator(daisyui.IndicatorConfig{
+		templ_7745c5c3_Err = section("indicator-top (default) indicator-start", `@daisyui.Indicator(daisyui.IndicatorConfig{
+	Items: []daisyui.IndicatorItemConfig{
+		{Horizontal: "start", Class: "badge badge-secondary"},
+	},
+	Children: templ.Raw(...),
+})`, daisyui.Indicator(daisyui.IndicatorConfig{
 			Items: []daisyui.IndicatorItemConfig{
 				{Horizontal: "start", Class: "badge badge-secondary"},
 			},
@@ -130,7 +167,12 @@ func indicatorBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("indicator-top (default) indicator-center", daisyui.Indicator(daisyui.IndicatorConfig{
+		templ_7745c5c3_Err = section("indicator-top (default) indicator-center", `@daisyui.Indicator(daisyui.IndicatorConfig{
+	Items: []daisyui.IndicatorItemConfig{
+		{Horizontal: "center", Class: "badge badge-secondary"},
+	},
+	Children: templ.Raw(...),
+})`, daisyui.Indicator(daisyui.IndicatorConfig{
 			Items: []daisyui.IndicatorItemConfig{
 				{Horizontal: "center", Class: "badge badge-secondary"},
 			},
@@ -139,7 +181,12 @@ func indicatorBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("indicator-top (default) indicator-end (default)", daisyui.Indicator(daisyui.IndicatorConfig{
+		templ_7745c5c3_Err = section("indicator-top (default) indicator-end (default)", `@daisyui.Indicator(daisyui.IndicatorConfig{
+	Items: []daisyui.IndicatorItemConfig{
+		{Class: "badge badge-secondary"},
+	},
+	Children: templ.Raw(...),
+})`, daisyui.Indicator(daisyui.IndicatorConfig{
 			Items: []daisyui.IndicatorItemConfig{
 				{Class: "badge badge-secondary"},
 			},
@@ -148,7 +195,12 @@ func indicatorBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("indicator-middle indicator-start", daisyui.Indicator(daisyui.IndicatorConfig{
+		templ_7745c5c3_Err = section("indicator-middle indicator-start", `@daisyui.Indicator(daisyui.IndicatorConfig{
+	Items: []daisyui.IndicatorItemConfig{
+		{Horizontal: "start", Vertical: "middle", Class: "badge badge-secondary"},
+	},
+	Children: templ.Raw(...),
+})`, daisyui.Indicator(daisyui.IndicatorConfig{
 			Items: []daisyui.IndicatorItemConfig{
 				{Horizontal: "start", Vertical: "middle", Class: "badge badge-secondary"},
 			},
@@ -157,7 +209,12 @@ func indicatorBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("indicator-middle indicator-center", daisyui.Indicator(daisyui.IndicatorConfig{
+		templ_7745c5c3_Err = section("indicator-middle indicator-center", `@daisyui.Indicator(daisyui.IndicatorConfig{
+	Items: []daisyui.IndicatorItemConfig{
+		{Horizontal: "center", Vertical: "middle", Class: "badge badge-secondary"},
+	},
+	Children: templ.Raw(...),
+})`, daisyui.Indicator(daisyui.IndicatorConfig{
 			Items: []daisyui.IndicatorItemConfig{
 				{Horizontal: "center", Vertical: "middle", Class: "badge badge-secondary"},
 			},
@@ -166,7 +223,12 @@ func indicatorBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("indicator-middle indicator-end (default)", daisyui.Indicator(daisyui.IndicatorConfig{
+		templ_7745c5c3_Err = section("indicator-middle indicator-end (default)", `@daisyui.Indicator(daisyui.IndicatorConfig{
+	Items: []daisyui.IndicatorItemConfig{
+		{Vertical: "middle", Class: "badge badge-secondary"},
+	},
+	Children: templ.Raw(...),
+})`, daisyui.Indicator(daisyui.IndicatorConfig{
 			Items: []daisyui.IndicatorItemConfig{
 				{Vertical: "middle", Class: "badge badge-secondary"},
 			},
@@ -175,7 +237,12 @@ func indicatorBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("indicator-bottom indicator-start", daisyui.Indicator(daisyui.IndicatorConfig{
+		templ_7745c5c3_Err = section("indicator-bottom indicator-start", `@daisyui.Indicator(daisyui.IndicatorConfig{
+	Items: []daisyui.IndicatorItemConfig{
+		{Horizontal: "start", Vertical: "bottom", Class: "badge badge-secondary"},
+	},
+	Children: templ.Raw(...),
+})`, daisyui.Indicator(daisyui.IndicatorConfig{
 			Items: []daisyui.IndicatorItemConfig{
 				{Horizontal: "start", Vertical: "bottom", Class: "badge badge-secondary"},
 			},
@@ -184,7 +251,12 @@ func indicatorBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("indicator-bottom indicator-center", daisyui.Indicator(daisyui.IndicatorConfig{
+		templ_7745c5c3_Err = section("indicator-bottom indicator-center", `@daisyui.Indicator(daisyui.IndicatorConfig{
+	Items: []daisyui.IndicatorItemConfig{
+		{Horizontal: "center", Vertical: "bottom", Class: "badge badge-secondary"},
+	},
+	Children: templ.Raw(...),
+})`, daisyui.Indicator(daisyui.IndicatorConfig{
 			Items: []daisyui.IndicatorItemConfig{
 				{Horizontal: "center", Vertical: "bottom", Class: "badge badge-secondary"},
 			},
@@ -193,7 +265,12 @@ func indicatorBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("indicator-bottom indicator-end (default)", daisyui.Indicator(daisyui.IndicatorConfig{
+		templ_7745c5c3_Err = section("indicator-bottom indicator-end (default)", `@daisyui.Indicator(daisyui.IndicatorConfig{
+	Items: []daisyui.IndicatorItemConfig{
+		{Vertical: "bottom", Class: "badge badge-secondary"},
+	},
+	Children: templ.Raw(...),
+})`, daisyui.Indicator(daisyui.IndicatorConfig{
 			Items: []daisyui.IndicatorItemConfig{
 				{Vertical: "bottom", Class: "badge badge-secondary"},
 			},
@@ -202,7 +279,15 @@ func indicatorBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("multiple indicators", daisyui.Indicator(daisyui.IndicatorConfig{
+		templ_7745c5c3_Err = section("multiple indicators", `@daisyui.Indicator(daisyui.IndicatorConfig{
+	Items: []daisyui.IndicatorItemConfig{
+		{Horizontal: "start", Vertical: "top", Class: "badge", Children: templ.Raw("↖︎")},
+		{Horizontal: "center", Vertical: "top", Class: "badge", Children: templ.Raw("↑")},
+		{Class: "badge", Children: templ.Raw("↗︎")},
+		// ... one per position
+	},
+	Children: templ.Raw(...),
+})`, daisyui.Indicator(daisyui.IndicatorConfig{
 			Items: []daisyui.IndicatorItemConfig{
 				{Horizontal: "start", Vertical: "top", Class: "badge", Children: templ.Raw("↖︎")},
 				{Horizontal: "center", Vertical: "top", Class: "badge", Children: templ.Raw("↑")},
@@ -219,7 +304,12 @@ func indicatorBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Responsive", daisyui.Indicator(daisyui.IndicatorConfig{
+		templ_7745c5c3_Err = section("Responsive", `@daisyui.Indicator(daisyui.IndicatorConfig{
+	Items: []daisyui.IndicatorItemConfig{
+		{Horizontal: "start", Class: "badge badge-secondary indicator-start sm:indicator-middle md:indicator-bottom lg:indicator-center xl:indicator-end"},
+	},
+	Children: templ.Raw(...),
+})`, daisyui.Indicator(daisyui.IndicatorConfig{
 			Items: []daisyui.IndicatorItemConfig{
 				{Horizontal: "start", Class: "badge badge-secondary indicator-start sm:indicator-middle md:indicator-bottom lg:indicator-center xl:indicator-end"},
 			},

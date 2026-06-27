@@ -65,7 +65,14 @@ func selectBody(r links.LinkResolver) templ.Component {
 			templ_7745c5c3_Var2 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = section("Select", daisyui.Select(daisyui.SelectConfig{
+		templ_7745c5c3_Err = section("Select", `@daisyui.Select(daisyui.SelectConfig{
+	Placeholder: "Pick a color",
+	Options: []daisyui.SelectOption{
+		{Value: "Crimson"},
+		{Value: "Amber"},
+		{Value: "Velvet"},
+	},
+})`, daisyui.Select(daisyui.SelectConfig{
 			Placeholder: "Pick a color",
 			Options: []daisyui.SelectOption{
 				{Value: "Crimson"},
@@ -76,7 +83,15 @@ func selectBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Ghost (no background)", daisyui.Select(daisyui.SelectConfig{
+		templ_7745c5c3_Err = section("Ghost (no background)", `@daisyui.Select(daisyui.SelectConfig{
+	Placeholder: "Pick a font",
+	Style:       "ghost",
+	Options: []daisyui.SelectOption{
+		{Value: "Inter"},
+		{Value: "Poppins"},
+		{Value: "Raleway"},
+	},
+})`, daisyui.Select(daisyui.SelectConfig{
 			Placeholder: "Pick a font",
 			Style:       "ghost",
 			Options: []daisyui.SelectOption{
@@ -88,7 +103,17 @@ func selectBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("With fieldset and labels", daisyui.Fieldset(daisyui.FieldsetConfig{
+		templ_7745c5c3_Err = section("With fieldset and labels", `@daisyui.Fieldset(daisyui.FieldsetConfig{
+	Legend: "Browsers",
+	Class:  "w-xs",
+}, templ.Raw(...)) // children:
+<select class="select">
+	<option disabled selected>Pick a Browser</option>
+	<option>Chrome</option>
+	<option>FireFox</option>
+	<option>Safari</option>
+</select>
+<span class="label">Optional</span>`, daisyui.Fieldset(daisyui.FieldsetConfig{
 			Legend: "Browsers",
 			Class:  "w-xs",
 		}, templ.Raw(`
@@ -102,7 +127,15 @@ func selectBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Primary color", daisyui.Select(daisyui.SelectConfig{
+		templ_7745c5c3_Err = section("Primary color", `@daisyui.Select(daisyui.SelectConfig{
+	Placeholder: "Pick a text editor",
+	Color:       "primary",
+	Options: []daisyui.SelectOption{
+		{Value: "VScode"},
+		{Value: "VScode fork"},
+		{Value: "Another VScode fork"},
+	},
+})`, daisyui.Select(daisyui.SelectConfig{
 			Placeholder: "Pick a text editor",
 			Color:       "primary",
 			Options: []daisyui.SelectOption{
@@ -114,7 +147,15 @@ func selectBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Secondary color", daisyui.Select(daisyui.SelectConfig{
+		templ_7745c5c3_Err = section("Secondary color", `@daisyui.Select(daisyui.SelectConfig{
+	Placeholder: "Pick a language",
+	Color:       "secondary",
+	Options: []daisyui.SelectOption{
+		{Value: "Zig"},
+		{Value: "Go"},
+		{Value: "Rust"},
+	},
+})`, daisyui.Select(daisyui.SelectConfig{
 			Placeholder: "Pick a language",
 			Color:       "secondary",
 			Options: []daisyui.SelectOption{
@@ -126,7 +167,15 @@ func selectBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Accent color", daisyui.Select(daisyui.SelectConfig{
+		templ_7745c5c3_Err = section("Accent color", `@daisyui.Select(daisyui.SelectConfig{
+	Placeholder: "Color scheme",
+	Color:       "accent",
+	Options: []daisyui.SelectOption{
+		{Value: "Light mode"},
+		{Value: "Dark mode"},
+		{Value: "System"},
+	},
+})`, daisyui.Select(daisyui.SelectConfig{
 			Placeholder: "Color scheme",
 			Color:       "accent",
 			Options: []daisyui.SelectOption{
@@ -138,7 +187,15 @@ func selectBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Neutral color", daisyui.Select(daisyui.SelectConfig{
+		templ_7745c5c3_Err = section("Neutral color", `@daisyui.Select(daisyui.SelectConfig{
+	Placeholder: "Server location",
+	Color:       "neutral",
+	Options: []daisyui.SelectOption{
+		{Value: "North America"},
+		{Value: "EU west"},
+		{Value: "South East Asia"},
+	},
+})`, daisyui.Select(daisyui.SelectConfig{
 			Placeholder: "Server location",
 			Color:       "neutral",
 			Options: []daisyui.SelectOption{
@@ -150,7 +207,15 @@ func selectBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Info color", daisyui.Select(daisyui.SelectConfig{
+		templ_7745c5c3_Err = section("Info color", `@daisyui.Select(daisyui.SelectConfig{
+	Placeholder: "Pick a Framework",
+	Color:       "info",
+	Options: []daisyui.SelectOption{
+		{Value: "React"},
+		{Value: "Vue"},
+		{Value: "Angular"},
+	},
+})`, daisyui.Select(daisyui.SelectConfig{
 			Placeholder: "Pick a Framework",
 			Color:       "info",
 			Options: []daisyui.SelectOption{
@@ -162,7 +227,15 @@ func selectBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Success color", daisyui.Select(daisyui.SelectConfig{
+		templ_7745c5c3_Err = section("Success color", `@daisyui.Select(daisyui.SelectConfig{
+	Placeholder: "Pick a Runtime",
+	Color:       "success",
+	Options: []daisyui.SelectOption{
+		{Value: "npm"},
+		{Value: "Bun"},
+		{Value: "yarn"},
+	},
+})`, daisyui.Select(daisyui.SelectConfig{
 			Placeholder: "Pick a Runtime",
 			Color:       "success",
 			Options: []daisyui.SelectOption{
@@ -174,7 +247,15 @@ func selectBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Warning color", daisyui.Select(daisyui.SelectConfig{
+		templ_7745c5c3_Err = section("Warning color", `@daisyui.Select(daisyui.SelectConfig{
+	Placeholder: "Pick an OS",
+	Color:       "warning",
+	Options: []daisyui.SelectOption{
+		{Value: "Windows"},
+		{Value: "MacOS"},
+		{Value: "Linux"},
+	},
+})`, daisyui.Select(daisyui.SelectConfig{
 			Placeholder: "Pick an OS",
 			Color:       "warning",
 			Options: []daisyui.SelectOption{
@@ -186,7 +267,15 @@ func selectBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Error color", daisyui.Select(daisyui.SelectConfig{
+		templ_7745c5c3_Err = section("Error color", `@daisyui.Select(daisyui.SelectConfig{
+	Placeholder: "Pick an AI Model",
+	Color:       "error",
+	Options: []daisyui.SelectOption{
+		{Value: "GPT-4"},
+		{Value: "Claude"},
+		{Value: "Llama"},
+	},
+})`, daisyui.Select(daisyui.SelectConfig{
 			Placeholder: "Pick an AI Model",
 			Color:       "error",
 			Options: []daisyui.SelectOption{
@@ -198,18 +287,33 @@ func selectBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Sizes", selectSizeRow()).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Sizes", `<div class="flex flex-col gap-4 w-full items-center">
+	@daisyui.Select(daisyui.SelectConfig{Placeholder: "Xsmall", Size: "xs", Options: []daisyui.SelectOption{{Value: "Xsmall Apple"}}})
+	@daisyui.Select(daisyui.SelectConfig{Placeholder: "Small", Size: "sm", Options: []daisyui.SelectOption{{Value: "Small Apple"}}})
+	// ... one per size (md, lg, xl)
+</div>`, selectSizeRow()).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Disabled", daisyui.Select(daisyui.SelectConfig{
+		templ_7745c5c3_Err = section("Disabled", `@daisyui.Select(daisyui.SelectConfig{
+	Placeholder: "You can't touch this",
+	Disabled:    true,
+})`, daisyui.Select(daisyui.SelectConfig{
 			Placeholder: "You can't touch this",
 			Disabled:    true,
 		})).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Using OS native style for the options dropdown", daisyui.Select(daisyui.SelectConfig{
+		templ_7745c5c3_Err = section("Using OS native style for the options dropdown", `@daisyui.Select(daisyui.SelectConfig{
+	Placeholder: "Pick a color",
+	Class:       "appearance-none",
+	Options: []daisyui.SelectOption{
+		{Value: "Crimson"},
+		{Value: "Amber"},
+		{Value: "Velvet"},
+	},
+})`, daisyui.Select(daisyui.SelectConfig{
 			Placeholder: "Pick a color",
 			Class:       "appearance-none",
 			Options: []daisyui.SelectOption{

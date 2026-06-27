@@ -67,21 +67,32 @@ func paginationBody(r links.LinkResolver) templ.Component {
 			templ_7745c5c3_Var2 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = section("Pagination", daisyui.Pagination(daisyui.PaginationConfig{
+		templ_7745c5c3_Err = section("Pagination", `@daisyui.Pagination(daisyui.PaginationConfig{
+	Current: 1,
+	Total:   5,
+})`, daisyui.Pagination(daisyui.PaginationConfig{
 			Current: 1,
 			Total:   5,
 		})).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Pagination with active middle page", daisyui.Pagination(daisyui.PaginationConfig{
+		templ_7745c5c3_Err = section("Pagination with active middle page", `@daisyui.Pagination(daisyui.PaginationConfig{
+	Current: 3,
+	Total:   5,
+})`, daisyui.Pagination(daisyui.PaginationConfig{
 			Current: 3,
 			Total:   5,
 		})).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Pagination with prev/next", daisyui.Pagination(daisyui.PaginationConfig{
+		templ_7745c5c3_Err = section("Pagination with prev/next", `@daisyui.Pagination(daisyui.PaginationConfig{
+	Current:   2,
+	Total:     5,
+	PrevLabel: "«",
+	NextLabel: "»",
+})`, daisyui.Pagination(daisyui.PaginationConfig{
 			Current:   2,
 			Total:     5,
 			PrevLabel: "«",
@@ -90,7 +101,12 @@ func paginationBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Pagination with prev/next at edges (disabled)", daisyui.Pagination(daisyui.PaginationConfig{
+		templ_7745c5c3_Err = section("Pagination with prev/next at edges (disabled)", `@daisyui.Pagination(daisyui.PaginationConfig{
+	Current:   1,
+	Total:     5,
+	PrevLabel: "«",
+	NextLabel: "»",
+})`, daisyui.Pagination(daisyui.PaginationConfig{
 			Current:   1,
 			Total:     5,
 			PrevLabel: "«",
@@ -99,7 +115,12 @@ func paginationBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Pagination with hrefs", daisyui.Pagination(daisyui.PaginationConfig{
+		templ_7745c5c3_Err = section("Pagination with hrefs", `@daisyui.Pagination(daisyui.PaginationConfig{
+	Current:  2,
+	Total:    5,
+	HrefFor:  func(page int) string { return "/page/" + strconv.Itoa(page) },
+	Resolver: r,
+})`, daisyui.Pagination(daisyui.PaginationConfig{
 			Current:  2,
 			Total:    5,
 			HrefFor:  func(page int) string { return "/page/" + strconv.Itoa(page) },
@@ -108,11 +129,21 @@ func paginationBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Pagination sizes", paginationSizes(r)).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Pagination sizes", `<div class="flex flex-col gap-4">
+	@daisyui.Pagination(daisyui.PaginationConfig{Current: 2, Total: 5, Size: "xs"})
+	@daisyui.Pagination(daisyui.PaginationConfig{Current: 2, Total: 5, Size: "sm"})
+	// ... one per size (lg, xl)
+</div>`, paginationSizes(r)).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Pagination with outline grid prev/next", daisyui.Pagination(daisyui.PaginationConfig{
+		templ_7745c5c3_Err = section("Pagination with outline grid prev/next", `@daisyui.Pagination(daisyui.PaginationConfig{
+	Current:   1,
+	Total:     1,
+	PrevLabel: "Previous",
+	NextLabel: "Next",
+	Class:     "grid grid-cols-2",
+})`, daisyui.Pagination(daisyui.PaginationConfig{
 			Current:   1,
 			Total:     1,
 			PrevLabel: "Previous",

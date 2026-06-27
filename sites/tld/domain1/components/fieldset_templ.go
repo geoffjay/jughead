@@ -65,7 +65,12 @@ func fieldsetBody(r links.LinkResolver) templ.Component {
 			templ_7745c5c3_Var2 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = section("Fieldset fieldset-legend and label", daisyui.Fieldset(daisyui.FieldsetConfig{
+		templ_7745c5c3_Err = section("Fieldset fieldset-legend and label", `@daisyui.Fieldset(daisyui.FieldsetConfig{
+	Legend: "Page title",
+	Class:  "w-xs",
+}, templ.Raw(...)) // children:
+<input type="text" class="input" placeholder="My awesome page" />
+<p class="label">You can edit page title later on from settings</p>`, daisyui.Fieldset(daisyui.FieldsetConfig{
 			Legend: "Page title",
 			Class:  "w-xs",
 		}, templ.Raw(`
@@ -74,7 +79,12 @@ func fieldsetBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Fieldset with background and border", daisyui.Fieldset(daisyui.FieldsetConfig{
+		templ_7745c5c3_Err = section("Fieldset with background and border", `@daisyui.Fieldset(daisyui.FieldsetConfig{
+	Legend: "Page title",
+	Class:  "w-xs bg-base-200 border border-base-300 p-4 rounded-box",
+}, templ.Raw(...)) // children:
+<input type="text" class="input" placeholder="My awesome page" />
+<p class="label">You can edit page title later on from settings</p>`, daisyui.Fieldset(daisyui.FieldsetConfig{
 			Legend: "Page title",
 			Class:  "w-xs bg-base-200 border border-base-300 p-4 rounded-box",
 		}, templ.Raw(`
@@ -83,7 +93,16 @@ func fieldsetBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Fieldset with multiple inputs", daisyui.Fieldset(daisyui.FieldsetConfig{
+		templ_7745c5c3_Err = section("Fieldset with multiple inputs", `@daisyui.Fieldset(daisyui.FieldsetConfig{
+	Legend: "Page details",
+	Class:  "w-xs bg-base-200 border border-base-300 p-4 rounded-box",
+}, templ.Raw(...)) // children:
+<label class="label">Title</label>
+<input type="text" class="input" placeholder="My awesome page" />
+<label class="label">Slug</label>
+<input type="text" class="input" placeholder="my-awesome-page" />
+<label class="label">Author</label>
+<input type="text" class="input" placeholder="Name" />`, daisyui.Fieldset(daisyui.FieldsetConfig{
 			Legend: "Page details",
 			Class:  "w-xs bg-base-200 border border-base-300 p-4 rounded-box",
 		}, templ.Raw(`
@@ -96,7 +115,14 @@ func fieldsetBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Fieldset with multiple join items", daisyui.Fieldset(daisyui.FieldsetConfig{
+		templ_7745c5c3_Err = section("Fieldset with multiple join items", `@daisyui.Fieldset(daisyui.FieldsetConfig{
+	Legend: "Settings",
+	Class:  "w-xs bg-base-200 border border-base-300 p-4 rounded-box",
+}, templ.Raw(...)) // children:
+<div class="join">
+	<input type="text" class="input join-item" placeholder="Product name" />
+	<button class="btn join-item">save</button>
+</div>`, daisyui.Fieldset(daisyui.FieldsetConfig{
 			Legend: "Settings",
 			Class:  "w-xs bg-base-200 border border-base-300 p-4 rounded-box",
 		}, templ.Raw(`
@@ -107,7 +133,15 @@ func fieldsetBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Login form with fieldset", daisyui.Fieldset(daisyui.FieldsetConfig{
+		templ_7745c5c3_Err = section("Login form with fieldset", `@daisyui.Fieldset(daisyui.FieldsetConfig{
+	Legend: "Login",
+	Class:  "w-xs bg-base-200 border border-base-300 p-4 rounded-box",
+}, templ.Raw(...)) // children:
+<label class="label">Email</label>
+<input type="email" class="input" placeholder="Email" />
+<label class="label">Password</label>
+<input type="password" class="input" placeholder="Password" />
+<button class="btn btn-neutral mt-4">Login</button>`, daisyui.Fieldset(daisyui.FieldsetConfig{
 			Legend: "Login",
 			Class:  "w-xs bg-base-200 border border-base-300 p-4 rounded-box",
 		}, templ.Raw(`

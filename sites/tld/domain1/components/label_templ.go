@@ -65,7 +65,10 @@ func labelBody(r links.LinkResolver) templ.Component {
 			templ_7745c5c3_Var2 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = section("Label for input", templ.Raw(`
+		templ_7745c5c3_Err = section("Label for input", `<label class="input">
+	<span class="label">https://</span>
+	<input type="text" placeholder="URL" />
+</label>`, templ.Raw(`
 		<label class="input">
 			<span class="label">https://</span>
 			<input type="text" placeholder="URL" />
@@ -73,7 +76,10 @@ func labelBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Label for input at the end", templ.Raw(`
+		templ_7745c5c3_Err = section("Label for input at the end", `<label class="input">
+	<input type="text" placeholder="domain name" />
+	<span class="label">.com</span>
+</label>`, templ.Raw(`
 		<label class="input">
 			<input type="text" placeholder="domain name" />
 			<span class="label">.com</span>
@@ -81,7 +87,13 @@ func labelBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Label for select", templ.Raw(`
+		templ_7745c5c3_Err = section("Label for select", `<label class="select">
+	<span class="label">Type</span>
+	<select>
+		<option>Personal</option>
+		<option>Business</option>
+	</select>
+</label>`, templ.Raw(`
 		<label class="select">
 			<span class="label">Type</span>
 			<select>
@@ -92,7 +104,10 @@ func labelBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Label for date input", templ.Raw(`
+		templ_7745c5c3_Err = section("Label for date input", `<label class="input">
+	<span class="label">Publish date</span>
+	<input type="date" />
+</label>`, templ.Raw(`
 		<label class="input">
 			<span class="label">Publish date</span>
 			<input type="date" />
@@ -100,7 +115,13 @@ func labelBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Floating Label", daisyui.FloatingLabel(daisyui.FloatingLabelConfig{
+		templ_7745c5c3_Err = section("Floating Label", `@daisyui.FloatingLabel(daisyui.FloatingLabelConfig{
+	Label:       "Your Email",
+	InputType:   "email",
+	Placeholder: "mail@site.com",
+	InputClass:  "input input-md",
+	Class:       "w-full max-w-xs",
+})`, daisyui.FloatingLabel(daisyui.FloatingLabelConfig{
 			Label:       "Your Email",
 			InputType:   "email",
 			Placeholder: "mail@site.com",
@@ -110,7 +131,17 @@ func labelBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Floating Label with Different Sizes", templ.Raw(`
+		templ_7745c5c3_Err = section("Floating Label with Different Sizes", `<div class="grid gap-4 w-xs">
+	<label class="floating-label">
+		<input type="text" placeholder="Extra Small" class="input input-xs" />
+		<span>Extra Small</span>
+	</label>
+	<label class="floating-label">
+		<input type="text" placeholder="Small" class="input input-sm" />
+		<span>Small</span>
+	</label>
+	// ... one per size
+</div>`, templ.Raw(`
 		<div class="grid gap-4 w-xs">
 			<label class="floating-label">
 				<input type="text" placeholder="Extra Small" class="input input-xs" />

@@ -65,11 +65,14 @@ func toggleBody(r links.LinkResolver) templ.Component {
 			templ_7745c5c3_Var2 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = section("Toggle (switch)", daisyui.Toggle(daisyui.ToggleConfig{Checked: true})).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Toggle (switch)", `@daisyui.Toggle(daisyui.ToggleConfig{Checked: true})`, daisyui.Toggle(daisyui.ToggleConfig{Checked: true})).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("With fieldset and label", daisyui.Fieldset(daisyui.FieldsetConfig{
+		templ_7745c5c3_Err = section("With fieldset and label", `@daisyui.Fieldset(daisyui.FieldsetConfig{
+	Legend: "Login options",
+	Class:  "p-4 bg-base-100 border border-base-300 rounded-box w-64",
+}, templ.Raw(...))`, daisyui.Fieldset(daisyui.FieldsetConfig{
 			Legend: "Login options",
 			Class:  "p-4 bg-base-100 border border-base-300 rounded-box w-64",
 		}, templ.Raw(`
@@ -80,7 +83,13 @@ func toggleBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Sizes", templ.Raw(`
+		templ_7745c5c3_Err = section("Sizes", `<div class="flex gap-4">
+	<input type="checkbox" checked="checked" class="toggle toggle-xs" />
+	<input type="checkbox" checked="checked" class="toggle toggle-sm" />
+	<input type="checkbox" checked="checked" class="toggle toggle-md" />
+	<input type="checkbox" checked="checked" class="toggle toggle-lg" />
+	<input type="checkbox" checked="checked" class="toggle toggle-xl" />
+</div>`, templ.Raw(`
 		<div class="flex gap-4">
 			<input type="checkbox" checked="checked" class="toggle toggle-xs" />
 			<input type="checkbox" checked="checked" class="toggle toggle-sm" />
@@ -91,7 +100,16 @@ func toggleBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Colors", templ.Raw(`
+		templ_7745c5c3_Err = section("Colors", `<div class="flex gap-4">
+	<input type="checkbox" checked="checked" class="toggle toggle-primary" />
+	<input type="checkbox" checked="checked" class="toggle toggle-secondary" />
+	<input type="checkbox" checked="checked" class="toggle toggle-accent" />
+	<input type="checkbox" checked="checked" class="toggle toggle-neutral" />
+	<input type="checkbox" checked="checked" class="toggle toggle-info" />
+	<input type="checkbox" checked="checked" class="toggle toggle-success" />
+	<input type="checkbox" checked="checked" class="toggle toggle-warning" />
+	<input type="checkbox" checked="checked" class="toggle toggle-error" />
+</div>`, templ.Raw(`
 		<div class="flex gap-4">
 			<input type="checkbox" checked="checked" class="toggle toggle-primary" />
 			<input type="checkbox" checked="checked" class="toggle toggle-secondary" />
@@ -105,7 +123,10 @@ func toggleBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Disabled", templ.Raw(`
+		templ_7745c5c3_Err = section("Disabled", `<div class="flex gap-4">
+	<input type="checkbox" disabled="disabled" class="toggle" />
+	<input type="checkbox" disabled="disabled" class="toggle" checked="checked" />
+</div>`, templ.Raw(`
 		<div class="flex gap-4">
 			<input type="checkbox" disabled="disabled" class="toggle" />
 			<input type="checkbox" disabled="disabled" class="toggle" checked="checked" />
@@ -113,7 +134,10 @@ func toggleBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Toggle with custom colors", daisyui.Toggle(daisyui.ToggleConfig{
+		templ_7745c5c3_Err = section("Toggle with custom colors", `@daisyui.Toggle(daisyui.ToggleConfig{
+	Checked: true,
+	Class:   "border-indigo-600 bg-indigo-500 checked:bg-orange-400 checked:text-orange-800 checked:border-orange-500",
+})`, daisyui.Toggle(daisyui.ToggleConfig{
 			Checked: true,
 			Class:   "border-indigo-600 bg-indigo-500 checked:bg-orange-400 checked:text-orange-800 checked:border-orange-500",
 		})).Render(ctx, templ_7745c5c3_Buffer)

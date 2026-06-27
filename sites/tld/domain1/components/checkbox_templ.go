@@ -65,11 +65,19 @@ func checkboxBody(r links.LinkResolver) templ.Component {
 			templ_7745c5c3_Var2 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = section("Checkbox", daisyui.Checkbox(daisyui.CheckboxConfig{Checked: true})).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Checkbox", `@daisyui.Checkbox(daisyui.CheckboxConfig{Checked: true})`, daisyui.Checkbox(daisyui.CheckboxConfig{Checked: true})).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("With fieldset and label", daisyui.Fieldset(daisyui.FieldsetConfig{
+		templ_7745c5c3_Err = section("With fieldset and label", `@daisyui.Fieldset(daisyui.FieldsetConfig{
+	Legend: "Login options",
+	Class:  "p-4 bg-base-100 border border-base-300 rounded-box w-64",
+}, templ.Raw(...)) {
+	<label class="label">
+		<input type="checkbox" checked="checked" class="checkbox" />
+		Remember me
+	</label>
+}`, daisyui.Fieldset(daisyui.FieldsetConfig{
 			Legend: "Login options",
 			Class:  "p-4 bg-base-100 border border-base-300 rounded-box w-64",
 		}, templ.Raw(`
@@ -80,7 +88,13 @@ func checkboxBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Sizes", templ.Raw(`
+		templ_7745c5c3_Err = section("Sizes", `<div class="flex gap-4">
+	<input type="checkbox" checked="checked" class="checkbox checkbox-xs" />
+	<input type="checkbox" checked="checked" class="checkbox checkbox-sm" />
+	<input type="checkbox" checked="checked" class="checkbox checkbox-md" />
+	<input type="checkbox" checked="checked" class="checkbox checkbox-lg" />
+	<input type="checkbox" checked="checked" class="checkbox checkbox-xl" />
+</div>`, templ.Raw(`
 		<div class="flex gap-4">
 			<input type="checkbox" checked="checked" class="checkbox checkbox-xs" />
 			<input type="checkbox" checked="checked" class="checkbox checkbox-sm" />
@@ -91,7 +105,16 @@ func checkboxBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Colors", templ.Raw(`
+		templ_7745c5c3_Err = section("Colors", `<div class="flex gap-4">
+	<input type="checkbox" checked="checked" class="checkbox checkbox-primary" />
+	<input type="checkbox" checked="checked" class="checkbox checkbox-secondary" />
+	<input type="checkbox" checked="checked" class="checkbox checkbox-accent" />
+	<input type="checkbox" checked="checked" class="checkbox checkbox-neutral" />
+	<input type="checkbox" checked="checked" class="checkbox checkbox-info" />
+	<input type="checkbox" checked="checked" class="checkbox checkbox-success" />
+	<input type="checkbox" checked="checked" class="checkbox checkbox-warning" />
+	<input type="checkbox" checked="checked" class="checkbox checkbox-error" />
+</div>`, templ.Raw(`
 		<div class="flex gap-4">
 			<input type="checkbox" checked="checked" class="checkbox checkbox-primary" />
 			<input type="checkbox" checked="checked" class="checkbox checkbox-secondary" />
@@ -105,7 +128,10 @@ func checkboxBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Disabled", templ.Raw(`
+		templ_7745c5c3_Err = section("Disabled", `<div class="flex gap-4">
+	<input type="checkbox" disabled="disabled" class="checkbox" />
+	<input type="checkbox" disabled="disabled" class="checkbox" checked="checked" />
+</div>`, templ.Raw(`
 		<div class="flex gap-4">
 			<input type="checkbox" disabled="disabled" class="checkbox" />
 			<input type="checkbox" disabled="disabled" class="checkbox" checked="checked" />
@@ -113,7 +139,10 @@ func checkboxBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Checkbox with custom colors", daisyui.Checkbox(daisyui.CheckboxConfig{
+		templ_7745c5c3_Err = section("Checkbox with custom colors", `@daisyui.Checkbox(daisyui.CheckboxConfig{
+	Checked: true,
+	Class:   "border-indigo-600 bg-indigo-500 checked:bg-orange-400 checked:text-orange-800 checked:border-orange-500",
+})`, daisyui.Checkbox(daisyui.CheckboxConfig{
 			Checked: true,
 			Class:   "border-indigo-600 bg-indigo-500 checked:bg-orange-400 checked:text-orange-800 checked:border-orange-500",
 		})).Render(ctx, templ_7745c5c3_Buffer)

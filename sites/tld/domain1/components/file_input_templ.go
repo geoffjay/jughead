@@ -65,15 +65,20 @@ func fileInputBody(r links.LinkResolver) templ.Component {
 			templ_7745c5c3_Var2 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = section("File input", daisyui.FileInput(daisyui.FileInputConfig{})).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("File input", `@daisyui.FileInput(daisyui.FileInputConfig{})`, daisyui.FileInput(daisyui.FileInputConfig{})).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("File input ghost", daisyui.FileInput(daisyui.FileInputConfig{Style: "ghost"})).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("File input ghost", `@daisyui.FileInput(daisyui.FileInputConfig{Style: "ghost"})`, daisyui.FileInput(daisyui.FileInputConfig{Style: "ghost"})).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("With fieldset and label", daisyui.Fieldset(daisyui.FieldsetConfig{
+		templ_7745c5c3_Err = section("With fieldset and label", `@daisyui.Fieldset(daisyui.FieldsetConfig{
+	Legend: "Pick a file",
+}, templ.Raw(...)) {
+	<input type="file" class="file-input" />
+	<label class="label">Max size 2MB</label>
+}`, daisyui.Fieldset(daisyui.FieldsetConfig{
 			Legend: "Pick a file",
 		}, templ.Raw(`
 		<input type="file" class="file-input" />
@@ -81,11 +86,24 @@ func fileInputBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Sizes", fileInputSizeRow()).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Sizes", `<div class="flex flex-col gap-4 w-full items-center">
+	@daisyui.FileInput(daisyui.FileInputConfig{Size: "xs"})
+	@daisyui.FileInput(daisyui.FileInputConfig{Size: "sm"})
+	// ... one per size
+</div>`, fileInputSizeRow()).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Primary color", templ.Raw(`
+		templ_7745c5c3_Err = section("Primary color", `<div class="grid gap-2">
+	<input type="file" class="file-input file-input-primary" />
+	<input type="file" class="file-input file-input-secondary" />
+	<input type="file" class="file-input file-input-accent" />
+	<input type="file" class="file-input file-input-neutral" />
+	<input type="file" class="file-input file-input-info" />
+	<input type="file" class="file-input file-input-success" />
+	<input type="file" class="file-input file-input-warning" />
+	<input type="file" class="file-input file-input-error" />
+</div>`, templ.Raw(`
 		<div class="grid gap-2">
 			<input type="file" class="file-input file-input-primary" />
 			<input type="file" class="file-input file-input-secondary" />
@@ -99,7 +117,7 @@ func fileInputBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Disabled", daisyui.FileInput(daisyui.FileInputConfig{Disabled: true})).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Disabled", `@daisyui.FileInput(daisyui.FileInputConfig{Disabled: true})`, daisyui.FileInput(daisyui.FileInputConfig{Disabled: true})).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

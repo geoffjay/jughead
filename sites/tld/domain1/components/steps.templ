@@ -10,42 +10,79 @@ templ StepsPage(r links.LinkResolver) {
 }
 
 templ stepsBody(r links.LinkResolver) {
-	@section("Steps", daisyui.Steps(daisyui.StepsConfig{
+	@section("Steps", `@daisyui.Steps(daisyui.StepsConfig{
+	Items: []daisyui.StepItem{
+		{Label: "Step 1"},
+		{Label: "Step 2"},
+		{Label: "Step 3"},
+	},
+})`, daisyui.Steps(daisyui.StepsConfig{
 		Items: []daisyui.StepItem{
 			{Label: "Step 1"},
 			{Label: "Step 2"},
 			{Label: "Step 3"},
 		},
 	}))
-	@section("Steps with colors", daisyui.Steps(daisyui.StepsConfig{
+	@section("Steps with colors", `@daisyui.Steps(daisyui.StepsConfig{
+	Items: []daisyui.StepItem{
+		{Label: "Step 1", Color: "primary"},
+		{Label: "Step 2", Color: "primary"},
+		{Label: "Step 3", Color: "primary"},
+	},
+})`, daisyui.Steps(daisyui.StepsConfig{
 		Items: []daisyui.StepItem{
 			{Label: "Step 1", Color: "primary"},
 			{Label: "Step 2", Color: "primary"},
 			{Label: "Step 3", Color: "primary"},
 		},
 	}))
-	@section("Steps with different colors", daisyui.Steps(daisyui.StepsConfig{
+	@section("Steps with different colors", `@daisyui.Steps(daisyui.StepsConfig{
+	Items: []daisyui.StepItem{
+		{Label: "Registration", Color: "secondary"},
+		{Label: "Payment", Color: "primary"},
+		{Label: "Confirmation", Color: "success"},
+	},
+})`, daisyui.Steps(daisyui.StepsConfig{
 		Items: []daisyui.StepItem{
 			{Label: "Registration", Color: "secondary"},
 			{Label: "Payment", Color: "primary"},
 			{Label: "Confirmation", Color: "success"},
 		},
 	}))
-	@section("Steps with data-content (icons via CSS)", daisyui.Steps(daisyui.StepsConfig{
+	@section("Steps with data-content (icons via CSS)", `@daisyui.Steps(daisyui.StepsConfig{
+	Items: []daisyui.StepItem{
+		{Label: "Star", Color: "primary", DataContent: "★"},
+		{Label: "Like", Color: "primary", DataContent: "♥"},
+		{Label: "Heart", Color: "primary", DataContent: "✓"},
+	},
+})`, daisyui.Steps(daisyui.StepsConfig{
 		Items: []daisyui.StepItem{
 			{Label: "Star", Color: "primary", DataContent: "★"},
 			{Label: "Like", Color: "primary", DataContent: "♥"},
 			{Label: "Heart", Color: "primary", DataContent: "✓"},
 		},
 	}))
-	@section("Steps with custom icon", daisyui.Steps(daisyui.StepsConfig{
+	@section("Steps with custom icon", `@daisyui.Steps(daisyui.StepsConfig{
+	Items: []daisyui.StepItem{
+		{Label: "Step 1", Color: "neutral", Icon: stepsCheckIcon()},
+		{Label: "Step 2", Color: "neutral", Icon: stepsCheckIcon()},
+		{Label: "Step 3", Color: "neutral", Icon: stepsCheckIcon()},
+	},
+})`, daisyui.Steps(daisyui.StepsConfig{
 		Items: []daisyui.StepItem{
 			{Label: "Step 1", Color: "neutral", Icon: stepsCheckIcon()},
 			{Label: "Step 2", Color: "neutral", Icon: stepsCheckIcon()},
 			{Label: "Step 3", Color: "neutral", Icon: stepsCheckIcon()},
 		},
 	}))
-	@section("Steps vertical", daisyui.Steps(daisyui.StepsConfig{
+	@section("Steps vertical", `@daisyui.Steps(daisyui.StepsConfig{
+	Direction: "vertical",
+	Items: []daisyui.StepItem{
+		{Label: "Step 1", Color: "primary"},
+		{Label: "Step 2", Color: "primary"},
+		{Label: "Step 3", Color: "primary"},
+	},
+})`, daisyui.Steps(daisyui.StepsConfig{
 		Direction: "vertical",
 		Items: []daisyui.StepItem{
 			{Label: "Step 1", Color: "primary"},
@@ -53,7 +90,15 @@ templ stepsBody(r links.LinkResolver) {
 			{Label: "Step 3", Color: "primary"},
 		},
 	}))
-	@section("Steps with responsive direction", daisyui.Steps(daisyui.StepsConfig{
+	@section("Steps with responsive direction", `@daisyui.Steps(daisyui.StepsConfig{
+	Direction: "vertical",
+	Class:     "lg:steps-horizontal",
+	Items: []daisyui.StepItem{
+		{Label: "Step 1", Color: "secondary"},
+		{Label: "Step 2", Color: "secondary"},
+		{Label: "Step 3", Color: "secondary"},
+	},
+})`, daisyui.Steps(daisyui.StepsConfig{
 		Direction: "vertical",
 		Class:     "lg:steps-horizontal",
 		Items: []daisyui.StepItem{

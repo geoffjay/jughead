@@ -67,7 +67,11 @@ func browserBody(r links.LinkResolver) templ.Component {
 			templ_7745c5c3_Var2 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = section("Browser mockup with border", daisyui.Browser(daisyui.BrowserConfig{
+		templ_7745c5c3_Err = section("Browser mockup with border", `@daisyui.Browser(daisyui.BrowserConfig{
+	URL:      "https://daisyui.com",
+	Bordered: true,
+	Children: browserContent(),
+})`, daisyui.Browser(daisyui.BrowserConfig{
 			URL:      "https://daisyui.com",
 			Bordered: true,
 			Children: browserContent(),
@@ -75,7 +79,13 @@ func browserBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Browser mockup with background color", daisyui.Browser(daisyui.BrowserConfig{
+		templ_7745c5c3_Err = section("Browser mockup with background color", `@daisyui.Browser(daisyui.BrowserConfig{
+	URL:        "https://daisyui.com",
+	Bordered:   true,
+	Background: true,
+	BodyClass:  "h-80",
+	Children:   browserContent(),
+})`, daisyui.Browser(daisyui.BrowserConfig{
 			URL:        "https://daisyui.com",
 			Bordered:   true,
 			Background: true,
@@ -85,7 +95,11 @@ func browserBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("With custom toolbar content", daisyui.Browser(daisyui.BrowserConfig{
+		templ_7745c5c3_Err = section("With custom toolbar content", `@daisyui.Browser(daisyui.BrowserConfig{
+	Bordered: true,
+	Toolbar:  browserToolbar(),
+	Children: browserContent(),
+})`, daisyui.Browser(daisyui.BrowserConfig{
 			Bordered: true,
 			Toolbar:  browserToolbar(),
 			Children: browserContent(),
@@ -125,7 +139,7 @@ func browserContent() templ.Component {
 		var templ_7745c5c3_Var4 string
 		templ_7745c5c3_Var4, templ_7745c5c3_Err = templ.ResolveAttributeValue(templ.SafeURL(browserWallpaper))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/components/browser.templ`, Line: 39, Col: 45}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/components/browser.templ`, Line: 53, Col: 45}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var4)
 		if templ_7745c5c3_Err != nil {

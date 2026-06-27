@@ -65,7 +65,15 @@ func menuBody(r links.LinkResolver) templ.Component {
 			templ_7745c5c3_Var2 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = section("Menu", daisyui.Menu(daisyui.MenuConfig{
+		templ_7745c5c3_Err = section("Menu", `@daisyui.Menu(daisyui.MenuConfig{
+	Items: []daisyui.MenuItem{
+		{Label: "Item 1", Href: "#"},
+		{Label: "Item 2", Href: "#", Active: true},
+		{Label: "Item 3", Href: "#"},
+	},
+	Class:    "bg-base-200 rounded-box w-56",
+	Resolver: r,
+})`, daisyui.Menu(daisyui.MenuConfig{
 			Items: []daisyui.MenuItem{
 				{Label: "Item 1", Href: "#"},
 				{Label: "Item 2", Href: "#", Active: true},
@@ -77,7 +85,16 @@ func menuBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Menu with title", daisyui.Menu(daisyui.MenuConfig{
+		templ_7745c5c3_Err = section("Menu with title", `@daisyui.Menu(daisyui.MenuConfig{
+	Title: "Title",
+	Items: []daisyui.MenuItem{
+		{Label: "Item 1", Href: "#"},
+		{Label: "Item 2", Href: "#"},
+		{Label: "Item 3", Href: "#"},
+	},
+	Class:    "bg-base-200 rounded-box w-56",
+	Resolver: r,
+})`, daisyui.Menu(daisyui.MenuConfig{
 			Title: "Title",
 			Items: []daisyui.MenuItem{
 				{Label: "Item 1", Href: "#"},
@@ -90,7 +107,15 @@ func menuBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Menu with icons", daisyui.Menu(daisyui.MenuConfig{
+		templ_7745c5c3_Err = section("Menu with icons", `@daisyui.Menu(daisyui.MenuConfig{
+	Items: []daisyui.MenuItem{
+		{Label: "Item 1", Href: "#", Icon: menuIcon1()},
+		{Label: "Item 2", Href: "#", Icon: menuIcon2(), Active: true},
+		{Label: "Item 3", Href: "#", Icon: menuIcon3()},
+	},
+	Class:    "bg-base-200 rounded-box w-56",
+	Resolver: r,
+})`, daisyui.Menu(daisyui.MenuConfig{
 			Items: []daisyui.MenuItem{
 				{Label: "Item 1", Href: "#", Icon: menuIcon1()},
 				{Label: "Item 2", Href: "#", Icon: menuIcon2(), Active: true},
@@ -102,7 +127,15 @@ func menuBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Menu with badges", daisyui.Menu(daisyui.MenuConfig{
+		templ_7745c5c3_Err = section("Menu with badges", `@daisyui.Menu(daisyui.MenuConfig{
+	Items: []daisyui.MenuItem{
+		{Label: "Inbox", Href: "#", Badge: "12"},
+		{Label: "Sent", Href: "#", Badge: "3"},
+		{Label: "Drafts", Href: "#", Active: true, Badge: "5"},
+	},
+	Class:    "bg-base-200 rounded-box w-56",
+	Resolver: r,
+})`, daisyui.Menu(daisyui.MenuConfig{
 			Items: []daisyui.MenuItem{
 				{Label: "Inbox", Href: "#", Badge: "12"},
 				{Label: "Sent", Href: "#", Badge: "3"},
@@ -114,7 +147,15 @@ func menuBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Menu with disabled item", daisyui.Menu(daisyui.MenuConfig{
+		templ_7745c5c3_Err = section("Menu with disabled item", `@daisyui.Menu(daisyui.MenuConfig{
+	Items: []daisyui.MenuItem{
+		{Label: "Enabled", Href: "#"},
+		{Label: "Disabled", Disabled: true},
+		{Label: "Active", Href: "#", Active: true},
+	},
+	Class:    "bg-base-200 rounded-box w-56",
+	Resolver: r,
+})`, daisyui.Menu(daisyui.MenuConfig{
 			Items: []daisyui.MenuItem{
 				{Label: "Enabled", Href: "#"},
 				{Label: "Disabled", Disabled: true},
@@ -126,7 +167,23 @@ func menuBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Menu with submenu (collapsible)", daisyui.Menu(daisyui.MenuConfig{
+		templ_7745c5c3_Err = section("Menu with submenu (collapsible)", `@daisyui.Menu(daisyui.MenuConfig{
+	Items: []daisyui.MenuItem{
+		{
+			Label:       "Parent",
+			Href:        "#",
+			Collapsible: true,
+			Open:        true,
+			Submenu: []daisyui.MenuItem{
+				{Label: "Child 1", Href: "#"},
+				{Label: "Child 2", Href: "#", Active: true},
+			},
+		},
+		{Label: "Standalone", Href: "#"},
+	},
+	Class:    "bg-base-200 rounded-box w-56",
+	Resolver: r,
+})`, daisyui.Menu(daisyui.MenuConfig{
 			Items: []daisyui.MenuItem{
 				{
 					Label:       "Parent",
@@ -146,7 +203,16 @@ func menuBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Menu horizontal", daisyui.Menu(daisyui.MenuConfig{
+		templ_7745c5c3_Err = section("Menu horizontal", `@daisyui.Menu(daisyui.MenuConfig{
+	Items: []daisyui.MenuItem{
+		{Label: "Item 1", Href: "#", Active: true},
+		{Label: "Item 2", Href: "#"},
+		{Label: "Item 3", Href: "#"},
+	},
+	Direction: "horizontal",
+	Class:     "bg-base-200 rounded-box",
+	Resolver:  r,
+})`, daisyui.Menu(daisyui.MenuConfig{
 			Items: []daisyui.MenuItem{
 				{Label: "Item 1", Href: "#", Active: true},
 				{Label: "Item 2", Href: "#"},
@@ -159,11 +225,28 @@ func menuBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Menu sizes", menuSizes(r)).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Menu sizes", `@daisyui.Menu(daisyui.MenuConfig{
+	Items: []daisyui.MenuItem{{Label: "XS", Href: "#", Active: true}},
+	Size:  "xs", Class: "bg-base-200 rounded-box w-56", Resolver: r,
+})
+@daisyui.Menu(daisyui.MenuConfig{
+	Items: []daisyui.MenuItem{{Label: "SM", Href: "#", Active: true}},
+	Size:  "sm", Class: "bg-base-200 rounded-box w-56", Resolver: r,
+})
+// ... one per size (lg, xl)`, menuSizes(r)).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Menu with tooltips (icon-only)", daisyui.Menu(daisyui.MenuConfig{
+		templ_7745c5c3_Err = section("Menu with tooltips (icon-only)", `@daisyui.Menu(daisyui.MenuConfig{
+	UseTooltips: true,
+	Items: []daisyui.MenuItem{
+		{Label: "", Href: "#", Icon: menuIcon1(), Tooltip: "Home"},
+		{Label: "", Href: "#", Icon: menuIcon2(), Tooltip: "Search", Active: true},
+		{Label: "", Href: "#", Icon: menuIcon3(), Tooltip: "Settings"},
+	},
+	Class:    "bg-base-200 rounded-box w-20",
+	Resolver: r,
+})`, daisyui.Menu(daisyui.MenuConfig{
 			UseTooltips: true,
 			Items: []daisyui.MenuItem{
 				{Label: "", Href: "#", Icon: menuIcon1(), Tooltip: "Home"},

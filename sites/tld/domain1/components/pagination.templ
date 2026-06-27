@@ -12,34 +12,65 @@ templ PaginationPage(r links.LinkResolver) {
 }
 
 templ paginationBody(r links.LinkResolver) {
-	@section("Pagination", daisyui.Pagination(daisyui.PaginationConfig{
+	@section("Pagination", `@daisyui.Pagination(daisyui.PaginationConfig{
+	Current: 1,
+	Total:   5,
+})`, daisyui.Pagination(daisyui.PaginationConfig{
 		Current: 1,
 		Total:   5,
 	}))
-	@section("Pagination with active middle page", daisyui.Pagination(daisyui.PaginationConfig{
+	@section("Pagination with active middle page", `@daisyui.Pagination(daisyui.PaginationConfig{
+	Current: 3,
+	Total:   5,
+})`, daisyui.Pagination(daisyui.PaginationConfig{
 		Current: 3,
 		Total:   5,
 	}))
-	@section("Pagination with prev/next", daisyui.Pagination(daisyui.PaginationConfig{
+	@section("Pagination with prev/next", `@daisyui.Pagination(daisyui.PaginationConfig{
+	Current:   2,
+	Total:     5,
+	PrevLabel: "«",
+	NextLabel: "»",
+})`, daisyui.Pagination(daisyui.PaginationConfig{
 		Current:   2,
 		Total:     5,
 		PrevLabel: "«",
 		NextLabel: "»",
 	}))
-	@section("Pagination with prev/next at edges (disabled)", daisyui.Pagination(daisyui.PaginationConfig{
+	@section("Pagination with prev/next at edges (disabled)", `@daisyui.Pagination(daisyui.PaginationConfig{
+	Current:   1,
+	Total:     5,
+	PrevLabel: "«",
+	NextLabel: "»",
+})`, daisyui.Pagination(daisyui.PaginationConfig{
 		Current:   1,
 		Total:     5,
 		PrevLabel: "«",
 		NextLabel: "»",
 	}))
-	@section("Pagination with hrefs", daisyui.Pagination(daisyui.PaginationConfig{
+	@section("Pagination with hrefs", `@daisyui.Pagination(daisyui.PaginationConfig{
+	Current:  2,
+	Total:    5,
+	HrefFor:  func(page int) string { return "/page/" + strconv.Itoa(page) },
+	Resolver: r,
+})`, daisyui.Pagination(daisyui.PaginationConfig{
 		Current:  2,
 		Total:    5,
 		HrefFor:  func(page int) string { return "/page/" + strconv.Itoa(page) },
 		Resolver: r,
 	}))
-	@section("Pagination sizes", paginationSizes(r))
-	@section("Pagination with outline grid prev/next", daisyui.Pagination(daisyui.PaginationConfig{
+	@section("Pagination sizes", `<div class="flex flex-col gap-4">
+	@daisyui.Pagination(daisyui.PaginationConfig{Current: 2, Total: 5, Size: "xs"})
+	@daisyui.Pagination(daisyui.PaginationConfig{Current: 2, Total: 5, Size: "sm"})
+	// ... one per size (lg, xl)
+</div>`, paginationSizes(r))
+	@section("Pagination with outline grid prev/next", `@daisyui.Pagination(daisyui.PaginationConfig{
+	Current:   1,
+	Total:     1,
+	PrevLabel: "Previous",
+	NextLabel: "Next",
+	Class:     "grid grid-cols-2",
+})`, daisyui.Pagination(daisyui.PaginationConfig{
 		Current:   1,
 		Total:     1,
 		PrevLabel: "Previous",

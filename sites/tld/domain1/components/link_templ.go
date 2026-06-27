@@ -65,39 +65,39 @@ func linkBody(r links.LinkResolver) templ.Component {
 			templ_7745c5c3_Var2 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = section("Link", daisyui.Link("", "Click me", "", "", "", nil)).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Link", `@daisyui.Link("", "Click me", "", "", "", nil)`, daisyui.Link("", "Click me", "", "", "", nil)).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Primary color", daisyui.Link("", "Click me", "primary", "", "", nil)).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Primary color", `@daisyui.Link("", "Click me", "primary", "", "", nil)`, daisyui.Link("", "Click me", "primary", "", "", nil)).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Secondary color", daisyui.Link("", "Click me", "secondary", "", "", nil)).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Secondary color", `@daisyui.Link("", "Click me", "secondary", "", "", nil)`, daisyui.Link("", "Click me", "secondary", "", "", nil)).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Accent color", daisyui.Link("", "Click me", "accent", "", "", nil)).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Accent color", `@daisyui.Link("", "Click me", "accent", "", "", nil)`, daisyui.Link("", "Click me", "accent", "", "", nil)).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Success color", daisyui.Link("", "Click me", "success", "", "", nil)).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Success color", `@daisyui.Link("", "Click me", "success", "", "", nil)`, daisyui.Link("", "Click me", "success", "", "", nil)).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Info color", daisyui.Link("", "Click me", "info", "", "", nil)).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Info color", `@daisyui.Link("", "Click me", "info", "", "", nil)`, daisyui.Link("", "Click me", "info", "", "", nil)).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Warning color", daisyui.Link("", "Click me", "warning", "", "", nil)).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Warning color", `@daisyui.Link("", "Click me", "warning", "", "", nil)`, daisyui.Link("", "Click me", "warning", "", "", nil)).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Error color", daisyui.Link("", "Click me", "error", "", "", nil)).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Error color", `@daisyui.Link("", "Click me", "error", "", "", nil)`, daisyui.Link("", "Click me", "error", "", "", nil)).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Show underline only on hover", daisyui.Link("", "Click me", "", "hover", "", nil)).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Show underline only on hover", `@daisyui.Link("", "Click me", "", "hover", "", nil)`, daisyui.Link("", "Click me", "", "hover", "", nil)).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

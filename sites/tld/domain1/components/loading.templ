@@ -10,13 +10,44 @@ templ LoadingPage(r links.LinkResolver) {
 }
 
 templ loadingBody(r links.LinkResolver) {
-	@section("Loading spinner", loadingRow("spinner"))
-	@section("Loading dots", loadingRow("dots"))
-	@section("Loading ring", loadingRow("ring"))
-	@section("Loading ball", loadingRow("ball"))
-	@section("Loading bars", loadingRow("bars"))
-	@section("Loading infinity", loadingRow("infinity"))
-	@section("Loading with colors", templ.Raw(`
+	@section("Loading spinner", `<div class="flex items-center gap-2">
+	@daisyui.Loading("spinner", "xs", "", "")
+	@daisyui.Loading("spinner", "sm", "", "")
+	// ... one per size
+</div>`, loadingRow("spinner"))
+	@section("Loading dots", `<div class="flex items-center gap-2">
+	@daisyui.Loading("dots", "xs", "", "")
+	@daisyui.Loading("dots", "sm", "", "")
+	// ... one per size
+</div>`, loadingRow("dots"))
+	@section("Loading ring", `<div class="flex items-center gap-2">
+	@daisyui.Loading("ring", "xs", "", "")
+	@daisyui.Loading("ring", "sm", "", "")
+	// ... one per size
+</div>`, loadingRow("ring"))
+	@section("Loading ball", `<div class="flex items-center gap-2">
+	@daisyui.Loading("ball", "xs", "", "")
+	@daisyui.Loading("ball", "sm", "", "")
+	// ... one per size
+</div>`, loadingRow("ball"))
+	@section("Loading bars", `<div class="flex items-center gap-2">
+	@daisyui.Loading("bars", "xs", "", "")
+	@daisyui.Loading("bars", "sm", "", "")
+	// ... one per size
+</div>`, loadingRow("bars"))
+	@section("Loading infinity", `<div class="flex items-center gap-2">
+	@daisyui.Loading("infinity", "xs", "", "")
+	@daisyui.Loading("infinity", "sm", "", "")
+	// ... one per size
+</div>`, loadingRow("infinity"))
+	@section("Loading with colors", `<span class="loading loading-spinner text-primary"></span>
+<span class="loading loading-spinner text-secondary"></span>
+<span class="loading loading-spinner text-accent"></span>
+<span class="loading loading-spinner text-neutral"></span>
+<span class="loading loading-spinner text-info"></span>
+<span class="loading loading-spinner text-success"></span>
+<span class="loading loading-spinner text-warning"></span>
+<span class="loading loading-spinner text-error"></span>`, templ.Raw(`
 		<span class="loading loading-spinner text-primary"></span>
 		<span class="loading loading-spinner text-secondary"></span>
 		<span class="loading loading-spinner text-accent"></span>

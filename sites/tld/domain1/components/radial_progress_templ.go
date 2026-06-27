@@ -65,13 +65,21 @@ func radialProgressBody(r links.LinkResolver) templ.Component {
 			templ_7745c5c3_Var2 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = section("Radial progress", daisyui.RadialProgress(daisyui.RadialProgressConfig{
+		templ_7745c5c3_Err = section("Radial progress", `@daisyui.RadialProgress(daisyui.RadialProgressConfig{
+	Value: "70", Label: "70%",
+})`, daisyui.RadialProgress(daisyui.RadialProgressConfig{
 			Value: "70", Label: "70%",
 		})).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Different values", templ.Raw(`
+		templ_7745c5c3_Err = section("Different values", `<div class="flex gap-4">
+	<div class="radial-progress" style="--value:0;" aria-valuenow="0" role="progressbar">0%</div>
+	<div class="radial-progress" style="--value:20;" aria-valuenow="20" role="progressbar">20%</div>
+	<div class="radial-progress" style="--value:60;" aria-valuenow="60" role="progressbar">60%</div>
+	<div class="radial-progress" style="--value:80;" aria-valuenow="80" role="progressbar">80%</div>
+	<div class="radial-progress" style="--value:100;" aria-valuenow="100" role="progressbar">100%</div>
+</div>`, templ.Raw(`
 		<div class="flex gap-4">
 			<div class="radial-progress" style="--value:0;" aria-valuenow="0" role="progressbar">0%</div>
 			<div class="radial-progress" style="--value:20;" aria-valuenow="20" role="progressbar">20%</div>
@@ -82,20 +90,28 @@ func radialProgressBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Custom color", daisyui.RadialProgress(daisyui.RadialProgressConfig{
+		templ_7745c5c3_Err = section("Custom color", `@daisyui.RadialProgress(daisyui.RadialProgressConfig{
+	Value: "70", Label: "70%", ColorClass: "text-primary",
+})`, daisyui.RadialProgress(daisyui.RadialProgressConfig{
 			Value: "70", Label: "70%", ColorClass: "text-primary",
 		})).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("With background color and border", daisyui.RadialProgress(daisyui.RadialProgressConfig{
+		templ_7745c5c3_Err = section("With background color and border", `@daisyui.RadialProgress(daisyui.RadialProgressConfig{
+	Value: "70", Label: "70%",
+	Class: "bg-primary text-primary-content border-4 border-primary",
+})`, daisyui.RadialProgress(daisyui.RadialProgressConfig{
 			Value: "70", Label: "70%",
 			Class: "bg-primary text-primary-content border-4 border-primary",
 		})).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Custom size and custom thickness", templ.Raw(`
+		templ_7745c5c3_Err = section("Custom size and custom thickness", `<div class="flex gap-4">
+	<div class="radial-progress" style="--value:70; --size:12rem; --thickness: 2px;" aria-valuenow="70" role="progressbar">70%</div>
+	<div class="radial-progress" style="--value:70; --size:12rem; --thickness: 2rem;" aria-valuenow="70" role="progressbar">70%</div>
+</div>`, templ.Raw(`
 		<div class="flex gap-4">
 			<div class="radial-progress" style="--value:70; --size:12rem; --thickness: 2px;" aria-valuenow="70" role="progressbar">70%</div>
 			<div class="radial-progress" style="--value:70; --size:12rem; --thickness: 2rem;" aria-valuenow="70" role="progressbar">70%</div>

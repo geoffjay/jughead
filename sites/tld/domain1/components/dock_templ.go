@@ -65,7 +65,15 @@ func dockBody(r links.LinkResolver) templ.Component {
 			templ_7745c5c3_Var2 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = section("Dock", daisyui.Dock(daisyui.DockConfig{
+		templ_7745c5c3_Err = section("Dock", `@daisyui.Dock(daisyui.DockConfig{
+	Items: []daisyui.DockItem{
+		{Label: "Home", Href: "#", Icon: dockHomeIcon(), Active: true},
+		{Label: "Search", Href: "#", Icon: dockSearchIcon()},
+		{Label: "Notifications", Href: "#", Icon: dockBellIcon()},
+		{Label: "Profile", Href: "#", Icon: dockUserIcon()},
+	},
+	Resolver: r,
+})`, daisyui.Dock(daisyui.DockConfig{
 			Items: []daisyui.DockItem{
 				{Label: "Home", Href: "#", Icon: dockHomeIcon(), Active: true},
 				{Label: "Search", Href: "#", Icon: dockSearchIcon()},
@@ -77,7 +85,16 @@ func dockBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Dock with colored background", daisyui.Dock(daisyui.DockConfig{
+		templ_7745c5c3_Err = section("Dock with colored background", `@daisyui.Dock(daisyui.DockConfig{
+	Items: []daisyui.DockItem{
+		{Label: "Home", Href: "#", Icon: dockHomeIcon(), Active: true},
+		{Label: "Wallet", Href: "#", Icon: dockWalletIcon()},
+		{Label: "Stats", Href: "#", Icon: dockChartIcon()},
+		{Label: "Profile", Href: "#", Icon: dockUserIcon()},
+	},
+	Class:    "bg-neutral text-neutral-content",
+	Resolver: r,
+})`, daisyui.Dock(daisyui.DockConfig{
 			Items: []daisyui.DockItem{
 				{Label: "Home", Href: "#", Icon: dockHomeIcon(), Active: true},
 				{Label: "Wallet", Href: "#", Icon: dockWalletIcon()},
@@ -90,7 +107,13 @@ func dockBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Dock with buttons (no href)", daisyui.Dock(daisyui.DockConfig{
+		templ_7745c5c3_Err = section("Dock with buttons (no href)", `@daisyui.Dock(daisyui.DockConfig{
+	Items: []daisyui.DockItem{
+		{Label: "Play", Icon: dockPlayIcon(), Active: true},
+		{Label: "Pause", Icon: dockPauseIcon()},
+		{Label: "Stop", Icon: dockStopIcon()},
+	},
+})`, daisyui.Dock(daisyui.DockConfig{
 			Items: []daisyui.DockItem{
 				{Label: "Play", Icon: dockPlayIcon(), Active: true},
 				{Label: "Pause", Icon: dockPauseIcon()},
@@ -100,11 +123,27 @@ func dockBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Dock sizes", dockSizes(r)).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Dock sizes", `@daisyui.Dock(daisyui.DockConfig{
+	Items: []daisyui.DockItem{
+		{Icon: dockHomeIcon(), Href: "#", Active: true, Label: "XS"},
+		{Icon: dockSearchIcon(), Href: "#", Label: "Tab"},
+	},
+	Size: "xs", Resolver: r,
+})
+// ... one per size (sm, lg, xl)`, dockSizes(r)).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Dock without labels (icon-only)", daisyui.Dock(daisyui.DockConfig{
+		templ_7745c5c3_Err = section("Dock without labels (icon-only)", `@daisyui.Dock(daisyui.DockConfig{
+	Items: []daisyui.DockItem{
+		{Icon: dockHomeIcon(), Href: "#", Active: true},
+		{Icon: dockSearchIcon(), Href: "#"},
+		{Icon: dockBellIcon(), Href: "#"},
+		{Icon: dockUserIcon(), Href: "#"},
+	},
+	Class:    "bg-base-300",
+	Resolver: r,
+})`, daisyui.Dock(daisyui.DockConfig{
 			Items: []daisyui.DockItem{
 				{Icon: dockHomeIcon(), Href: "#", Active: true},
 				{Icon: dockSearchIcon(), Href: "#"},

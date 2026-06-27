@@ -65,11 +65,15 @@ func statusBody(r links.LinkResolver) templ.Component {
 			templ_7745c5c3_Var2 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = section("Status", daisyui.Status("", "", "", "", "")).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Status", `@daisyui.Status("", "", "", "", "")`, daisyui.Status("", "", "", "", "")).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Status sizes", templ.Raw(`
+		templ_7745c5c3_Err = section("Status sizes", `<div aria-label="status" class="status status-xs"></div>
+<div aria-label="status" class="status status-sm"></div>
+<div aria-label="status" class="status status-md"></div>
+<div aria-label="status" class="status status-lg"></div>
+<div aria-label="status" class="status status-xl"></div>`, templ.Raw(`
 		<div aria-label="status" class="status status-xs"></div>
 		<div aria-label="status" class="status status-sm"></div>
 		<div aria-label="status" class="status status-md"></div>
@@ -78,7 +82,14 @@ func statusBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Status with colors", templ.Raw(`
+		templ_7745c5c3_Err = section("Status with colors", `<div aria-label="status" class="status status-primary"></div>
+<div aria-label="status" class="status status-secondary"></div>
+<div aria-label="status" class="status status-accent"></div>
+<div aria-label="status" class="status status-neutral"></div>
+<div aria-label="info" class="status status-info"></div>
+<div aria-label="success" class="status status-success"></div>
+<div aria-label="warning" class="status status-warning"></div>
+<div aria-label="error" class="status status-error"></div>`, templ.Raw(`
 		<div aria-label="status" class="status status-primary"></div>
 		<div aria-label="status" class="status status-secondary"></div>
 		<div aria-label="status" class="status status-accent"></div>
@@ -90,11 +101,11 @@ func statusBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Status with ping animation", daisyui.Status("error", "", "animate-ping", "status", "")).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Status with ping animation", `@daisyui.Status("error", "", "animate-ping", "status", "")`, daisyui.Status("error", "", "animate-ping", "status", "")).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Status with bounce animation", daisyui.Status("info", "", "animate-bounce", "status", "")).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Status with bounce animation", `@daisyui.Status("info", "", "animate-bounce", "status", "")`, daisyui.Status("info", "", "animate-bounce", "status", "")).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

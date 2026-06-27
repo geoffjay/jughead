@@ -80,7 +80,12 @@ func avatarBody(r links.LinkResolver) templ.Component {
 			templ_7745c5c3_Var2 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = section("Avatar", daisyui.Avatar(daisyui.AvatarConfig{
+		templ_7745c5c3_Err = section("Avatar", `@daisyui.Avatar(daisyui.AvatarConfig{
+	Src:        avatarBat,
+	Alt:        "Tailwind-CSS-Avatar-component",
+	Size:       "w-24",
+	InnerClass: "bg-base-300",
+})`, daisyui.Avatar(daisyui.AvatarConfig{
 			Src:        avatarBat,
 			Alt:        "Tailwind-CSS-Avatar-component",
 			Size:       "w-24",
@@ -89,19 +94,38 @@ func avatarBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Avatar in custom sizes", avatarSizes()).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Avatar in custom sizes", `<div class="flex flex-wrap gap-4">
+	@daisyui.Avatar(daisyui.AvatarConfig{Src: avatarSuper, Alt: "Tailwind-CSS-Avatar-component", Size: "w-24", InnerClass: "bg-base-300"})
+	@daisyui.Avatar(daisyui.AvatarConfig{Src: avatarSuper, Alt: "Tailwind-CSS-Avatar-component", Size: "w-16", InnerClass: "bg-base-300"})
+	// ... one per size (w-12, w-8)
+</div>`, avatarSizes()).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Avatar rounded", avatarRounded()).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Avatar rounded", `<div class="flex flex-wrap gap-4">
+	@daisyui.Avatar(daisyui.AvatarConfig{Src: avatarYellingWoman, Alt: "Tailwind-CSS-Avatar-component", Shape: "rounded-xl", Size: "w-24", InnerClass: "bg-base-300"})
+	@daisyui.Avatar(daisyui.AvatarConfig{Src: avatarYellingCat, Alt: "Tailwind-CSS-Avatar-component", Shape: "rounded-full", Size: "w-24", InnerClass: "bg-base-300"})
+</div>`, avatarRounded()).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Avatar with mask", avatarMasks()).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Avatar with mask", `<div class="flex flex-wrap gap-4">
+	@daisyui.Avatar(daisyui.AvatarConfig{Src: avatarDistracted3, Alt: "Tailwind-CSS-Avatar-component", Shape: "heart", Size: "w-24", InnerClass: "bg-base-300"})
+	@daisyui.Avatar(daisyui.AvatarConfig{Src: avatarDistracted1, Alt: "Tailwind-CSS-Avatar-component", Shape: "squircle", Size: "w-24", InnerClass: "bg-base-300"})
+	@daisyui.Avatar(daisyui.AvatarConfig{Src: avatarDistracted2, Alt: "Tailwind-CSS-Avatar-component", Shape: "hexagon-2", Size: "w-24", InnerClass: "bg-base-300"})
+</div>`, avatarMasks()).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Avatar group", daisyui.AvatarGroup(daisyui.AvatarGroupConfig{
+		templ_7745c5c3_Err = section("Avatar group", `@daisyui.AvatarGroup(daisyui.AvatarGroupConfig{
+	Class: "-space-x-6",
+	Items: []daisyui.AvatarConfig{
+		{Src: avatarBat, Size: "w-12", InnerClass: "bg-base-300"},
+		{Src: avatarSpider, Size: "w-12", InnerClass: "bg-base-300"},
+		{Src: avatarAverage, Size: "w-12", InnerClass: "bg-base-300"},
+		{Src: avatarWonder, Size: "w-12", InnerClass: "bg-base-300"},
+	},
+})`, daisyui.AvatarGroup(daisyui.AvatarGroupConfig{
 			Class: "-space-x-6",
 			Items: []daisyui.AvatarConfig{
 				{Src: avatarBat, Size: "w-12", InnerClass: "bg-base-300"},
@@ -113,7 +137,15 @@ func avatarBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Avatar group with counter", daisyui.AvatarGroup(daisyui.AvatarGroupConfig{
+		templ_7745c5c3_Err = section("Avatar group with counter", `@daisyui.AvatarGroup(daisyui.AvatarGroupConfig{
+	Class: "-space-x-6",
+	Items: []daisyui.AvatarConfig{
+		{Src: avatarBat, Size: "w-12", InnerClass: "bg-base-300"},
+		{Src: avatarSpider, Size: "w-12", InnerClass: "bg-base-300"},
+		{Src: avatarAverage, Size: "w-12", InnerClass: "bg-base-300"},
+		{Placeholder: true, PlaceholderText: "+99", Size: "w-12", InnerClass: "bg-neutral text-neutral-content"},
+	},
+})`, daisyui.AvatarGroup(daisyui.AvatarGroupConfig{
 			Class: "-space-x-6",
 			Items: []daisyui.AvatarConfig{
 				{Src: avatarBat, Size: "w-12", InnerClass: "bg-base-300"},
@@ -125,7 +157,13 @@ func avatarBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Avatar with ring", daisyui.Avatar(daisyui.AvatarConfig{
+		templ_7745c5c3_Err = section("Avatar with ring", `@daisyui.Avatar(daisyui.AvatarConfig{
+	Src:   avatarSpider,
+	Alt:   "Tailwind-CSS-Avatar-component",
+	Shape: "rounded-full",
+	Size:  "w-24",
+	Ring:  "primary",
+})`, daisyui.Avatar(daisyui.AvatarConfig{
 			Src:   avatarSpider,
 			Alt:   "Tailwind-CSS-Avatar-component",
 			Shape: "rounded-full",
@@ -135,11 +173,18 @@ func avatarBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Avatar with presence indicator", avatarPresence()).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Avatar with presence indicator", `<div class="flex flex-wrap gap-4">
+	@daisyui.Avatar(daisyui.AvatarConfig{Src: avatarGordon, Alt: "Tailwind-CSS-Avatar-component", Status: "online", Shape: "rounded-full", Size: "w-24", InnerClass: "bg-base-300"})
+	@daisyui.Avatar(daisyui.AvatarConfig{Src: avatarIdiot, Alt: "Tailwind-CSS-Avatar-component", Status: "offline", Shape: "rounded-full", Size: "w-24", InnerClass: "bg-base-300"})
+</div>`, avatarPresence()).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Avatar placeholder", avatarPlaceholders()).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Avatar placeholder", `<div class="flex flex-wrap gap-4 items-center">
+	@daisyui.Avatar(daisyui.AvatarConfig{Placeholder: true, PlaceholderText: "D", PlaceholderClass: "text-3xl", Size: "w-24", InnerClass: "bg-neutral text-neutral-content rounded-full"})
+	@daisyui.Avatar(daisyui.AvatarConfig{Placeholder: true, Status: "online", PlaceholderText: "AI", PlaceholderClass: "text-xl", Size: "w-16", InnerClass: "bg-neutral text-neutral-content rounded-full"})
+	// ... more placeholders
+</div>`, avatarPlaceholders()).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

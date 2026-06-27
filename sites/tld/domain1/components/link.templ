@@ -10,13 +10,13 @@ templ LinkPage(r links.LinkResolver) {
 }
 
 templ linkBody(r links.LinkResolver) {
-	@section("Link", daisyui.Link("", "Click me", "", "", "", nil))
-	@section("Primary color", daisyui.Link("", "Click me", "primary", "", "", nil))
-	@section("Secondary color", daisyui.Link("", "Click me", "secondary", "", "", nil))
-	@section("Accent color", daisyui.Link("", "Click me", "accent", "", "", nil))
-	@section("Success color", daisyui.Link("", "Click me", "success", "", "", nil))
-	@section("Info color", daisyui.Link("", "Click me", "info", "", "", nil))
-	@section("Warning color", daisyui.Link("", "Click me", "warning", "", "", nil))
-	@section("Error color", daisyui.Link("", "Click me", "error", "", "", nil))
-	@section("Show underline only on hover", daisyui.Link("", "Click me", "", "hover", "", nil))
+	@section("Link", `@daisyui.Link("", "Click me", "", "", "", nil)`, daisyui.Link("", "Click me", "", "", "", nil))
+	@section("Primary color", `@daisyui.Link("", "Click me", "primary", "", "", nil)`, daisyui.Link("", "Click me", "primary", "", "", nil))
+	@section("Secondary color", `@daisyui.Link("", "Click me", "secondary", "", "", nil)`, daisyui.Link("", "Click me", "secondary", "", "", nil))
+	@section("Accent color", `@daisyui.Link("", "Click me", "accent", "", "", nil)`, daisyui.Link("", "Click me", "accent", "", "", nil))
+	@section("Success color", `@daisyui.Link("", "Click me", "success", "", "", nil)`, daisyui.Link("", "Click me", "success", "", "", nil))
+	@section("Info color", `@daisyui.Link("", "Click me", "info", "", "", nil)`, daisyui.Link("", "Click me", "info", "", "", nil))
+	@section("Warning color", `@daisyui.Link("", "Click me", "warning", "", "", nil)`, daisyui.Link("", "Click me", "warning", "", "", nil))
+	@section("Error color", `@daisyui.Link("", "Click me", "error", "", "", nil)`, daisyui.Link("", "Click me", "error", "", "", nil))
+	@section("Show underline only on hover", `@daisyui.Link("", "Click me", "", "hover", "", nil)`, daisyui.Link("", "Click me", "", "hover", "", nil))
 }

@@ -65,7 +65,14 @@ func breadcrumbsBody(r links.LinkResolver) templ.Component {
 			templ_7745c5c3_Var2 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = section("Breadcrumbs", daisyui.Breadcrumbs(daisyui.BreadcrumbsConfig{
+		templ_7745c5c3_Err = section("Breadcrumbs", `@daisyui.Breadcrumbs(daisyui.BreadcrumbsConfig{
+	Items: []daisyui.BreadcrumbItem{
+		{Label: "Home", Href: "/"},
+		{Label: "Documents", Href: "/documents"},
+		{Label: "Add Document"},
+	},
+	Resolver: r,
+})`, daisyui.Breadcrumbs(daisyui.BreadcrumbsConfig{
 			Items: []daisyui.BreadcrumbItem{
 				{Label: "Home", Href: "/"},
 				{Label: "Documents", Href: "/documents"},
@@ -76,7 +83,14 @@ func breadcrumbsBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Breadcrumbs with icons", daisyui.Breadcrumbs(daisyui.BreadcrumbsConfig{
+		templ_7745c5c3_Err = section("Breadcrumbs with icons", `@daisyui.Breadcrumbs(daisyui.BreadcrumbsConfig{
+	Items: []daisyui.BreadcrumbItem{
+		{Label: "Home", Href: "/", Icon: homeIcon()},
+		{Label: "Documents", Href: "/documents", Icon: docIcon()},
+		{Label: "Add Document"},
+	},
+	Resolver: r,
+})`, daisyui.Breadcrumbs(daisyui.BreadcrumbsConfig{
 			Items: []daisyui.BreadcrumbItem{
 				{
 					Label: "Home",
@@ -95,7 +109,16 @@ func breadcrumbsBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Breadcrumbs with max-w-xs", daisyui.Breadcrumbs(daisyui.BreadcrumbsConfig{
+		templ_7745c5c3_Err = section("Breadcrumbs with max-w-xs", `@daisyui.Breadcrumbs(daisyui.BreadcrumbsConfig{
+	Items: []daisyui.BreadcrumbItem{
+		{Label: "Home", Href: "/"},
+		{Label: "Documents", Href: "/documents"},
+		{Label: "Very long breadcrumb item that wraps on small screens", Href: "/documents/long"},
+		{Label: "Add Document"},
+	},
+	Class:    "max-w-xs",
+	Resolver: r,
+})`, daisyui.Breadcrumbs(daisyui.BreadcrumbsConfig{
 			Items: []daisyui.BreadcrumbItem{
 				{Label: "Home", Href: "/"},
 				{Label: "Documents", Href: "/documents"},
@@ -108,7 +131,15 @@ func breadcrumbsBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Breadcrumbs with text-sm", daisyui.Breadcrumbs(daisyui.BreadcrumbsConfig{
+		templ_7745c5c3_Err = section("Breadcrumbs with text-sm", `@daisyui.Breadcrumbs(daisyui.BreadcrumbsConfig{
+	Items: []daisyui.BreadcrumbItem{
+		{Label: "Home", Href: "/"},
+		{Label: "Documents", Href: "/documents"},
+		{Label: "Add Document"},
+	},
+	Class:    "text-sm",
+	Resolver: r,
+})`, daisyui.Breadcrumbs(daisyui.BreadcrumbsConfig{
 			Items: []daisyui.BreadcrumbItem{
 				{Label: "Home", Href: "/"},
 				{Label: "Documents", Href: "/documents"},

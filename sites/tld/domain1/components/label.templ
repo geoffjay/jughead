@@ -10,17 +10,29 @@ templ LabelPage(r links.LinkResolver) {
 }
 
 templ labelBody(r links.LinkResolver) {
-	@section("Label for input", templ.Raw(`
+	@section("Label for input", `<label class="input">
+	<span class="label">https://</span>
+	<input type="text" placeholder="URL" />
+</label>`, templ.Raw(`
 		<label class="input">
 			<span class="label">https://</span>
 			<input type="text" placeholder="URL" />
 		</label>`))
-	@section("Label for input at the end", templ.Raw(`
+	@section("Label for input at the end", `<label class="input">
+	<input type="text" placeholder="domain name" />
+	<span class="label">.com</span>
+</label>`, templ.Raw(`
 		<label class="input">
 			<input type="text" placeholder="domain name" />
 			<span class="label">.com</span>
 		</label>`))
-	@section("Label for select", templ.Raw(`
+	@section("Label for select", `<label class="select">
+	<span class="label">Type</span>
+	<select>
+		<option>Personal</option>
+		<option>Business</option>
+	</select>
+</label>`, templ.Raw(`
 		<label class="select">
 			<span class="label">Type</span>
 			<select>
@@ -28,19 +40,38 @@ templ labelBody(r links.LinkResolver) {
 				<option>Business</option>
 			</select>
 		</label>`))
-	@section("Label for date input", templ.Raw(`
+	@section("Label for date input", `<label class="input">
+	<span class="label">Publish date</span>
+	<input type="date" />
+</label>`, templ.Raw(`
 		<label class="input">
 			<span class="label">Publish date</span>
 			<input type="date" />
 		</label>`))
-	@section("Floating Label", daisyui.FloatingLabel(daisyui.FloatingLabelConfig{
+	@section("Floating Label", `@daisyui.FloatingLabel(daisyui.FloatingLabelConfig{
+	Label:       "Your Email",
+	InputType:   "email",
+	Placeholder: "mail@site.com",
+	InputClass:  "input input-md",
+	Class:       "w-full max-w-xs",
+})`, daisyui.FloatingLabel(daisyui.FloatingLabelConfig{
 		Label:       "Your Email",
 		InputType:   "email",
 		Placeholder: "mail@site.com",
 		InputClass:  "input input-md",
 		Class:       "w-full max-w-xs",
 	}))
-	@section("Floating Label with Different Sizes", templ.Raw(`
+	@section("Floating Label with Different Sizes", `<div class="grid gap-4 w-xs">
+	<label class="floating-label">
+		<input type="text" placeholder="Extra Small" class="input input-xs" />
+		<span>Extra Small</span>
+	</label>
+	<label class="floating-label">
+		<input type="text" placeholder="Small" class="input input-sm" />
+		<span>Small</span>
+	</label>
+	// ... one per size
+</div>`, templ.Raw(`
 		<div class="grid gap-4 w-xs">
 			<label class="floating-label">
 				<input type="text" placeholder="Extra Small" class="input input-xs" />

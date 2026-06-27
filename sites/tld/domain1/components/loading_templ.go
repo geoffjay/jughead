@@ -65,31 +65,62 @@ func loadingBody(r links.LinkResolver) templ.Component {
 			templ_7745c5c3_Var2 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = section("Loading spinner", loadingRow("spinner")).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Loading spinner", `<div class="flex items-center gap-2">
+	@daisyui.Loading("spinner", "xs", "", "")
+	@daisyui.Loading("spinner", "sm", "", "")
+	// ... one per size
+</div>`, loadingRow("spinner")).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Loading dots", loadingRow("dots")).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Loading dots", `<div class="flex items-center gap-2">
+	@daisyui.Loading("dots", "xs", "", "")
+	@daisyui.Loading("dots", "sm", "", "")
+	// ... one per size
+</div>`, loadingRow("dots")).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Loading ring", loadingRow("ring")).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Loading ring", `<div class="flex items-center gap-2">
+	@daisyui.Loading("ring", "xs", "", "")
+	@daisyui.Loading("ring", "sm", "", "")
+	// ... one per size
+</div>`, loadingRow("ring")).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Loading ball", loadingRow("ball")).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Loading ball", `<div class="flex items-center gap-2">
+	@daisyui.Loading("ball", "xs", "", "")
+	@daisyui.Loading("ball", "sm", "", "")
+	// ... one per size
+</div>`, loadingRow("ball")).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Loading bars", loadingRow("bars")).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Loading bars", `<div class="flex items-center gap-2">
+	@daisyui.Loading("bars", "xs", "", "")
+	@daisyui.Loading("bars", "sm", "", "")
+	// ... one per size
+</div>`, loadingRow("bars")).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Loading infinity", loadingRow("infinity")).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Loading infinity", `<div class="flex items-center gap-2">
+	@daisyui.Loading("infinity", "xs", "", "")
+	@daisyui.Loading("infinity", "sm", "", "")
+	// ... one per size
+</div>`, loadingRow("infinity")).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Loading with colors", templ.Raw(`
+		templ_7745c5c3_Err = section("Loading with colors", `<span class="loading loading-spinner text-primary"></span>
+<span class="loading loading-spinner text-secondary"></span>
+<span class="loading loading-spinner text-accent"></span>
+<span class="loading loading-spinner text-neutral"></span>
+<span class="loading loading-spinner text-info"></span>
+<span class="loading loading-spinner text-success"></span>
+<span class="loading loading-spinner text-warning"></span>
+<span class="loading loading-spinner text-error"></span>`, templ.Raw(`
 		<span class="loading loading-spinner text-primary"></span>
 		<span class="loading loading-spinner text-secondary"></span>
 		<span class="loading loading-spinner text-accent"></span>

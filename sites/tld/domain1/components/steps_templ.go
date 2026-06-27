@@ -65,7 +65,13 @@ func stepsBody(r links.LinkResolver) templ.Component {
 			templ_7745c5c3_Var2 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = section("Steps", daisyui.Steps(daisyui.StepsConfig{
+		templ_7745c5c3_Err = section("Steps", `@daisyui.Steps(daisyui.StepsConfig{
+	Items: []daisyui.StepItem{
+		{Label: "Step 1"},
+		{Label: "Step 2"},
+		{Label: "Step 3"},
+	},
+})`, daisyui.Steps(daisyui.StepsConfig{
 			Items: []daisyui.StepItem{
 				{Label: "Step 1"},
 				{Label: "Step 2"},
@@ -75,7 +81,13 @@ func stepsBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Steps with colors", daisyui.Steps(daisyui.StepsConfig{
+		templ_7745c5c3_Err = section("Steps with colors", `@daisyui.Steps(daisyui.StepsConfig{
+	Items: []daisyui.StepItem{
+		{Label: "Step 1", Color: "primary"},
+		{Label: "Step 2", Color: "primary"},
+		{Label: "Step 3", Color: "primary"},
+	},
+})`, daisyui.Steps(daisyui.StepsConfig{
 			Items: []daisyui.StepItem{
 				{Label: "Step 1", Color: "primary"},
 				{Label: "Step 2", Color: "primary"},
@@ -85,7 +97,13 @@ func stepsBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Steps with different colors", daisyui.Steps(daisyui.StepsConfig{
+		templ_7745c5c3_Err = section("Steps with different colors", `@daisyui.Steps(daisyui.StepsConfig{
+	Items: []daisyui.StepItem{
+		{Label: "Registration", Color: "secondary"},
+		{Label: "Payment", Color: "primary"},
+		{Label: "Confirmation", Color: "success"},
+	},
+})`, daisyui.Steps(daisyui.StepsConfig{
 			Items: []daisyui.StepItem{
 				{Label: "Registration", Color: "secondary"},
 				{Label: "Payment", Color: "primary"},
@@ -95,7 +113,13 @@ func stepsBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Steps with data-content (icons via CSS)", daisyui.Steps(daisyui.StepsConfig{
+		templ_7745c5c3_Err = section("Steps with data-content (icons via CSS)", `@daisyui.Steps(daisyui.StepsConfig{
+	Items: []daisyui.StepItem{
+		{Label: "Star", Color: "primary", DataContent: "★"},
+		{Label: "Like", Color: "primary", DataContent: "♥"},
+		{Label: "Heart", Color: "primary", DataContent: "✓"},
+	},
+})`, daisyui.Steps(daisyui.StepsConfig{
 			Items: []daisyui.StepItem{
 				{Label: "Star", Color: "primary", DataContent: "★"},
 				{Label: "Like", Color: "primary", DataContent: "♥"},
@@ -105,7 +129,13 @@ func stepsBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Steps with custom icon", daisyui.Steps(daisyui.StepsConfig{
+		templ_7745c5c3_Err = section("Steps with custom icon", `@daisyui.Steps(daisyui.StepsConfig{
+	Items: []daisyui.StepItem{
+		{Label: "Step 1", Color: "neutral", Icon: stepsCheckIcon()},
+		{Label: "Step 2", Color: "neutral", Icon: stepsCheckIcon()},
+		{Label: "Step 3", Color: "neutral", Icon: stepsCheckIcon()},
+	},
+})`, daisyui.Steps(daisyui.StepsConfig{
 			Items: []daisyui.StepItem{
 				{Label: "Step 1", Color: "neutral", Icon: stepsCheckIcon()},
 				{Label: "Step 2", Color: "neutral", Icon: stepsCheckIcon()},
@@ -115,7 +145,14 @@ func stepsBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Steps vertical", daisyui.Steps(daisyui.StepsConfig{
+		templ_7745c5c3_Err = section("Steps vertical", `@daisyui.Steps(daisyui.StepsConfig{
+	Direction: "vertical",
+	Items: []daisyui.StepItem{
+		{Label: "Step 1", Color: "primary"},
+		{Label: "Step 2", Color: "primary"},
+		{Label: "Step 3", Color: "primary"},
+	},
+})`, daisyui.Steps(daisyui.StepsConfig{
 			Direction: "vertical",
 			Items: []daisyui.StepItem{
 				{Label: "Step 1", Color: "primary"},
@@ -126,7 +163,15 @@ func stepsBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Steps with responsive direction", daisyui.Steps(daisyui.StepsConfig{
+		templ_7745c5c3_Err = section("Steps with responsive direction", `@daisyui.Steps(daisyui.StepsConfig{
+	Direction: "vertical",
+	Class:     "lg:steps-horizontal",
+	Items: []daisyui.StepItem{
+		{Label: "Step 1", Color: "secondary"},
+		{Label: "Step 2", Color: "secondary"},
+		{Label: "Step 3", Color: "secondary"},
+	},
+})`, daisyui.Steps(daisyui.StepsConfig{
 			Direction: "vertical",
 			Class:     "lg:steps-horizontal",
 			Items: []daisyui.StepItem{

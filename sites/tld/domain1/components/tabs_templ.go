@@ -65,7 +65,13 @@ func tabsBody(r links.LinkResolver) templ.Component {
 			templ_7745c5c3_Var2 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = section("Tabs", daisyui.Tabs(daisyui.TabsConfig{
+		templ_7745c5c3_Err = section("Tabs", `@daisyui.Tabs(daisyui.TabsConfig{
+	Items: []daisyui.TabItem{
+		{Label: "Tab 1", Active: true},
+		{Label: "Tab 2"},
+		{Label: "Tab 3"},
+	},
+})`, daisyui.Tabs(daisyui.TabsConfig{
 			Items: []daisyui.TabItem{
 				{Label: "Tab 1", Active: true},
 				{Label: "Tab 2"},
@@ -75,7 +81,14 @@ func tabsBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Tabs with box style", daisyui.Tabs(daisyui.TabsConfig{
+		templ_7745c5c3_Err = section("Tabs with box style", `@daisyui.Tabs(daisyui.TabsConfig{
+	Style: "box",
+	Items: []daisyui.TabItem{
+		{Label: "Tab 1", Active: true},
+		{Label: "Tab 2"},
+		{Label: "Tab 3"},
+	},
+})`, daisyui.Tabs(daisyui.TabsConfig{
 			Style: "box",
 			Items: []daisyui.TabItem{
 				{Label: "Tab 1", Active: true},
@@ -86,7 +99,14 @@ func tabsBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Tabs with border style", daisyui.Tabs(daisyui.TabsConfig{
+		templ_7745c5c3_Err = section("Tabs with border style", `@daisyui.Tabs(daisyui.TabsConfig{
+	Style: "border",
+	Items: []daisyui.TabItem{
+		{Label: "Tab 1", Active: true},
+		{Label: "Tab 2"},
+		{Label: "Tab 3"},
+	},
+})`, daisyui.Tabs(daisyui.TabsConfig{
 			Style: "border",
 			Items: []daisyui.TabItem{
 				{Label: "Tab 1", Active: true},
@@ -97,7 +117,14 @@ func tabsBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Tabs with lift style", daisyui.Tabs(daisyui.TabsConfig{
+		templ_7745c5c3_Err = section("Tabs with lift style", `@daisyui.Tabs(daisyui.TabsConfig{
+	Style: "lift",
+	Items: []daisyui.TabItem{
+		{Label: "Tab 1", Active: true},
+		{Label: "Tab 2"},
+		{Label: "Tab 3"},
+	},
+})`, daisyui.Tabs(daisyui.TabsConfig{
 			Style: "lift",
 			Items: []daisyui.TabItem{
 				{Label: "Tab 1", Active: true},
@@ -108,7 +135,14 @@ func tabsBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Tabs with hrefs", daisyui.Tabs(daisyui.TabsConfig{
+		templ_7745c5c3_Err = section("Tabs with hrefs", `@daisyui.Tabs(daisyui.TabsConfig{
+	Items: []daisyui.TabItem{
+		{Label: "Home", Href: "/", Active: true},
+		{Label: "About", Href: "/about"},
+		{Label: "Contact", Href: "/contact"},
+	},
+	Resolver: r,
+})`, daisyui.Tabs(daisyui.TabsConfig{
 			Items: []daisyui.TabItem{
 				{Label: "Home", Href: "/", Active: true},
 				{Label: "About", Href: "/about"},
@@ -119,7 +153,14 @@ func tabsBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Tabs with disabled", daisyui.Tabs(daisyui.TabsConfig{
+		templ_7745c5c3_Err = section("Tabs with disabled", `@daisyui.Tabs(daisyui.TabsConfig{
+	Items: []daisyui.TabItem{
+		{Label: "Active", Href: "#", Active: true},
+		{Label: "Disabled", Disabled: true},
+		{Label: "Enabled", Href: "#"},
+	},
+	Resolver: r,
+})`, daisyui.Tabs(daisyui.TabsConfig{
 			Items: []daisyui.TabItem{
 				{Label: "Active", Href: "#", Active: true},
 				{Label: "Disabled", Disabled: true},
@@ -130,11 +171,27 @@ func tabsBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Tabs sizes", tabsSizes(r)).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Tabs sizes", `@daisyui.Tabs(daisyui.TabsConfig{
+	Size: "xs",
+	Items: []daisyui.TabItem{{Label: "XS", Active: true}, {Label: "Tab"}, {Label: "Tab"}},
+})
+@daisyui.Tabs(daisyui.TabsConfig{
+	Size: "sm",
+	Items: []daisyui.TabItem{{Label: "SM", Active: true}, {Label: "Tab"}, {Label: "Tab"}},
+})
+// ... one per size (lg, xl)`, tabsSizes(r)).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Tabs bottom placement", daisyui.Tabs(daisyui.TabsConfig{
+		templ_7745c5c3_Err = section("Tabs bottom placement", `@daisyui.Tabs(daisyui.TabsConfig{
+	Placement: "bottom",
+	Style:     "box",
+	Items: []daisyui.TabItem{
+		{Label: "Tab 1", Active: true},
+		{Label: "Tab 2"},
+		{Label: "Tab 3"},
+	},
+})`, daisyui.Tabs(daisyui.TabsConfig{
 			Placement: "bottom",
 			Style:     "box",
 			Items: []daisyui.TabItem{
@@ -146,7 +203,15 @@ func tabsBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Tabs with icons", daisyui.Tabs(daisyui.TabsConfig{
+		templ_7745c5c3_Err = section("Tabs with icons", `@daisyui.Tabs(daisyui.TabsConfig{
+	Style: "box",
+	Items: []daisyui.TabItem{
+		{Label: "Home", Href: "#", Icon: tabsHomeIcon(), Active: true},
+		{Label: "Search", Href: "#", Icon: tabsSearchIcon()},
+		{Label: "Settings", Href: "#", Icon: tabsSettingsIcon()},
+	},
+	Resolver: r,
+})`, daisyui.Tabs(daisyui.TabsConfig{
 			Style: "box",
 			Items: []daisyui.TabItem{
 				{Label: "Home", Href: "#", Icon: tabsHomeIcon(), Active: true},

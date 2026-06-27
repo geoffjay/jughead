@@ -10,7 +10,14 @@ templ BreadcrumbsPage(r links.LinkResolver) {
 }
 
 templ breadcrumbsBody(r links.LinkResolver) {
-	@section("Breadcrumbs", daisyui.Breadcrumbs(daisyui.BreadcrumbsConfig{
+	@section("Breadcrumbs", `@daisyui.Breadcrumbs(daisyui.BreadcrumbsConfig{
+	Items: []daisyui.BreadcrumbItem{
+		{Label: "Home", Href: "/"},
+		{Label: "Documents", Href: "/documents"},
+		{Label: "Add Document"},
+	},
+	Resolver: r,
+})`, daisyui.Breadcrumbs(daisyui.BreadcrumbsConfig{
 		Items: []daisyui.BreadcrumbItem{
 			{Label: "Home", Href: "/"},
 			{Label: "Documents", Href: "/documents"},
@@ -18,7 +25,14 @@ templ breadcrumbsBody(r links.LinkResolver) {
 		},
 		Resolver: r,
 	}))
-	@section("Breadcrumbs with icons", daisyui.Breadcrumbs(daisyui.BreadcrumbsConfig{
+	@section("Breadcrumbs with icons", `@daisyui.Breadcrumbs(daisyui.BreadcrumbsConfig{
+	Items: []daisyui.BreadcrumbItem{
+		{Label: "Home", Href: "/", Icon: homeIcon()},
+		{Label: "Documents", Href: "/documents", Icon: docIcon()},
+		{Label: "Add Document"},
+	},
+	Resolver: r,
+})`, daisyui.Breadcrumbs(daisyui.BreadcrumbsConfig{
 		Items: []daisyui.BreadcrumbItem{
 			{
 				Label: "Home",
@@ -34,7 +48,16 @@ templ breadcrumbsBody(r links.LinkResolver) {
 		},
 		Resolver: r,
 	}))
-	@section("Breadcrumbs with max-w-xs", daisyui.Breadcrumbs(daisyui.BreadcrumbsConfig{
+	@section("Breadcrumbs with max-w-xs", `@daisyui.Breadcrumbs(daisyui.BreadcrumbsConfig{
+	Items: []daisyui.BreadcrumbItem{
+		{Label: "Home", Href: "/"},
+		{Label: "Documents", Href: "/documents"},
+		{Label: "Very long breadcrumb item that wraps on small screens", Href: "/documents/long"},
+		{Label: "Add Document"},
+	},
+	Class:    "max-w-xs",
+	Resolver: r,
+})`, daisyui.Breadcrumbs(daisyui.BreadcrumbsConfig{
 		Items: []daisyui.BreadcrumbItem{
 			{Label: "Home", Href: "/"},
 			{Label: "Documents", Href: "/documents"},
@@ -44,7 +67,15 @@ templ breadcrumbsBody(r links.LinkResolver) {
 		Class:    "max-w-xs",
 		Resolver: r,
 	}))
-	@section("Breadcrumbs with text-sm", daisyui.Breadcrumbs(daisyui.BreadcrumbsConfig{
+	@section("Breadcrumbs with text-sm", `@daisyui.Breadcrumbs(daisyui.BreadcrumbsConfig{
+	Items: []daisyui.BreadcrumbItem{
+		{Label: "Home", Href: "/"},
+		{Label: "Documents", Href: "/documents"},
+		{Label: "Add Document"},
+	},
+	Class:    "text-sm",
+	Resolver: r,
+})`, daisyui.Breadcrumbs(daisyui.BreadcrumbsConfig{
 		Items: []daisyui.BreadcrumbItem{
 			{Label: "Home", Href: "/"},
 			{Label: "Documents", Href: "/documents"},

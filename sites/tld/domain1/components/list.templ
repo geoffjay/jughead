@@ -10,7 +10,14 @@ templ ListPage(r links.LinkResolver) {
 }
 
 templ listBody(r links.LinkResolver) {
-	@section("List (second column grows - default)", daisyui.List(daisyui.ListConfig{
+	@section("List (second column grows - default)", `@daisyui.List(daisyui.ListConfig{
+	Class:  "bg-base-100 rounded-box shadow-md",
+	Header: listHeader(),
+	Items: []daisyui.ListItem{
+		listSongRow(".../1@94.webp", "Dio Lupa", "Remaining Reason"),
+		// ... one row per song
+	},
+})`, daisyui.List(daisyui.ListConfig{
 		Class:  "bg-base-100 rounded-box shadow-md",
 		Header: listHeader(),
 		Items: []daisyui.ListItem{
@@ -19,7 +26,14 @@ templ listBody(r links.LinkResolver) {
 			listSongRow("https://img.daisyui.com/images/profile/demo/3@94.webp", "Sabrino Gardener", "Cappuccino"),
 		},
 	}))
-	@section("List (third column grows)", daisyui.List(daisyui.ListConfig{
+	@section("List (third column grows)", `@daisyui.List(daisyui.ListConfig{
+	Class:  "bg-base-100 rounded-box shadow-md",
+	Header: listHeader(),
+	Items: []daisyui.ListItem{
+		listNumberedRow("01", ".../1@94.webp", "Dio Lupa", "Remaining Reason"),
+		// ... one numbered row per song
+	},
+})`, daisyui.List(daisyui.ListConfig{
 		Class:  "bg-base-100 rounded-box shadow-md",
 		Header: listHeader(),
 		Items: []daisyui.ListItem{
@@ -28,7 +42,14 @@ templ listBody(r links.LinkResolver) {
 			listNumberedRow("03", "https://img.daisyui.com/images/profile/demo/3@94.webp", "Sabrino Gardener", "Cappuccino"),
 		},
 	}))
-	@section("List (third column wraps to next row)", daisyui.List(daisyui.ListConfig{
+	@section("List (third column wraps to next row)", `@daisyui.List(daisyui.ListConfig{
+	Class:  "bg-base-100 rounded-box shadow-md",
+	Header: listHeader(),
+	Items: []daisyui.ListItem{
+		listWrapRow(".../1@94.webp", "Dio Lupa", "Remaining Reason", "Long description that wraps to the next row..."),
+		// ... one wrapping row per song
+	},
+})`, daisyui.List(daisyui.ListConfig{
 		Class:  "bg-base-100 rounded-box shadow-md",
 		Header: listHeader(),
 		Items: []daisyui.ListItem{

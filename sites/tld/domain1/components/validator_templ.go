@@ -65,68 +65,96 @@ func validatorBody(r links.LinkResolver) templ.Component {
 			templ_7745c5c3_Var2 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = section("Validator", templ.Raw(`
+		templ_7745c5c3_Err = section("Validator", `<form class="w-full max-w-xs">
+	<input class="input validator" type="email" required placeholder="mail@site.com" autocomplete="false" />
+</form>`, templ.Raw(`
 		<form class="w-full max-w-xs">
 			<input class="input validator" type="email" required placeholder="mail@site.com" autocomplete="false" />
 		</form>`)).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Validator and validator-hint", daisyui.Validator(daisyui.ValidatorConfig{
+		templ_7745c5c3_Err = section("Validator and validator-hint", `@daisyui.Validator(daisyui.ValidatorConfig{
+	Hint: "Enter valid email address",
+}, templ.Raw("<input class=\"input validator\" type=\"email\" required placeholder=\"mail@site.com\" />"))`, daisyui.Validator(daisyui.ValidatorConfig{
 			Hint: "Enter valid email address",
 		}, templ.Raw(`<input class="input validator" type="email" required placeholder="mail@site.com" />`))).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Password requirement validator", daisyui.Validator(daisyui.ValidatorConfig{
+		templ_7745c5c3_Err = section("Password requirement validator", `@daisyui.Validator(daisyui.ValidatorConfig{
+	HintChildren: templ.Raw("Must be more than 8 characters, including<br/>At least one number<br/>At least one lowercase letter<br/>At least one uppercase letter"),
+}, templ.Raw("<input type=\"password\" class=\"input validator\" required placeholder=\"Password\" minlength=\"8\" pattern=\"(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}\" title=\"...\" />"))`, daisyui.Validator(daisyui.ValidatorConfig{
 			HintChildren: templ.Raw(`Must be more than 8 characters, including<br/>At least one number<br/>At least one lowercase letter<br/>At least one uppercase letter`),
 		}, templ.Raw(`<input type="password" class="input validator" required placeholder="Password" minlength="8" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must be more than 8 characters, including number, lowercase letter, uppercase letter" />`))).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Username requirement validator", daisyui.Validator(daisyui.ValidatorConfig{
+		templ_7745c5c3_Err = section("Username requirement validator", `@daisyui.Validator(daisyui.ValidatorConfig{
+	HintChildren: templ.Raw("Must be 3 to 30 characters<br/>containing only letters, numbers or dash"),
+}, templ.Raw("<input type=\"text\" class=\"input validator\" required placeholder=\"Username\" pattern=\"[A-Za-z][A-Za-z0-9\\-]*\" minlength=\"3\" maxlength=\"30\" title=\"Only letters, numbers or dash\" />"))`, daisyui.Validator(daisyui.ValidatorConfig{
 			HintChildren: templ.Raw(`Must be 3 to 30 characters<br/>containing only letters, numbers or dash`),
 		}, templ.Raw(`<input type="text" class="input validator" required placeholder="Username" pattern="[A-Za-z][A-Za-z0-9\-]*" minlength="3" maxlength="30" title="Only letters, numbers or dash" />`))).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Phone Number requirement validator", daisyui.Validator(daisyui.ValidatorConfig{
+		templ_7745c5c3_Err = section("Phone Number requirement validator", `@daisyui.Validator(daisyui.ValidatorConfig{
+	Hint: "Must be 10 digits",
+}, templ.Raw("<input type=\"tel\" class=\"input validator tabular-nums\" required placeholder=\"Phone\" pattern=\"[0-9]*\" minlength=\"10\" maxlength=\"10\" title=\"Must be 10 digits\" />"))`, daisyui.Validator(daisyui.ValidatorConfig{
 			Hint: "Must be 10 digits",
 		}, templ.Raw(`<input type="tel" class="input validator tabular-nums" required placeholder="Phone" pattern="[0-9]*" minlength="10" maxlength="10" title="Must be 10 digits" />`))).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("URL input requirement validator", daisyui.Validator(daisyui.ValidatorConfig{
+		templ_7745c5c3_Err = section("URL input requirement validator", `@daisyui.Validator(daisyui.ValidatorConfig{
+	Hint: "Must be valid URL",
+}, templ.Raw("<input type=\"url\" class=\"input validator\" required placeholder=\"https://\" value=\"https://\" pattern=\"...\" title=\"Must be valid URL\" />"))`, daisyui.Validator(daisyui.ValidatorConfig{
 			Hint: "Must be valid URL",
 		}, templ.Raw(`<input type="url" class="input validator" required placeholder="https://" value="https://" pattern="^(https?://)?([a-zA-Z0-9]([a-zA-Z0-9\-].*[a-zA-Z0-9])?\.)+[a-zA-Z].*$" title="Must be valid URL" />`))).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Date input requirement validator", daisyui.Validator(daisyui.ValidatorConfig{
+		templ_7745c5c3_Err = section("Date input requirement validator", `@daisyui.Validator(daisyui.ValidatorConfig{
+	Hint: "Must be 2025",
+}, templ.Raw("<input type=\"date\" class=\"input validator\" required placeholder=\"Pick a date in 2025\" min=\"2025-01-01\" max=\"2025-12-31\" title=\"Must be valid URL\" />"))`, daisyui.Validator(daisyui.ValidatorConfig{
 			Hint: "Must be 2025",
 		}, templ.Raw(`<input type="date" class="input validator" required placeholder="Pick a date in 2025" min="2025-01-01" max="2025-12-31" title="Must be valid URL" />`))).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Number input requirement validator", daisyui.Validator(daisyui.ValidatorConfig{
+		templ_7745c5c3_Err = section("Number input requirement validator", `@daisyui.Validator(daisyui.ValidatorConfig{
+	Hint: "Must be between be 1 to 10",
+}, templ.Raw("<input type=\"number\" class=\"input validator\" required placeholder=\"Type a number between 1 to 10\" min=\"1\" max=\"10\" title=\"Must be between be 1 to 10\" />"))`, daisyui.Validator(daisyui.ValidatorConfig{
 			Hint: "Must be between be 1 to 10",
 		}, templ.Raw(`<input type="number" class="input validator" required placeholder="Type a number between 1 to 10" min="1" max="10" title="Must be between be 1 to 10" />`))).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Checkbox requirement validator", daisyui.Validator(daisyui.ValidatorConfig{
+		templ_7745c5c3_Err = section("Checkbox requirement validator", `@daisyui.Validator(daisyui.ValidatorConfig{
+	Hint: "Required",
+}, templ.Raw("<input type=\"checkbox\" class=\"checkbox validator\" required title=\"Required\" />"))`, daisyui.Validator(daisyui.ValidatorConfig{
 			Hint: "Required",
 		}, templ.Raw(`<input type="checkbox" class="checkbox validator" required title="Required" />`))).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Toggle requirement validator", daisyui.Validator(daisyui.ValidatorConfig{
+		templ_7745c5c3_Err = section("Toggle requirement validator", `@daisyui.Validator(daisyui.ValidatorConfig{
+	Hint: "Required",
+}, templ.Raw("<input type=\"checkbox\" class=\"toggle validator\" required title=\"Required\" />"))`, daisyui.Validator(daisyui.ValidatorConfig{
 			Hint: "Required",
 		}, templ.Raw(`<input type="checkbox" class="toggle validator" required title="Required" />`))).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Select requirement validator", templ.Raw(`
+		templ_7745c5c3_Err = section("Select requirement validator", `<form autocomplete="off" class="w-full max-w-xs" onsubmit="event.preventDefault()">
+	<select class="select validator" required>
+		<option disabled selected value="">Choose:</option>
+		<option>Tabs</option>
+		<option>Spaces</option>
+	</select>
+	<p class="validator-hint">Required</p>
+	<button class="btn" type="submit">Submit form</button>
+</form>`, templ.Raw(`
 		<form autocomplete="off" class="w-full max-w-xs" onsubmit="event.preventDefault()">
 			<select class="select validator" required>
 				<option disabled selected value="">Choose:</option>
@@ -139,7 +167,22 @@ func validatorBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Form requirement validator", templ.Raw(`
+		templ_7745c5c3_Err = section("Form requirement validator", `<form autocomplete="off" class="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4" onsubmit="event.preventDefault()">
+	<fieldset class="fieldset">
+		<label class="label">Email</label>
+		<input type="email" class="input validator" placeholder="Email" required />
+		<p class="validator-hint hidden">Required</p>
+	</fieldset>
+
+	<label class="fieldset">
+		<span class="label">Password</span>
+		<input type="password" class="input validator" placeholder="Password" required />
+		<span class="validator-hint hidden">Required</span>
+	</label>
+
+	<button class="btn btn-neutral mt-4" type="submit">Login</button>
+	<button class="btn btn-ghost mt-1" type="reset">Reset</button>
+</form>`, templ.Raw(`
 		<form autocomplete="off" class="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4" onsubmit="event.preventDefault()">
 			<fieldset class="fieldset">
 				<label class="label">Email</label>

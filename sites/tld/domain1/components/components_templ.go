@@ -11,6 +11,8 @@ import (
 )
 
 import (
+	"strings"
+
 	"github.com/geoffjay/jughead/sites/links"
 	"github.com/geoffjay/jughead/sites/tld/domain1/layout"
 	"github.com/geoffjay/jughead/templates/components/daisyui"
@@ -60,7 +62,7 @@ func pageShell(r links.LinkResolver, title, description string, body templ.Compo
 		var templ_7745c5c3_Var2 string
 		templ_7745c5c3_Var2, templ_7745c5c3_Err = templ.JoinStringErrs(title)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/components/components.templ`, Line: 18, Col: 54}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/components/components.templ`, Line: 20, Col: 54}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var2))
 		if templ_7745c5c3_Err != nil {
@@ -73,7 +75,7 @@ func pageShell(r links.LinkResolver, title, description string, body templ.Compo
 		var templ_7745c5c3_Var3 string
 		templ_7745c5c3_Var3, templ_7745c5c3_Err = templ.JoinStringErrs(description)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/components/components.templ`, Line: 19, Col: 48}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/components/components.templ`, Line: 21, Col: 48}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var3))
 		if templ_7745c5c3_Err != nil {
@@ -99,7 +101,12 @@ func pageShell(r links.LinkResolver, title, description string, body templ.Compo
 	})
 }
 
-func section(title string, body templ.Component) templ.Component {
+// section renders a single component example. It shows a daisyUI tab strip
+// with two tabs: "preview" (the live rendered component) and "templ" (the
+// templ source used to produce the preview). The tabs are pure-CSS radio
+// tabs, so switching between them requires no JavaScript. code is the templ
+// snippet shown verbatim under the "templ" tab.
+func section(title, code string, body templ.Component) templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -127,13 +134,26 @@ func section(title string, body templ.Component) templ.Component {
 		var templ_7745c5c3_Var5 string
 		templ_7745c5c3_Var5, templ_7745c5c3_Err = templ.JoinStringErrs(title)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/components/components.templ`, Line: 28, Col: 44}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/components/components.templ`, Line: 35, Col: 44}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var5))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "</h2>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "</h2><div role=\"tablist\" class=\"tabs tabs-lift\"><input type=\"radio\" name=\"")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		var templ_7745c5c3_Var6 string
+		templ_7745c5c3_Var6, templ_7745c5c3_Err = templ.ResolveAttributeValue(tabGroup(title))
+		if templ_7745c5c3_Err != nil {
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/components/components.templ`, Line: 39, Col: 26}
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var6)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 8, "\" role=\"tab\" class=\"tab\" aria-label=\"preview\" checked><div role=\"tabpanel\" class=\"tab-content border-base-300 bg-base-100 p-4\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -141,12 +161,55 @@ func section(title string, body templ.Component) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 8, "</section>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 9, "</div><input type=\"radio\" name=\"")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		var templ_7745c5c3_Var7 string
+		templ_7745c5c3_Var7, templ_7745c5c3_Err = templ.ResolveAttributeValue(tabGroup(title))
+		if templ_7745c5c3_Err != nil {
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/components/components.templ`, Line: 50, Col: 26}
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var7)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 10, "\" role=\"tab\" class=\"tab\" aria-label=\"templ\"><div role=\"tabpanel\" class=\"tab-content border-base-300 bg-base-100\"><pre class=\"overflow-x-auto p-4 text-sm\"><code>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		var templ_7745c5c3_Var8 string
+		templ_7745c5c3_Var8, templ_7745c5c3_Err = templ.JoinStringErrs(strings.TrimSpace(code))
+		if templ_7745c5c3_Err != nil {
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/components/components.templ`, Line: 56, Col: 76}
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var8))
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 11, "</code></pre></div></div></section>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		return nil
 	})
+}
+
+// tabGroup derives a radio group name from a section title so that each
+// section's preview/templ tabs toggle independently of every other section
+// on the page. Titles are unique within a page, which keeps the names unique.
+func tabGroup(title string) string {
+	var b strings.Builder
+	b.WriteString("tab-")
+	for _, r := range strings.ToLower(title) {
+		switch {
+		case r >= 'a' && r <= 'z', r >= '0' && r <= '9':
+			b.WriteRune(r)
+		default:
+			b.WriteByte('-')
+		}
+	}
+	return b.String()
 }
 
 var _ = templruntime.GeneratedTemplate

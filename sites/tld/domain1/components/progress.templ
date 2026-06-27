@@ -10,7 +10,13 @@ templ ProgressPage(r links.LinkResolver) {
 }
 
 templ progressBody(r links.LinkResolver) {
-	@section("Progress", templ.Raw(`
+	@section("Progress", `<div class="flex flex-col gap-2 items-center">
+	<progress class="progress w-56" value="0" max="100"></progress>
+	<progress class="progress w-56" value="10" max="100"></progress>
+	<progress class="progress w-56" value="40" max="100"></progress>
+	<progress class="progress w-56" value="70" max="100"></progress>
+	<progress class="progress w-56" value="100" max="100"></progress>
+</div>`, templ.Raw(`
 		<div class="flex flex-col gap-2 items-center">
 			<progress class="progress w-56" value="0" max="100"></progress>
 			<progress class="progress w-56" value="10" max="100"></progress>
@@ -18,15 +24,55 @@ templ progressBody(r links.LinkResolver) {
 			<progress class="progress w-56" value="70" max="100"></progress>
 			<progress class="progress w-56" value="100" max="100"></progress>
 		</div>`))
-	@section("Primary color", progressColorRow("primary"))
-	@section("Secondary color", progressColorRow("secondary"))
-	@section("Accent color", progressColorRow("accent"))
-	@section("Neutral color", progressColorRow("neutral"))
-	@section("Info color", progressColorRow("info"))
-	@section("Success color", progressColorRow("success"))
-	@section("Warning color", progressColorRow("warning"))
-	@section("Error color", progressColorRow("error"))
-	@section("Indeterminate (without value)", daisyui.Progress(daisyui.ProgressConfig{Class: "w-56"}))
+	@section("Primary color", `<div class="flex flex-col gap-2 items-center">
+	@daisyui.Progress(daisyui.ProgressConfig{Value: "0", Max: "100", Color: "primary", Class: "w-56"})
+	@daisyui.Progress(daisyui.ProgressConfig{Value: "40", Max: "100", Color: "primary", Class: "w-56"})
+	@daisyui.Progress(daisyui.ProgressConfig{Value: "100", Max: "100", Color: "primary", Class: "w-56"})
+	// ... one per value
+</div>`, progressColorRow("primary"))
+	@section("Secondary color", `<div class="flex flex-col gap-2 items-center">
+	@daisyui.Progress(daisyui.ProgressConfig{Value: "0", Max: "100", Color: "secondary", Class: "w-56"})
+	@daisyui.Progress(daisyui.ProgressConfig{Value: "40", Max: "100", Color: "secondary", Class: "w-56"})
+	@daisyui.Progress(daisyui.ProgressConfig{Value: "100", Max: "100", Color: "secondary", Class: "w-56"})
+	// ... one per value
+</div>`, progressColorRow("secondary"))
+	@section("Accent color", `<div class="flex flex-col gap-2 items-center">
+	@daisyui.Progress(daisyui.ProgressConfig{Value: "0", Max: "100", Color: "accent", Class: "w-56"})
+	@daisyui.Progress(daisyui.ProgressConfig{Value: "40", Max: "100", Color: "accent", Class: "w-56"})
+	@daisyui.Progress(daisyui.ProgressConfig{Value: "100", Max: "100", Color: "accent", Class: "w-56"})
+	// ... one per value
+</div>`, progressColorRow("accent"))
+	@section("Neutral color", `<div class="flex flex-col gap-2 items-center">
+	@daisyui.Progress(daisyui.ProgressConfig{Value: "0", Max: "100", Color: "neutral", Class: "w-56"})
+	@daisyui.Progress(daisyui.ProgressConfig{Value: "40", Max: "100", Color: "neutral", Class: "w-56"})
+	@daisyui.Progress(daisyui.ProgressConfig{Value: "100", Max: "100", Color: "neutral", Class: "w-56"})
+	// ... one per value
+</div>`, progressColorRow("neutral"))
+	@section("Info color", `<div class="flex flex-col gap-2 items-center">
+	@daisyui.Progress(daisyui.ProgressConfig{Value: "0", Max: "100", Color: "info", Class: "w-56"})
+	@daisyui.Progress(daisyui.ProgressConfig{Value: "40", Max: "100", Color: "info", Class: "w-56"})
+	@daisyui.Progress(daisyui.ProgressConfig{Value: "100", Max: "100", Color: "info", Class: "w-56"})
+	// ... one per value
+</div>`, progressColorRow("info"))
+	@section("Success color", `<div class="flex flex-col gap-2 items-center">
+	@daisyui.Progress(daisyui.ProgressConfig{Value: "0", Max: "100", Color: "success", Class: "w-56"})
+	@daisyui.Progress(daisyui.ProgressConfig{Value: "40", Max: "100", Color: "success", Class: "w-56"})
+	@daisyui.Progress(daisyui.ProgressConfig{Value: "100", Max: "100", Color: "success", Class: "w-56"})
+	// ... one per value
+</div>`, progressColorRow("success"))
+	@section("Warning color", `<div class="flex flex-col gap-2 items-center">
+	@daisyui.Progress(daisyui.ProgressConfig{Value: "0", Max: "100", Color: "warning", Class: "w-56"})
+	@daisyui.Progress(daisyui.ProgressConfig{Value: "40", Max: "100", Color: "warning", Class: "w-56"})
+	@daisyui.Progress(daisyui.ProgressConfig{Value: "100", Max: "100", Color: "warning", Class: "w-56"})
+	// ... one per value
+</div>`, progressColorRow("warning"))
+	@section("Error color", `<div class="flex flex-col gap-2 items-center">
+	@daisyui.Progress(daisyui.ProgressConfig{Value: "0", Max: "100", Color: "error", Class: "w-56"})
+	@daisyui.Progress(daisyui.ProgressConfig{Value: "40", Max: "100", Color: "error", Class: "w-56"})
+	@daisyui.Progress(daisyui.ProgressConfig{Value: "100", Max: "100", Color: "error", Class: "w-56"})
+	// ... one per value
+</div>`, progressColorRow("error"))
+	@section("Indeterminate (without value)", `@daisyui.Progress(daisyui.ProgressConfig{Class: "w-56"})`, daisyui.Progress(daisyui.ProgressConfig{Class: "w-56"}))
 }
 
 templ progressColorRow(color string) {

@@ -10,20 +10,40 @@ templ TextareaPage(r links.LinkResolver) {
 }
 
 templ textareaBody(r links.LinkResolver) {
-	@section("Textarea", daisyui.Textarea(daisyui.TextareaConfig{Placeholder: "Bio"}))
-	@section("Ghost (no background)", daisyui.Textarea(daisyui.TextareaConfig{
+	@section("Textarea", `@daisyui.Textarea(daisyui.TextareaConfig{Placeholder: "Bio"})`, daisyui.Textarea(daisyui.TextareaConfig{Placeholder: "Bio"}))
+	@section("Ghost (no background)", `@daisyui.Textarea(daisyui.TextareaConfig{
+	Placeholder: "Bio",
+	Style:       "ghost",
+})`, daisyui.Textarea(daisyui.TextareaConfig{
 		Placeholder: "Bio",
 		Style:       "ghost",
 	}))
-	@section("With form control and labels", daisyui.Fieldset(daisyui.FieldsetConfig{
+	@section("With form control and labels", `@daisyui.Fieldset(daisyui.FieldsetConfig{
+	Legend: "Your bio",
+	Class:  "w-xs",
+}, templ.Raw(...)) {
+	<textarea class="textarea h-24" placeholder="Bio"></textarea>
+	<div class="label">Optional</div>
+}`, daisyui.Fieldset(daisyui.FieldsetConfig{
 		Legend: "Your bio",
 		Class:  "w-xs",
 	}, templ.Raw(`
 		<textarea class="textarea h-24" placeholder="Bio"></textarea>
 		<div class="label">Optional</div>`)))
-	@section("Textarea colors", textareaColorRow())
-	@section("Sizes", textareaSizeRow())
-	@section("Disabled", daisyui.Textarea(daisyui.TextareaConfig{
+	@section("Textarea colors", `<div class="grid gap-4 w-xs">
+	@daisyui.Textarea(daisyui.TextareaConfig{Placeholder: "Primary", Color: "primary"})
+	@daisyui.Textarea(daisyui.TextareaConfig{Placeholder: "Secondary", Color: "secondary"})
+	// ... one per color
+</div>`, textareaColorRow())
+	@section("Sizes", `<div class="flex flex-col gap-4 w-full items-center">
+	@daisyui.Textarea(daisyui.TextareaConfig{Placeholder: "Xsmall", Size: "xs"})
+	@daisyui.Textarea(daisyui.TextareaConfig{Placeholder: "Small", Size: "sm"})
+	// ... one per size
+</div>`, textareaSizeRow())
+	@section("Disabled", `@daisyui.Textarea(daisyui.TextareaConfig{
+	Placeholder: "Bio",
+	Disabled:    true,
+})`, daisyui.Textarea(daisyui.TextareaConfig{
 		Placeholder: "Bio",
 		Disabled:    true,
 	}))

@@ -15,7 +15,16 @@ templ AccordionPage(r links.LinkResolver) {
 }
 
 templ accordionBody(r links.LinkResolver) {
-	@section("Accordion using radio inputs", daisyui.Accordion(
+	@section("Accordion using radio inputs", `@daisyui.Accordion(
+	"my-accordion-1",
+	[]daisyui.AccordionItem{
+		{Title: "How do I create an account?", Content: "Click the \"Sign Up\" button...", Open: true},
+		{Title: "I forgot my password. What should I do?", Content: "Click on \"Forgot Password\"..."},
+		{Title: "How do I update my profile information?", Content: "Go to \"My Account\" settings..."},
+	},
+	"",
+	false,
+)`, daisyui.Accordion(
 		"my-accordion-1",
 		[]daisyui.AccordionItem{
 			{Title: "How do I create an account?", Content: "Click the \"Sign Up\" button in the top right corner and follow the registration process.", Open: true},
@@ -25,7 +34,16 @@ templ accordionBody(r links.LinkResolver) {
 		"",
 		false,
 	))
-	@section("Accordion with arrow icon", daisyui.Accordion(
+	@section("Accordion with arrow icon", `@daisyui.Accordion(
+	"my-accordion-2",
+	[]daisyui.AccordionItem{
+		{Title: "How do I create an account?", Content: "Click the \"Sign Up\" button...", Open: true},
+		{Title: "I forgot my password. What should I do?", Content: "Click on \"Forgot Password\"..."},
+		{Title: "How do I update my profile information?", Content: "Go to \"My Account\" settings..."},
+	},
+	"arrow",
+	false,
+)`, daisyui.Accordion(
 		"my-accordion-2",
 		[]daisyui.AccordionItem{
 			{Title: "How do I create an account?", Content: "Click the \"Sign Up\" button in the top right corner and follow the registration process.", Open: true},
@@ -35,7 +53,16 @@ templ accordionBody(r links.LinkResolver) {
 		"arrow",
 		false,
 	))
-	@section("Accordion with plus/minus icon", daisyui.Accordion(
+	@section("Accordion with plus/minus icon", `@daisyui.Accordion(
+	"my-accordion-3",
+	[]daisyui.AccordionItem{
+		{Title: "How do I create an account?", Content: "Click the \"Sign Up\" button...", Open: true},
+		{Title: "I forgot my password. What should I do?", Content: "Click on \"Forgot Password\"..."},
+		{Title: "How do I update my profile information?", Content: "Go to \"My Account\" settings..."},
+	},
+	"plus",
+	false,
+)`, daisyui.Accordion(
 		"my-accordion-3",
 		[]daisyui.AccordionItem{
 			{Title: "How do I create an account?", Content: "Click the \"Sign Up\" button in the top right corner and follow the registration process.", Open: true},
@@ -45,7 +72,16 @@ templ accordionBody(r links.LinkResolver) {
 		"plus",
 		false,
 	))
-	@section("Accordion joined", daisyui.Accordion(
+	@section("Accordion joined", `@daisyui.Accordion(
+	"my-accordion-4",
+	[]daisyui.AccordionItem{
+		{Title: "How do I create an account?", Content: "Click the \"Sign Up\" button...", Open: true},
+		{Title: "I forgot my password. What should I do?", Content: "Click on \"Forgot Password\"..."},
+		{Title: "How do I update my profile information?", Content: "Go to \"My Account\" settings..."},
+	},
+	"arrow",
+	true,
+)`, daisyui.Accordion(
 		"my-accordion-4",
 		[]daisyui.AccordionItem{
 			{Title: "How do I create an account?", Content: "Click the \"Sign Up\" button in the top right corner and follow the registration process.", Open: true},

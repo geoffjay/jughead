@@ -151,92 +151,161 @@ func timelineBody(r links.LinkResolver) templ.Component {
 			templ_7745c5c3_Var6 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = section("Timeline with text on both sides and icon", daisyui.Timeline(daisyui.TimelineConfig{
+		templ_7745c5c3_Err = section("Timeline with text on both sides and icon", `@daisyui.Timeline(daisyui.TimelineConfig{
+	Items: timelineBothSidesItems(),
+})
+
+// timelineBothSidesItems returns []daisyui.TimelineItem:
+{Side: daisyui.TimelineSideStart, Icon: timelineCheckIcon(), Content: raw("1984"), Box: false, HRAfter: true}
+{Side: daisyui.TimelineSideStart, Icon: timelineCheckIcon(), Content: raw("1998"), HRBefore: true, HRAfter: true}
+// ... one per year`, daisyui.Timeline(daisyui.TimelineConfig{
 			Items: timelineBothSidesItems(),
 		})).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Timeline with bottom side only", daisyui.Timeline(daisyui.TimelineConfig{
+		templ_7745c5c3_Err = section("Timeline with bottom side only", `@daisyui.Timeline(daisyui.TimelineConfig{
+	Items: timelineBottomOnlyItems(),
+})
+
+// timelineBottomOnlyItems returns one item per event, all on the end side:
+{Side: daisyui.TimelineSideEnd, Icon: timelineCheckIcon(), Content: raw("First Macintosh computer"), Box: true, HRAfter: true}
+// ... one per event`, daisyui.Timeline(daisyui.TimelineConfig{
 			Items: timelineBottomOnlyItems(),
 		})).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Timeline with top side only", daisyui.Timeline(daisyui.TimelineConfig{
+		templ_7745c5c3_Err = section("Timeline with top side only", `@daisyui.Timeline(daisyui.TimelineConfig{
+	Items: timelineTopOnlyItems(),
+})
+
+// timelineTopOnlyItems returns one item per event, all on the start side:
+{Side: daisyui.TimelineSideStart, Icon: timelineCheckIcon(), Content: raw("First Macintosh computer"), Box: true, HRAfter: true}
+// ... one per event`, daisyui.Timeline(daisyui.TimelineConfig{
 			Items: timelineTopOnlyItems(),
 		})).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Timeline with different sides", daisyui.Timeline(daisyui.TimelineConfig{
+		templ_7745c5c3_Err = section("Timeline with different sides", `@daisyui.Timeline(daisyui.TimelineConfig{
+	Items: timelineDifferentSidesItems(),
+})
+
+// timelineDifferentSidesItems alternates start/end:
+{Side: daisyui.TimelineSideStart, Icon: timelineCheckIcon(), Content: raw("First Macintosh computer"), Box: true, HRAfter: true}
+{Side: daisyui.TimelineSideEnd, Icon: timelineCheckIcon(), Content: raw("iMac"), Box: true, HRBefore: true, HRAfter: true}
+// ... alternating sides`, daisyui.Timeline(daisyui.TimelineConfig{
 			Items: timelineDifferentSidesItems(),
 		})).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Timeline with colorful lines", daisyui.Timeline(daisyui.TimelineConfig{
+		templ_7745c5c3_Err = section("Timeline with colorful lines", `@daisyui.Timeline(daisyui.TimelineConfig{
+	Items: timelineColorfulItems(),
+})
+
+// timelineColorfulItems uses HRClass to color the connecting lines:
+{Side: daisyui.TimelineSideStart, Icon: timelineCheckIconPrimary(), Content: raw("First Macintosh computer"), Box: true, HRAfter: true, HRClass: "bg-primary"}
+// ... HRClass: "bg-primary" on colored segments`, daisyui.Timeline(daisyui.TimelineConfig{
 			Items: timelineColorfulItems(),
 		})).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Timeline without icons", daisyui.Timeline(daisyui.TimelineConfig{
+		templ_7745c5c3_Err = section("Timeline without icons", `@daisyui.Timeline(daisyui.TimelineConfig{
+	Items: timelineNoIconsItems(),
+})
+
+// timelineNoIconsItems omits the Icon field:
+{Side: daisyui.TimelineSideStart, Content: raw("First Macintosh computer"), Box: true, HRAfter: true}
+// ... one per event, no Icon`, daisyui.Timeline(daisyui.TimelineConfig{
 			Items: timelineNoIconsItems(),
 		})).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Vertical timeline with text on both sides and icon", daisyui.Timeline(daisyui.TimelineConfig{
+		templ_7745c5c3_Err = section("Vertical timeline with text on both sides and icon", `@daisyui.Timeline(daisyui.TimelineConfig{
+	Direction: "vertical",
+	Items:     timelineBothSidesItems(),
+})`, daisyui.Timeline(daisyui.TimelineConfig{
 			Direction: "vertical",
 			Items:     timelineBothSidesItems(),
 		})).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Vertical timeline with right side only", daisyui.Timeline(daisyui.TimelineConfig{
+		templ_7745c5c3_Err = section("Vertical timeline with right side only", `@daisyui.Timeline(daisyui.TimelineConfig{
+	Direction: "vertical",
+	Items:     timelineBottomOnlyItems(),
+})`, daisyui.Timeline(daisyui.TimelineConfig{
 			Direction: "vertical",
 			Items:     timelineBottomOnlyItems(),
 		})).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Vertical timeline with left side only", daisyui.Timeline(daisyui.TimelineConfig{
+		templ_7745c5c3_Err = section("Vertical timeline with left side only", `@daisyui.Timeline(daisyui.TimelineConfig{
+	Direction: "vertical",
+	Items:     timelineTopOnlyItems(),
+})`, daisyui.Timeline(daisyui.TimelineConfig{
 			Direction: "vertical",
 			Items:     timelineTopOnlyItems(),
 		})).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Vertical timeline with different sides", daisyui.Timeline(daisyui.TimelineConfig{
+		templ_7745c5c3_Err = section("Vertical timeline with different sides", `@daisyui.Timeline(daisyui.TimelineConfig{
+	Direction: "vertical",
+	Items:     timelineDifferentSidesItems(),
+})`, daisyui.Timeline(daisyui.TimelineConfig{
 			Direction: "vertical",
 			Items:     timelineDifferentSidesItems(),
 		})).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Vertical timeline with colorful lines", daisyui.Timeline(daisyui.TimelineConfig{
+		templ_7745c5c3_Err = section("Vertical timeline with colorful lines", `@daisyui.Timeline(daisyui.TimelineConfig{
+	Direction: "vertical",
+	Items:     timelineColorfulItems(),
+})`, daisyui.Timeline(daisyui.TimelineConfig{
 			Direction: "vertical",
 			Items:     timelineColorfulItems(),
 		})).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Vertical timeline without icons", daisyui.Timeline(daisyui.TimelineConfig{
+		templ_7745c5c3_Err = section("Vertical timeline without icons", `@daisyui.Timeline(daisyui.TimelineConfig{
+	Direction: "vertical",
+	Items:     timelineNoIconsItems(),
+})`, daisyui.Timeline(daisyui.TimelineConfig{
 			Direction: "vertical",
 			Items:     timelineNoIconsItems(),
 		})).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Responsive: vertical by default, horizontal on large screen", daisyui.Timeline(daisyui.TimelineConfig{
+		templ_7745c5c3_Err = section("Responsive: vertical by default, horizontal on large screen", `@daisyui.Timeline(daisyui.TimelineConfig{
+	Class: "timeline-vertical lg:timeline-horizontal",
+	Items: timelineBothSidesItems(),
+})`, daisyui.Timeline(daisyui.TimelineConfig{
 			Class: "timeline-vertical lg:timeline-horizontal",
 			Items: timelineBothSidesItems(),
 		})).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Timeline with icon snapped to the start", daisyui.Timeline(daisyui.TimelineConfig{
+		templ_7745c5c3_Err = section("Timeline with icon snapped to the start", `@daisyui.Timeline(daisyui.TimelineConfig{
+	Direction: "vertical",
+	Modifier:  "snap-icon",
+	Class:     "max-md:timeline-compact",
+	Items:     timelineSnapItems(),
+})
+
+// timelineSnapItems uses rich Content via timelineSnapStartContent/timelineSnapEndContent:
+{Side: daisyui.TimelineSideStart, Icon: timelineCheckIcon(), Content: timelineSnapStartContent("1984", "First Macintosh computer", "..."), HRAfter: true}
+{Side: daisyui.TimelineSideEnd, Icon: timelineCheckIcon(), Content: timelineSnapEndContent("1998", "iMac", "..."), HRBefore: true, HRAfter: true}
+// ... alternating sides`, daisyui.Timeline(daisyui.TimelineConfig{
 			Direction: "vertical",
 			Modifier:  "snap-icon",
 			Class:     "max-md:timeline-compact",
@@ -369,7 +438,7 @@ func timelineSnapStartContent(year, title, body string) templ.Component {
 		var templ_7745c5c3_Var8 string
 		templ_7745c5c3_Var8, templ_7745c5c3_Err = templ.JoinStringErrs(year)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/components/timeline.templ`, Line: 175, Col: 39}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/components/timeline.templ`, Line: 244, Col: 39}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var8))
 		if templ_7745c5c3_Err != nil {
@@ -382,7 +451,7 @@ func timelineSnapStartContent(year, title, body string) templ.Component {
 		var templ_7745c5c3_Var9 string
 		templ_7745c5c3_Var9, templ_7745c5c3_Err = templ.JoinStringErrs(title)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/components/timeline.templ`, Line: 176, Col: 41}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/components/timeline.templ`, Line: 245, Col: 41}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var9))
 		if templ_7745c5c3_Err != nil {
@@ -395,7 +464,7 @@ func timelineSnapStartContent(year, title, body string) templ.Component {
 		var templ_7745c5c3_Var10 string
 		templ_7745c5c3_Var10, templ_7745c5c3_Err = templ.JoinStringErrs(body)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/components/timeline.templ`, Line: 177, Col: 8}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/components/timeline.templ`, Line: 246, Col: 8}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var10))
 		if templ_7745c5c3_Err != nil {
@@ -437,7 +506,7 @@ func timelineSnapEndContent(year, title, body string) templ.Component {
 		var templ_7745c5c3_Var12 string
 		templ_7745c5c3_Var12, templ_7745c5c3_Err = templ.JoinStringErrs(year)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/components/timeline.templ`, Line: 183, Col: 39}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/components/timeline.templ`, Line: 252, Col: 39}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var12))
 		if templ_7745c5c3_Err != nil {
@@ -450,7 +519,7 @@ func timelineSnapEndContent(year, title, body string) templ.Component {
 		var templ_7745c5c3_Var13 string
 		templ_7745c5c3_Var13, templ_7745c5c3_Err = templ.JoinStringErrs(title)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/components/timeline.templ`, Line: 184, Col: 41}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/components/timeline.templ`, Line: 253, Col: 41}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var13))
 		if templ_7745c5c3_Err != nil {
@@ -463,7 +532,7 @@ func timelineSnapEndContent(year, title, body string) templ.Component {
 		var templ_7745c5c3_Var14 string
 		templ_7745c5c3_Var14, templ_7745c5c3_Err = templ.JoinStringErrs(body)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/components/timeline.templ`, Line: 185, Col: 8}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/components/timeline.templ`, Line: 254, Col: 8}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var14))
 		if templ_7745c5c3_Err != nil {

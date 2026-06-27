@@ -10,16 +10,27 @@ templ WindowPage(r links.LinkResolver) {
 }
 
 templ windowBody(r links.LinkResolver) {
-	@section("Window mockup with border", daisyui.Window(daisyui.WindowConfig{
+	@section("Window mockup with border", `@daisyui.Window(daisyui.WindowConfig{
+	Bordered: true,
+	Children: windowContent(),
+})`, daisyui.Window(daisyui.WindowConfig{
 		Bordered: true,
 		Children: windowContent(),
 	}))
-	@section("Window mockup with background color", daisyui.Window(daisyui.WindowConfig{
+	@section("Window mockup with background color", `@daisyui.Window(daisyui.WindowConfig{
+	Bordered:   true,
+	Background: true,
+	Children:   windowContent(),
+})`, daisyui.Window(daisyui.WindowConfig{
 		Bordered:   true,
 		Background: true,
 		Children:   windowContent(),
 	}))
-	@section("Window with taller custom content", daisyui.Window(daisyui.WindowConfig{
+	@section("Window with taller custom content", `@daisyui.Window(daisyui.WindowConfig{
+	Bordered:  true,
+	BodyClass: "h-48 p-4",
+	Children:  windowCustomContent(),
+})`, daisyui.Window(daisyui.WindowConfig{
 		Bordered:  true,
 		BodyClass: "h-48 p-4",
 		Children:  windowCustomContent(),

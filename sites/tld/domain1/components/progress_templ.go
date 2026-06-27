@@ -65,7 +65,13 @@ func progressBody(r links.LinkResolver) templ.Component {
 			templ_7745c5c3_Var2 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = section("Progress", templ.Raw(`
+		templ_7745c5c3_Err = section("Progress", `<div class="flex flex-col gap-2 items-center">
+	<progress class="progress w-56" value="0" max="100"></progress>
+	<progress class="progress w-56" value="10" max="100"></progress>
+	<progress class="progress w-56" value="40" max="100"></progress>
+	<progress class="progress w-56" value="70" max="100"></progress>
+	<progress class="progress w-56" value="100" max="100"></progress>
+</div>`, templ.Raw(`
 		<div class="flex flex-col gap-2 items-center">
 			<progress class="progress w-56" value="0" max="100"></progress>
 			<progress class="progress w-56" value="10" max="100"></progress>
@@ -76,39 +82,79 @@ func progressBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Primary color", progressColorRow("primary")).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Primary color", `<div class="flex flex-col gap-2 items-center">
+	@daisyui.Progress(daisyui.ProgressConfig{Value: "0", Max: "100", Color: "primary", Class: "w-56"})
+	@daisyui.Progress(daisyui.ProgressConfig{Value: "40", Max: "100", Color: "primary", Class: "w-56"})
+	@daisyui.Progress(daisyui.ProgressConfig{Value: "100", Max: "100", Color: "primary", Class: "w-56"})
+	// ... one per value
+</div>`, progressColorRow("primary")).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Secondary color", progressColorRow("secondary")).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Secondary color", `<div class="flex flex-col gap-2 items-center">
+	@daisyui.Progress(daisyui.ProgressConfig{Value: "0", Max: "100", Color: "secondary", Class: "w-56"})
+	@daisyui.Progress(daisyui.ProgressConfig{Value: "40", Max: "100", Color: "secondary", Class: "w-56"})
+	@daisyui.Progress(daisyui.ProgressConfig{Value: "100", Max: "100", Color: "secondary", Class: "w-56"})
+	// ... one per value
+</div>`, progressColorRow("secondary")).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Accent color", progressColorRow("accent")).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Accent color", `<div class="flex flex-col gap-2 items-center">
+	@daisyui.Progress(daisyui.ProgressConfig{Value: "0", Max: "100", Color: "accent", Class: "w-56"})
+	@daisyui.Progress(daisyui.ProgressConfig{Value: "40", Max: "100", Color: "accent", Class: "w-56"})
+	@daisyui.Progress(daisyui.ProgressConfig{Value: "100", Max: "100", Color: "accent", Class: "w-56"})
+	// ... one per value
+</div>`, progressColorRow("accent")).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Neutral color", progressColorRow("neutral")).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Neutral color", `<div class="flex flex-col gap-2 items-center">
+	@daisyui.Progress(daisyui.ProgressConfig{Value: "0", Max: "100", Color: "neutral", Class: "w-56"})
+	@daisyui.Progress(daisyui.ProgressConfig{Value: "40", Max: "100", Color: "neutral", Class: "w-56"})
+	@daisyui.Progress(daisyui.ProgressConfig{Value: "100", Max: "100", Color: "neutral", Class: "w-56"})
+	// ... one per value
+</div>`, progressColorRow("neutral")).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Info color", progressColorRow("info")).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Info color", `<div class="flex flex-col gap-2 items-center">
+	@daisyui.Progress(daisyui.ProgressConfig{Value: "0", Max: "100", Color: "info", Class: "w-56"})
+	@daisyui.Progress(daisyui.ProgressConfig{Value: "40", Max: "100", Color: "info", Class: "w-56"})
+	@daisyui.Progress(daisyui.ProgressConfig{Value: "100", Max: "100", Color: "info", Class: "w-56"})
+	// ... one per value
+</div>`, progressColorRow("info")).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Success color", progressColorRow("success")).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Success color", `<div class="flex flex-col gap-2 items-center">
+	@daisyui.Progress(daisyui.ProgressConfig{Value: "0", Max: "100", Color: "success", Class: "w-56"})
+	@daisyui.Progress(daisyui.ProgressConfig{Value: "40", Max: "100", Color: "success", Class: "w-56"})
+	@daisyui.Progress(daisyui.ProgressConfig{Value: "100", Max: "100", Color: "success", Class: "w-56"})
+	// ... one per value
+</div>`, progressColorRow("success")).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Warning color", progressColorRow("warning")).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Warning color", `<div class="flex flex-col gap-2 items-center">
+	@daisyui.Progress(daisyui.ProgressConfig{Value: "0", Max: "100", Color: "warning", Class: "w-56"})
+	@daisyui.Progress(daisyui.ProgressConfig{Value: "40", Max: "100", Color: "warning", Class: "w-56"})
+	@daisyui.Progress(daisyui.ProgressConfig{Value: "100", Max: "100", Color: "warning", Class: "w-56"})
+	// ... one per value
+</div>`, progressColorRow("warning")).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Error color", progressColorRow("error")).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Error color", `<div class="flex flex-col gap-2 items-center">
+	@daisyui.Progress(daisyui.ProgressConfig{Value: "0", Max: "100", Color: "error", Class: "w-56"})
+	@daisyui.Progress(daisyui.ProgressConfig{Value: "40", Max: "100", Color: "error", Class: "w-56"})
+	@daisyui.Progress(daisyui.ProgressConfig{Value: "100", Max: "100", Color: "error", Class: "w-56"})
+	// ... one per value
+</div>`, progressColorRow("error")).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Indeterminate (without value)", daisyui.Progress(daisyui.ProgressConfig{Class: "w-56"})).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section("Indeterminate (without value)", `@daisyui.Progress(daisyui.ProgressConfig{Class: "w-56"})`, daisyui.Progress(daisyui.ProgressConfig{Class: "w-56"})).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

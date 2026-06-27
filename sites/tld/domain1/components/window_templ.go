@@ -65,14 +65,21 @@ func windowBody(r links.LinkResolver) templ.Component {
 			templ_7745c5c3_Var2 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = section("Window mockup with border", daisyui.Window(daisyui.WindowConfig{
+		templ_7745c5c3_Err = section("Window mockup with border", `@daisyui.Window(daisyui.WindowConfig{
+	Bordered: true,
+	Children: windowContent(),
+})`, daisyui.Window(daisyui.WindowConfig{
 			Bordered: true,
 			Children: windowContent(),
 		})).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Window mockup with background color", daisyui.Window(daisyui.WindowConfig{
+		templ_7745c5c3_Err = section("Window mockup with background color", `@daisyui.Window(daisyui.WindowConfig{
+	Bordered:   true,
+	Background: true,
+	Children:   windowContent(),
+})`, daisyui.Window(daisyui.WindowConfig{
 			Bordered:   true,
 			Background: true,
 			Children:   windowContent(),
@@ -80,7 +87,11 @@ func windowBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Window with taller custom content", daisyui.Window(daisyui.WindowConfig{
+		templ_7745c5c3_Err = section("Window with taller custom content", `@daisyui.Window(daisyui.WindowConfig{
+	Bordered:  true,
+	BodyClass: "h-48 p-4",
+	Children:  windowCustomContent(),
+})`, daisyui.Window(daisyui.WindowConfig{
 			Bordered:  true,
 			BodyClass: "h-48 p-4",
 			Children:  windowCustomContent(),

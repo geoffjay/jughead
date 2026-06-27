@@ -65,7 +65,13 @@ func modalBody(r links.LinkResolver) templ.Component {
 			templ_7745c5c3_Var2 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = section("Dialog modal", daisyui.Modal(daisyui.ModalConfig{
+		templ_7745c5c3_Err = section("Dialog modal", `@daisyui.Modal(daisyui.ModalConfig{
+	ID:           "modal_1",
+	Title:        "Hello!",
+	Message:      "Press ESC key or click the button below to close",
+	TriggerLabel: "open modal",
+	Actions:      modalCloseForm(),
+})`, daisyui.Modal(daisyui.ModalConfig{
 			ID:           "modal_1",
 			Title:        "Hello!",
 			Message:      "Press ESC key or click the button below to close",
@@ -75,7 +81,13 @@ func modalBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Dialog modal, closes when clicked outside", daisyui.Modal(daisyui.ModalConfig{
+		templ_7745c5c3_Err = section("Dialog modal, closes when clicked outside", `@daisyui.Modal(daisyui.ModalConfig{
+	ID:           "modal_2",
+	Title:        "Hello!",
+	Message:      "Press ESC key or click outside to close",
+	TriggerLabel: "open modal",
+	Backdrop:     true,
+})`, daisyui.Modal(daisyui.ModalConfig{
 			ID:           "modal_2",
 			Title:        "Hello!",
 			Message:      "Press ESC key or click outside to close",
@@ -85,7 +97,13 @@ func modalBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Dialog modal with a close button at corner", daisyui.Modal(daisyui.ModalConfig{
+		templ_7745c5c3_Err = section("Dialog modal with a close button at corner", `@daisyui.Modal(daisyui.ModalConfig{
+	ID:           "modal_3",
+	Title:        "Hello!",
+	Message:      "Press ESC key or click on ✕ button to close",
+	TriggerLabel: "open modal",
+	CloseButton:  true,
+})`, daisyui.Modal(daisyui.ModalConfig{
 			ID:           "modal_3",
 			Title:        "Hello!",
 			Message:      "Press ESC key or click on ✕ button to close",
@@ -95,7 +113,14 @@ func modalBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Dialog modal with custom width", daisyui.Modal(daisyui.ModalConfig{
+		templ_7745c5c3_Err = section("Dialog modal with custom width", `@daisyui.Modal(daisyui.ModalConfig{
+	ID:           "modal_4",
+	Title:        "Hello!",
+	Message:      "Click the button below to close",
+	TriggerLabel: "open modal",
+	BoxClass:     "w-11/12 max-w-5xl",
+	Actions:      modalCloseForm(),
+})`, daisyui.Modal(daisyui.ModalConfig{
 			ID:           "modal_4",
 			Title:        "Hello!",
 			Message:      "Click the button below to close",
@@ -106,7 +131,14 @@ func modalBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Responsive", daisyui.Modal(daisyui.ModalConfig{
+		templ_7745c5c3_Err = section("Responsive", `@daisyui.Modal(daisyui.ModalConfig{
+	ID:           "modal_5",
+	Title:        "Hello!",
+	Message:      "Goes bottom on SM screen size, goes middle on MD screen size",
+	TriggerLabel: "open modal",
+	Class:        "modal-bottom sm:modal-middle",
+	Actions:      modalCloseForm(),
+})`, daisyui.Modal(daisyui.ModalConfig{
 			ID:           "modal_5",
 			Title:        "Hello!",
 			Message:      "Goes bottom on SM screen size, goes middle on MD screen size",
@@ -117,7 +149,14 @@ func modalBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Modal using checkbox", daisyui.Modal(daisyui.ModalConfig{
+		templ_7745c5c3_Err = section("Modal using checkbox", `@daisyui.Modal(daisyui.ModalConfig{
+	ID:           "modal_6",
+	Method:       "checkbox",
+	Title:        "Hello!",
+	Message:      "This modal works with a hidden checkbox!",
+	TriggerLabel: "open modal",
+	Actions:      templ.Raw(...), // <label for="modal_6" class="btn">Close!</label>
+})`, daisyui.Modal(daisyui.ModalConfig{
 			ID:           "modal_6",
 			Method:       "checkbox",
 			Title:        "Hello!",
@@ -128,7 +167,14 @@ func modalBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Modal that closes when clicked outside (checkbox)", daisyui.Modal(daisyui.ModalConfig{
+		templ_7745c5c3_Err = section("Modal that closes when clicked outside (checkbox)", `@daisyui.Modal(daisyui.ModalConfig{
+	ID:           "modal_7",
+	Method:       "checkbox",
+	Title:        "Hello!",
+	Message:      "This modal works with a hidden checkbox!",
+	TriggerLabel: "open modal",
+	Backdrop:     true,
+})`, daisyui.Modal(daisyui.ModalConfig{
 			ID:           "modal_7",
 			Method:       "checkbox",
 			Title:        "Hello!",
@@ -139,7 +185,14 @@ func modalBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Modal using anchor link", daisyui.Modal(daisyui.ModalConfig{
+		templ_7745c5c3_Err = section("Modal using anchor link", `@daisyui.Modal(daisyui.ModalConfig{
+	ID:           "modal_8",
+	Method:       "anchor",
+	Title:        "Hello!",
+	Message:      "This modal works with anchor links",
+	TriggerLabel: "open modal",
+	Actions:      templ.Raw(...), // <a href="#" class="btn">Yay!</a>
+})`, daisyui.Modal(daisyui.ModalConfig{
 			ID:           "modal_8",
 			Method:       "anchor",
 			Title:        "Hello!",
