@@ -7,42 +7,25 @@ import (
 )
 
 templ Home(r links.LinkResolver) {
-	@layout.ThemeRestoreScript()
-	<div class="drawer min-h-screen bg-base-200 text-base-content">
-		<input id={ layout.DrawerToggleID() } type="checkbox" autocomplete="off" class="drawer-toggle"/>
-		<div class="drawer-content flex flex-col">
-			@daisyui.Navbar(layout.NavbarData(r))
-			<main class="p-8 space-y-4">
-				<h1 class="text-4xl font-bold text-primary">DaisyUI Components</h1>
-				<p class="text-base-content/70">
-					Reusable daisyUI component examples. Use the "Components" dropdown in
-					the navbar to browse each component.
-				</p>
-				<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-					for _, c := range componentCards {
-						@componentCard(c, r)
-					}
-				</div>
-			</main>
-		</div>
-		<div class="drawer-side z-1002">
-			<label for={ layout.DrawerToggleID() } aria-label="close sidebar" class="drawer-overlay"></label>
-			@drawerSidebar(r)
-		</div>
-	</div>
-	@layout.ThemePersistScript()
+	@layout.Page(r, homeBody(r))
 }
 
-// drawerSidebar renders the sidebar menu shown when the navbar menu icon is
-// clicked. Links mirror the "Components" dropdown so the sidebar can be used
-// for navigation on small screens.
-templ drawerSidebar(r links.LinkResolver) {
-	<ul class="menu p-4 w-60 md:w-80 min-h-full bg-base-200 text-base-content">
-		<li><a href={ r.SafeURL("/") }>Home</a></li>
-		for _, item := range layout.NavbarComponents() {
-			<li><a href={ r.SafeURL(item.Href) }>{ item.Label }</a></li>
-		}
-	</ul>
+// homeBody renders the index page's main content: the heading, intro text, and
+// the grid of component cards. It is rendered inside the shared layout.Page
+// drawer content region.
+templ homeBody(r links.LinkResolver) {
+	<main class="p-8 space-y-4">
+		<h1 class="text-4xl font-bold text-primary">DaisyUI Components</h1>
+		<p class="text-base-content/70">
+			Reusable daisyUI component examples. Use the "Components" dropdown in
+			the navbar to browse each component.
+		</p>
+		<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+			for _, c := range componentCards {
+				@componentCard(c, r)
+			}
+		</div>
+	</main>
 }
 
 // componentCardData describes a single component card on the index page.

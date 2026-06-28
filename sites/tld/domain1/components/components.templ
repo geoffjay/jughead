@@ -5,24 +5,24 @@ import (
 
 	"github.com/geoffjay/jughead/sites/links"
 	"github.com/geoffjay/jughead/sites/tld/domain1/layout"
-	"github.com/geoffjay/jughead/templates/components/daisyui"
 )
 
-// pageShell wraps body content in the shared navbar + main container used by
-// every component example page. The restore script runs first so the persisted
-// theme is applied to <html> before the body paints; the persist script runs
-// last so it can bind to the navbar toggle rendered by NavbarData.
+// pageShell wraps body content in the shared layout.Page chrome (theme scripts,
+// drawer sidebar, and navbar) used by every domain1 page, then renders the
+// component example's main container with its title and description.
 templ pageShell(r links.LinkResolver, title, description string, body templ.Component) {
-	@layout.ThemeRestoreScript()
-	<div class="min-h-screen bg-base-200 text-base-content">
-		@daisyui.Navbar(layout.NavbarData(r))
-		<main class="p-8 max-w-4xl mx-auto space-y-8">
-			<h1 class="text-3xl font-bold text-primary">{ title }</h1>
-			<p class="text-base-content/70">{ description }</p>
-			@body
-		</main>
-	</div>
-	@layout.ThemePersistScript()
+	@layout.Page(r, pageMain(title, description, body))
+}
+
+// pageMain renders the component example page's main content container with its
+// title heading and description. It is rendered inside the shared layout.Page
+// drawer content region.
+templ pageMain(title, description string, body templ.Component) {
+	<main class="p-8 max-w-4xl mx-auto space-y-8">
+		<h1 class="text-3xl font-bold text-primary">{ title }</h1>
+		<p class="text-base-content/70">{ description }</p>
+		@body
+	</main>
 }
 
 // section renders a single component example. It shows a daisyUI tab strip

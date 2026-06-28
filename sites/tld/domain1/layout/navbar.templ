@@ -7,14 +7,9 @@ import (
 )
 
 // drawerToggleID is the id of the hidden checkbox controlling the page-level
-// drawer sidebar rendered in index.templ. The navbar menu icon acts as a
-// label for this checkbox so clicking it opens the drawer.
+// drawer sidebar rendered by the shared Page layout. The navbar menu icon acts
+// as a label for this checkbox so clicking it opens the drawer.
 const drawerToggleID = "app-drawer"
-
-// DrawerToggleID returns the id of the hidden checkbox controlling the
-// page-level drawer sidebar. Exposed so pages can wire their drawer toggle
-// and overlay label to the same id used by the navbar menu icon.
-func DrawerToggleID() string { return drawerToggleID }
 
 // NavbarComponents returns the set of component example links shown in the
 // navbar "Components" dropdown. Exposed so the drawer sidebar can render the

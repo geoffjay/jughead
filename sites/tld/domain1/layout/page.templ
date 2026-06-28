@@ -1,0 +1,45 @@
+package layout
+
+import (
+	"github.com/geoffjay/jughead/sites/links"
+	"github.com/geoffjay/jughead/templates/components/daisyui"
+)
+
+// Page is the shared page layout used by every domain1 page. It renders the
+// theme restore/persist scripts, the drawer shell whose sidebar is revealed by
+// the navbar menu icon, the shared navbar, and the page body inside the drawer
+// content region. Centralizing the drawer here keeps the menu icon working
+// consistently across the index and component example pages.
+//
+// The restore script runs first so the persisted theme is applied to <html>
+// before the body paints; the persist script runs last so it can bind to the
+// navbar toggle rendered by NavbarData. body is rendered inside the
+// drawer-content region after the navbar and is responsible for its own <main>
+// element so each page can size its content container appropriately.
+templ Page(r links.LinkResolver, body templ.Component) {
+	@ThemeRestoreScript()
+	<div class="drawer min-h-screen bg-base-200 text-base-content">
+		<input id={ drawerToggleID } type="checkbox" autocomplete="off" class="drawer-toggle"/>
+		<div class="drawer-content flex flex-col">
+			@daisyui.Navbar(NavbarData(r))
+			@body
+		</div>
+		<div class="drawer-side z-1002">
+			<label for={ drawerToggleID } aria-label="close sidebar" class="drawer-overlay"></label>
+			@drawerSidebar(r)
+		</div>
+	</div>
+	@ThemePersistScript()
+}
+
+// drawerSidebar renders the sidebar menu shown when the navbar menu icon is
+// clicked. Links mirror the "Components" dropdown so the sidebar can be used
+// for navigation on small screens.
+templ drawerSidebar(r links.LinkResolver) {
+	<ul class="menu p-4 w-60 md:w-80 min-h-full bg-base-200 text-base-content">
+		<li><a href={ r.SafeURL("/") }>Home</a></li>
+		for _, item := range NavbarComponents() {
+			<li><a href={ r.SafeURL(item.Href) }>{ item.Label }</a></li>
+		}
+	</ul>
+}

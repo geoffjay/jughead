@@ -17,14 +17,9 @@ import (
 )
 
 // drawerToggleID is the id of the hidden checkbox controlling the page-level
-// drawer sidebar rendered in index.templ. The navbar menu icon acts as a
-// label for this checkbox so clicking it opens the drawer.
+// drawer sidebar rendered by the shared Page layout. The navbar menu icon acts
+// as a label for this checkbox so clicking it opens the drawer.
 const drawerToggleID = "app-drawer"
-
-// DrawerToggleID returns the id of the hidden checkbox controlling the
-// page-level drawer sidebar. Exposed so pages can wire their drawer toggle
-// and overlay label to the same id used by the navbar menu icon.
-func DrawerToggleID() string { return drawerToggleID }
 
 // NavbarComponents returns the set of component example links shown in the
 // navbar "Components" dropdown. Exposed so the drawer sidebar can render the
@@ -130,7 +125,7 @@ func menuToggle() templ.Component {
 		var templ_7745c5c3_Var2 string
 		templ_7745c5c3_Var2, templ_7745c5c3_Err = templ.ResolveAttributeValue(drawerToggleID)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/layout/navbar.templ`, Line: 96, Col: 28}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/layout/navbar.templ`, Line: 91, Col: 28}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var2)
 		if templ_7745c5c3_Err != nil {
