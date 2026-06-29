@@ -28,7 +28,7 @@ const sitePath = "/sites/docs.jughead.geoffjay.com"
 // other sites on the same origin.
 const (
 	LightTheme   = "nord"
-	DarkTheme    = "abyss"
+	DarkTheme    = "nord-dark"
 	ThemeStorage = "docs.jughead.theme"
 )
 
