@@ -27,8 +27,8 @@ const sitePath = "/sites/docs.jughead.geoffjay.com"
 // reloads. The storage key is namespaced per site so it doesn't collide with
 // other sites on the same origin.
 const (
-	LightTheme   = "kanagawa-light"
-	DarkTheme    = "kanagawa-dark"
+	LightTheme   = "nord"
+	DarkTheme    = "abyss"
 	ThemeStorage = "docs.jughead.theme"
 )
 

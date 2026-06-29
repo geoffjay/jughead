@@ -25,6 +25,7 @@ import (
 	"github.com/geoffjay/jughead/templates/layouts"
 
 	"github.com/a-h/templ"
+	"github.com/iota-uz/icons/phosphor"
 )
 
 // Config configures the documentation layout for a single page render.
@@ -104,7 +105,12 @@ func toAppShellConfig(cfg *Config) containers.AppShellConfig {
 // toAppShellSections converts the layout-agnostic []layouts.NavSection into
 // the []containers.NavSection expected by AppShell, marking the active item
 // per section. Hrefs are resolved via the resolver with absolute URLs passed
-// through unchanged.
+// through unchanged. Each item's Icon name (a phosphor icon name such as
+// "House") is resolved here into a templ.Component via phosphor.Icons and
+// attached to the daisyui.MenuItem so the sidebar can render it — this keeps
+// collapsed sidebar entries visible when their labels are hidden. An empty or
+// unknown Icon name yields a nil icon and the entry renders label-only, so
+// callers can opt in per item.
 func toAppShellSections(r daisyui.URLResolver, sections []layouts.NavSection) []containers.NavSection {
 	out := make([]containers.NavSection, len(sections))
 	for i, section := range sections {
@@ -114,9 +120,27 @@ func toAppShellSections(r daisyui.URLResolver, sections []layouts.NavSection) []
 				Label:  item.Label,
 				Href:   resolveNavItem(r, item.Href),
 				Active: item.Active,
+				Icon:   phosphorIcon(item.Icon),
 			}
 		}
 		out[i] = containers.NavSection{Title: section.Title, Items: items}
 	}
 	return out
+}
+
+// phosphorIcon resolves a phosphor icon name (e.g. "House", "BookOpen") into a
+// templ.Component rendered at the size used by the AppShell sidebar. It returns
+// nil for an empty or unknown name so callers can leave Icon unset on items
+// that should render without an icon. The lookup goes through phosphor.Icons,
+// the package's name → component registry, so callers reference icons by name
+// without importing the phosphor package themselves.
+func phosphorIcon(name string) templ.Component {
+	if name == "" {
+		return nil
+	}
+	fn, ok := phosphor.Icons[name]
+	if !ok {
+		return nil
+	}
+	return fn(phosphor.Props{Size: "20", Variant: phosphor.Regular})
 }

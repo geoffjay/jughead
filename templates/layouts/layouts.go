@@ -23,11 +23,15 @@ type Meta struct {
 
 // NavItem describes a single navigation link rendered in a layout's navbar or
 // sidebar. Active highlights the current page so layouts can reflect the
-// request's location.
+// request's location. Icon, when set to a non-empty phosphor icon name (e.g.
+// "House", "BookOpen"), is resolved by the rendering layout into a phosphor
+// icon component and shown before the label — this keeps collapsed sidebars
+// usable when the label is hidden. An unknown name is silently ignored.
 type NavItem struct {
 	Label  string
 	Href   string
 	Active bool
+	Icon   string
 }
 
 // NavSection is a titled group of NavItems. Layouts render sections as
