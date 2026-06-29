@@ -21,21 +21,54 @@ const (
 // sidebarStorageKey is the localStorage key used to persist the sidebar state.
 const sidebarStorageKey = "appshell-sidebar-state"
 
+// NavSection is a titled group of sidebar menu items. When NavSections is
+// populated on an AppShellConfig the sidebar renders each section with a
+// menu-title heading followed by its items; flat MenuItems (without titles)
+// are rendered above the sections when both are set.
+type NavSection struct {
+	Title string
+	Items []daisyui.MenuItem
+}
+
+// ThemeConfig configures the navbar theme selector. LightTheme and DarkTheme
+// are the daisyUI theme names switched between by the toggle (e.g.
+// "kanagawa-light" / "kanagawa-dark"). StorageKey is the localStorage key used
+// to persist the user's choice across reloads; it should be unique per site to
+// avoid collisions on a shared origin (e.g. "docs.jughead.theme"). When
+// StorageKey is empty a sensible default is used. When LightTheme and
+// DarkTheme are both empty the theme selector is omitted entirely.
+type ThemeConfig struct {
+	LightTheme string
+	DarkTheme  string
+	StorageKey string
+}
+
+// defaultThemeStorageKey is used when ThemeConfig.StorageKey is empty so the
+// restore/persist scripts have a key to read/write.
+const defaultThemeStorageKey = "appshell-theme"
+
 // AppShellConfig configures an AppShell container. Title and TitleHref are
 // rendered as the navbar brand. NavItems are rendered in the navbar-end region.
-// MenuItems are rendered in the sidebar as a vertical menu. Content is the
-// page content rendered in the main region. SidebarState is the initial
-// sidebar state (overridden by localStorage on the client). HeaderExtra, when
-// set, is rendered in the navbar-end before NavItems (e.g. a theme toggle).
+// MenuItems are rendered in the sidebar as a flat vertical menu (rendered
+// above any NavSections). NavSections, when set, renders additional titled
+// groups of items below the flat menu — use this for documentation-style
+// sidebars grouped by category. Content is the page content rendered in the
+// main region. SidebarState is the initial sidebar state (overridden by
+// localStorage on the client). HeaderExtra, when set, is rendered in the
+// navbar-end before NavItems (e.g. a theme toggle). Theme, when set with both
+// LightTheme and DarkTheme, renders a sun/moon swap toggle in the navbar-end
+// and emits restore/persist scripts so the chosen theme survives reloads.
 // Resolver, when set, is used to build all hrefs.
 type AppShellConfig struct {
 	Title        string
 	TitleHref    string
 	NavItems     []daisyui.NavItem
 	MenuItems    []daisyui.MenuItem
+	NavSections  []NavSection
 	Content      templ.Component
 	SidebarState SidebarState
 	HeaderExtra  templ.Component
+	Theme        ThemeConfig
 	Resolver     daisyui.URLResolver
 }
 
@@ -43,7 +76,15 @@ type AppShellConfig struct {
 // header and a left navigation sidebar with three states (open, collapsed,
 // closed) persisted to localStorage. The page content fills the remaining
 // height and width and scrolls behind the fixed header.
+//
+// When cfg.Theme is configured (both LightTheme and DarkTheme set) a
+// theme-restore script runs before paint to apply the saved theme, a sun/moon
+// swap toggle is rendered in the navbar-end, and a persist script syncs the
+// toggle state and writes the chosen theme to localStorage on change.
 templ AppShell(cfg AppShellConfig) {
+	if hasTheme(cfg.Theme) {
+		@themeRestoreScript(cfg.Theme)
+	}
 	<div
 		class="h-screen w-full flex flex-col overflow-hidden"
 		data-appshell="root"
@@ -55,6 +96,23 @@ templ AppShell(cfg AppShellConfig) {
 		</div>
 	</div>
 	@AppShellScript(sidebarStateValue(cfg.SidebarState), sidebarStorageKey)
+	if hasTheme(cfg.Theme) {
+		@themePersistScript(cfg.Theme)
+	}
+}
+
+// hasTheme reports whether cfg has both a light and dark theme configured, the
+// minimum required to render the theme selector.
+func hasTheme(cfg ThemeConfig) bool {
+	return cfg.LightTheme != "" && cfg.DarkTheme != ""
+}
+
+// themeStorageKey returns cfg.StorageKey or the default when empty.
+func themeStorageKey(cfg ThemeConfig) string {
+	if cfg.StorageKey != "" {
+		return cfg.StorageKey
+	}
+	return defaultThemeStorageKey
 }
 
 // sidebarStateValue returns the string form of state, defaulting to
@@ -97,16 +155,94 @@ func resolveHref(r daisyui.URLResolver, href string) templ.SafeURL {
 
 // AppShellHeader renders the fixed full-width navbar. The start region contains
 // the sidebar toggle button (Aperture icon) followed by the brand title. The
-// end region renders HeaderExtra (when set) followed by NavItems.
+// end region renders the theme toggle (when configured), then HeaderExtra
+// (when set), followed by NavItems.
 templ AppShellHeader(cfg AppShellConfig) {
 	@daisyui.Navbar(daisyui.NavbarData{
 		Title:      cfg.Title,
 		TitleHref:  cfg.TitleHref,
 		End:        cfg.NavItems,
-		EndExtra:   cfg.HeaderExtra,
+		EndExtra:   appShellHeaderExtra(cfg),
 		Resolver:   cfg.Resolver,
 		StartExtra: AppShellSidebarToggle(),
 	})
+}
+
+// appShellHeaderExtra composes the navbar-end extra region: the theme swap
+// toggle (when configured) followed by any caller-provided HeaderExtra. When
+// neither is set, nil is returned so the navbar omits the region entirely.
+templ appShellHeaderExtra(cfg AppShellConfig) {
+	if hasTheme(cfg.Theme) {
+		@themeSwapToggle(cfg.Theme)
+	}
+	if cfg.HeaderExtra != nil {
+		@cfg.HeaderExtra
+	}
+}
+
+// themeSwapToggle renders a sun/moon swap toggle in the navbar-end that flips
+// between the configured light and dark daisyUI themes. The hidden checkbox
+// carries the theme-controller class and the dark theme as its value, so
+// checking it applies the dark theme via CSS alone. The companion
+// themePersistScript syncs the checkbox state with the restored theme and
+// writes the choice to localStorage on change.
+templ themeSwapToggle(theme ThemeConfig) {
+	<label class="swap swap-rotate btn btn-ghost btn-circle" aria-label="Toggle theme">
+		<input type="checkbox" class="theme-controller" value={ theme.DarkTheme } autocomplete="off"/>
+		<svg class="swap-off h-5 w-5 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+			<path d="M5.64,17l-.71.71a1,1,0,0,0,0,1.41,1,1,0,0,0,1.41,0l.71-.71A1,1,0,0,0,5.64,17ZM5,12a1,1,0,0,0-1-1H3a1,1,0,0,0,0,2H4A1,1,0,0,0,5,12Zm7-7a1,1,0,0,0,1-1V3a1,1,0,0,0-2,0V4A1,1,0,0,0,12,5ZM5.64,7.05a1,1,0,0,0,.7.29,1,1,0,0,0,.71-.29,1,1,0,0,0,0-1.41l-.71-.71A1,1,0,0,0,4.93,6.34Zm12,.29a1,1,0,0,0,.7-.29l.71-.71a1,1,0,1,0-1.41-1.41L17,5.64a1,1,0,0,0,0,1.41A1,1,0,0,0,17.66,7.34ZM21,11H20a1,1,0,0,0,0,2h1a1,1,0,0,0,0-2Zm-9,8a1,1,0,0,0-1,1v1a1,1,0,0,0,2,0V20A1,1,0,0,0,12,19ZM18.36,17A1,1,0,0,0,17,18.36l.71.71a1,1,0,0,0,1.41,0,1,1,0,0,0,0-1.41ZM12,6.5A5.5,5.5,0,1,0,17.5,12,5.51,5.51,0,0,0,12,6.5Zm0,9A3.5,3.5,0,1,1,15.5,12,3.5,3.5,0,0,1,12,15.5Z"></path>
+		</svg>
+		<svg class="swap-on h-5 w-5 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+			<path d="M21.64,13a1,1,0,0,0-1.05-.14,8.05,8.05,0,0,1-3.37.73A8.15,8.15,0,0,1,9.08,5.49a8.59,8.59,0,0,1,.25-2A1,1,0,0,0,8,2.36,10.14,10.14,0,1,0,22,14.05,1,1,0,0,0,21.64,13Zm-9.5,6.69A8.14,8.14,0,0,1,7.08,5.22v.27A10.15,10.15,0,0,0,17.22,15.63a9.79,9.79,0,0,0,2.1-.22A8.11,8.11,0,0,1,12.14,19.73Z"></path>
+		</svg>
+	</label>
+}
+
+// themeRestoreScript runs synchronously before paint so the saved theme is
+// applied to <html> before first paint, preventing a flash of the wrong theme
+// on reload. The light/dark theme names and storage key are injected via
+// templ expressions into a JSON literal consumed by the inline script.
+templ themeRestoreScript(theme ThemeConfig) {
+	<script nonce="">
+		(function () {
+			try {
+				var key = { themeStorageKey(theme) };
+				var light = { theme.LightTheme };
+				var dark = { theme.DarkTheme };
+				var t = localStorage.getItem(key);
+				if (t === light || t === dark) {
+					document.documentElement.setAttribute("data-theme", t);
+				}
+			} catch (e) {
+				/* storage disabled */
+			}
+		})();
+	</script>
+}
+
+// themePersistScript runs after the body renders. It syncs the navbar
+// theme-toggle checkbox with the restored theme and writes the active theme to
+// localStorage whenever the user toggles it. The toggle is located via the
+// .theme-controller checkbox inside the swap label.
+templ themePersistScript(theme ThemeConfig) {
+	<script nonce="">
+		(function () {
+			var key = { themeStorageKey(theme) };
+			var light = { theme.LightTheme };
+			var dark = { theme.DarkTheme };
+			var cb = document.querySelector(".swap .theme-controller");
+			if (!cb) return;
+			cb.checked =
+				document.documentElement.getAttribute("data-theme") === dark;
+			cb.addEventListener("change", function () {
+				var next = cb.checked ? dark : light;
+				document.documentElement.setAttribute("data-theme", next);
+				try {
+					localStorage.setItem(key, next);
+				} catch (e) {}
+			});
+		})();
+	</script>
 }
 
 // AppShellSidebarToggle renders the icon button in the header that toggles the
@@ -124,11 +260,13 @@ templ AppShellSidebarToggle() {
 }
 
 // AppShellSidebar renders the left navigation sidebar. The sidebar width
-// transitions between open (w-64), collapsed (w-16), and closed (w-0). The
-// menu items render with icons and text in the open state and icons only in
-// the collapsed state. A collapse toggle button is pinned to the bottom of
-// the sidebar and switches between open and collapsed using the phosphor
-// CaretCircleLeft / CaretCircleRight icons.
+// transitions between open (w-64), collapsed (w-16), and closed (w-0). When
+// MenuItems are set they render as a flat vertical menu at the top. When
+// NavSections are set each section renders with a menu-title heading followed
+// by its items. The menu-entry spans carry data-appshell="menu-label" so CSS
+// hides labels and centers icons in the collapsed state. A collapse toggle
+// button is pinned to the bottom of the sidebar and switches between open and
+// collapsed using the phosphor CaretCircleLeft / CaretCircleRight icons.
 templ AppShellSidebar(cfg AppShellConfig) {
 	<aside
 		class="flex flex-col bg-base-200 border-r border-base-300 transition-all duration-300 overflow-hidden shrink-0"
@@ -144,6 +282,10 @@ templ AppShellSidebar(cfg AppShellConfig) {
 				[data-appshell="menu-entry"] {
 				justify-content: center;
 			}
+			[data-appshell="sidebar"][data-state="collapsed"]
+				[data-appshell="section-title"] {
+				display: none;
+			}
 		</style>
 		<nav class="flex-1 overflow-y-auto py-4">
 			<ul class="menu menu-vertical bg-base-200 w-full">
@@ -151,6 +293,14 @@ templ AppShellSidebar(cfg AppShellConfig) {
 					<li class={ menuDisabledLiClass(item.Disabled) }>
 						@menuEntry(item, cfg)
 					</li>
+				}
+				for _, section := range cfg.NavSections {
+					<li class="menu-title" data-appshell="section-title">{ section.Title }</li>
+					for _, item := range section.Items {
+						<li class={ menuDisabledLiClass(item.Disabled) }>
+							@menuEntry(item, cfg)
+						</li>
+					}
 				}
 			</ul>
 		</nav>
@@ -217,7 +367,7 @@ templ AppShellCollapseToggle() {
 // AppShellContent renders the main page content region, which fills the
 // remaining height and width and scrolls independently.
 templ AppShellContent(cfg AppShellConfig) {
-	<main class="flex-1 min-w-0 overflow-y-auto">
+	<main class="flex-1 min-w-0 overflow-y-auto bg-base-200">
 		if cfg.Content != nil {
 			@cfg.Content
 		}

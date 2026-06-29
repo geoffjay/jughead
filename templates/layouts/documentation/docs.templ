@@ -5,164 +5,62 @@ import (
 
 	"github.com/geoffjay/jughead/templates"
 	"github.com/geoffjay/jughead/templates/components/daisyui"
+	"github.com/geoffjay/jughead/templates/containers"
 	"github.com/geoffjay/jughead/templates/layouts"
 	"github.com/geoffjay/jughead/templates/pages"
 )
 
-// docsPage renders the full documentation page inside the shared
-// templates.Layout shell. The shell provides <html>, <head> (including the
-// CSP, asset links, and stylesheets), and <body>, so the documentation layout
-// only owns the body chrome (navbar, sidebar, content, TOC, footer). Without
-// this wrapper the response would be a fragment sent as text/plain and the
-// browser would render it inside a <pre>.
+// docsPage renders the full documentation page. The documentation chrome is
+// the shared containers.AppShell (navbar + collapsible sidebar + scrolling
+// main), configured from the documentation Config via toAppShellConfig. The
+// AppShell is wrapped in templates.Layout so the page is a full HTML document
+// with the shared <head>, asset links, and CSP — without this wrapper the
+// response would be a fragment sent as text/plain and the browser would
+// render it inside a <pre>.
 templ docsPage(cfg *Config) {
 	@templates.Layout(
 		cfg.Meta.Title,
 		cfg.Meta.Theme,
 		pages.MetaTags(cfg.Meta.Keywords, cfg.Meta.Description),
-		docsChrome(cfg),
+		docsShell(cfg),
 	)
 }
 
-// docsChrome renders the page-level documentation chrome: navbar, a
-// drawer-based sidebar (sidebar visible on lg+, drawer on small screens), the
-// main content, an optional right TOC, and the footer. The drawer checkbox is
-// toggled by the navbar menu icon (see docsNavbar).
-templ docsChrome(cfg *Config) {
-	<div class="drawer min-h-screen bg-base-200 text-base-content">
-		<input id={ docsDrawerToggleID } type="checkbox" autocomplete="off" class="drawer-toggle"/>
-		<div class="drawer-content flex flex-col">
-			@docsNavbar(cfg)
-			<div class="flex flex-1 mx-auto w-full">
-				@docsSidebar(cfg)
-				@docsMain(cfg)
-				@docsTOC(cfg)
-			</div>
-			@docsFooter(cfg)
-		</div>
-		<div class="drawer-side z-1002">
-			<label for={ docsDrawerToggleID } aria-label="close sidebar" class="drawer-overlay"></label>
-			@docsDrawerSidebar(cfg)
+// docsShell renders the AppShell configured from the documentation Config.
+// It is a separate component so docsPage can pass it as the body to
+// templates.Layout.
+templ docsShell(cfg *Config) {
+	@containers.AppShell(toAppShellConfig(cfg))
+}
+
+// docsMain renders the main content region. The AppShell already provides a
+// scrolling <main>; this wraps the caller's Content with documentation-appropriate
+// padding and renders the optional TOC and Footer alongside it. When Content is
+// nil a placeholder is shown.
+templ docsMain(cfg *Config) {
+	<div class="w-full">
+		<div class="mx-auto max-w-5xl p-6 lg:p-10">
+			if cfg.Content != nil {
+				@cfg.Content
+			} else {
+				<div class="prose max-w-none">
+					<h1 class="text-3xl font-bold">{ cfg.Meta.Title }</h1>
+					<p class="text-base-content/70">This page is under construction.</p>
+				</div>
+			}
+			if cfg.TOC != nil {
+				<div class="mt-10 border-t border-base-300 pt-6">
+					<h2 class="text-sm font-semibold tracking-wide uppercase text-base-content/60 mb-3">On this page</h2>
+					@cfg.TOC
+				</div>
+			}
+			if cfg.Footer != nil {
+				<div class="mt-10">
+					@cfg.Footer
+				</div>
+			}
 		</div>
 	</div>
-}
-
-// docsNavbar renders the top navigation bar. The menu icon (menuToggle) acts
-// as a label for the drawer checkbox so clicking it opens the sidebar drawer
-// on small screens. Actions (e.g. theme toggle) is rendered in navbar-end.
-//
-// PrimaryNav hrefs are pre-resolved by toDaisyNavItems (so absolute URLs like
-// the GitHub link bypass the site-path prefix); the navbar's own Resolver is
-// therefore set to nil to avoid a second resolution pass. The brand TitleHref
-// is resolved here directly since it isn't part of PrimaryNav.
-templ docsNavbar(cfg *Config) {
-	@daisyui.Navbar(daisyui.NavbarData{
-		Title:      cfg.Brand.Label,
-		TitleHref:  string(resolveNavItem(cfg.Resolver, cfg.Brand.Href)),
-		Resolver:   nil,
-		StartExtra: menuToggle(),
-		End:        toDaisyNavItems(cfg.Resolver, cfg.PrimaryNav),
-		EndExtra:   cfg.Actions,
-	})
-}
-
-// menuToggle renders the list icon as a navbar button that opens the
-// page-level drawer sidebar on small screens.
-templ menuToggle() {
-	<label for={ docsDrawerToggleID } class="btn btn-ghost btn-circle drawer-button lg:hidden" aria-label="Open menu">
-		<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 fill-current" viewBox="0 0 24 24">
-			<path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
-		</svg>
-	</label>
-}
-
-// docsSidebar renders the persistent left navigation on large screens. It is
-// hidden below lg (the drawer sidebar takes over there). Sections are rendered
-// as titled groups of links.
-templ docsSidebar(cfg *Config) {
-	<aside class="hidden lg:flex flex-col w-64 shrink-0 border-r border-base-300 bg-base-100 overflow-y-auto p-4">
-		@docsNavSections(cfg)
-	</aside>
-}
-
-// docsDrawerSidebar renders the same navigation inside the drawer sidebar used
-// on small screens.
-templ docsDrawerSidebar(cfg *Config) {
-	<ul class="menu p-4 w-72 min-h-full bg-base-100 text-base-content">
-		@docsNavSections(cfg)
-	</ul>
-}
-
-// docsNavSections renders the navigation sections as titled groups. Each
-// section title is a menu-title; each item is a link highlighted when Active.
-templ docsNavSections(cfg *Config) {
-	for _, section := range cfg.Sections {
-		<li class="menu-title">{ section.Title }</li>
-		for _, item := range section.Items {
-			<li>
-				<a
-					href={ resolveNavItem(cfg.Resolver, item.Href) }
-					class={ navItemClass(item.Active) }
-				>
-					{ item.Label }
-				</a>
-			</li>
-		}
-	}
-}
-
-// docsMain renders the main content region. Content fills the region and is
-// responsible for its own <main>/article element and spacing. When Content is
-// nil a placeholder is rendered.
-templ docsMain(cfg *Config) {
-	<main class="flex-1 min-w-0 p-6 lg:p-10">
-		if cfg.Content != nil {
-			@cfg.Content
-		} else {
-			<div class="prose max-w-none">
-				<h1 class="text-3xl font-bold">{ cfg.Meta.Title }</h1>
-				<p class="text-base-content/70">This page is under construction.</p>
-			</div>
-		}
-	</main>
-}
-
-// docsTOC renders the optional right-hand "on this page" table of contents.
-// It is hidden below xl to keep room for content on smaller screens.
-templ docsTOC(cfg *Config) {
-	if cfg.TOC != nil {
-		<aside class="hidden xl:block w-60 shrink-0 border-l border-base-300 bg-base-100 p-4">
-			<h2 class="text-sm font-semibold tracking-wide uppercase text-base-content/60 mb-3">On this page</h2>
-			@cfg.TOC
-		</aside>
-	}
-}
-
-// docsFooter renders the configured footer or a default attribution footer.
-templ docsFooter(cfg *Config) {
-	if cfg.Footer != nil {
-		@cfg.Footer
-	} else {
-		<footer class="footer footer-center p-6 border-t border-base-300 bg-base-100 text-base-content/60">
-			<aside>
-				<p>© { "2026" } { cfg.Brand.Label }. Built with Go, templ, htmx, and daisyUI.</p>
-			</aside>
-		</footer>
-	}
-}
-
-// docsDrawerToggleID is the id of the hidden checkbox controlling the
-// page-level drawer sidebar. The navbar menu icon acts as a label for this
-// checkbox.
-const docsDrawerToggleID = "docs-drawer"
-
-// navItemClass returns the class list for a sidebar nav entry, highlighting
-// active items.
-func navItemClass(active bool) string {
-	if active {
-		return "menu-active"
-	}
-	return ""
 }
 
 // isAbsoluteURL reports whether href is an absolute URL (http://, https://,
@@ -180,33 +78,30 @@ func isAbsoluteURL(href string) bool {
 // resolveNavItem renders an href via the resolver, falling back to "#" for
 // empty hrefs. Absolute URLs (http://, https://, //, mailto:, tel:) bypass
 // the resolver so external links aren't prefixed with the site path.
-func resolveNavItem(r daisyui.URLResolver, href string) templ.SafeURL {
+func resolveNavItem(r daisyui.URLResolver, href string) string {
 	if href == "" {
-		return templ.SafeURL("#")
+		return "#"
 	}
 	if isAbsoluteURL(href) {
-		return templ.SafeURL(href)
+		return href
 	}
 	if r == nil {
-		return templ.SafeURL(href)
+		return href
 	}
-	return templ.SafeURL(r.Resolve(href))
+	return r.Resolve(href)
 }
 
 // toDaisyNavItems converts the layout-agnostic []layouts.NavItem (used by the
 // documentation Config) into the []daisyui.NavItem expected by the daisyUI
 // Navbar component. Hrefs are pre-resolved here so the navbar's own resolver
 // pass is bypassed (nil) — this keeps absolute URLs intact while still
-// prefixing site-relative paths with the site base. The two types are
-// intentionally separate so this layout package owns the vocabulary for nav
-// sections (which carry Active state for sidebar highlighting) without
-// forcing the daisyUI component to.
+// prefixing site-relative paths with the site base.
 func toDaisyNavItems(r daisyui.URLResolver, items []layouts.NavItem) []daisyui.NavItem {
 	out := make([]daisyui.NavItem, len(items))
 	for i, item := range items {
 		out[i] = daisyui.NavItem{
 			Label: item.Label,
-			Href:  string(resolveNavItem(r, item.Href)),
+			Href:  resolveNavItem(r, item.Href),
 		}
 	}
 	return out

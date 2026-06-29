@@ -21,6 +21,17 @@ import (
 // sitePath is the configured path under which the docs site is served.
 const sitePath = "/sites/docs.jughead.geoffjay.com"
 
+// Theme names and the localStorage key used by the documentation layout's
+// theme selector. The server renders pages with LightTheme by default; the
+// navbar swap toggle overrides to DarkTheme and persists the choice across
+// reloads. The storage key is namespaced per site so it doesn't collide with
+// other sites on the same origin.
+const (
+	LightTheme   = "kanagawa-light"
+	DarkTheme    = "kanagawa-dark"
+	ThemeStorage = "docs.jughead.theme"
+)
+
 // Page describes a single documentation page rendered by the site. Slug is
 // the site-relative URL path (e.g. "/intro"). Title is the page title and the
 // label shown in the sidebar. Section is the navigation group the page
@@ -43,7 +54,7 @@ func pageConfig(r links.LinkResolver, page Page) doc.Config {
 			Title:       page.Title + " - jughead docs",
 			Description: "jughead documentation: " + page.Title,
 			Keywords:    "jughead, docs, documentation, go, templ, htmx, daisyui",
-			Theme:       "kanagawa-light",
+			Theme:       LightTheme,
 		},
 		Brand: layouts.NavItem{
 			Label: "jughead",
@@ -52,7 +63,12 @@ func pageConfig(r links.LinkResolver, page Page) doc.Config {
 		PrimaryNav: primaryNav(),
 		Sections:   sections,
 		Content:    page.Body,
-		Resolver:   r,
+		Theme: doc.ThemeConfig{
+			LightTheme: LightTheme,
+			DarkTheme:  DarkTheme,
+			StorageKey: ThemeStorage,
+		},
+		Resolver: r,
 	}
 }
 
