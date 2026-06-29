@@ -1,0 +1,103 @@
+package docs
+
+// introPage renders the Introduction page body. It is injected into the
+// documentation layout's main region via the Page.Body factory.
+templ introPage() {
+	<article class="prose max-w-none">
+		<h1 class="text-3xl font-bold mb-2">Introduction</h1>
+		<p class="text-base-content/70 mb-6">
+			jughead is an opinionated starter kit for multi-tenant web apps built
+			with Go, templ, htmx, and daisyUI. This is the documentation site.
+		</p>
+		<h2 class="text-xl font-semibold mt-8 mb-2">What's inside</h2>
+		<ul class="list-disc pl-6 space-y-1">
+			<li>Multi-site routing with per-site themes and templates</li>
+			<li>GitHub OAuth and session-based authentication</li>
+			<li>An admin panel for managing sites and users</li>
+			<li>A daisyUI component library and templ layout system</li>
+		</ul>
+		<h2 class="text-xl font-semibold mt-8 mb-2">Layouts</h2>
+		<p class="mb-4">
+			This page is rendered through the
+			<code class="kbd kbd-sm">templates/layouts/documentation</code>
+			layout, a configurable documentation shell with a sidebar, main
+			content region, and optional table of contents.
+		</p>
+	</article>
+}
+
+// installPage renders the Installation page body.
+templ installPage() {
+	<article class="prose max-w-none">
+		<h1 class="text-3xl font-bold mb-2">Installation</h1>
+		<p class="text-base-content/70 mb-6">
+			Clone the repository and run the server locally.
+		</p>
+		<div class="mockup-code bg-base-300 text-base-content mb-4">
+			<pre data-prefix="$"><code>git clone https://github.com/geoffjay/jughead.git</code></pre>
+			<pre data-prefix="$"><code>cd jughead</code></pre>
+			<pre data-prefix="$"><code>go run .</code></pre>
+		</div>
+		<p>The server starts on <code class="kbd kbd-sm">:9000</code>.</p>
+	</article>
+}
+
+// architecturePage renders the Architecture page body.
+templ architecturePage() {
+	<article class="prose max-w-none">
+		<h1 class="text-3xl font-bold mb-2">Architecture</h1>
+		<p class="text-base-content/70 mb-6">
+			jughead is structured around sites, layouts, and a shared component
+			library.
+		</p>
+		<h2 class="text-xl font-semibold mt-8 mb-2">Sites</h2>
+		<p class="mb-4">
+			Each site lives under <code>sites/&lt;tld&gt;/&lt;domain&gt;</code> and
+			registers a path, URL, theme, template, and optional routes with the
+			SiteManager.
+		</p>
+		<h2 class="text-xl font-semibold mt-8 mb-2">Layouts</h2>
+		<p class="mb-4">
+			Layouts in <code>templates/layouts</code> are reusable page shells for
+			categories of site. The documentation layout renders a navbar, sidebar,
+			content region, and footer from a single Config struct.
+		</p>
+	</article>
+}
+
+// routesPage renders the Site routes reference page body.
+templ routesPage() {
+	<article class="prose max-w-none">
+		<h1 class="text-3xl font-bold mb-2">Site routes</h1>
+		<p class="text-base-content/70 mb-6">
+			Sites are served under <code>/sites/&lt;host&gt;</code> and reverse-proxied
+			to their FQDN via the host map built by the SiteManager.
+		</p>
+		<h2 class="text-xl font-semibold mt-8 mb-2">Registration</h2>
+		<p class="mb-4">
+			A site is registered in <code>sites/sites.go</code> with a Path, Url,
+			Theme, Template, and optional Routes/Auth fields. The SiteManager wires
+			auth middleware and routes onto each site group at startup.
+		</p>
+	</article>
+}
+
+// IntroPlaceholder is the fallback Site.Template for the docs site, rendered
+// by siteViewHandler when the site's Routes are not registered (e.g. dev
+// fallback). It renders a minimal body so the site still responds.
+templ IntroPlaceholder() {
+	<div class="min-h-screen bg-base-200 text-base-content flex flex-col">
+		<div class="flex-1 grid place-content-center p-8">
+			<div class="card bg-base-100 shadow-lg max-w-lg">
+				<div class="card-body">
+					<h2 class="text-xl font-semibold mb-2">jughead docs</h2>
+					<p class="text-base-content/70 mb-4">
+						The documentation site is being prepared. Browse the available
+						pages once routes are registered.
+					</p>
+					<a href="/" class="btn btn-primary">Go to introduction</a>
+				</div>
+			</div>
+		</div>
+	</div>
+}

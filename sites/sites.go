@@ -2,6 +2,7 @@ package sites
 
 import (
 	"github.com/geoffjay/jughead/sites/auth"
+	"github.com/geoffjay/jughead/sites/com/geoffjay/jughead/docs"
 	"github.com/geoffjay/jughead/sites/com/geoffjay/quux"
 	"github.com/geoffjay/jughead/sites/links"
 	"github.com/geoffjay/jughead/sites/tld/domain1"
@@ -68,6 +69,15 @@ var sites = map[string]*Site{
 		Proxy:     quux.Proxy,
 		Routes:    quux.Routes,
 		Auth:      &auth.AuthConfig{Provider: "github"},
+	},
+	"/sites/docs.jughead.geoffjay.com": {
+		Path:      "/sites/docs.jughead.geoffjay.com",
+		Url:       "https://docs.jughead.geoffjay.com",
+		Published: true,
+		Theme:     "kanagawa-light",
+		Template:  docs.IntroPlaceholder(),
+		Proxy:     docs.Proxy,
+		Routes:    docs.Routes,
 	},
 }
 
