@@ -83,6 +83,7 @@ type AppShellConfig struct {
 // toggle state and writes the chosen theme to localStorage on change.
 templ AppShell(cfg AppShellConfig) {
 	if hasTheme(cfg.Theme) {
+		@themeConfigScript(cfg.Theme)
 		@themeRestoreScript(cfg.Theme)
 	}
 	<div
@@ -198,19 +199,54 @@ templ themeSwapToggle(theme ThemeConfig) {
 	</label>
 }
 
+// themeConfigID is the id of the <script type="application/json"> element
+// that carries the theme storage key and light/dark theme names from the
+// server to the client. The restore/persist scripts locate it via
+// document.getElementById and JSON.parse its textContent. We use a JSON
+// script block instead of interpolating Go values directly into the
+// inline scripts because templ does not evaluate { expr } inside <script>
+// raw text — any { ... } would appear verbatim in the rendered output
+// (see themeRestoreScript / themePersistScript).
+const themeConfigID = "appshell-theme-config"
+
+// themeConfigScript emits a <script type="application/json"> element whose
+// body is a JSON object with the storage key and the light/dark theme names.
+// templ.JSONScript safely serializes the value and escapes it for an HTML
+// context, so the scripts can read it back via textContent + JSON.parse
+// without worrying about HTML injection from the configured theme names.
+templ themeConfigScript(theme ThemeConfig) {
+	@templ.JSONScript(themeConfigID, themeConfigPayload{
+		StorageKey: themeStorageKey(theme),
+		Light:      theme.LightTheme,
+		Dark:       theme.DarkTheme,
+	})
+}
+
+// themeConfigPayload is the JSON shape consumed by the restore/persist
+// scripts. Field names are JSON-tagged so the serialized output is stable
+// regardless of Go field-naming conventions.
+type themeConfigPayload struct {
+	StorageKey string `json:"storageKey"`
+	Light      string `json:"light"`
+	Dark       string `json:"dark"`
+}
+
 // themeRestoreScript runs synchronously before paint so the saved theme is
 // applied to <html> before first paint, preventing a flash of the wrong theme
-// on reload. The light/dark theme names and storage key are injected via
-// templ expressions into a JSON literal consumed by the inline script.
+// on reload. The storage key and light/dark theme names are read from the
+// JSON script element emitted by themeConfigScript (located by id); this is
+// required because templ does not substitute Go expressions inside <script>
+// raw text, so any { expr } would appear verbatim and crash the script at
+// runtime with a ReferenceError.
 templ themeRestoreScript(theme ThemeConfig) {
 	<script nonce="">
 		(function () {
 			try {
-				var key = { themeStorageKey(theme) };
-				var light = { theme.LightTheme };
-				var dark = { theme.DarkTheme };
-				var t = localStorage.getItem(key);
-				if (t === light || t === dark) {
+				var cfg = JSON.parse(
+					document.getElementById("appshell-theme-config").textContent
+				);
+				var t = localStorage.getItem(cfg.storageKey);
+				if (t === cfg.light || t === cfg.dark) {
 					document.documentElement.setAttribute("data-theme", t);
 				}
 			} catch (e) {
@@ -223,22 +259,28 @@ templ themeRestoreScript(theme ThemeConfig) {
 // themePersistScript runs after the body renders. It syncs the navbar
 // theme-toggle checkbox with the restored theme and writes the active theme to
 // localStorage whenever the user toggles it. The toggle is located via the
-// .theme-controller checkbox inside the swap label.
+// .theme-controller checkbox inside the swap label; the storage key and theme
+// names are read from the JSON script element emitted by themeConfigScript.
 templ themePersistScript(theme ThemeConfig) {
 	<script nonce="">
 		(function () {
-			var key = { themeStorageKey(theme) };
-			var light = { theme.LightTheme };
-			var dark = { theme.DarkTheme };
+			var cfg;
+			try {
+				cfg = JSON.parse(
+					document.getElementById("appshell-theme-config").textContent
+				);
+			} catch (e) {
+				return;
+			}
 			var cb = document.querySelector(".swap .theme-controller");
 			if (!cb) return;
 			cb.checked =
-				document.documentElement.getAttribute("data-theme") === dark;
+				document.documentElement.getAttribute("data-theme") === cfg.dark;
 			cb.addEventListener("change", function () {
-				var next = cb.checked ? dark : light;
+				var next = cb.checked ? cfg.dark : cfg.light;
 				document.documentElement.setAttribute("data-theme", next);
 				try {
-					localStorage.setItem(key, next);
+					localStorage.setItem(cfg.storageKey, next);
 				} catch (e) {}
 			});
 		})();
