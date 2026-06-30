@@ -4,7 +4,7 @@ tmp_dir = "tmp"
 [build]
 # pre_cmd = ["bun run build"]
 # cmd = "go run github.com/a-h/templ/cmd/templ@latest generate && go build -o ./tmp/jughead ."
-cmd = "go build -o ./tmp/jughead ."
+cmd = "CGO_ENABLED=1 go build -o ./tmp/jughead ."
 bin = "tmp/jughead"
 # include_ext = ["go", "templ", "html", "json", "js", "ts", "css", "scss"]
 include_ext = ["go", "templ"]
@@ -14,6 +14,7 @@ exclude_dir = [
   "bin",
   "dist",
   "node_modules",
+  "plugins",
   "static",
   "tmp",
   "tests",
