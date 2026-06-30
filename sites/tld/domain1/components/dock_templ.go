@@ -156,6 +156,28 @@ func dockBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
+		templ_7745c5c3_Err = section("Dock with glass", `@daisyui.Dock(daisyui.DockConfig{
+	Items: []daisyui.DockItem{
+		{Label: "Home", Href: "#", Icon: dockHomeIcon(), Active: true},
+		{Label: "Search", Href: "#", Icon: dockSearchIcon()},
+		{Label: "Notifications", Href: "#", Icon: dockBellIcon()},
+		{Label: "Profile", Href: "#", Icon: dockUserIcon()},
+	},
+		Glass:    true,
+	Resolver: r,
+})`, glassBackdrop(daisyui.Dock(daisyui.DockConfig{
+			Items: []daisyui.DockItem{
+				{Label: "Home", Href: "#", Icon: dockHomeIcon(), Active: true},
+				{Label: "Search", Href: "#", Icon: dockSearchIcon()},
+				{Label: "Notifications", Href: "#", Icon: dockBellIcon()},
+				{Label: "Profile", Href: "#", Icon: dockUserIcon()},
+			},
+			Glass:    true,
+			Resolver: r,
+		}))).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
 		return nil
 	})
 }

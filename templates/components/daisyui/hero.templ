@@ -23,6 +23,7 @@ type HeroConfig struct {
 	Content         templ.Component
 	Overlay         bool
 	BackgroundImage string
+	Glass           bool
 	ContentClass    string
 	Class           string
 }
@@ -67,7 +68,7 @@ func heroClass(cfg HeroConfig) string {
 }
 
 func heroContentClass(cfg HeroConfig) string {
-	return joinClasses("hero-content", cfg.ContentClass)
+	return joinClasses("hero-content", glassClass(cfg.Glass), cfg.ContentClass)
 }
 
 func heroStyle(cfg HeroConfig) string {

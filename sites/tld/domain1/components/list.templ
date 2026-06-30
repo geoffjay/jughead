@@ -58,6 +58,24 @@ templ listBody(r links.LinkResolver) {
 			listWrapRow("https://img.daisyui.com/images/profile/demo/3@94.webp", "Sabrino Gardener", "Cappuccino", `"Cappuccino" quickly gained attention for its smooth melody and relatable themes. The song's success propelled Sabrino into the spotlight, solidifying their status as a rising star.`),
 		},
 	}))
+	@section("List with glass", `@daisyui.List(daisyui.ListConfig{
+	Glass:  true,
+	Class:  "rounded-box",
+	Header: listHeader(),
+	Items: []daisyui.ListItem{
+		listSongRow(".../1@94.webp", "Dio Lupa", "Remaining Reason"),
+		// ... one row per song
+	},
+})`, glassBackdrop(daisyui.List(daisyui.ListConfig{
+		Glass:  true,
+		Class:  "rounded-box",
+		Header: listHeader(),
+		Items: []daisyui.ListItem{
+			listSongRow("https://img.daisyui.com/images/profile/demo/1@94.webp", "Dio Lupa", "Remaining Reason"),
+			listSongRow("https://img.daisyui.com/images/profile/demo/4@94.webp", "Ellie Beilish", "Bears of a fever"),
+			listSongRow("https://img.daisyui.com/images/profile/demo/3@94.webp", "Sabrino Gardener", "Cappuccino"),
+		},
+	})))
 }
 
 templ listHeader() {

@@ -26,6 +26,7 @@ templ stackBody(r links.LinkResolver) {
 		},
 		"",
 		"h-20 w-32",
+		false,
 	))
 	@section("Stacked images", `@daisyui.Stack(
 	[]templ.Component{
@@ -43,6 +44,7 @@ templ stackBody(r links.LinkResolver) {
 		},
 		"",
 		"mb-4 w-48",
+		false,
 	))
 	@section("Stacked cards", `@daisyui.Stack(
 	[]templ.Component{
@@ -59,6 +61,7 @@ templ stackBody(r links.LinkResolver) {
 		},
 		"",
 		"mb-4 size-28",
+		false,
 	))
 	@section("Stacked cards (top direction)", `@daisyui.Stack(
 	[]templ.Component{
@@ -75,6 +78,7 @@ templ stackBody(r links.LinkResolver) {
 		},
 		"top",
 		"mb-4 size-28",
+		false,
 	))
 	@section("Stacked cards (start direction)", `@daisyui.Stack(
 	[]templ.Component{
@@ -91,6 +95,7 @@ templ stackBody(r links.LinkResolver) {
 		},
 		"start",
 		"mb-4 size-28",
+		false,
 	))
 	@section("Stacked cards (end direction)", `@daisyui.Stack(
 	[]templ.Component{
@@ -107,6 +112,7 @@ templ stackBody(r links.LinkResolver) {
 		},
 		"end",
 		"mb-4 size-28",
+		false,
 	))
 	@section("Stacked cards with shadow", `@daisyui.Stack(
 	[]templ.Component{
@@ -124,5 +130,25 @@ templ stackBody(r links.LinkResolver) {
 		},
 		"",
 		"mb-4",
+		false,
 	))
+	@section("Stack with glass", `@daisyui.Stack(
+	[]templ.Component{
+		templ.Raw(...), // <div class="grid rounded-box bg-primary text-primary-content place-content-center">1</div>
+		templ.Raw(...), // <div class="grid rounded-box bg-accent text-accent-content place-content-center">2</div>
+		templ.Raw(...), // <div class="grid rounded-box bg-secondary text-secondary-content place-content-center">3</div>
+	},
+	"",
+	"h-20 w-32",
+	true,
+)`, glassBackdrop(daisyui.Stack(
+		[]templ.Component{
+			templ.Raw(`<div class="grid rounded-box bg-primary text-primary-content place-content-center">1</div>`),
+			templ.Raw(`<div class="grid rounded-box bg-accent text-accent-content place-content-center">2</div>`),
+			templ.Raw(`<div class="grid rounded-box bg-secondary text-secondary-content place-content-center">3</div>`),
+		},
+		"",
+		"h-20 w-32",
+		true,
+	)))
 }

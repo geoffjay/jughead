@@ -205,6 +205,26 @@ func footerBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
+		templ_7745c5c3_Err = section("Footer with glass", `@daisyui.Footer(daisyui.FooterConfig{
+	Glass: true,
+	Sections: []daisyui.FooterSection{
+		{Title: "Company", Links: []daisyui.FooterLink{{Label: "About", Href: "#"}, {Label: "Contact", Href: "#"}}},
+		{Title: "Legal", Links: []daisyui.FooterLink{{Label: "Terms", Href: "#"}, {Label: "Privacy", Href: "#"}}},
+	},
+	Copyright: "Copyright © 2026 - All rights reserved",
+	Resolver:  r,
+})`, glassBackdrop(daisyui.Footer(daisyui.FooterConfig{
+			Glass: true,
+			Sections: []daisyui.FooterSection{
+				{Title: "Company", Links: []daisyui.FooterLink{{Label: "About", Href: "#"}, {Label: "Contact", Href: "#"}}},
+				{Title: "Legal", Links: []daisyui.FooterLink{{Label: "Terms", Href: "#"}, {Label: "Privacy", Href: "#"}}},
+			},
+			Copyright: "Copyright © 2026 - All rights reserved",
+			Resolver:  r,
+		}))).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
 		return nil
 	})
 }

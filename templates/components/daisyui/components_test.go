@@ -35,9 +35,21 @@ func TestJoin(t *testing.T) {
 func TestStack(t *testing.T) {
 	a := templ.Raw("<div>A</div>")
 	b := templ.Raw("<div>B</div>")
-	got := render(t, Stack([]templ.Component{a, b}, "top", "h-20 w-32"))
+	got := render(t, Stack([]templ.Component{a, b}, "top", "h-20 w-32", false))
 	mustContain(t, got, `class="stack stack-top h-20 w-32"`)
 	mustContain(t, got, "<div>A</div>")
+}
+
+func TestStackGlass(t *testing.T) {
+	a := templ.Raw("<div>A</div>")
+	got := render(t, Stack([]templ.Component{a}, "", "h-20", true))
+	mustContain(t, got, `class="stack glass h-20"`)
+}
+
+func TestAccordionGlass(t *testing.T) {
+	items := []AccordionItem{{Title: "T", Content: "C"}}
+	got := render(t, Accordion("a", items, "", false, true))
+	mustContain(t, got, `glass`)
 }
 
 func TestDivider(t *testing.T) {

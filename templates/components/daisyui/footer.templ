@@ -31,6 +31,7 @@ type FooterAside struct {
 type FooterConfig struct {
 	Direction string
 	Center    bool
+	Glass     bool
 	Aside     templ.Component
 	Sections  []FooterSection
 	Copyright string
@@ -74,6 +75,7 @@ func footerClass(cfg FooterConfig) string {
 		"footer",
 		classFor("footer", cfg.Direction),
 		footerCenterClass(cfg.Center),
+		glassClass(cfg.Glass),
 		cfg.Class,
 	)
 }

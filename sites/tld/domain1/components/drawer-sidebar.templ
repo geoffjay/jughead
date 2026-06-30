@@ -144,6 +144,25 @@ templ drawerSidebarBody(r links.LinkResolver) {
 		},
 		Resolver: r,
 	}))
+	@section("Drawer with glass sidebar", `@daisyui.Drawer(daisyui.DrawerConfig{
+	ButtonLabel: "Open drawer",
+	Glass:       true,
+	SideItems: []daisyui.DrawerSidebarItem{
+		{Label: "Item 1", Href: "#"},
+		{Label: "Item 2", Href: "#"},
+		{Label: "Item 3", Href: "#"},
+	},
+	Resolver: r,
+})`, glassBackdrop(daisyui.Drawer(daisyui.DrawerConfig{
+		ButtonLabel: "Open drawer",
+		Glass:       true,
+		SideItems: []daisyui.DrawerSidebarItem{
+			{Label: "Item 1", Href: "#"},
+			{Label: "Item 2", Href: "#"},
+			{Label: "Item 3", Href: "#"},
+		},
+		Resolver: r,
+	})))
 }
 
 templ drawerCustomSide(r links.LinkResolver) {

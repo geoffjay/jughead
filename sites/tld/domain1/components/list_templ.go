@@ -122,6 +122,27 @@ func listBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
+		templ_7745c5c3_Err = section("List with glass", `@daisyui.List(daisyui.ListConfig{
+	Glass:  true,
+	Class:  "rounded-box",
+	Header: listHeader(),
+	Items: []daisyui.ListItem{
+		listSongRow(".../1@94.webp", "Dio Lupa", "Remaining Reason"),
+		// ... one row per song
+	},
+})`, glassBackdrop(daisyui.List(daisyui.ListConfig{
+			Glass:  true,
+			Class:  "rounded-box",
+			Header: listHeader(),
+			Items: []daisyui.ListItem{
+				listSongRow("https://img.daisyui.com/images/profile/demo/1@94.webp", "Dio Lupa", "Remaining Reason"),
+				listSongRow("https://img.daisyui.com/images/profile/demo/4@94.webp", "Ellie Beilish", "Bears of a fever"),
+				listSongRow("https://img.daisyui.com/images/profile/demo/3@94.webp", "Sabrino Gardener", "Cappuccino"),
+			},
+		}))).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
 		return nil
 	})
 }
@@ -217,7 +238,7 @@ func listThumb(src string) templ.Component {
 		var templ_7745c5c3_Var5 string
 		templ_7745c5c3_Var5, templ_7745c5c3_Err = templ.ResolveAttributeValue(templ.SafeURL(src))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/components/list.templ`, Line: 102, Col: 63}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/components/list.templ`, Line: 120, Col: 63}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var5)
 		if templ_7745c5c3_Err != nil {
@@ -259,7 +280,7 @@ func listNameBlock(name, title string) templ.Component {
 		var templ_7745c5c3_Var7 string
 		templ_7745c5c3_Var7, templ_7745c5c3_Err = templ.JoinStringErrs(name)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/components/list.templ`, Line: 107, Col: 13}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/components/list.templ`, Line: 125, Col: 13}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var7))
 		if templ_7745c5c3_Err != nil {
@@ -272,7 +293,7 @@ func listNameBlock(name, title string) templ.Component {
 		var templ_7745c5c3_Var8 string
 		templ_7745c5c3_Var8, templ_7745c5c3_Err = templ.JoinStringErrs(title)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/components/list.templ`, Line: 108, Col: 65}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/components/list.templ`, Line: 126, Col: 65}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var8))
 		if templ_7745c5c3_Err != nil {

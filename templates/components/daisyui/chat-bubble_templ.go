@@ -27,6 +27,7 @@ type ChatBubbleConfig struct {
 	Avatar  templ.Component
 	Color   string
 	Message string
+	Glass   bool
 	Class   string
 }
 
@@ -96,7 +97,7 @@ func ChatBubble(cfg ChatBubbleConfig) templ.Component {
 			var templ_7745c5c3_Var4 string
 			templ_7745c5c3_Var4, templ_7745c5c3_Err = templ.JoinStringErrs(cfg.Author)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/chat-bubble.templ`, Line: 33, Col: 16}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/chat-bubble.templ`, Line: 34, Col: 16}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var4))
 			if templ_7745c5c3_Err != nil {
@@ -114,7 +115,7 @@ func ChatBubble(cfg ChatBubbleConfig) templ.Component {
 				var templ_7745c5c3_Var5 string
 				templ_7745c5c3_Var5, templ_7745c5c3_Err = templ.JoinStringErrs(cfg.Time)
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/chat-bubble.templ`, Line: 35, Col: 48}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/chat-bubble.templ`, Line: 36, Col: 48}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var5))
 				if templ_7745c5c3_Err != nil {
@@ -130,7 +131,7 @@ func ChatBubble(cfg ChatBubbleConfig) templ.Component {
 				return templ_7745c5c3_Err
 			}
 		}
-		templ_7745c5c3_Var6 := []any{joinClasses("chat-bubble", classFor("chat-bubble", cfg.Color))}
+		templ_7745c5c3_Var6 := []any{joinClasses("chat-bubble", classFor("chat-bubble", cfg.Color), glassClass(cfg.Glass))}
 		templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var6...)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
@@ -155,7 +156,7 @@ func ChatBubble(cfg ChatBubbleConfig) templ.Component {
 		var templ_7745c5c3_Var8 string
 		templ_7745c5c3_Var8, templ_7745c5c3_Err = templ.JoinStringErrs(cfg.Message)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/chat-bubble.templ`, Line: 40, Col: 16}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/chat-bubble.templ`, Line: 41, Col: 16}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var8))
 		if templ_7745c5c3_Err != nil {
@@ -173,7 +174,7 @@ func ChatBubble(cfg ChatBubbleConfig) templ.Component {
 			var templ_7745c5c3_Var9 string
 			templ_7745c5c3_Var9, templ_7745c5c3_Err = templ.JoinStringErrs(cfg.Footer)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/chat-bubble.templ`, Line: 43, Col: 51}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/chat-bubble.templ`, Line: 44, Col: 51}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var9))
 			if templ_7745c5c3_Err != nil {

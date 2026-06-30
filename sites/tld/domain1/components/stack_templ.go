@@ -81,6 +81,7 @@ func stackBody(r links.LinkResolver) templ.Component {
 			},
 			"",
 			"h-20 w-32",
+			false,
 		)).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
@@ -101,6 +102,7 @@ func stackBody(r links.LinkResolver) templ.Component {
 			},
 			"",
 			"mb-4 w-48",
+			false,
 		)).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
@@ -120,6 +122,7 @@ func stackBody(r links.LinkResolver) templ.Component {
 			},
 			"",
 			"mb-4 size-28",
+			false,
 		)).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
@@ -139,6 +142,7 @@ func stackBody(r links.LinkResolver) templ.Component {
 			},
 			"top",
 			"mb-4 size-28",
+			false,
 		)).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
@@ -158,6 +162,7 @@ func stackBody(r links.LinkResolver) templ.Component {
 			},
 			"start",
 			"mb-4 size-28",
+			false,
 		)).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
@@ -177,6 +182,7 @@ func stackBody(r links.LinkResolver) templ.Component {
 			},
 			"end",
 			"mb-4 size-28",
+			false,
 		)).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
@@ -197,7 +203,30 @@ func stackBody(r links.LinkResolver) templ.Component {
 			},
 			"",
 			"mb-4",
+			false,
 		)).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = section("Stack with glass", `@daisyui.Stack(
+	[]templ.Component{
+		templ.Raw(...), // <div class="grid rounded-box bg-primary text-primary-content place-content-center">1</div>
+		templ.Raw(...), // <div class="grid rounded-box bg-accent text-accent-content place-content-center">2</div>
+		templ.Raw(...), // <div class="grid rounded-box bg-secondary text-secondary-content place-content-center">3</div>
+	},
+	"",
+	"h-20 w-32",
+	true,
+)`, glassBackdrop(daisyui.Stack(
+			[]templ.Component{
+				templ.Raw(`<div class="grid rounded-box bg-primary text-primary-content place-content-center">1</div>`),
+				templ.Raw(`<div class="grid rounded-box bg-accent text-accent-content place-content-center">2</div>`),
+				templ.Raw(`<div class="grid rounded-box bg-secondary text-secondary-content place-content-center">3</div>`),
+			},
+			"",
+			"h-20 w-32",
+			true,
+		))).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

@@ -23,6 +23,7 @@ type DrawerConfig struct {
 	ToggleID    string
 	End         bool
 	Open        bool
+	Glass       bool
 	ButtonLabel string
 	Side        templ.Component
 	SideItems   []DrawerSidebarItem
@@ -52,7 +53,7 @@ templ Drawer(cfg DrawerConfig) {
 			if cfg.Side != nil {
 				@cfg.Side
 			} else {
-				<ul class="menu p-4 w-60 md:w-80 min-h-full bg-base-200">
+				<ul class={ joinClasses("menu", "p-4", "w-60", "md:w-80", "min-h-full", "bg-base-200", glassClass(cfg.Glass)) }>
 					for _, item := range cfg.SideItems {
 						<li>
 							if item.Href != "" {

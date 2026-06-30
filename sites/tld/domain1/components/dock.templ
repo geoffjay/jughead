@@ -86,6 +86,25 @@ templ dockBody(r links.LinkResolver) {
 		Class:    "bg-base-300",
 		Resolver: r,
 	}))
+	@section("Dock with glass", `@daisyui.Dock(daisyui.DockConfig{
+	Items: []daisyui.DockItem{
+		{Label: "Home", Href: "#", Icon: dockHomeIcon(), Active: true},
+		{Label: "Search", Href: "#", Icon: dockSearchIcon()},
+		{Label: "Notifications", Href: "#", Icon: dockBellIcon()},
+		{Label: "Profile", Href: "#", Icon: dockUserIcon()},
+	},
+		Glass:    true,
+	Resolver: r,
+})`, glassBackdrop(daisyui.Dock(daisyui.DockConfig{
+		Items: []daisyui.DockItem{
+			{Label: "Home", Href: "#", Icon: dockHomeIcon(), Active: true},
+			{Label: "Search", Href: "#", Icon: dockSearchIcon()},
+			{Label: "Notifications", Href: "#", Icon: dockBellIcon()},
+			{Label: "Profile", Href: "#", Icon: dockUserIcon()},
+		},
+		Glass:    true,
+		Resolver: r,
+	})))
 }
 
 templ dockSizes(r links.LinkResolver) {

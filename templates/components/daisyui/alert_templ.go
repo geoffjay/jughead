@@ -29,6 +29,7 @@ type AlertConfig struct {
 	Color     string
 	Style     string
 	Direction string
+	Glass     bool
 	Icon      templ.Component
 	Actions   templ.Component
 	Class     string
@@ -61,6 +62,7 @@ func Alert(cfg AlertConfig) templ.Component {
 			classFor("alert", cfg.Color),
 			alertStyleClass(cfg.Style),
 			classFor("alert", cfg.Direction),
+			glassClass(cfg.Glass),
 			cfg.Class,
 		)}
 		templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var2...)
@@ -103,7 +105,7 @@ func Alert(cfg AlertConfig) templ.Component {
 				var templ_7745c5c3_Var4 string
 				templ_7745c5c3_Var4, templ_7745c5c3_Err = templ.JoinStringErrs(cfg.Title)
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/alert.templ`, Line: 45, Col: 38}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/alert.templ`, Line: 47, Col: 38}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var4))
 				if templ_7745c5c3_Err != nil {
@@ -122,7 +124,7 @@ func Alert(cfg AlertConfig) templ.Component {
 				var templ_7745c5c3_Var5 string
 				templ_7745c5c3_Var5, templ_7745c5c3_Err = templ.JoinStringErrs(cfg.Desc)
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/alert.templ`, Line: 48, Col: 36}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/alert.templ`, Line: 50, Col: 36}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var5))
 				if templ_7745c5c3_Err != nil {
@@ -145,7 +147,7 @@ func Alert(cfg AlertConfig) templ.Component {
 			var templ_7745c5c3_Var6 string
 			templ_7745c5c3_Var6, templ_7745c5c3_Err = templ.JoinStringErrs(cfg.Message)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/alert.templ`, Line: 52, Col: 22}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/alert.templ`, Line: 54, Col: 22}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var6))
 			if templ_7745c5c3_Err != nil {

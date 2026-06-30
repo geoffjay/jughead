@@ -71,28 +71,31 @@ func cardBody(r links.LinkResolver) templ.Component {
 			templ_7745c5c3_Var2 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = section("Card", `@daisyui.Card(daisyui.CardConfig{
-	ImageSrc: cardImg,
-	ImageAlt: "Shoes",
-	Title:    "Card Title",
-	Desc:     "A card component has a figure, a body part, and inside body there are title and actions parts",
-	Class:    "w-96 bg-base-100 shadow-sm",
-	Actions:  daisyui.Button(daisyui.ButtonConfig{Label: "Buy Now", Color: "primary"}),
-})`, daisyui.Card(daisyui.CardConfig{
-			ImageSrc: cardImg,
-			ImageAlt: "Shoes",
-			Title:    "Card Title",
-			Desc:     "A card component has a figure, a body part, and inside body there are title and actions parts",
-			Class:    "w-96 bg-base-100 shadow-sm",
-			Actions:  daisyui.Button(daisyui.ButtonConfig{Label: "Buy Now", Color: "primary"}),
-		})).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = section(
+			"Card",
+			`@daisyui.Card(daisyui.CardConfig{
+      ImageSrc: cardImg,
+      ImageAlt: "Shoes",
+      Title:    "Card Title",
+      Desc:     "A card component has a figure, a body part, and inside body there are title and actions parts",
+      Class:    "w-96 bg-base-100 shadow-sm",
+      Actions:  daisyui.Button(daisyui.ButtonConfig{Label: "Buy Now", Color: "primary"}),
+    })`,
+			daisyui.Card(daisyui.CardConfig{
+				ImageSrc: cardImg,
+				ImageAlt: "Shoes",
+				Title:    "Card Title",
+				Desc:     "A card component has a figure, a body part, and inside body there are title and actions parts",
+				Class:    "w-96 bg-base-100 shadow-sm",
+				Actions:  daisyui.Button(daisyui.ButtonConfig{Label: "Buy Now", Color: "primary"}),
+			})).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		templ_7745c5c3_Err = section("Pricing card", `@daisyui.Card(daisyui.CardConfig{
-	Class: "w-96 bg-base-100 shadow-sm",
-	Body:  pricingCardBody(),
-})
+    Class: "w-96 bg-base-100 shadow-sm",
+    Body:  pricingCardBody(),
+  })
 
 // pricingCardBody renders:
 <span class="badge badge-xs badge-warning">Most Popular</span>
@@ -354,6 +357,22 @@ func cardBody(r links.LinkResolver) templ.Component {
 			Desc:     "Click the button to listen on Spotiwhy app.",
 			Actions:  daisyui.Button(daisyui.ButtonConfig{Label: "Listen", Color: "primary"}),
 		})).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = section("Card with glass", `@daisyui.Card(daisyui.CardConfig{
+	Glass:  true,
+	Class:  "w-96 text-base-content",
+	Title:  "Glass card",
+	Desc:   "A translucent, blurred surface that adapts to the active theme.",
+	Actions: daisyui.Button(daisyui.ButtonConfig{Label: "Buy Now", Color: "primary"}),
+})`, glassBackdrop(daisyui.Card(daisyui.CardConfig{
+			Glass:   true,
+			Class:   "w-96 text-base-content",
+			Title:   "Glass card",
+			Desc:    "A translucent, blurred surface that adapts to the active theme.",
+			Actions: daisyui.Button(daisyui.ButtonConfig{Label: "Buy Now", Color: "primary"}),
+		}))).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

@@ -270,6 +270,63 @@ func tableBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
+		templ_7745c5c3_Err = section("Table with glass", `@daisyui.Table(daisyui.TableConfig{
+	Glass: true,
+	Headers: []daisyui.TableCell{
+		{Text: ""},
+		{Text: "Name"},
+		{Text: "Job"},
+		{Text: "Favorite Color"},
+	},
+	Rows: []daisyui.TableRow{
+		{
+			Cells: []daisyui.TableCell{
+				{Text: "1", Header: true},
+				{Text: "Cy Ganderton"},
+				{Text: "Quality Control Specialist"},
+				{Text: "Blue"},
+			},
+		},
+		// ... one row per person
+	},
+})`, glassBackdrop(daisyui.Table(daisyui.TableConfig{
+			Glass: true,
+			Headers: []daisyui.TableCell{
+				{Text: ""},
+				{Text: "Name"},
+				{Text: "Job"},
+				{Text: "Favorite Color"},
+			},
+			Rows: []daisyui.TableRow{
+				{
+					Cells: []daisyui.TableCell{
+						{Text: "1", Header: true},
+						{Text: "Cy Ganderton"},
+						{Text: "Quality Control Specialist"},
+						{Text: "Blue"},
+					},
+				},
+				{
+					Cells: []daisyui.TableCell{
+						{Text: "2", Header: true},
+						{Text: "Hart Hagerty"},
+						{Text: "Desktop Support Technician"},
+						{Text: "Purple"},
+					},
+				},
+				{
+					Cells: []daisyui.TableCell{
+						{Text: "3", Header: true},
+						{Text: "Brice Swyre"},
+						{Text: "Tax Accountant"},
+						{Text: "Red"},
+					},
+				},
+			},
+		}))).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
 		return nil
 	})
 }
@@ -399,7 +456,7 @@ func avatarNameCell(name, country, src string) templ.Component {
 		var templ_7745c5c3_Var6 string
 		templ_7745c5c3_Var6, templ_7745c5c3_Err = templ.ResolveAttributeValue(templ.SafeURL(src))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/components/table.templ`, Line: 244, Col: 33}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/components/table.templ`, Line: 298, Col: 33}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var6)
 		if templ_7745c5c3_Err != nil {
@@ -412,7 +469,7 @@ func avatarNameCell(name, country, src string) templ.Component {
 		var templ_7745c5c3_Var7 string
 		templ_7745c5c3_Var7, templ_7745c5c3_Err = templ.ResolveAttributeValue(name)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/components/table.templ`, Line: 244, Col: 46}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/components/table.templ`, Line: 298, Col: 46}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var7)
 		if templ_7745c5c3_Err != nil {
@@ -425,7 +482,7 @@ func avatarNameCell(name, country, src string) templ.Component {
 		var templ_7745c5c3_Var8 string
 		templ_7745c5c3_Var8, templ_7745c5c3_Err = templ.JoinStringErrs(name)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/components/table.templ`, Line: 248, Col: 32}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/components/table.templ`, Line: 302, Col: 32}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var8))
 		if templ_7745c5c3_Err != nil {
@@ -438,7 +495,7 @@ func avatarNameCell(name, country, src string) templ.Component {
 		var templ_7745c5c3_Var9 string
 		templ_7745c5c3_Var9, templ_7745c5c3_Err = templ.JoinStringErrs(country)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/components/table.templ`, Line: 249, Col: 44}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/components/table.templ`, Line: 303, Col: 44}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var9))
 		if templ_7745c5c3_Err != nil {
@@ -476,7 +533,7 @@ func jobCell(company, role string) templ.Component {
 		var templ_7745c5c3_Var11 string
 		templ_7745c5c3_Var11, templ_7745c5c3_Err = templ.JoinStringErrs(company)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/components/table.templ`, Line: 255, Col: 10}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/components/table.templ`, Line: 309, Col: 10}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var11))
 		if templ_7745c5c3_Err != nil {
@@ -489,7 +546,7 @@ func jobCell(company, role string) templ.Component {
 		var templ_7745c5c3_Var12 string
 		templ_7745c5c3_Var12, templ_7745c5c3_Err = templ.JoinStringErrs(role)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/components/table.templ`, Line: 257, Col: 48}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/components/table.templ`, Line: 311, Col: 48}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var12))
 		if templ_7745c5c3_Err != nil {

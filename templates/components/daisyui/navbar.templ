@@ -41,15 +41,25 @@ type NavbarData struct {
 	EndDropdowns      []NavDropdown
 	SearchPlaceholder string
 	EndExtra          templ.Component
+	Glass             bool
 	Resolver          URLResolver
 }
 
 templ Navbar(data NavbarData) {
-	<div class="navbar bg-base-100 shadow-sm">
+	<div class={ navbarClass(data) }>
 		@navbarStart(data)
 		@navbarCenter(data)
 		@navbarEnd(data)
 	</div>
+}
+
+func navbarClass(data NavbarData) string {
+	return joinClasses(
+		"navbar",
+		"bg-base-100",
+		"shadow-sm",
+		glassClass(data.Glass),
+	)
 }
 
 templ navbarStart(data NavbarData) {

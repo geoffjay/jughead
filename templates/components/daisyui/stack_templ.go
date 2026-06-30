@@ -18,8 +18,10 @@ import (
 //   - "start"      : stack-start
 //   - "end"        : stack-end
 //
-// Class adds extra utility classes (e.g. sizing) to the stack container.
-func Stack(items []templ.Component, direction, class string) templ.Component {
+// Glass, when true, applies the glass surface treatment to the stack
+// container. Class adds extra utility classes (e.g. sizing) to the stack
+// container.
+func Stack(items []templ.Component, direction, class string, glass bool) templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -40,7 +42,7 @@ func Stack(items []templ.Component, direction, class string) templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Var2 := []any{joinClasses("stack", stackDirClass(direction), class)}
+		templ_7745c5c3_Var2 := []any{joinClasses("stack", stackDirClass(direction), glassClass(glass), class)}
 		templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var2...)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err

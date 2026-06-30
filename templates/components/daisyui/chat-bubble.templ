@@ -17,6 +17,7 @@ type ChatBubbleConfig struct {
 	Avatar  templ.Component
 	Color   string
 	Message string
+	Glass   bool
 	Class   string
 }
 
@@ -36,7 +37,7 @@ templ ChatBubble(cfg ChatBubbleConfig) {
 				}
 			</div>
 		}
-		<div class={ joinClasses("chat-bubble", classFor("chat-bubble", cfg.Color)) }>
+		<div class={ joinClasses("chat-bubble", classFor("chat-bubble", cfg.Color), glassClass(cfg.Glass)) }>
 			{ cfg.Message }
 		</div>
 		if cfg.Footer != "" {

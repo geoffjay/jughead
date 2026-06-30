@@ -223,6 +223,28 @@ func drawerSidebarBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
+		templ_7745c5c3_Err = section("Drawer with glass sidebar", `@daisyui.Drawer(daisyui.DrawerConfig{
+	ButtonLabel: "Open drawer",
+	Glass:       true,
+	SideItems: []daisyui.DrawerSidebarItem{
+		{Label: "Item 1", Href: "#"},
+		{Label: "Item 2", Href: "#"},
+		{Label: "Item 3", Href: "#"},
+	},
+	Resolver: r,
+})`, glassBackdrop(daisyui.Drawer(daisyui.DrawerConfig{
+			ButtonLabel: "Open drawer",
+			Glass:       true,
+			SideItems: []daisyui.DrawerSidebarItem{
+				{Label: "Item 1", Href: "#"},
+				{Label: "Item 2", Href: "#"},
+				{Label: "Item 3", Href: "#"},
+			},
+			Resolver: r,
+		}))).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
 		return nil
 	})
 }

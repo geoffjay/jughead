@@ -53,6 +53,7 @@ type ModalConfig struct {
 	Open         bool
 	Placement    string
 	BoxClass     string
+	Glass        bool
 	Class        string
 	TriggerLabel string
 	TriggerClass string
@@ -130,7 +131,7 @@ func modalTrigger(cfg ModalConfig) templ.Component {
 			var templ_7745c5c3_Var4 string
 			templ_7745c5c3_Var4, templ_7745c5c3_Err = templ.ResolveAttributeValue(cfg.ID)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/modal.templ`, Line: 63, Col: 22}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/modal.templ`, Line: 64, Col: 22}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var4)
 			if templ_7745c5c3_Err != nil {
@@ -156,7 +157,7 @@ func modalTrigger(cfg ModalConfig) templ.Component {
 			var templ_7745c5c3_Var6 string
 			templ_7745c5c3_Var6, templ_7745c5c3_Err = templ.JoinStringErrs(cfg.TriggerLabel)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/modal.templ`, Line: 63, Col: 76}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/modal.templ`, Line: 64, Col: 76}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var6))
 			if templ_7745c5c3_Err != nil {
@@ -179,7 +180,7 @@ func modalTrigger(cfg ModalConfig) templ.Component {
 			var templ_7745c5c3_Var8 templ.SafeURL
 			templ_7745c5c3_Var8, templ_7745c5c3_Err = templ.JoinURLErrs("#" + cfg.ID)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/modal.templ`, Line: 65, Col: 25}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/modal.templ`, Line: 66, Col: 25}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var8))
 			if templ_7745c5c3_Err != nil {
@@ -205,7 +206,7 @@ func modalTrigger(cfg ModalConfig) templ.Component {
 			var templ_7745c5c3_Var10 string
 			templ_7745c5c3_Var10, templ_7745c5c3_Err = templ.JoinStringErrs(cfg.TriggerLabel)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/modal.templ`, Line: 65, Col: 94}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/modal.templ`, Line: 66, Col: 94}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var10))
 			if templ_7745c5c3_Err != nil {
@@ -254,7 +255,7 @@ func modalTrigger(cfg ModalConfig) templ.Component {
 			var templ_7745c5c3_Var14 string
 			templ_7745c5c3_Var14, templ_7745c5c3_Err = templ.JoinStringErrs(cfg.TriggerLabel)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/modal.templ`, Line: 67, Col: 92}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/modal.templ`, Line: 68, Col: 92}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var14))
 			if templ_7745c5c3_Err != nil {
@@ -354,7 +355,7 @@ func modalHTMLDialog(cfg ModalConfig) templ.Component {
 		var templ_7745c5c3_Var18 string
 		templ_7745c5c3_Var18, templ_7745c5c3_Err = templ.ResolveAttributeValue(cfg.ID)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/modal.templ`, Line: 87, Col: 20}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/modal.templ`, Line: 88, Col: 20}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var18)
 		if templ_7745c5c3_Err != nil {
@@ -433,7 +434,7 @@ func modalHTMLDialog(cfg ModalConfig) templ.Component {
 				var templ_7745c5c3_Var22 string
 				templ_7745c5c3_Var22, templ_7745c5c3_Err = templ.JoinStringErrs(cfg.Title)
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/modal.templ`, Line: 98, Col: 46}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/modal.templ`, Line: 99, Col: 46}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var22))
 				if templ_7745c5c3_Err != nil {
@@ -456,7 +457,7 @@ func modalHTMLDialog(cfg ModalConfig) templ.Component {
 				var templ_7745c5c3_Var23 string
 				templ_7745c5c3_Var23, templ_7745c5c3_Err = templ.JoinStringErrs(cfg.Message)
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/modal.templ`, Line: 101, Col: 34}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/modal.templ`, Line: 102, Col: 34}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var23))
 				if templ_7745c5c3_Err != nil {
@@ -528,7 +529,7 @@ func modalCheckbox(cfg ModalConfig) templ.Component {
 		var templ_7745c5c3_Var25 string
 		templ_7745c5c3_Var25, templ_7745c5c3_Err = templ.ResolveAttributeValue(cfg.ID)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/modal.templ`, Line: 119, Col: 35}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/modal.templ`, Line: 120, Col: 35}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var25)
 		if templ_7745c5c3_Err != nil {
@@ -606,7 +607,7 @@ func modalCheckbox(cfg ModalConfig) templ.Component {
 				var templ_7745c5c3_Var30 string
 				templ_7745c5c3_Var30, templ_7745c5c3_Err = templ.JoinStringErrs(cfg.Title)
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/modal.templ`, Line: 126, Col: 46}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/modal.templ`, Line: 127, Col: 46}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var30))
 				if templ_7745c5c3_Err != nil {
@@ -629,7 +630,7 @@ func modalCheckbox(cfg ModalConfig) templ.Component {
 				var templ_7745c5c3_Var31 string
 				templ_7745c5c3_Var31, templ_7745c5c3_Err = templ.JoinStringErrs(cfg.Message)
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/modal.templ`, Line: 129, Col: 34}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/modal.templ`, Line: 130, Col: 34}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var31))
 				if templ_7745c5c3_Err != nil {
@@ -667,7 +668,7 @@ func modalCheckbox(cfg ModalConfig) templ.Component {
 			var templ_7745c5c3_Var32 string
 			templ_7745c5c3_Var32, templ_7745c5c3_Err = templ.ResolveAttributeValue(cfg.ID)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/modal.templ`, Line: 139, Col: 45}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/modal.templ`, Line: 140, Col: 45}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var32)
 			if templ_7745c5c3_Err != nil {
@@ -732,7 +733,7 @@ func modalAnchor(cfg ModalConfig) templ.Component {
 		var templ_7745c5c3_Var36 string
 		templ_7745c5c3_Var36, templ_7745c5c3_Err = templ.ResolveAttributeValue(cfg.ID)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/modal.templ`, Line: 145, Col: 57}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/modal.templ`, Line: 146, Col: 57}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var36)
 		if templ_7745c5c3_Err != nil {
@@ -778,7 +779,7 @@ func modalAnchor(cfg ModalConfig) templ.Component {
 				var templ_7745c5c3_Var39 string
 				templ_7745c5c3_Var39, templ_7745c5c3_Err = templ.JoinStringErrs(cfg.Title)
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/modal.templ`, Line: 151, Col: 46}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/modal.templ`, Line: 152, Col: 46}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var39))
 				if templ_7745c5c3_Err != nil {
@@ -801,7 +802,7 @@ func modalAnchor(cfg ModalConfig) templ.Component {
 				var templ_7745c5c3_Var40 string
 				templ_7745c5c3_Var40, templ_7745c5c3_Err = templ.JoinStringErrs(cfg.Message)
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/modal.templ`, Line: 154, Col: 34}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/modal.templ`, Line: 155, Col: 34}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var40))
 				if templ_7745c5c3_Err != nil {
@@ -897,7 +898,7 @@ func modalOpenClass(open bool, method string) string {
 }
 
 func modalBoxClass(cfg ModalConfig) string {
-	return joinClasses("modal-box", cfg.BoxClass)
+	return joinClasses("modal-box", glassClass(cfg.Glass), cfg.BoxClass)
 }
 
 func modalTriggerClass(cfg ModalConfig) string {

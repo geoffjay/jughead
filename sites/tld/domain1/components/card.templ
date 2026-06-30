@@ -14,25 +14,28 @@ const cardImg2 = "https://img.daisyui.com/images/stock/photo-1635805737707-57588
 const cardImg3 = "https://img.daisyui.com/images/stock/photo-1494232410401-ad00d5433cfa.webp"
 
 templ cardBody(r links.LinkResolver) {
-	@section("Card", `@daisyui.Card(daisyui.CardConfig{
-	ImageSrc: cardImg,
-	ImageAlt: "Shoes",
-	Title:    "Card Title",
-	Desc:     "A card component has a figure, a body part, and inside body there are title and actions parts",
-	Class:    "w-96 bg-base-100 shadow-sm",
-	Actions:  daisyui.Button(daisyui.ButtonConfig{Label: "Buy Now", Color: "primary"}),
-})`, daisyui.Card(daisyui.CardConfig{
-		ImageSrc: cardImg,
-		ImageAlt: "Shoes",
-		Title:    "Card Title",
-		Desc:     "A card component has a figure, a body part, and inside body there are title and actions parts",
-		Class:    "w-96 bg-base-100 shadow-sm",
-		Actions:  daisyui.Button(daisyui.ButtonConfig{Label: "Buy Now", Color: "primary"}),
-	}))
+	@section(
+		"Card",
+		`@daisyui.Card(daisyui.CardConfig{
+      ImageSrc: cardImg,
+      ImageAlt: "Shoes",
+      Title:    "Card Title",
+      Desc:     "A card component has a figure, a body part, and inside body there are title and actions parts",
+      Class:    "w-96 bg-base-100 shadow-sm",
+      Actions:  daisyui.Button(daisyui.ButtonConfig{Label: "Buy Now", Color: "primary"}),
+    })`,
+		daisyui.Card(daisyui.CardConfig{
+			ImageSrc: cardImg,
+			ImageAlt: "Shoes",
+			Title:    "Card Title",
+			Desc:     "A card component has a figure, a body part, and inside body there are title and actions parts",
+			Class:    "w-96 bg-base-100 shadow-sm",
+			Actions:  daisyui.Button(daisyui.ButtonConfig{Label: "Buy Now", Color: "primary"}),
+		}))
 	@section("Pricing card", `@daisyui.Card(daisyui.CardConfig{
-	Class: "w-96 bg-base-100 shadow-sm",
-	Body:  pricingCardBody(),
-})
+    Class: "w-96 bg-base-100 shadow-sm",
+    Body:  pricingCardBody(),
+  })
 
 // pricingCardBody renders:
 <span class="badge badge-xs badge-warning">Most Popular</span>
@@ -255,6 +258,19 @@ templ cardBody(r links.LinkResolver) {
 		Desc:     "Click the button to listen on Spotiwhy app.",
 		Actions:  daisyui.Button(daisyui.ButtonConfig{Label: "Listen", Color: "primary"}),
 	}))
+	@section("Card with glass", `@daisyui.Card(daisyui.CardConfig{
+	Glass:  true,
+	Class:  "w-96 text-base-content",
+	Title:  "Glass card",
+	Desc:   "A translucent, blurred surface that adapts to the active theme.",
+	Actions: daisyui.Button(daisyui.ButtonConfig{Label: "Buy Now", Color: "primary"}),
+})`, glassBackdrop(daisyui.Card(daisyui.CardConfig{
+		Glass:   true,
+		Class:   "w-96 text-base-content",
+		Title:   "Glass card",
+		Desc:    "A translucent, blurred surface that adapts to the active theme.",
+		Actions: daisyui.Button(daisyui.ButtonConfig{Label: "Buy Now", Color: "primary"}),
+	})))
 }
 
 templ pricingCardBody() {

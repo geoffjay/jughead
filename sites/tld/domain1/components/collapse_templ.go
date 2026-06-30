@@ -173,6 +173,18 @@ func collapseBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
+		templ_7745c5c3_Err = section("Collapse with glass", `@daisyui.Collapse(
+	daisyui.CollapseConfig{Glass: true, Icon: "arrow"},
+	"How do I create an account?",
+	"Click the \"Sign Up\" button in the top right corner and follow the registration process.",
+)`, glassBackdrop(daisyui.Collapse(
+			daisyui.CollapseConfig{Glass: true, Icon: "arrow"},
+			"How do I create an account?",
+			`Click the "Sign Up" button in the top right corner and follow the registration process.`,
+		))).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
 		return nil
 	})
 }

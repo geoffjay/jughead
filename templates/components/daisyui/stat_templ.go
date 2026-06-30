@@ -36,6 +36,7 @@ type StatItem struct {
 // classes (e.g. "shadow" or "bg-base-100 border border-base-300").
 type StatConfig struct {
 	Direction string
+	Glass     bool
 	Items     []StatItem
 	Class     string
 }
@@ -163,7 +164,7 @@ func Stat(cfg StatConfig) templ.Component {
 				var templ_7745c5c3_Var8 string
 				templ_7745c5c3_Var8, templ_7745c5c3_Err = templ.JoinStringErrs(item.Title)
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/stat.templ`, Line: 51, Col: 41}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/stat.templ`, Line: 52, Col: 41}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var8))
 				if templ_7745c5c3_Err != nil {
@@ -200,7 +201,7 @@ func Stat(cfg StatConfig) templ.Component {
 				var templ_7745c5c3_Var11 string
 				templ_7745c5c3_Var11, templ_7745c5c3_Err = templ.JoinStringErrs(item.Value)
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/stat.templ`, Line: 55, Col: 18}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/stat.templ`, Line: 56, Col: 18}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var11))
 				if templ_7745c5c3_Err != nil {
@@ -238,7 +239,7 @@ func Stat(cfg StatConfig) templ.Component {
 					var templ_7745c5c3_Var14 string
 					templ_7745c5c3_Var14, templ_7745c5c3_Err = templ.JoinStringErrs(item.Desc)
 					if templ_7745c5c3_Err != nil {
-						return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/stat.templ`, Line: 61, Col: 18}
+						return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/stat.templ`, Line: 62, Col: 18}
 					}
 					_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var14))
 					if templ_7745c5c3_Err != nil {
@@ -256,7 +257,7 @@ func Stat(cfg StatConfig) templ.Component {
 					var templ_7745c5c3_Var15 string
 					templ_7745c5c3_Var15, templ_7745c5c3_Err = templ.JoinStringErrs(item.Desc)
 					if templ_7745c5c3_Err != nil {
-						return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/stat.templ`, Line: 64, Col: 40}
+						return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/stat.templ`, Line: 65, Col: 40}
 					}
 					_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var15))
 					if templ_7745c5c3_Err != nil {
@@ -299,6 +300,7 @@ func statClass(cfg StatConfig) string {
 	return joinClasses(
 		"stats",
 		statDirectionClass(cfg.Direction),
+		glassClass(cfg.Glass),
 		cfg.Class,
 	)
 }

@@ -9,6 +9,7 @@ package daisyui
 type ToastConfig struct {
 	Horizontal string
 	Vertical   string
+	Glass      bool
 	Class      string
 	Children   templ.Component
 }
@@ -20,6 +21,7 @@ templ Toast(cfg ToastConfig) {
 		"toast",
 		toastHorizontalClass(cfg.Horizontal),
 		toastVerticalClass(cfg.Vertical),
+		glassClass(cfg.Glass),
 		cfg.Class,
 	) }
 	>

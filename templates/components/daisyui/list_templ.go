@@ -33,6 +33,7 @@ type ListConfig struct {
 	Header  templ.Component
 	Items   []ListItem
 	Ordered bool
+	Glass   bool
 	Class   string
 }
 
@@ -208,6 +209,7 @@ func listBody(cfg ListConfig) templ.Component {
 func listClass(cfg ListConfig) string {
 	return joinClasses(
 		"list",
+		glassClass(cfg.Glass),
 		cfg.Class,
 	)
 }

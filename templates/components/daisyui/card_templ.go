@@ -39,6 +39,7 @@ type CardConfig struct {
 	Style       string
 	Modifier    string
 	Size        string
+	Glass       bool
 	Class       string
 }
 
@@ -110,7 +111,7 @@ func Card(cfg CardConfig) templ.Component {
 				var templ_7745c5c3_Var4 string
 				templ_7745c5c3_Var4, templ_7745c5c3_Err = templ.JoinStringErrs(cfg.Title)
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/card.templ`, Line: 46, Col: 39}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/card.templ`, Line: 47, Col: 39}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var4))
 				if templ_7745c5c3_Err != nil {
@@ -133,7 +134,7 @@ func Card(cfg CardConfig) templ.Component {
 				var templ_7745c5c3_Var5 string
 				templ_7745c5c3_Var5, templ_7745c5c3_Err = templ.JoinStringErrs(cfg.Desc)
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/card.templ`, Line: 49, Col: 18}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/card.templ`, Line: 50, Col: 18}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var5))
 				if templ_7745c5c3_Err != nil {
@@ -233,7 +234,7 @@ func cardFigure(cfg CardConfig) templ.Component {
 		var templ_7745c5c3_Var9 string
 		templ_7745c5c3_Var9, templ_7745c5c3_Err = templ.ResolveAttributeValue(templ.SafeURL(cfg.ImageSrc))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/card.templ`, Line: 70, Col: 40}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/card.templ`, Line: 71, Col: 40}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var9)
 		if templ_7745c5c3_Err != nil {
@@ -246,7 +247,7 @@ func cardFigure(cfg CardConfig) templ.Component {
 		var templ_7745c5c3_Var10 string
 		templ_7745c5c3_Var10, templ_7745c5c3_Err = templ.ResolveAttributeValue(cfg.ImageAlt)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/card.templ`, Line: 70, Col: 61}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/card.templ`, Line: 71, Col: 61}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var10)
 		if templ_7745c5c3_Err != nil {
@@ -266,6 +267,7 @@ func cardClass(cfg CardConfig) string {
 		cardStyleClass(cfg.Style),
 		cardModifierClass(cfg.Modifier),
 		cardSizeClass(cfg.Size),
+		glassClass(cfg.Glass),
 		cfg.Class,
 	)
 }

@@ -194,6 +194,18 @@ templ alertActionButtons() {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
+		templ_7745c5c3_Err = section("Alert with glass", `@daisyui.Alert(daisyui.AlertConfig{
+	Message: "Glass: translucent, blurred surface.",
+	Glass:   true,
+	Class:   "w-full",
+})`, glassBackdrop(daisyui.Alert(daisyui.AlertConfig{
+			Message: "Glass: translucent, blurred surface.",
+			Glass:   true,
+			Class:   "w-full",
+		}))).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
 		return nil
 	})
 }

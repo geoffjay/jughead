@@ -19,17 +19,18 @@ type AccordionItem struct {
 //   - "plus"        : adds a plus/minus icon (collapse-plus)
 //
 // Join, when true, wraps the items in a vertical join group so borders and
-// border-radius between adjacent items are handled automatically.
-templ Accordion(name string, items []AccordionItem, icon string, join bool) {
+// border-radius between adjacent items are handled automatically. Glass, when
+// true, applies the glass surface treatment to each item wrapper.
+templ Accordion(name string, items []AccordionItem, icon string, join bool, glass bool) {
 	if join {
-		<div class="join join-vertical bg-base-100">
+		<div class={ joinClasses("join", "join-vertical", "bg-base-100", glassClass(glass)) }>
 			for _, item := range items {
 				@accordionItem(name, item, icon, "join-item border border-base-300")
 			}
 		</div>
 	} else {
 		for _, item := range items {
-			@accordionItem(name, item, icon, "bg-base-100 border border-base-300")
+			@accordionItem(name, item, icon, joinClasses("bg-base-100 border border-base-300", glassClass(glass)))
 		}
 	}
 }

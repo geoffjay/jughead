@@ -91,4 +91,13 @@ templ collapseBody(r links.LinkResolver) {
 		"How do I create an account?",
 		`Click the "Sign Up" button in the top right corner and follow the registration process.`,
 	))
+	@section("Collapse with glass", `@daisyui.Collapse(
+	daisyui.CollapseConfig{Glass: true, Icon: "arrow"},
+	"How do I create an account?",
+	"Click the \"Sign Up\" button in the top right corner and follow the registration process.",
+)`, glassBackdrop(daisyui.Collapse(
+		daisyui.CollapseConfig{Glass: true, Icon: "arrow"},
+		"How do I create an account?",
+		`Click the "Sign Up" button in the top right corner and follow the registration process.`,
+	)))
 }

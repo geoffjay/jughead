@@ -96,6 +96,21 @@ templ heroBody(r links.LinkResolver) {
 		Subtitle:        "Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.",
 		Actions:         daisyui.Button(daisyui.ButtonConfig{Label: "Get Started", Color: "primary"}),
 	}))
+	@section("Hero with glass content", `@daisyui.Hero(daisyui.HeroConfig{
+	Class:        "min-h-[30rem] rounded bg-base-200",
+	ContentClass: "text-center",
+	Glass:        true,
+	Title:        "Hello there",
+	Subtitle:     "Provident cupiditate voluptatem et in...",
+	Actions:      daisyui.Button(daisyui.ButtonConfig{Label: "Get Started", Color: "primary"}),
+})`, glassBackdrop(daisyui.Hero(daisyui.HeroConfig{
+		Class:        "min-h-[30rem] rounded bg-base-200",
+		ContentClass: "text-center",
+		Glass:        true,
+		Title:        "Hello there",
+		Subtitle:     "Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.",
+		Actions:      daisyui.Button(daisyui.ButtonConfig{Label: "Get Started", Color: "primary"}),
+	})))
 }
 
 templ heroWithFigureContent() {

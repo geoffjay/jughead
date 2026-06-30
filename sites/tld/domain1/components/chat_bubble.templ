@@ -37,7 +37,16 @@ templ chatBubbleBody(r links.LinkResolver) {
 	@section("Chat Bubble with colors", `@daisyui.ChatBubble(daisyui.ChatBubbleConfig{Color: "primary", Message: "What kind of nonsense is this"})
 @daisyui.ChatBubble(daisyui.ChatBubbleConfig{Color: "secondary", Message: "Put me on the Council and not make me a Master!??"})
 @daisyui.ChatBubble(daisyui.ChatBubbleConfig{Color: "accent", Message: "That's never been done in the history of the Jedi."})
-// ... one per color`, chatBubbleColorsRow())
+	// ... one per color`, chatBubbleColorsRow())
+	@section("Chat Bubble with glass", `@daisyui.ChatBubble(daisyui.ChatBubbleConfig{Message: "You can see through me.", Glass: true})
+@daisyui.ChatBubble(daisyui.ChatBubbleConfig{End: true, Message: "Frosted!", Glass: true})`, glassBackdrop(chatBubbleGlassRow()))
+}
+
+templ chatBubbleGlassRow() {
+	<div class="w-full">
+		@daisyui.ChatBubble(daisyui.ChatBubbleConfig{Message: "You can see through me.", Glass: true})
+		@daisyui.ChatBubble(daisyui.ChatBubbleConfig{End: true, Message: "Frosted!", Glass: true})
+	</div>
 }
 
 templ chatBubbleColorsRow() {

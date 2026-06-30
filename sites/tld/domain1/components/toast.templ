@@ -85,6 +85,23 @@ templ toastBody(r links.LinkResolver) {
 		Children:   toastAlerts(),
 	})
 </div>`, toastFrame("end", ""))
+	@section("Toast with glass", `<div class="w-full h-64 relative">
+	@daisyui.Toast(daisyui.ToastConfig{
+		Glass:    true,
+		Class:    "absolute",
+		Children: daisyui.Alert(daisyui.AlertConfig{Message: "New message arrived.", Color: "info"}),
+	})
+</div>`, glassBackdrop(toastGlassFrame()))
+}
+
+templ toastGlassFrame() {
+	<div class="w-full h-64 relative">
+		@daisyui.Toast(daisyui.ToastConfig{
+			Glass:    true,
+			Class:    "absolute",
+			Children: daisyui.Alert(daisyui.AlertConfig{Message: "New message arrived.", Color: "info"}),
+		})
+	</div>
 }
 
 templ toastAlerts() {

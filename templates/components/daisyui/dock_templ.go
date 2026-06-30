@@ -28,6 +28,7 @@ type DockItem struct {
 type DockConfig struct {
 	Items    []DockItem
 	Size     string
+	Glass    bool
 	Class    string
 	Resolver URLResolver
 }
@@ -104,7 +105,7 @@ func Dock(cfg DockConfig) templ.Component {
 				var templ_7745c5c3_Var6 templ.SafeURL
 				templ_7745c5c3_Var6, templ_7745c5c3_Err = templ.JoinURLErrs(resolveHref(cfg.Resolver, item.Href))
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/dock.templ`, Line: 31, Col: 80}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/dock.templ`, Line: 32, Col: 80}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var6))
 				if templ_7745c5c3_Err != nil {
@@ -128,7 +129,7 @@ func Dock(cfg DockConfig) templ.Component {
 					var templ_7745c5c3_Var7 string
 					templ_7745c5c3_Var7, templ_7745c5c3_Err = templ.JoinStringErrs(item.Label)
 					if templ_7745c5c3_Err != nil {
-						return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/dock.templ`, Line: 36, Col: 43}
+						return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/dock.templ`, Line: 37, Col: 43}
 					}
 					_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var7))
 					if templ_7745c5c3_Err != nil {
@@ -180,7 +181,7 @@ func Dock(cfg DockConfig) templ.Component {
 					var templ_7745c5c3_Var10 string
 					templ_7745c5c3_Var10, templ_7745c5c3_Err = templ.JoinStringErrs(item.Label)
 					if templ_7745c5c3_Err != nil {
-						return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/dock.templ`, Line: 45, Col: 43}
+						return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/dock.templ`, Line: 46, Col: 43}
 					}
 					_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var10))
 					if templ_7745c5c3_Err != nil {
@@ -209,6 +210,7 @@ func dockClass(cfg DockConfig) string {
 	return joinClasses(
 		"dock",
 		dockSizeClass(cfg.Size),
+		glassClass(cfg.Glass),
 		cfg.Class,
 	)
 }

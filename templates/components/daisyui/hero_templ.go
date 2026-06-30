@@ -33,6 +33,7 @@ type HeroConfig struct {
 	Content         templ.Component
 	Overlay         bool
 	BackgroundImage string
+	Glass           bool
 	ContentClass    string
 	Class           string
 }
@@ -89,7 +90,7 @@ func Hero(cfg HeroConfig) templ.Component {
 			var templ_7745c5c3_Var4 string
 			templ_7745c5c3_Var4, templ_7745c5c3_Err = templruntime.SanitizeStyleAttributeValues(heroStyle(cfg))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/hero.templ`, Line: 35, Col: 25}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/hero.templ`, Line: 36, Col: 25}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var4))
 			if templ_7745c5c3_Err != nil {
@@ -184,7 +185,7 @@ func heroDefaultContent(cfg HeroConfig) templ.Component {
 			var templ_7745c5c3_Var8 string
 			templ_7745c5c3_Var8, templ_7745c5c3_Err = templ.JoinStringErrs(cfg.Title)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/hero.templ`, Line: 54, Col: 45}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/hero.templ`, Line: 55, Col: 45}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var8))
 			if templ_7745c5c3_Err != nil {
@@ -203,7 +204,7 @@ func heroDefaultContent(cfg HeroConfig) templ.Component {
 			var templ_7745c5c3_Var9 string
 			templ_7745c5c3_Var9, templ_7745c5c3_Err = templ.JoinStringErrs(cfg.Subtitle)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/hero.templ`, Line: 57, Col: 33}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/hero.templ`, Line: 58, Col: 33}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var9))
 			if templ_7745c5c3_Err != nil {
@@ -233,7 +234,7 @@ func heroClass(cfg HeroConfig) string {
 }
 
 func heroContentClass(cfg HeroConfig) string {
-	return joinClasses("hero-content", cfg.ContentClass)
+	return joinClasses("hero-content", glassClass(cfg.Glass), cfg.ContentClass)
 }
 
 func heroStyle(cfg HeroConfig) string {

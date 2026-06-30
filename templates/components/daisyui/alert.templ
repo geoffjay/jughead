@@ -19,6 +19,7 @@ type AlertConfig struct {
 	Color     string
 	Style     string
 	Direction string
+	Glass     bool
 	Icon      templ.Component
 	Actions   templ.Component
 	Class     string
@@ -33,6 +34,7 @@ templ Alert(cfg AlertConfig) {
 			classFor("alert", cfg.Color),
 			alertStyleClass(cfg.Style),
 			classFor("alert", cfg.Direction),
+			glassClass(cfg.Glass),
 			cfg.Class,
 		) }
 	>

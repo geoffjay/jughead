@@ -13,6 +13,7 @@ type BadgeConfig struct {
 	Color    string
 	Style    string
 	Size     string
+	Glass    bool
 	Class    string
 	Children templ.Component
 }
@@ -35,6 +36,7 @@ func badgeClass(cfg BadgeConfig) string {
 		classFor("badge", cfg.Color),
 		badgeStyleClass(cfg.Style),
 		badgeSizeClass(cfg.Size),
+		glassClass(cfg.Glass),
 		cfg.Class,
 	)
 }

@@ -25,3 +25,13 @@ func joinClasses(classes ...string) string {
 	}
 	return strings.Join(out, " ")
 }
+
+// glassClass returns "glass" when glass is true, otherwise "". Components that
+// support a translucent, blurred surface (the glass effect) include it in
+// their class list. The .glass class is defined in assets/styles.css.
+func glassClass(glass bool) string {
+	if glass {
+		return "glass"
+	}
+	return ""
+}

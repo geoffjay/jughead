@@ -124,6 +124,21 @@ templ modalBody(r links.LinkResolver) {
 		TriggerLabel: "open modal",
 		Actions:      daisyui.Button(daisyui.ButtonConfig{Label: "Yay!", Href: "#"}),
 	}))
+	@section("Dialog modal with glass box", `@daisyui.Modal(daisyui.ModalConfig{
+	ID:           "modal_9",
+	Title:        "Glass!",
+	Message:      "The modal-box uses a translucent, blurred surface.",
+	TriggerLabel: "open modal",
+	Glass:        true,
+	Backdrop:     true,
+})`, glassBackdrop(daisyui.Modal(daisyui.ModalConfig{
+		ID:           "modal_9",
+		Title:        "Glass!",
+		Message:      "The modal-box uses a translucent, blurred surface.",
+		TriggerLabel: "open modal",
+		Glass:        true,
+		Backdrop:     true,
+	})))
 }
 
 templ modalCloseForm() {

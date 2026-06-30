@@ -18,6 +18,7 @@ type DockItem struct {
 type DockConfig struct {
 	Items    []DockItem
 	Size     string
+	Glass    bool
 	Class    string
 	Resolver URLResolver
 }
@@ -54,6 +55,7 @@ func dockClass(cfg DockConfig) string {
 	return joinClasses(
 		"dock",
 		dockSizeClass(cfg.Size),
+		glassClass(cfg.Glass),
 		cfg.Class,
 	)
 }

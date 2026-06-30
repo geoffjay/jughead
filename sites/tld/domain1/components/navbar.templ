@@ -102,10 +102,15 @@ templ navbarBody(r links.LinkResolver) {
       <div class="navbar bg-base-300">
         <button class="btn btn-ghost text-xl">daisyui</button>
       </div>
-      <div class="navbar bg-primary text-primary-content">
-        <button class="btn btn-ghost text-xl">daisyui</button>
-      </div>
-    </section>`))
+       <div class="navbar bg-primary text-primary-content">
+         <button class="btn btn-ghost text-xl">daisyui</button>
+       </div>
+     </section>`))
+	@section("Navbar with glass", `@daisyui.Navbar(
+	daisyui.NavbarData{Title: "daisyUI", Glass: true},
+)`, glassBackdrop(daisyui.Navbar(
+		daisyui.NavbarData{Title: "daisyUI", Glass: true},
+	)))
 }
 
 templ navbarMenuIconButton() {

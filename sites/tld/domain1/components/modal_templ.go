@@ -203,6 +203,24 @@ func modalBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
+		templ_7745c5c3_Err = section("Dialog modal with glass box", `@daisyui.Modal(daisyui.ModalConfig{
+	ID:           "modal_9",
+	Title:        "Glass!",
+	Message:      "The modal-box uses a translucent, blurred surface.",
+	TriggerLabel: "open modal",
+	Glass:        true,
+	Backdrop:     true,
+})`, glassBackdrop(daisyui.Modal(daisyui.ModalConfig{
+			ID:           "modal_9",
+			Title:        "Glass!",
+			Message:      "The modal-box uses a translucent, blurred surface.",
+			TriggerLabel: "open modal",
+			Glass:        true,
+			Backdrop:     true,
+		}))).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
 		return nil
 	})
 }

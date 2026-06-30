@@ -17,6 +17,7 @@ type CollapseConfig struct {
 	Icon  string
 	Open  bool
 	Close bool
+	Glass bool
 	Class string
 }
 
@@ -27,13 +28,13 @@ templ Collapse(cfg CollapseConfig, title, body string) {
 	if cfg.Mode == "details" {
 		<details
 			open?={ cfg.Open }
-			class={ joinClasses("collapse", collapseIconClass(cfg.Icon), cfg.Class) }
+			class={ joinClasses("collapse", collapseIconClass(cfg.Icon), glassClass(cfg.Glass), cfg.Class) }
 		>
 			<summary class="collapse-title font-semibold">{ title }</summary>
 			<div class="collapse-content text-sm">{ body }</div>
 		</details>
 	} else if cfg.Mode == "checkbox" {
-		<div class={ joinClasses("collapse", collapseIconClass(cfg.Icon), collapseForceClass(cfg), cfg.Class) }>
+		<div class={ joinClasses("collapse", collapseIconClass(cfg.Icon), collapseForceClass(cfg), glassClass(cfg.Glass), cfg.Class) }>
 			<input type="checkbox" autocomplete="off"/>
 			<div class="collapse-title font-semibold">{ title }</div>
 			<div class="collapse-content text-sm">{ body }</div>
@@ -41,7 +42,7 @@ templ Collapse(cfg CollapseConfig, title, body string) {
 	} else {
 		<div
 			tabindex="0"
-			class={ joinClasses("collapse", collapseIconClass(cfg.Icon), collapseForceClass(cfg), cfg.Class) }
+			class={ joinClasses("collapse", collapseIconClass(cfg.Icon), collapseForceClass(cfg), glassClass(cfg.Glass), cfg.Class) }
 		>
 			<div class="collapse-title font-semibold">{ title }</div>
 			<div class="collapse-content text-sm">{ body }</div>

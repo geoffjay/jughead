@@ -168,6 +168,24 @@ func heroBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
+		templ_7745c5c3_Err = section("Hero with glass content", `@daisyui.Hero(daisyui.HeroConfig{
+	Class:        "min-h-[30rem] rounded bg-base-200",
+	ContentClass: "text-center",
+	Glass:        true,
+	Title:        "Hello there",
+	Subtitle:     "Provident cupiditate voluptatem et in...",
+	Actions:      daisyui.Button(daisyui.ButtonConfig{Label: "Get Started", Color: "primary"}),
+})`, glassBackdrop(daisyui.Hero(daisyui.HeroConfig{
+			Class:        "min-h-[30rem] rounded bg-base-200",
+			ContentClass: "text-center",
+			Glass:        true,
+			Title:        "Hello there",
+			Subtitle:     "Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.",
+			Actions:      daisyui.Button(daisyui.ButtonConfig{Label: "Get Started", Color: "primary"}),
+		}))).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
 		return nil
 	})
 }
@@ -200,7 +218,7 @@ func heroWithFigureContent() templ.Component {
 		var templ_7745c5c3_Var4 string
 		templ_7745c5c3_Var4, templ_7745c5c3_Err = templ.ResolveAttributeValue(templ.SafeURL(heroFigureImg))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/components/hero.templ`, Line: 102, Col: 40}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/components/hero.templ`, Line: 117, Col: 40}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var4)
 		if templ_7745c5c3_Err != nil {

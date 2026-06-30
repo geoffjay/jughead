@@ -26,6 +26,7 @@ type StatItem struct {
 // classes (e.g. "shadow" or "bg-base-100 border border-base-300").
 type StatConfig struct {
 	Direction string
+	Glass     bool
 	Items     []StatItem
 	Class     string
 }
@@ -78,6 +79,7 @@ func statClass(cfg StatConfig) string {
 	return joinClasses(
 		"stats",
 		statDirectionClass(cfg.Direction),
+		glassClass(cfg.Glass),
 		cfg.Class,
 	)
 }

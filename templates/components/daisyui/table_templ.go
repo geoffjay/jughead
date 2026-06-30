@@ -49,6 +49,7 @@ type TableConfig struct {
 	Modifier  string
 	Wrap      bool
 	WrapClass string
+	Glass     bool
 	Class     string
 	Caption   string
 }
@@ -167,7 +168,7 @@ func tableInner(cfg TableConfig) templ.Component {
 			var templ_7745c5c3_Var7 string
 			templ_7745c5c3_Var7, templ_7745c5c3_Err = templ.JoinStringErrs(cfg.Caption)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/table.templ`, Line: 60, Col: 41}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/table.templ`, Line: 61, Col: 41}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var7))
 			if templ_7745c5c3_Err != nil {
@@ -294,7 +295,7 @@ func tableHeaderCell(c TableCell) templ.Component {
 			var templ_7745c5c3_Var11 string
 			templ_7745c5c3_Var11, templ_7745c5c3_Err = templ.JoinStringErrs(c.Text)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/table.templ`, Line: 97, Col: 11}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/table.templ`, Line: 98, Col: 11}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var11))
 			if templ_7745c5c3_Err != nil {
@@ -445,7 +446,7 @@ func tableDataCell(c TableCell) templ.Component {
 			var templ_7745c5c3_Var18 string
 			templ_7745c5c3_Var18, templ_7745c5c3_Err = templ.JoinStringErrs(c.Text)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/table.templ`, Line: 127, Col: 11}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/daisyui/table.templ`, Line: 128, Col: 11}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var18))
 			if templ_7745c5c3_Err != nil {
@@ -465,6 +466,7 @@ func tableClass(cfg TableConfig) string {
 		"table",
 		tableModifierClass(cfg.Modifier),
 		tableSizeClass(cfg.Size),
+		glassClass(cfg.Glass),
 		cfg.Class,
 	)
 }

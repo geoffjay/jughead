@@ -169,6 +169,17 @@ templ statBody(r links.LinkResolver) {
 			},
 		},
 	}))
+	@section("Stat with glass", `@daisyui.Stat(daisyui.StatConfig{
+	Glass: true,
+	Items: []daisyui.StatItem{
+		{Title: "Total Page Views", Value: "89,400", Desc: "21% more than last month"},
+	},
+})`, glassBackdrop(daisyui.Stat(daisyui.StatConfig{
+		Glass: true,
+		Items: []daisyui.StatItem{
+			{Title: "Total Page Views", Value: "89,400", Desc: "21% more than last month"},
+		},
+	})))
 }
 
 templ heartIcon() {

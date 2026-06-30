@@ -43,6 +43,7 @@ type ModalConfig struct {
 	Open         bool
 	Placement    string
 	BoxClass     string
+	Glass        bool
 	Class        string
 	TriggerLabel string
 	TriggerClass string
@@ -225,7 +226,7 @@ func modalOpenClass(open bool, method string) string {
 }
 
 func modalBoxClass(cfg ModalConfig) string {
-	return joinClasses("modal-box", cfg.BoxClass)
+	return joinClasses("modal-box", glassClass(cfg.Glass), cfg.BoxClass)
 }
 
 func modalTriggerClass(cfg ModalConfig) string {

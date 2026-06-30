@@ -39,6 +39,7 @@ type TableConfig struct {
 	Modifier  string
 	Wrap      bool
 	WrapClass string
+	Glass     bool
 	Class     string
 	Caption   string
 }
@@ -134,6 +135,7 @@ func tableClass(cfg TableConfig) string {
 		"table",
 		tableModifierClass(cfg.Modifier),
 		tableSizeClass(cfg.Size),
+		glassClass(cfg.Glass),
 		cfg.Class,
 	)
 }

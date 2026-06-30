@@ -169,10 +169,18 @@ func navbarBody(r links.LinkResolver) templ.Component {
       <div class="navbar bg-base-300">
         <button class="btn btn-ghost text-xl">daisyui</button>
       </div>
-      <div class="navbar bg-primary text-primary-content">
-        <button class="btn btn-ghost text-xl">daisyui</button>
-      </div>
-    </section>`)).Render(ctx, templ_7745c5c3_Buffer)
+       <div class="navbar bg-primary text-primary-content">
+         <button class="btn btn-ghost text-xl">daisyui</button>
+       </div>
+     </section>`)).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = section("Navbar with glass", `@daisyui.Navbar(
+	daisyui.NavbarData{Title: "daisyUI", Glass: true},
+)`, glassBackdrop(daisyui.Navbar(
+			daisyui.NavbarData{Title: "daisyUI", Glass: true},
+		))).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

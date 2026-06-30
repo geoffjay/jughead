@@ -29,6 +29,7 @@ type CardConfig struct {
 	Style       string
 	Modifier    string
 	Size        string
+	Glass       bool
 	Class       string
 }
 
@@ -77,6 +78,7 @@ func cardClass(cfg CardConfig) string {
 		cardStyleClass(cfg.Style),
 		cardModifierClass(cfg.Modifier),
 		cardSizeClass(cfg.Size),
+		glassClass(cfg.Glass),
 		cfg.Class,
 	)
 }

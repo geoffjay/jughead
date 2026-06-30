@@ -8,9 +8,11 @@ package daisyui
 //   - "start"      : stack-start
 //   - "end"        : stack-end
 //
-// Class adds extra utility classes (e.g. sizing) to the stack container.
-templ Stack(items []templ.Component, direction, class string) {
-	<div class={ joinClasses("stack", stackDirClass(direction), class) }>
+// Glass, when true, applies the glass surface treatment to the stack
+// container. Class adds extra utility classes (e.g. sizing) to the stack
+// container.
+templ Stack(items []templ.Component, direction, class string, glass bool) {
+	<div class={ joinClasses("stack", stackDirClass(direction), glassClass(glass), class) }>
 		for _, item := range items {
 			@item
 		}

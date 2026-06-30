@@ -19,6 +19,7 @@ import (
 type ToastConfig struct {
 	Horizontal string
 	Vertical   string
+	Glass      bool
 	Class      string
 	Children   templ.Component
 }
@@ -49,6 +50,7 @@ func Toast(cfg ToastConfig) templ.Component {
 			"toast",
 			toastHorizontalClass(cfg.Horizontal),
 			toastVerticalClass(cfg.Vertical),
+			glassClass(cfg.Glass),
 			cfg.Class,
 		)}
 		templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var2...)
