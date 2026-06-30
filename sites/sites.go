@@ -1,8 +1,9 @@
 package sites
 
 import (
+	"log/slog"
+
 	"github.com/geoffjay/jughead/sites/auth"
-	"github.com/geoffjay/jughead/sites/com/geoffjay/jughead/docs"
 	"github.com/geoffjay/jughead/sites/com/geoffjay/quux"
 	"github.com/geoffjay/jughead/sites/links"
 	"github.com/geoffjay/jughead/sites/tld/domain1"
@@ -70,15 +71,6 @@ var sites = map[string]*Site{
 		Routes:    quux.Routes,
 		Auth:      &auth.AuthConfig{Provider: "github"},
 	},
-	"/sites/docs.jughead.geoffjay.com": {
-		Path:      "/sites/docs.jughead.geoffjay.com",
-		Url:       "https://docs.jughead.geoffjay.com",
-		Published: true,
-		Theme:     "kanagawa-light",
-		Template:  docs.IntroPlaceholder(),
-		Proxy:     docs.Proxy,
-		Routes:    docs.Routes,
-	},
 }
 
 func Initialize() {
@@ -86,6 +78,15 @@ func Initialize() {
 
 	for _, site := range sites {
 		if !ShouldLoad(site.Published) {
+			continue
+		}
+		// A plugin may have already registered a site under this path during
+		// plugin.LoadAll (which runs before Initialize). Plugins take
+		// precedence over built-in sites, matching the provider override
+		// semantics, so skip re-registration when the path is already claimed.
+		if sm.GetSite(site.Path) != nil {
+			slog.Info("sites: skipping built-in site; plugin already registered this path",
+				"path", site.Path)
 			continue
 		}
 		sm.RegisterSite(site.Path, site)
