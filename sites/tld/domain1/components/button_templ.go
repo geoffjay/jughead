@@ -13,6 +13,7 @@ import (
 import (
 	"github.com/geoffjay/jughead/sites/links"
 	"github.com/geoffjay/jughead/templates/components/daisyui"
+	icons "github.com/iota-uz/icons/phosphor"
 )
 
 func ButtonPage(r links.LinkResolver) templ.Component {
@@ -186,7 +187,7 @@ func buttonBody(r links.LinkResolver) templ.Component {
 	Children: templ.Raw(`+"`<svg ...>...</svg>`"+`),
 })`, daisyui.Button(daisyui.ButtonConfig{
 			Label:    "Like",
-			Children: templ.Raw(`<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="size-[1.2em]"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"/></svg>`),
+			Children: icons.Heart(icons.Props{Size: "20", Variant: icons.Filled}),
 		})).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
@@ -411,14 +412,14 @@ func buttonSquareCircleRow() templ.Component {
 		}
 		templ_7745c5c3_Err = daisyui.Button(daisyui.ButtonConfig{
 			Modifier: "square",
-			Children: templ.Raw(`<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="size-[1.2em]"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"/></svg>`),
+			Children: icons.Heart(icons.Props{Size: "20", Variant: icons.Filled}),
 		}).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		templ_7745c5c3_Err = daisyui.Button(daisyui.ButtonConfig{
 			Modifier: "circle",
-			Children: templ.Raw(`<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="size-[1.2em]"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"/></svg>`),
+			Children: icons.Heart(icons.Props{Size: "20", Variant: icons.Filled}),
 		}).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err

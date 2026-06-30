@@ -3,6 +3,7 @@ package components
 import (
 	"github.com/geoffjay/jughead/sites/links"
 	"github.com/geoffjay/jughead/templates/components/daisyui"
+	icons "github.com/iota-uz/icons/phosphor"
 )
 
 templ InputFieldPage(r links.LinkResolver) {
@@ -70,26 +71,33 @@ templ inputFieldBody(r links.LinkResolver) {
 
 templ inputLabelInsideRow() {
 	<div class="grid gap-4 w-xs">
-		@daisyui.InputLabel(daisyui.InputLabelConfig{}, templ.Raw(`
-			<svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g stroke-linejoin="round" stroke-linecap="round" stroke-width="2.5" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></g></svg>
-			<input type="search" class="grow" placeholder="Search" />
-			<kbd class="kbd kbd-sm">⌘</kbd>
-			<kbd class="kbd kbd-sm">K</kbd>`))
-		@daisyui.InputLabel(daisyui.InputLabelConfig{}, templ.Raw(`
-			<svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g stroke-linejoin="round" stroke-linecap="round" stroke-width="2.5" fill="none" stroke="currentColor"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"></path><path d="M14 2v4a2 2 0 0 0 2 2h4"></path></g></svg>
-			<input type="text" class="grow" placeholder="index.php" />`))
-		@daisyui.InputLabel(daisyui.InputLabelConfig{}, templ.Raw(`
-			Path
-			<input type="text" class="grow" placeholder="src/app/" />
-			<span class="badge badge-neutral badge-xs">Optional</span>`))
+		@daisyui.InputLabel(daisyui.InputLabelConfig{}, inputSearchBlock("Search", "⌘", "K"))
+		@daisyui.InputLabel(daisyui.InputLabelConfig{}, inputFileBlock())
+		@daisyui.InputLabel(daisyui.InputLabelConfig{}, inputPathBlock())
 	</div>
+}
+
+templ inputSearchBlock(placeholder, kbd1, kbd2 string) {
+	@icons.MagnifyingGlass(icons.Props{Size: "16", Class: "h-[1em] opacity-50"})
+	<input type="search" class="grow" placeholder={ placeholder }/>
+	<kbd class="kbd kbd-sm">{ kbd1 }</kbd>
+	<kbd class="kbd kbd-sm">{ kbd2 }</kbd>
+}
+
+templ inputFileBlock() {
+	@icons.FileText(icons.Props{Size: "16", Class: "h-[1em] opacity-50"})
+	<input type="text" class="grow" placeholder="index.php"/>
+}
+
+templ inputPathBlock() {
+	Path
+	<input type="text" class="grow" placeholder="src/app/"/>
+	<span class="badge badge-neutral badge-xs">Optional</span>
 }
 
 templ usernameValidatorForm() {
 	<form class="w-full max-w-xs">
-		@daisyui.InputLabel(daisyui.InputLabelConfig{Validator: true}, templ.Raw(`
-			<svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g stroke-linejoin="round" stroke-linecap="round" stroke-width="2.5" fill="none" stroke="currentColor"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></g></svg>
-			<input type="text" required placeholder="Username" pattern="[A-Za-z][A-Za-z0-9\-]*" minlength="3" maxlength="30" title="Only letters, numbers or dash" />`))
+		@daisyui.InputLabel(daisyui.InputLabelConfig{Validator: true}, usernameValidatorInner())
 		<p class="validator-hint">
 			Must be 3 to 30 characters
 			<br/>
@@ -98,12 +106,20 @@ templ usernameValidatorForm() {
 	</form>
 }
 
+templ usernameValidatorInner() {
+	@icons.User(icons.Props{Size: "16", Class: "h-[1em] opacity-50"})
+	<input type="text" required placeholder="Username" pattern="[A-Za-z][A-Za-z0-9\-]*" minlength="3" maxlength="30" title="Only letters, numbers or dash"/>
+}
+
 templ searchInputForm() {
 	<form class="w-full max-w-xs">
-		@daisyui.InputLabel(daisyui.InputLabelConfig{}, templ.Raw(`
-			<svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g stroke-linejoin="round" stroke-linecap="round" stroke-width="2.5" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></g></svg>
-			<input type="search" required placeholder="Search"/>`))
+		@daisyui.InputLabel(daisyui.InputLabelConfig{}, searchInputInner())
 	</form>
+}
+
+templ searchInputInner() {
+	@icons.MagnifyingGlass(icons.Props{Size: "16", Class: "h-[1em] opacity-50"})
+	<input type="search" required placeholder="Search"/>
 }
 
 templ inputColorRow() {

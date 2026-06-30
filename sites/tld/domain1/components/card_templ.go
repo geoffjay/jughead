@@ -74,13 +74,13 @@ func cardBody(r links.LinkResolver) templ.Component {
 		templ_7745c5c3_Err = section(
 			"Card",
 			`@daisyui.Card(daisyui.CardConfig{
-      ImageSrc: cardImg,
-      ImageAlt: "Shoes",
-      Title:    "Card Title",
-      Desc:     "A card component has a figure, a body part, and inside body there are title and actions parts",
-      Class:    "w-96 bg-base-100 shadow-sm",
-      Actions:  daisyui.Button(daisyui.ButtonConfig{Label: "Buy Now", Color: "primary"}),
-    })`,
+  ImageSrc: cardImg,
+  ImageAlt: "Shoes",
+  Title:    "Card Title",
+  Desc:     "A card component has a figure, a body part, and inside body there are title and actions parts",
+  Class:    "w-96 bg-base-100 shadow-sm",
+  Actions:  daisyui.Button(daisyui.ButtonConfig{Label: "Buy Now", Color: "primary"}),
+})`,
 			daisyui.Card(daisyui.CardConfig{
 				ImageSrc: cardImg,
 				ImageAlt: "Shoes",
@@ -88,53 +88,59 @@ func cardBody(r links.LinkResolver) templ.Component {
 				Desc:     "A card component has a figure, a body part, and inside body there are title and actions parts",
 				Class:    "w-96 bg-base-100 shadow-sm",
 				Actions:  daisyui.Button(daisyui.ButtonConfig{Label: "Buy Now", Color: "primary"}),
-			})).Render(ctx, templ_7745c5c3_Buffer)
+			}),
+		).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Pricing card", `@daisyui.Card(daisyui.CardConfig{
-    Class: "w-96 bg-base-100 shadow-sm",
-    Body:  pricingCardBody(),
-  })
+		templ_7745c5c3_Err = section(
+			"Pricing card",
+			`@daisyui.Card(daisyui.CardConfig{
+  Class: "w-96 bg-base-100 shadow-sm",
+  Body:  pricingCardBody(),
+})
 
 // pricingCardBody renders:
 <span class="badge badge-xs badge-warning">Most Popular</span>
 <div class="flex justify-between">
-	<h2 class="text-3xl font-bold">Premium</h2>
-	<span class="text-xl">$29/mo</span>
+  <h2 class="text-3xl font-bold">Premium</h2>
+  <span class="text-xl">$29/mo</span>
 </div>
 <ul class="mt-6 flex flex-col gap-2 text-xs">
-	<li>
-		<svg class="size-4 me-2 inline-block text-success" ...></svg>
-		<span>High-resolution image generation</span>
-	</li>
-	// ... one per feature
+  <li>
+    <svg class="size-4 me-2 inline-block text-success" ...></svg>
+    <span>High-resolution image generation</span>
+  </li>
+  // ... one per feature
 </ul>
+
 <div class="mt-6">
-	@daisyui.Button(daisyui.ButtonConfig{Label: "Subscribe", Color: "primary", Modifier: "block"})
-</div>`, daisyui.Card(daisyui.CardConfig{
-			Class: "w-96 bg-base-100 shadow-sm",
-			Body:  pricingCardBody(),
-		})).Render(ctx, templ_7745c5c3_Buffer)
+  @daisyui.Button(daisyui.ButtonConfig{Label: "Subscribe", Color: "primary", Modifier: "block"})
+</div>`,
+			daisyui.Card(daisyui.CardConfig{
+				Class: "w-96 bg-base-100 shadow-sm",
+				Body:  pricingCardBody(),
+			}),
+		).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		templ_7745c5c3_Err = section("Card sizes", `<div class="grid gap-6">
-	@daisyui.Card(daisyui.CardConfig{
-		Size:    "xs",
-		Class:   "w-96 bg-base-100 shadow-sm",
-		Title:   "Xsmall Card",
-		Desc:    "A card component has a figure, a body part, and inside body there are title and actions parts",
-		Actions: daisyui.Button(daisyui.ButtonConfig{Label: "Buy Now", Color: "primary"}),
-	})
-	@daisyui.Card(daisyui.CardConfig{
-		Size:    "sm",
-		Class:   "w-96 bg-base-100 shadow-sm",
-		Title:   "Small Card",
-		Desc:    "A card component has a figure, a body part, and inside body there are title and actions parts",
-		Actions: daisyui.Button(daisyui.ButtonConfig{Label: "Buy Now", Color: "primary"}),
-	})
-	// ... one per size (md, lg, xl)
+@daisyui.Card(daisyui.CardConfig{
+  Size:    "xs",
+  Class:   "w-96 bg-base-100 shadow-sm",
+  Title:   "Xsmall Card",
+  Desc:    "A card component has a figure, a body part, and inside body there are title and actions parts",
+  Actions: daisyui.Button(daisyui.ButtonConfig{Label: "Buy Now", Color: "primary"}),
+})
+@daisyui.Card(daisyui.CardConfig{
+  Size:    "sm",
+  Class:   "w-96 bg-base-100 shadow-sm",
+  Title:   "Small Card",
+  Desc:    "A card component has a figure, a body part, and inside body there are title and actions parts",
+  Actions: daisyui.Button(daisyui.ButtonConfig{Label: "Buy Now", Color: "primary"}),
+})
+// ... one per size (md, lg, xl)
 </div>`, cardSizes()).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
