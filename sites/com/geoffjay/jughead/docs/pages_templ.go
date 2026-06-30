@@ -131,10 +131,8 @@ func routesPage() templ.Component {
 	})
 }
 
-// IntroPlaceholder is the fallback Site.Template for the docs site, rendered
-// by siteViewHandler when the site's Routes are not registered (e.g. dev
-// fallback). It renders a minimal body so the site still responds.
-func IntroPlaceholder() templ.Component {
+// pluginsPage renders the Plugins reference page body.
+func pluginsPage() templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -155,7 +153,91 @@ func IntroPlaceholder() templ.Component {
 			templ_7745c5c3_Var5 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "<div class=\"min-h-screen bg-base-200 text-base-content flex flex-col\"><div class=\"flex-1 grid place-content-center p-8\"><div class=\"card bg-base-100 shadow-lg max-w-lg\"><div class=\"card-body\"><h2 class=\"text-xl font-semibold mb-2\">jughead docs</h2><p class=\"text-base-content/70 mb-4\">The documentation site is being prepared. Browse the available pages once routes are registered.</p><a href=\"/\" class=\"btn btn-primary\">Go to introduction</a></div></div></div></div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "<article class=\"prose max-w-none\"><h1 class=\"text-3xl font-bold mb-2\">Plugins</h1><p class=\"text-base-content/70 mb-6\">jughead loads runtime plugins (Go shared objects) at startup so auth providers and sites can be developed in separate repositories and served alongside the built-in ones without modifying the core.</p><h2 class=\"text-xl font-semibold mt-8 mb-2\">How it works</h2><p class=\"mb-4\">Set <code class=\"kbd kbd-sm\">JUGHEAD_PLUGINS_DIR</code> to a directory containing <code>*.so</code> files. The host opens each with the Go <code>plugin</code> package, looks up a symbol named <code>Plugin</code> of type <code>*sdk.Plugin</code>, and registers its <code>Providers</code> into the auth registry and its <code>Sites</code> into the SiteManager. Plugins load <em>before</em> built-in providers and <em>before</em> site initialization, so a plugin provider can override a built-in of the same name and a plugin site can reference a provider shipped by the same plugin.</p><h2 class=\"text-xl font-semibold mt-8 mb-2\">The contract</h2><p class=\"mb-4\">Plugins are built against the <code>sdk</code> package, which defines the canonical <code>Plugin</code>, <code>Site</code>, and (via <code>sdk/auth</code>) <code>Provider</code>, <code>ProviderInstance</code>, and <code>AuthConfig</code> types. A plugin is a <code>package main</code> that exports:</p><div class=\"mockup-code bg-base-300 text-base-content mb-4\"><pre data-prefix=\"$\"><code>var Plugin = sdk.Plugin")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		var templ_7745c5c3_Var6 string
+		templ_7745c5c3_Var6, templ_7745c5c3_Err = templ.JoinStringErrs('{')
+		if templ_7745c5c3_Err != nil {
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/com/geoffjay/jughead/docs/pages.templ`, Line: 116, Col: 58}
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var6))
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "</code></pre><pre data-prefix=\"$\"><code>Name: \"github\",</code></pre><pre data-prefix=\"$\"><code>Providers: []auth.Provider")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		var templ_7745c5c3_Var7 string
+		templ_7745c5c3_Var7, templ_7745c5c3_Err = templ.JoinStringErrs('{')
+		if templ_7745c5c3_Err != nil {
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/com/geoffjay/jughead/docs/pages.templ`, Line: 118, Col: 61}
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var7))
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, " github.NewProvider() ")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		var templ_7745c5c3_Var8 string
+		templ_7745c5c3_Var8, templ_7745c5c3_Err = templ.JoinStringErrs('}')
+		if templ_7745c5c3_Err != nil {
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/com/geoffjay/jughead/docs/pages.templ`, Line: 118, Col: 90}
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var8))
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 8, ",</code></pre><pre data-prefix=\"$\"><code>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		var templ_7745c5c3_Var9 string
+		templ_7745c5c3_Var9, templ_7745c5c3_Err = templ.JoinStringErrs('}')
+		if templ_7745c5c3_Err != nil {
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/com/geoffjay/jughead/docs/pages.templ`, Line: 119, Col: 35}
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var9))
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 9, "</code></pre></div><p class=\"mb-4\">See <code>plugins/example/</code> as a minimal starter, and <code>plugins/github/</code> as a real provider.</p><h2 class=\"text-xl font-semibold mt-8 mb-2\">Building</h2><p class=\"mb-4\">Plugins require CGO and must be built with the same Go toolchain version and identical dependency versions as the host (a hard requirement of the <code>plugin</code> package; mismatches panic at load time). Use the Makefile targets, which build against the pinned <code>go.mod</code>:</p><div class=\"mockup-code bg-base-300 text-base-content mb-4\"><pre data-prefix=\"$\"><code>make plugin NAME=github   # build one plugin</code></pre><pre data-prefix=\"$\"><code>make plugins             # build every plugin under plugins/</code></pre><pre data-prefix=\"$\"><code>make build-cgo           # host binary that can load plugins</code></pre></div><h2 class=\"text-xl font-semibold mt-8 mb-2\">Deploying</h2><p class=\"mb-4\">The default <code>Dockerfile</code> builds a static binary (<code>CGO_ENABLED=0</code>) that cannot load plugins. Use <code>Dockerfile.plugins</code>, which enables CGO and uses a glibc-based builder so the host and plugin <code>.so</code> files share a compatible C runtime. Drop <code>*.so</code> files into <code>/plugins</code> and set <code>JUGHEAD_PLUGINS_DIR=/plugins</code>.</p><p class=\"mb-4\">Linux and macOS are supported. Windows deployments fall back to the built-in providers and in-repo sites (the <code>plugin</code> package is unavailable there).</p><h2 class=\"text-xl font-semibold mt-8 mb-2\">Strict mode</h2><p class=\"mb-4\">By default a plugin that fails to load is logged and skipped so one bad <code>.so</code> doesn't stop the server. Set <code class=\"kbd kbd-sm\">JUGHEAD_PLUGINS_STRICT=1</code> to make the first load error fatal — useful in CI to catch version drift early.</p></article>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
+// IntroPlaceholder is the fallback Site.Template for the docs site, rendered
+// by siteViewHandler when the site's Routes are not registered (e.g. dev
+// fallback). It renders a minimal body so the site still responds.
+func IntroPlaceholder() templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var10 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var10 == nil {
+			templ_7745c5c3_Var10 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 10, "<div class=\"min-h-screen bg-base-200 text-base-content flex flex-col\"><div class=\"flex-1 grid place-content-center p-8\"><div class=\"card bg-base-100 shadow-lg max-w-lg\"><div class=\"card-body\"><h2 class=\"text-xl font-semibold mb-2\">jughead docs</h2><p class=\"text-base-content/70 mb-4\">The documentation site is being prepared. Browse the available pages once routes are registered.</p><a href=\"/\" class=\"btn btn-primary\">Go to introduction</a></div></div></div></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

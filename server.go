@@ -9,6 +9,7 @@ import (
 	"time"
 
 	"github.com/geoffjay/jughead/middleware"
+	"github.com/geoffjay/jughead/plugin"
 	githubsvc "github.com/geoffjay/jughead/services/github"
 	"github.com/geoffjay/jughead/sessions"
 	"github.com/geoffjay/jughead/sites"
@@ -59,12 +60,30 @@ func (t *TemplRender) Instance(_ string, value any) render.Render {
 
 // runServer runs a new HTTP server with the loaded environment variables.
 func runServer() error {
+	// Load runtime plugins first. Plugin providers register into the auth
+	// registry and plugin sites register with the SiteManager, both BEFORE
+	// sites.Initialize() and the built-in provider registration below, so a
+	// plugin can intentionally override a built-in provider with the same
+	// Name() (auth.Register replaces on conflict). A plugin load failure is
+	// fatal when JUGHEAD_PLUGINS_STRICT is set; otherwise bad .so files are
+	// logged and skipped.
+	pluginsDir := gowebly.Getenv("JUGHEAD_PLUGINS_DIR", "")
+	strict := gowebly.Getenv("JUGHEAD_PLUGINS_STRICT", "") == "1" ||
+		gowebly.Getenv("JUGHEAD_PLUGINS_STRICT", "") == "true"
+	if err := plugin.LoadAll(pluginsDir, strict); err != nil {
+		return fmt.Errorf("load plugins: %w", err)
+	}
+
 	sites.Initialize()
 
-	// Register the GitHub OAuth provider so sites whose Auth.Provider ==
-	// "github" can be wired by the SiteManager. Additional providers are
-	// registered here as they're added.
-	auth.Register(githubsvc.NewProvider())
+	// Register the GitHub OAuth provider as a built-in fallback so the default
+	// deployment works with zero plugins. A plugin shipping the same provider
+	// name (registered above) already replaced this entry; re-registering the
+	// built-in here would clobber the plugin, so we skip it when a plugin
+	// already registered "github".
+	if _, ok := auth.Get("github"); !ok {
+		auth.Register(githubsvc.NewProvider())
+	}
 
 	port, err := strconv.Atoi(gowebly.Getenv("BACKEND_PORT", "9000"))
 	if err != nil {

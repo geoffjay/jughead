@@ -32,6 +32,7 @@ var pageRegistry = []pageDef{
 	{Slug: "/install", Title: "Installation", Section: SectionGettingStarted, Body: installPage},
 	{Slug: "/architecture", Title: "Architecture", Section: SectionGuides, Body: architecturePage},
 	{Slug: "/routes", Title: "Site routes", Section: SectionReference, Body: routesPage},
+	{Slug: "/plugins", Title: "Plugins", Section: SectionReference, Body: pluginsPage},
 }
 
 // Pages returns the page definitions in registry order. The docs.nav and

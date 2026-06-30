@@ -1,67 +1,41 @@
-// Package auth defines the per-site authentication contract and a provider
-// registry. A site declares which provider it wants via sites.Site.Auth; the
-// SiteManager looks the provider up here at startup and wires its routes and
-// middleware onto the router.
+// Package auth owns the in-process auth-provider registry and re-exports the
+// canonical provider contract from github.com/geoffjay/jughead/sdk/auth.
 //
-// Concrete providers (e.g. services/github) implement the Provider interface
-// and register themselves with auth.Register during application startup. The
-// sites package never imports a provider directly, keeping the dependency
-// direction provider -> sites/auth (contract) only.
+// The Provider, ProviderInstance, and AuthConfig types live in the SDK package
+// so that plugins (built against the SDK) and the host share identical type
+// identities — a hard requirement of the Go `plugin` package across the .so
+// boundary. This package re-exports them via type aliases so existing in-repo
+// call sites (auth.Register, auth.Get, auth.AuthConfig, etc.) keep working
+// without touching their imports.
+//
+// The registry itself (Register/Get/ResetForTest) is host-owned process state
+// and stays here; the SDK deliberately does not own it so plugins register
+// through the host's loader rather than mutating a registry they can't see.
 package auth
 
 import (
 	"sync"
 
-	"github.com/geoffjay/jughead/sessions"
+	sdkauth "github.com/geoffjay/jughead/sdk/auth"
 
 	"github.com/gin-gonic/gin"
 )
 
-// AuthConfig is declared per-site on sites.Site.Auth. Provider-specific
-// credentials are not carried here; each provider reads its own environment
-// variables (e.g. GITHUB_CLIENT_ID) in Load. The fields below let a site
-// override provider defaults or restrict access.
-type AuthConfig struct {
-	// Provider names the auth provider to use, e.g. "github". It must match a
-	// provider registered via Register.
-	Provider string
+// Canonical contract types re-exported from the SDK. These are type aliases,
+// not new types, so a value constructed in a plugin (against sdk/auth) is
+// directly assignable to these names in the host.
+type (
+	// AuthConfig is the per-site auth declaration. See sdk/auth.AuthConfig.
+	AuthConfig = sdkauth.AuthConfig
 
-	// RedirectURL overrides the provider's default OAuth callback path. When
-	// empty the provider supplies its own default (e.g. "/auth/github/callback").
-	RedirectURL string
+	// ProviderInstance is a configured, ready-to-serve auth provider. See
+	// sdk/auth.ProviderInstance.
+	ProviderInstance = sdkauth.ProviderInstance
 
-	// AllowedLogin, when non-empty, restricts access to a single login. Its
-	// meaning is provider-specific (for GitHub it is a GitHub login name).
-	AllowedLogin string
-}
-
-// ProviderInstance is a configured, ready-to-serve auth provider. A new
-// instance is produced by Provider.Load for each site that requests the
-// provider; the instance carries the loaded credentials and renders its routes
-// and middleware from them.
-type ProviderInstance interface {
-	// RegisterAuthRoutes wires the provider's OAuth web-flow routes (login,
-	// callback, logout) onto the given router. Routes are namespaced under
-	// /auth/<provider>/... so multiple providers can coexist.
-	RegisterAuthRoutes(router gin.IRouter, store *sessions.Store)
-
-	// AuthMiddleware returns the gin handler that protects a site's route
-	// group, redirecting unauthenticated requests to the provider's login
-	// start endpoint.
-	AuthMiddleware(store *sessions.Store) gin.HandlerFunc
-}
-
-// Provider is the registry-facing contract a provider package implements.
-type Provider interface {
-	// Name is the provider identifier sites reference in AuthConfig.Provider.
-	Name() string
-
-	// Load reads the provider's credentials (typically from the environment)
-	// and returns a ready-to-serve instance. A non-nil error signals that the
-	// configuration is incomplete (e.g. missing client id); the SiteManager
-	// treats this as "auth disabled" and falls back to the site's default view.
-	Load(cfg AuthConfig) (ProviderInstance, error)
-}
+	// Provider is the registry-facing contract a provider implements. See
+	// sdk/auth.Provider.
+	Provider = sdkauth.Provider
+)
 
 var (
 	providersMu sync.RWMutex
@@ -70,7 +44,8 @@ var (
 
 // Register adds p to the provider registry under p.Name(). Registering a name
 // twice replaces the prior provider. It is intended to be called during
-// application startup (e.g. from package main) once per provider package.
+// application startup (e.g. from package main or the plugin loader) once per
+// provider.
 func Register(p Provider) {
 	providersMu.Lock()
 	defer providersMu.Unlock()
@@ -93,3 +68,12 @@ func ResetForTest() {
 	defer providersMu.Unlock()
 	providers = make(map[string]Provider)
 }
+
+// Compile-time guard: the SDK's ProviderInstance interface references
+// gin.IRouter and *sessions.Store. These imports keep the host's view of
+// those packages linked so the alias types resolve to the same symbols a
+// plugin sees.
+var (
+	_ gin.IRouter     = (*gin.Engine)(nil)
+	_ gin.HandlerFunc = func(*gin.Context) {}
+)

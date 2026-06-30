@@ -16,6 +16,8 @@ go.work
 bin/
 dist-ssr/
 dist/
+plugins/*.so
+plugins/*.dylib
 
 # Node modules.
 node_modules/

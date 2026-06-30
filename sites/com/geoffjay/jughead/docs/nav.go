@@ -54,6 +54,8 @@ func pageIcon(slug string) string {
 		return "CompassTool"
 	case "/routes":
 		return "Path"
+	case "/plugins":
+		return "PlugsConnected"
 	}
 	return ""
 }
