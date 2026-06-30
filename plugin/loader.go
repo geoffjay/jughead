@@ -166,7 +166,8 @@ func registerSites(sitesIn []sdk.Site) {
 		return
 	}
 	sm := sites.GetSiteManager()
-	for _, s := range sitesIn {
+	for i := range sitesIn {
+		s := &sitesIn[i]
 		hs, err := toHostSite(s)
 		if err != nil {
 			slog.Error("plugin loader: skipping site with invalid field types",
@@ -183,7 +184,7 @@ func registerSites(sitesIn []sdk.Site) {
 // any-typed fields are asserted against their concrete host types; an
 // assertion failure for a populated field is reported so the plugin author
 // can fix the mismatch.
-func toHostSite(s sdk.Site) (*sites.Site, error) { //nolint:gocritic
+func toHostSite(s *sdk.Site) (*sites.Site, error) {
 	hs := &sites.Site{
 		Path:      s.Path,
 		Url:       s.Url,

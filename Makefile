@@ -17,19 +17,26 @@ build:
 build-cgo:
 	CGO_ENABLED=1 $(GO) build -ldflags="-s -w" -o jughead .
 
-# Build a single plugin by name, e.g. `make plugin NAME=github`.
+# Build a single plugin by qualified name, e.g. `make plugin NAME=providers/github`
+# or `make plugin NAME=sites/docs`. The NAME is the path relative to plugins/.
 plugin:
-	@test -n "$(NAME)" || { echo "usage: make plugin NAME=<plugin-dir>"; exit 1; }
+	@test -n "$(NAME)" || { echo "usage: make plugin NAME=<providers|sites>/<name>"; exit 1; }
 	@mkdir -p $(PLUGINS_DIR)
-	CGO_ENABLED=1 $(GO) build -buildmode=plugin -o $(PLUGINS_DIR)/$(NAME)$(PLUGIN_SUFFIX) ./plugins/$(NAME)
+	@name=$$(basename "$(NAME)"); \
+	echo "building plugin: $(NAME) -> $$name$(PLUGIN_SUFFIX)"; \
+	CGO_ENABLED=1 $(GO) build -buildmode=plugin -o $(PLUGINS_DIR)/$$name$(PLUGIN_SUFFIX) ./plugins/$(NAME)
 
-# Build every plugin subpackage under plugins/ into $(PLUGINS_DIR).
+# Build every plugin under plugins/providers/*/ and plugins/sites/*/ into
+# $(PLUGINS_DIR). The .so files are placed flat in $(PLUGINS_DIR) so the host
+# loader (which scans a single directory) discovers them all in one pass.
 plugins:
 	@mkdir -p $(PLUGINS_DIR)
-	@for dir in plugins/*/; do \
+	@for dir in plugins/providers/*/ plugins/sites/*/; do \
+		[ -d "$$dir" ] || continue; \
 		name=$$(basename "$$dir"); \
-		echo "building plugin: $$name"; \
-		CGO_ENABLED=1 $(GO) build -buildmode=plugin -o $(PLUGINS_DIR)/$$name$(PLUGIN_SUFFIX) ./plugins/$$name || exit 1; \
+		kind=$$(basename $$(dirname "$$dir")); \
+		echo "building plugin: $$kind/$$name -> $$name$(PLUGIN_SUFFIX)"; \
+		CGO_ENABLED=1 $(GO) build -buildmode=plugin -o $(PLUGINS_DIR)/$$name$(PLUGIN_SUFFIX) ./$$dir || exit 1; \
 	done
 
 test:

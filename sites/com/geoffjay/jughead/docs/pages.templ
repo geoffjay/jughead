@@ -119,8 +119,8 @@ templ pluginsPage() {
 			<pre data-prefix="$"><code>{ '}' }</code></pre>
 		</div>
 		<p class="mb-4">
-			See <code>plugins/example/</code> as a minimal starter, and
-			<code>plugins/github/</code> as a real provider.
+			See <code>plugins/providers/example/</code> as a minimal starter, and
+			<code>plugins/providers/github/</code> as a real provider.
 		</p>
 		<h2 class="text-xl font-semibold mt-8 mb-2">Building</h2>
 		<p class="mb-4">
@@ -131,9 +131,9 @@ templ pluginsPage() {
 			<code>go.mod</code>:
 		</p>
 		<div class="mockup-code bg-base-300 text-base-content mb-4">
-			<pre data-prefix="$"><code>make plugin NAME=github   # build one plugin</code></pre>
-			<pre data-prefix="$"><code>make plugins             # build every plugin under plugins/</code></pre>
-			<pre data-prefix="$"><code>make build-cgo           # host binary that can load plugins</code></pre>
+			<pre data-prefix="$"><code>make plugin NAME=providers/github   # build one plugin</code></pre>
+			<pre data-prefix="$"><code>make plugins                      # build every plugin</code></pre>
+			<pre data-prefix="$"><code>make build-cgo                    # host binary that can load plugins</code></pre>
 		</div>
 		<h2 class="text-xl font-semibold mt-8 mb-2">Deploying</h2>
 		<p class="mb-4">
