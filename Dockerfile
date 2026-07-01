@@ -1,34 +1,43 @@
-FROM golang:1.26-alpine AS builder
+# Plugin-capable build of jughead.
+#
+# Go's `plugin` package requires CGO and a matching libc between the host
+# binary and every .so, so the builder (and the runtime base) use glibc-based
+# Debian bookworm rather than alpine/scratch. The host binary and all plugin
+# .so files are built in the same builder stage from the same toolchain and
+# go.mod, then the .so files are dropped into /plugins in the runtime image so
+# the loader discovers them via JUGHEAD_PLUGINS_DIR=/plugins.
+#
+# Plugin source lives under plugins/providers/*/ and plugins/sites/*/. The
+# committed *_templ.go files are used (templ generate is not run in the image),
+# so .dockerignore excludes *.templ without breaking the build.
 
-# Move to working directory (/build).
+FROM golang:1.26-bookworm AS builder
+
 WORKDIR /build
 
-# Copy and download dependency using go mod.
+# Go module cache.
 COPY go.mod go.sum ./
 RUN go mod download
 
-# Copy your code into the container.
+# Source (minus .dockerignore). Includes plugins/ source and the Makefile.
 COPY . .
 
-# Set necessary environment variables and build your project.
-ENV CGO_ENABLED=0 GIN_MODE=release
-RUN go build -ldflags="-s -w" -o jughead
+# Build every plugin .so (providers + sites) flat into /build/plugins, then
+# build the CGO-enabled host binary that will load them at runtime.
+RUN make plugins PLUGINS_DIR=/build/plugins
+RUN CGO_ENABLED=1 GIN_MODE=release go build -ldflags="-s -w" -o jughead
 
-FROM scratch
+FROM debian:bookworm-slim
 
-# Copy the system CA certificates from the builder so Go's TLS stack can
-# verify external HTTPS endpoints (e.g. github.com). Without this, scratch
-# has no cert store and every TLS handshake fails with "x509: certificate
-# signed by unknown authority".
-COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
-ENV SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
+# CA certs so Go's TLS stack can verify external HTTPS endpoints.
+RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates && rm -rf /var/lib/apt/lists/*
 
-# Copy project's binary and templates from /build to the scratch container.
-COPY --from=builder /build/jughead /
+COPY --from=builder /build/jughead /jughead
 COPY --from=builder /build/static /static
+COPY --from=builder /build/plugins /plugins
 
-# Set runtime environment variables.
-ENV BACKEND_PORT=8080
+ENV BACKEND_PORT=8080 \
+    SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt \
+    JUGHEAD_PLUGINS_DIR=/plugins
 
-# Set entry point.
 ENTRYPOINT ["/jughead"]
