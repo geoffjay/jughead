@@ -1,5 +1,7 @@
 package main
 
+import "github.com/geoffjay/jughead/templates/components/daisyui"
+
 // introPage renders the Introduction page body. It is injected into the
 // documentation layout's main region via the Page.Body factory.
 templ introPage() {
@@ -33,10 +35,15 @@ templ installPage() {
 		<p class="text-base-content/70 mb-6">
 			Clone the repository and run the server locally.
 		</p>
-		<div class="mockup-code bg-base-300 text-base-content mb-4">
-			<pre data-prefix="$"><code>git clone https://github.com/geoffjay/jughead.git</code></pre>
-			<pre data-prefix="$"><code>cd jughead</code></pre>
-			<pre data-prefix="$"><code>go run .</code></pre>
+		<div class="not-prose">
+			@daisyui.Code(daisyui.CodeConfig{
+				Class: "w-full",
+				Lines: []daisyui.CodeLine{
+					{Prefix: "$", Text: "git clone https://github.com/geoffjay/jughead.git"},
+					{Prefix: "$", Text: "cd jughead"},
+					{Prefix: "$", Text: "go run ."},
+				},
+			})
 		</div>
 		<p>The server starts on <code class="kbd kbd-sm">:9000</code>.</p>
 	</article>
@@ -112,11 +119,16 @@ templ pluginsPage() {
 			and <code>AuthConfig</code> types. A plugin is a <code>package main</code>
 			that exports:
 		</p>
-		<div class="mockup-code bg-base-300 text-base-content mb-4">
-			<pre data-prefix="$"><code>var Plugin = sdk.Plugin{ '{' }</code></pre>
-			<pre data-prefix="$"><code>Name: "github",</code></pre>
-			<pre data-prefix="$"><code>Providers: []auth.Provider{ '{' } github.NewProvider() { '}' },</code></pre>
-			<pre data-prefix="$"><code>{ '}' }</code></pre>
+		<div class="not-prose">
+			@daisyui.Code(daisyui.CodeConfig{
+				Class: "w-full",
+				Lines: []daisyui.CodeLine{
+					{Prefix: "$", Text: "var Plugin = sdk.Plugin{"},
+					{Prefix: "$", Text: "  Name: \"github\","},
+					{Prefix: "$", Text: "  Providers: []auth.Provider{ github.NewProvider() },"},
+					{Prefix: "$", Text: "}"},
+				},
+			})
 		</div>
 		<p class="mb-4">
 			See <code>plugins/providers/example/</code> as a minimal starter, and
@@ -130,10 +142,15 @@ templ pluginsPage() {
 			load time). Use the Makefile targets, which build against the pinned
 			<code>go.mod</code>:
 		</p>
-		<div class="mockup-code bg-base-300 text-base-content mb-4">
-			<pre data-prefix="$"><code>make plugin NAME=providers/github   # build one plugin</code></pre>
-			<pre data-prefix="$"><code>make plugins                      # build every plugin</code></pre>
-			<pre data-prefix="$"><code>make build-cgo                    # host binary that can load plugins</code></pre>
+		<div class="not-prose">
+			@daisyui.Code(daisyui.CodeConfig{
+				Class: "w-full",
+				Lines: []daisyui.CodeLine{
+					{Prefix: "$", Text: "make plugin NAME=providers/github   # build one plugin"},
+					{Prefix: "$", Text: "make plugins                        # build every plugin"},
+					{Prefix: "$", Text: "make build-cgo                    # host binary that can load plugins"},
+				},
+			})
 		</div>
 		<h2 class="text-xl font-semibold mt-8 mb-2">Deploying</h2>
 		<p class="mb-4">
