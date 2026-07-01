@@ -2,8 +2,10 @@ root = "."
 tmp_dir = "tmp"
 
 [build]
-# pre_cmd = ["bun run build"]
-# cmd = "go run github.com/a-h/templ/cmd/templ@latest generate && go build -o ./tmp/jughead ."
+# Rebuild plugins before the host binary so the .so files and host stay in
+# sync (the Go plugin package requires identical toolchain + dependency
+# versions between host and plugin). CGO is required to load .so files.
+pre_cmd = ["CGO_ENABLED=1 go build -buildmode=plugin -o plugins/providers/github.so ./plugins/providers/github", "CGO_ENABLED=1 go build -buildmode=plugin -o plugins/providers/example.so ./plugins/providers/example", "CGO_ENABLED=1 go build -buildmode=plugin -o plugins/sites/docs.so ./plugins/sites/docs"]
 cmd = "CGO_ENABLED=1 go build -o ./tmp/jughead ."
 bin = "tmp/jughead"
 # include_ext = ["go", "templ", "html", "json", "js", "ts", "css", "scss"]
