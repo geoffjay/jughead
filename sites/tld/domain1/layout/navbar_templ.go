@@ -91,6 +91,7 @@ func NavbarComponents() []daisyui.NavItem {
 		{Label: "Hover 3D Card", Href: "/components/hover-3d-card"},
 		{Label: "Hover Gallery", Href: "/components/hover-gallery"},
 		{Label: "Text Rotate", Href: "/components/text-rotate"},
+		{Label: "Shiki", Href: "/components/shiki"},
 	}
 }
 
@@ -125,7 +126,7 @@ func menuToggle() templ.Component {
 		var templ_7745c5c3_Var2 string
 		templ_7745c5c3_Var2, templ_7745c5c3_Err = templ.ResolveAttributeValue(drawerToggleID)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/layout/navbar.templ`, Line: 91, Col: 28}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/layout/navbar.templ`, Line: 92, Col: 28}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var2)
 		if templ_7745c5c3_Err != nil {

@@ -3,22 +3,13 @@
   "model": "glm-5.2:cloud",
   "lsp": {
     "markdown": {
-      "command": [
-        "markdown-oxide"
-      ],
-      "extensions": [
-        ".md"
-      ]
+      "command": ["markdown-oxide"],
+      "extensions": [".md"]
     },
     "templ": {
-      "command": [
-        "templ",
-        "lsp"
-      ],
-      "extensions": [
-        ".templ"
-      ]
-    },
+      "command": ["templ", "lsp"],
+      "extensions": [".templ"]
+    }
   },
   "mcp": {
     "overmind": {
@@ -27,15 +18,15 @@
         "uvx",
         "--from",
         "git+https://github.com/geoffjay/mcp-servers#subdirectory=overmind",
-        "mcp-server-overmind",
+        "mcp-server-overmind"
       ],
-      "enabled": true,
+      "enabled": true
     },
     "daisyui-gitmcp": {
       "type": "remote",
       "url": "https://gitmcp.io/saadeghi/daisyui",
       "enabled": true
-    },
+    }
   },
   "provider": {
     "ollama": {
@@ -50,5 +41,5 @@
         }
       }
     }
-  },
+  }
 }

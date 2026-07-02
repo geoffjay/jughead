@@ -169,6 +169,7 @@ var componentCards = []componentCardData{
 	{"/components/hover-3d-card", "Hover 3D Card", "Hover 3D is a wrapper component that adds a 3D hover effect to its content. When we hover over the component, it tilts and rotates based on the mouse position, creating an interactive 3D effect.", "https://img.daisyui.com/images/components/hover-3d.webp"},
 	{"/components/hover-gallery", "Hover Gallery", "Hover Gallery is container of images. The first image is visible be default and when we hover it horizontally, other images show up. Hover Gallery is useful for product cards in ecommerce sites, portfoilios or in image galleries. Hover Gallery can include up to 10 images.", "https://img.daisyui.com/images/components/hover-gallery.webp"},
 	{"/components/text-rotate", "Text Rotate", "Text Rotate can show up to 6 lines of text, one at a time, with a an infinite loop animation. Duration is 10 seconds by default. The animation will pause on hover.", "https://img.daisyui.com/images/components/text-rotate.webp"},
+	{"/components/shiki", "Shiki", "A pure code block with syntax highlighting powered by shiki.", ""},
 }
 
 func componentCard(c componentCardData, r links.LinkResolver) templ.Component {
@@ -199,7 +200,7 @@ func componentCard(c componentCardData, r links.LinkResolver) templ.Component {
 		var templ_7745c5c3_Var4 templ.SafeURL
 		templ_7745c5c3_Var4, templ_7745c5c3_Err = templ.JoinURLErrs(r.SafeURL(c.Href))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/index.templ`, Line: 117, Col: 26}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/index.templ`, Line: 118, Col: 26}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var4))
 		if templ_7745c5c3_Err != nil {

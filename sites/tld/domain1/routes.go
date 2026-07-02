@@ -107,6 +107,7 @@ func componentRoutes() map[string]componentRoute {
 		"hover-3d-card":          {"Hover 3D Card - domain1.tld", components.Hover3DCardPage},
 		"hover-gallery":          {"Hover Gallery - domain1.tld", components.HoverGalleryPage},
 		"text-rotate":            {"Text Rotate - domain1.tld", components.TextRotatePage},
+		"shiki":                  {"Shiki - domain1.tld", components.ShikiPage},
 	}
 }
 

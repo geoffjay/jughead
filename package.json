@@ -16,22 +16,26 @@
     "watch": "parcel watch",
     "fmt": "prettier --write .",
     "dev": "parcel build --no-optimize",
-    "build": "parcel build",
+    "build": "parcel build && bun run build:shiki",
+    "build:shiki": "esbuild assets/shiki.js --bundle --format=esm --target=es2022 --outfile=static/shiki.js",
+    "watch:shiki": "esbuild assets/shiki.js --bundle --format=esm --target=es2022 --outfile=static/shiki.js --watch",
     "css": "tailwindcss -i ./assets/styles.css -o ./static/styles.css --watch"
   },
   "dependencies": {
     "@tailwindcss/cli": "4.3.1",
     "@tailwindcss/postcss": "4.3.1",
     "@tailwindcss/typography": "0.5.20",
-    "tailwindcss": "4.3.1",
     "daisyui": "5.5.23",
+    "htmx.org": "2.0.10",
     "hyperscript.org": "0.9.91",
-    "htmx.org": "2.0.10"
+    "tailwindcss": "4.3.1"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.5.1",
+    "buffer": "^5.5.0||^6.0.0",
     "parcel": "2.16.4",
     "postcss": "^8.5.15",
-    "prettier": "3.8.4"
+    "prettier": "3.8.4",
+    "shiki": "^4.3.0"
   }
 }
