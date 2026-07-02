@@ -1,6 +1,8 @@
 package components
 
 import (
+	"fmt"
+
 	"github.com/geoffjay/jughead/sites/links"
 	"github.com/geoffjay/jughead/templates/components/shiki"
 )
@@ -9,21 +11,33 @@ templ ShikiPage(r links.LinkResolver) {
 	@pageShell(r, "Shiki", "A pure code block with syntax highlighting powered by shiki.", shikiBody(r))
 }
 
+const defaultCode = `package main
+
+import "fmt"
+
+func main() {
+	fmt.Println("Hello, shiki!")
+}`
+const darkCode = `"$ bun add -D shiki\n$ make plugins"`
+
+func templCode(lang, theme, code string) string {
+	templ := fmt.Sprintf(`@shiki.Code(shiki.CodeConfig{
+  Lang: "%s",
+  Theme: "%s",
+  Code: %s,
+})
+  `, lang, theme, code)
+
+	return templ
+}
+
 templ shikiBody(r links.LinkResolver) {
-	@section("Go", `@shiki.Code(shiki.CodeConfig{
-	Lang:  "go",
-	Theme: "nord",
-	Code:  "package main\\n\\nimport \"fmt\"\\n\\nfunc main() {\\n\\tfmt.Println(\\"Hello, shiki!\\")\\n}",
-})`, shiki.Code(shiki.CodeConfig{
+	@section("Go", templCode("go", "nord", "`"+defaultCode+"`"), shiki.Code(shiki.CodeConfig{
 		Lang:  "go",
 		Theme: "nord",
-		Code:  "package main\n\nimport \"fmt\"\n\nfunc main() {\n\tfmt.Println(\"Hello, shiki!\")\n}",
+		Code:  defaultCode,
 	}))
-	@section("Dark theme", `@shiki.Code(shiki.CodeConfig{
-	Lang:  "bash",
-	Theme: "github-dark",
-	Code:  "$ bun add -D shiki\\n$ make plugins",
-})`, shiki.Code(shiki.CodeConfig{
+	@section("Dark theme", templCode("bash", "github-dark", darkCode), shiki.Code(shiki.CodeConfig{
 		Lang:  "bash",
 		Theme: "github-dark",
 		Code:  "$ bun add -D shiki\n$ make plugins",

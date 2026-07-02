@@ -5,6 +5,7 @@ import (
 
 	"github.com/geoffjay/jughead/sites/links"
 	"github.com/geoffjay/jughead/sites/tld/domain1/layout"
+	"github.com/geoffjay/jughead/templates/components/shiki"
 )
 
 // pageShell wraps body content in the shared layout.Page chrome (theme scripts,
@@ -18,7 +19,7 @@ templ pageShell(r links.LinkResolver, title, description string, body templ.Comp
 // title heading and description. It is rendered inside the shared layout.Page
 // drawer content region.
 templ pageMain(title, description string, body templ.Component) {
-	<main class="p-8 max-w-4xl mx-auto space-y-8">
+	<main class="p-8 w-full max-w-6xl mx-auto space-y-8">
 		<h1 class="text-3xl font-bold text-primary">{ title }</h1>
 		<p class="text-base-content/70">{ description }</p>
 		@body
@@ -52,8 +53,13 @@ templ section(title, code string, body templ.Component) {
 				class="tab"
 				aria-label="templ"
 			/>
-			<div role="tabpanel" class="tab-content border-base-300 bg-base-100">
-				<pre class="overflow-x-auto p-4 text-sm"><code>{ strings.TrimSpace(code) }</code></pre>
+			<div role="tabpanel" class="tab-content border-base-300 bg-base-100 p-4">
+				@shiki.Code(shiki.CodeConfig{
+					Lang:  "templ",
+					Theme: "nord",
+					Code:  strings.TrimSpace(code),
+					Class: "border border-1 border-base-300 rounded-box p-4",
+				})
 			</div>
 		</div>
 	</section>

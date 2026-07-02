@@ -10348,11 +10348,22 @@ function applyHighlighter(highlighter) {
     if (!code) continue;
     const lang8 = node.dataset.lang || "text";
     const theme = node.dataset.theme || defaultTheme;
+    const extraClass = node.className.replace(/\bshiki-code\b/g, "").trim();
     try {
-      node.outerHTML = highlighter.codeToHtml(code.textContent, {
+      const html5 = highlighter.codeToHtml(code.textContent, {
         lang: lang8,
         theme
       });
+      const wrapper = document.createElement("template");
+      wrapper.innerHTML = html5.trim();
+      const pre = wrapper.content.firstElementChild;
+      if (pre) {
+        const merged = (pre.className || "") + (extraClass ? " " + extraClass : "");
+        if (merged) pre.className = merged.trim();
+        node.outerHTML = pre.outerHTML;
+      } else {
+        node.outerHTML = html5;
+      }
     } catch (err) {
       console.warn("[shiki] skipped node:", err);
     }

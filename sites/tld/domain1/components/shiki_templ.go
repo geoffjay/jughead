@@ -11,6 +11,8 @@ import (
 )
 
 import (
+	"fmt"
+
 	"github.com/geoffjay/jughead/sites/links"
 	"github.com/geoffjay/jughead/templates/components/shiki"
 )
@@ -44,6 +46,26 @@ func ShikiPage(r links.LinkResolver) templ.Component {
 	})
 }
 
+const defaultCode = `package main
+
+import "fmt"
+
+func main() {
+	fmt.Println("Hello, shiki!")
+}`
+const darkCode = `"$ bun add -D shiki\n$ make plugins"`
+
+func templCode(lang, theme, code string) string {
+	templ := fmt.Sprintf(`@shiki.Code(shiki.CodeConfig{
+  Lang: "%s",
+  Theme: "%s",
+  Code: %s,
+})
+  `, lang, theme, code)
+
+	return templ
+}
+
 func shikiBody(r links.LinkResolver) templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
@@ -65,23 +87,15 @@ func shikiBody(r links.LinkResolver) templ.Component {
 			templ_7745c5c3_Var2 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = section("Go", `@shiki.Code(shiki.CodeConfig{
-	Lang:  "go",
-	Theme: "nord",
-	Code:  "package main\\n\\nimport \"fmt\"\\n\\nfunc main() {\\n\\tfmt.Println(\\"Hello, shiki!\\")\\n}",
-})`, shiki.Code(shiki.CodeConfig{
+		templ_7745c5c3_Err = section("Go", templCode("go", "nord", "`"+defaultCode+"`"), shiki.Code(shiki.CodeConfig{
 			Lang:  "go",
 			Theme: "nord",
-			Code:  "package main\n\nimport \"fmt\"\n\nfunc main() {\n\tfmt.Println(\"Hello, shiki!\")\n}",
+			Code:  defaultCode,
 		})).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = section("Dark theme", `@shiki.Code(shiki.CodeConfig{
-	Lang:  "bash",
-	Theme: "github-dark",
-	Code:  "$ bun add -D shiki\\n$ make plugins",
-})`, shiki.Code(shiki.CodeConfig{
+		templ_7745c5c3_Err = section("Dark theme", templCode("bash", "github-dark", darkCode), shiki.Code(shiki.CodeConfig{
 			Lang:  "bash",
 			Theme: "github-dark",
 			Code:  "$ bun add -D shiki\n$ make plugins",

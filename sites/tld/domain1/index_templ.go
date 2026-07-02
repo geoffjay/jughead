@@ -73,13 +73,23 @@ func homeBody(r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		for _, c := range componentCards {
+		for _, c := range daisyComponentCards {
 			templ_7745c5c3_Err = componentCard(c, r).Render(ctx, templ_7745c5c3_Buffer)
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "</div></main>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "</div><h1 class=\"text-4xl font-bold text-primary\">Shiki Components</h1><p class=\"text-base-content/70\">Reusable shiki highlight component examples.</p><div class=\"grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		for _, c := range shikiComponentCards {
+			templ_7745c5c3_Err = componentCard(c, r).Render(ctx, templ_7745c5c3_Buffer)
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "</div></main>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -103,7 +113,7 @@ type componentCardData struct {
 // componentCards is the full set of component cards rendered on the index
 // page. Descriptions and image URLs mirror the daisyUI components listing at
 // https://daisyui.com/components/.
-var componentCards = []componentCardData{
+var daisyComponentCards = []componentCardData{
 	{"/components/accordion", "Accordion", "Accordion is used for showing and hiding content but only one item can stay open at a time.", "https://img.daisyui.com/images/components/accordion.webp"},
 	{"/components/navbar", "Navbar", "Navbar is used to show a navigation bar on the top of the page.", "https://img.daisyui.com/images/components/navbar.webp"},
 	{"/components/join", "Join", "Join is a container for grouping multiple items, it can be used to group buttons, inputs, etc. Join applies border radius to the first and last item. Join can be used to create a horizontal or vertical list of items.", "https://img.daisyui.com/images/components/join.webp"},
@@ -169,7 +179,10 @@ var componentCards = []componentCardData{
 	{"/components/hover-3d-card", "Hover 3D Card", "Hover 3D is a wrapper component that adds a 3D hover effect to its content. When we hover over the component, it tilts and rotates based on the mouse position, creating an interactive 3D effect.", "https://img.daisyui.com/images/components/hover-3d.webp"},
 	{"/components/hover-gallery", "Hover Gallery", "Hover Gallery is container of images. The first image is visible be default and when we hover it horizontally, other images show up. Hover Gallery is useful for product cards in ecommerce sites, portfoilios or in image galleries. Hover Gallery can include up to 10 images.", "https://img.daisyui.com/images/components/hover-gallery.webp"},
 	{"/components/text-rotate", "Text Rotate", "Text Rotate can show up to 6 lines of text, one at a time, with a an infinite loop animation. Duration is 10 seconds by default. The animation will pause on hover.", "https://img.daisyui.com/images/components/text-rotate.webp"},
-	{"/components/shiki", "Shiki", "A pure code block with syntax highlighting powered by shiki.", ""},
+}
+
+var shikiComponentCards = []componentCardData{
+	{"/components/shiki", "Shiki", "A pure code block with syntax highlighting powered by shiki.", "https://img.daisyui.com/images/components/mockup-code.webp"},
 }
 
 func componentCard(c componentCardData, r links.LinkResolver) templ.Component {
@@ -193,20 +206,20 @@ func componentCard(c componentCardData, r links.LinkResolver) templ.Component {
 			templ_7745c5c3_Var3 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "<a href=\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "<a href=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var4 templ.SafeURL
 		templ_7745c5c3_Var4, templ_7745c5c3_Err = templ.JoinURLErrs(r.SafeURL(c.Href))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/index.templ`, Line: 118, Col: 26}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/tld/domain1/index.templ`, Line: 130, Col: 26}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var4))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "\" class=\"group block rounded-box transition-transform duration-200 hover:-translate-y-1\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "\" class=\"group block rounded-box transition-transform duration-200 hover:-translate-y-1\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -220,7 +233,7 @@ func componentCard(c componentCardData, r links.LinkResolver) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "</a>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "</a>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

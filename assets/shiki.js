@@ -44,11 +44,23 @@ function applyHighlighter(highlighter) {
     if (!code) continue;
     const lang = node.dataset.lang || "text";
     const theme = node.dataset.theme || defaultTheme;
+    const extraClass = node.className.replace(/\bshiki-code\b/g, "").trim();
     try {
-      node.outerHTML = highlighter.codeToHtml(code.textContent, {
+      const html = highlighter.codeToHtml(code.textContent, {
         lang,
         theme,
       });
+      const wrapper = document.createElement("template");
+      wrapper.innerHTML = html.trim();
+      const pre = wrapper.content.firstElementChild;
+      if (pre) {
+        const merged =
+          (pre.className || "") + (extraClass ? " " + extraClass : "");
+        if (merged) pre.className = merged.trim();
+        node.outerHTML = pre.outerHTML;
+      } else {
+        node.outerHTML = html;
+      }
     } catch (err) {
       // Unknown lang/theme (not preloaded): leave the plain <pre><code> as-is.
       console.warn("[shiki] skipped node:", err);
