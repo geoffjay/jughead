@@ -24,8 +24,8 @@ const ThemeKey = "domain1.theme"
 // server renders pages with LightTheme by default (see sites/sites.go); the
 // toggle overrides to DarkTheme when checked.
 const (
-	LightTheme = "kanagawa-light"
-	DarkTheme  = "kanagawa-dark"
+	LightTheme = "nord"
+	DarkTheme  = "nord-dark"
 )
 
 // ThemeRestoreScript runs synchronously in <head>-equivalent position so the
@@ -52,7 +52,7 @@ func ThemeRestoreScript() templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<script nonce=\"\">\n\t\t(function () {\n\t\t\ttry {\n\t\t\t\tvar t = localStorage.getItem(\"domain1.theme\");\n\t\t\t\tif (t === \"kanagawa-light\" || t === \"kanagawa-dark\") {\n\t\t\t\t\tdocument.documentElement.setAttribute(\"data-theme\", t);\n\t\t\t\t}\n\t\t\t} catch (e) {\n\t\t\t\t/* storage disabled */\n\t\t\t}\n\t\t})();\n\t</script>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<script nonce=\"\">\n\t\t(function () {\n\t\t\ttry {\n\t\t\t\tvar t = localStorage.getItem(\"domain1.theme\");\n\t\t\t\tif (t === \"nord\" || t === \"nord-dark\") {\n\t\t\t\t\tdocument.documentElement.setAttribute(\"data-theme\", t);\n\t\t\t\t}\n\t\t\t} catch (e) {\n\t\t\t\t/* storage disabled */\n\t\t\t}\n\t\t})();\n\t</script>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -84,7 +84,7 @@ func ThemePersistScript() templ.Component {
 			templ_7745c5c3_Var2 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "<script nonce=\"\">\n\t\t(function () {\n\t\t\tvar cb = document.getElementById(\"theme-toggle\");\n\t\t\tif (!cb) return;\n\t\t\tcb.checked =\n\t\t\t\tdocument.documentElement.getAttribute(\"data-theme\") === \"kanagawa-dark\";\n\t\t\tcb.addEventListener(\"change\", function () {\n\t\t\t\tvar next = cb.checked ? \"kanagawa-dark\" : \"kanagawa-light\";\n\t\t\t\tdocument.documentElement.setAttribute(\"data-theme\", next);\n\t\t\t\ttry {\n\t\t\t\t\tlocalStorage.setItem(\"domain1.theme\", next);\n\t\t\t\t} catch (e) {}\n\t\t\t});\n\t\t})();\n\t</script>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "<script nonce=\"\">\n\t\t(function () {\n\t\t\tvar cb = document.getElementById(\"theme-toggle\");\n\t\t\tif (!cb) return;\n\t\t\tcb.checked =\n\t\t\t\tdocument.documentElement.getAttribute(\"data-theme\") === \"nord-dark\";\n\t\t\tcb.addEventListener(\"change\", function () {\n\t\t\t\tvar next = cb.checked ? \"nord-dark\" : \"nord\";\n\t\t\t\tdocument.documentElement.setAttribute(\"data-theme\", next);\n\t\t\t\ttry {\n\t\t\t\t\tlocalStorage.setItem(\"domain1.theme\", next);\n\t\t\t\t} catch (e) {}\n\t\t\t});\n\t\t})();\n\t</script>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

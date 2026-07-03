@@ -14,8 +14,8 @@ const ThemeKey = "domain1.theme"
 // server renders pages with LightTheme by default (see sites/sites.go); the
 // toggle overrides to DarkTheme when checked.
 const (
-	LightTheme = "kanagawa-light"
-	DarkTheme  = "kanagawa-dark"
+	LightTheme = "nord"
+	DarkTheme  = "nord-dark"
 )
 
 // ThemeRestoreScript runs synchronously in <head>-equivalent position so the
@@ -26,7 +26,7 @@ templ ThemeRestoreScript() {
 		(function () {
 			try {
 				var t = localStorage.getItem("domain1.theme");
-				if (t === "kanagawa-light" || t === "kanagawa-dark") {
+				if (t === "nord" || t === "nord-dark") {
 					document.documentElement.setAttribute("data-theme", t);
 				}
 			} catch (e) {
@@ -45,9 +45,9 @@ templ ThemePersistScript() {
 			var cb = document.getElementById("theme-toggle");
 			if (!cb) return;
 			cb.checked =
-				document.documentElement.getAttribute("data-theme") === "kanagawa-dark";
+				document.documentElement.getAttribute("data-theme") === "nord-dark";
 			cb.addEventListener("change", function () {
-				var next = cb.checked ? "kanagawa-dark" : "kanagawa-light";
+				var next = cb.checked ? "nord-dark" : "nord";
 				document.documentElement.setAttribute("data-theme", next);
 				try {
 					localStorage.setItem("domain1.theme", next);
