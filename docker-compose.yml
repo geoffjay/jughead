@@ -1,17 +1,43 @@
-version: "3.9"
-
 services:
+  postgres:
+    image: postgres:17-bookworm
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: jughead
+      POSTGRES_PASSWORD: jughead
+      POSTGRES_DB: jughead
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./db/migrations:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U jughead -d jughead"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    networks:
+      - jughead_network
+
   jughead:
     build:
       context: .
       dockerfile: Dockerfile
     restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
     ports:
       - "9000:9000"
     environment:
       BACKEND_PORT: 9000
+      # App connects as the non-superuser jughead_app role so RLS applies.
+      DATABASE_URL: postgres://jughead_app:jughead_app@postgres:5432/jughead?sslmode=disable
     networks:
       - jughead_network
+
+volumes:
+  postgres_data:
 
 networks:
   jughead_network:
