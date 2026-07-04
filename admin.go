@@ -1,8 +1,10 @@
 package main
 
 import (
+	"errors"
 	"net/http"
 
+	"github.com/geoffjay/jughead/services"
 	"github.com/geoffjay/jughead/sessions"
 	"github.com/geoffjay/jughead/templates"
 	"github.com/geoffjay/jughead/templates/pages"
@@ -10,11 +12,13 @@ import (
 	"github.com/a-h/templ"
 	"github.com/angelofallars/htmx-go"
 	"github.com/gin-gonic/gin"
+	"github.com/google/uuid"
 )
 
 // adminCredentials is the static user/password store used by the login handler
-// until a real database-backed accounts table replaces it. Mirrors the shape of
-// gin.Accounts so the future swap to gin.BasicAuth (or a DB lookup) is trivial.
+// when no database pool is available (tests, DB-disabled deployments). When a
+// UserService is wired, credentials are validated against the users table and
+// this map is never consulted.
 var adminCredentials = gin.Accounts{
 	"admin": "password",
 }
@@ -27,7 +31,12 @@ func loginViewHandler(c *gin.Context) {
 
 // loginSubmitHandler validates posted credentials, creates a session on
 // success, and redirects to the originally-requested target (or /admin).
-func loginSubmitHandler(store *sessions.Store) gin.HandlerFunc {
+//
+// When a UserService is wired (DB pool available), credentials are validated
+// against the users table via bcrypt. When userSvc is nil (DB-disabled
+// deployments, tests), the legacy static-credential fallback is used so the
+// admin UI remains functional without a database.
+func loginSubmitHandler(store *sessions.Store, userSvc *services.UserService) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		username := c.PostForm("username")
 		password := c.PostForm("password")
@@ -36,12 +45,32 @@ func loginSubmitHandler(store *sessions.Store) gin.HandlerFunc {
 			redirect = "/admin"
 		}
 
+		if userSvc != nil {
+			u, err := userSvc.Authenticate(c.Request.Context(), username, password)
+			if err != nil {
+				if errors.Is(err, services.ErrUserInactive) {
+					renderLogin(c, redirect, "This account has been deactivated")
+				} else {
+					renderLogin(c, redirect, "Invalid email or password")
+				}
+				return
+			}
+			// The user may belong to multiple organizations. The active org
+			// is uuid.Nil until a "switch organization" flow selects one;
+			// downstream RLS-gated calls will fail until then, which is the
+			// correct behavior for a freshly-authenticated user with no
+			// tenant context.
+			store.CreateWithUser(c.Writer, u.Email, u.ID, uuid.Nil)
+			c.Redirect(http.StatusFound, redirect)
+			return
+		}
+
+		// Legacy static-credential fallback (no DB pool).
 		expected, ok := adminCredentials[username]
 		if !ok || expected != password {
 			renderLogin(c, redirect, "Invalid username or password")
 			return
 		}
-
 		store.Create(c.Writer, username)
 		c.Redirect(http.StatusFound, redirect)
 	}

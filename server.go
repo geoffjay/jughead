@@ -11,6 +11,7 @@ import (
 	"github.com/geoffjay/jughead/db"
 	"github.com/geoffjay/jughead/middleware"
 	"github.com/geoffjay/jughead/plugin"
+	"github.com/geoffjay/jughead/services"
 	githubsvc "github.com/geoffjay/jughead/services/github"
 	"github.com/geoffjay/jughead/sessions"
 	"github.com/geoffjay/jughead/sites"
@@ -111,6 +112,23 @@ func runServer() error {
 	store := sessions.NewStore()
 	sm := sites.GetSiteManager()
 
+	// Construct the service layer. Each service holds the concrete db
+	// repositories and the shared pool. When the pool is nil (DB-disabled
+	// deployments) the services are not constructed and the legacy static-
+	// admin auth path is used instead.
+	var (
+		userSvc   *services.UserService
+		orgSvc    *services.OrganizationService
+		memSvc    *services.MembershipService
+		inviteSvc *services.InvitationService
+	)
+	if pool != nil {
+		userSvc = services.NewUserService(pool)
+		orgSvc = services.NewOrganizationService(pool)
+		memSvc = services.NewMembershipService()
+		inviteSvc = services.NewInvitationService()
+	}
+
 	// Attach the DB pool to every request context so handlers can call
 	// db.WithOrgContext without holding a direct pool reference. No-op when
 	// the pool is nil (DB-disabled deployments).
@@ -138,11 +156,13 @@ func runServer() error {
 
 	// Admin password-auth routes. /login is public; /admin (and anything added
 	// to its group) requires a valid session and redirects to /login otherwise.
+	// When a DB pool is available, login is backed by UserService.Authenticate;
+	// otherwise the legacy static-credential fallback is used.
 	router.GET("/login", loginViewHandler)
-	router.POST("/login", loginSubmitHandler(store))
+	router.POST("/login", loginSubmitHandler(store, userSvc))
 	router.GET("/logout", logoutHandler(store))
 
-	registerAdminRoutes(router, store)
+	registerAdminRoutes(router, store, userSvc, orgSvc, memSvc, inviteSvc)
 
 	server := &http.Server{
 		Addr:         fmt.Sprintf(":%d", port),
@@ -156,7 +176,19 @@ func runServer() error {
 	return server.ListenAndServe()
 }
 
-func registerAdminRoutes(router *gin.Engine, store *sessions.Store) {
+func registerAdminRoutes(
+	router *gin.Engine,
+	store *sessions.Store,
+	userSvc *services.UserService,
+	orgSvc *services.OrganizationService,
+	memSvc *services.MembershipService,
+	inviteSvc *services.InvitationService,
+) {
+	_ = userSvc // services are wired into handlers as the admin UI grows
+	_ = orgSvc
+	_ = memSvc
+	_ = inviteSvc
+
 	admin := router.Group("/admin", middleware.AuthRequired(store))
 	admin.GET("", adminViewHandler)
 	admin.GET("/", adminViewHandler)

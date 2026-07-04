@@ -13,10 +13,11 @@ import (
 // ErrNotFound is returned by repository methods when no row matches the query.
 var ErrNotFound = errors.New("record not found")
 
-// querier is the minimal subset of pgxpool.Pool / pgx.Tx needed for the
+// Querier is the minimal subset of pgxpool.Pool / pgx.Tx needed for the
 // pre-auth lookups (the login path runs via SECURITY DEFINER functions so it
-// does not need an RLS-gated transaction).
-type querier interface {
+// does not need an RLS-gated transaction). Exported so the services package can
+// reference it in repository interface definitions.
+type Querier interface {
 	QueryRow(ctx context.Context, sql string, args ...any) pgx.Row
 }
 
@@ -36,7 +37,7 @@ func NewUserRepository() *UserRepository { return &UserRepository{} }
 
 // FindByEmail fetches a user by email for the login flow. Uses the
 // find_user_by_email SECURITY DEFINER function so it is not blocked by RLS.
-func (UserRepository) FindByEmail(ctx context.Context, q querier, email string) (User, error) {
+func (UserRepository) FindByEmail(ctx context.Context, q Querier, email string) (User, error) {
 	const stmt = `SELECT id, email, password_hash, is_active, created_at, updated_at FROM find_user_by_email($1)`
 	var u User
 	err := q.QueryRow(ctx, stmt, email).Scan(
@@ -54,7 +55,7 @@ func (UserRepository) FindByEmail(ctx context.Context, q querier, email string) 
 // FindByID fetches a user by id. Uses the find_user_by_id SECURITY DEFINER
 // function so it works pre-authentication (e.g. re-hydrating an identity from a
 // session-stored user id).
-func (UserRepository) FindByID(ctx context.Context, q querier, id uuid.UUID) (User, error) {
+func (UserRepository) FindByID(ctx context.Context, q Querier, id uuid.UUID) (User, error) {
 	const stmt = `SELECT id, email, password_hash, is_active, created_at, updated_at FROM find_user_by_id($1)`
 	var u User
 	err := q.QueryRow(ctx, stmt, id).Scan(

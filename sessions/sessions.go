@@ -7,6 +7,8 @@ import (
 	"strings"
 	"sync"
 	"time"
+
+	"github.com/google/uuid"
 )
 
 const (
@@ -20,6 +22,13 @@ type Session struct {
 	Username  string
 	CreatedAt time.Time
 	ExpiresAt time.Time
+
+	// Database identity. UserID is the users.id UUID for DB-backed logins.
+	// OrganizationID is the currently-active organization (may be uuid.Nil if
+	// the user has not selected a tenant yet). Both are zero for the legacy
+	// static-admin path that has no DB record.
+	UserID         uuid.UUID
+	OrganizationID uuid.UUID
 
 	// GitHub OAuth fields. Populated by CreateWithToken when the user signs in
 	// via the GitHub OAuth web flow; left zero-valued for the legacy admin
@@ -48,6 +57,18 @@ func NewStore() *Store {
 // response. Concurrent calls with the same username replace the prior session.
 func (s *Store) Create(w http.ResponseWriter, username string) string {
 	return s.create(w, &Session{Username: username})
+}
+
+// CreateWithUser makes a new session for a DB-authenticated user, carrying the
+// user's UUID and active organization ID for downstream RLS scoping. The
+// username is set to the user's email for parity with the legacy admin path
+// (middleware reads c.Set("username", sess.Username)).
+func (s *Store) CreateWithUser(w http.ResponseWriter, email string, userID, orgID uuid.UUID) string {
+	return s.create(w, &Session{
+		Username:       email,
+		UserID:         userID,
+		OrganizationID: orgID,
+	})
 }
 
 // CreateWithToken makes a new session populated with GitHub OAuth fields and

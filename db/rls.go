@@ -116,6 +116,13 @@ func WithPool(ctx context.Context, pool *pgxpool.Pool) context.Context {
 	return context.WithValue(ctx, poolContextKey{}, pool)
 }
 
+// PoolFromContext returns the pool attached to ctx by WithPool, or an error if
+// none is present. Exported so service-layer code can resolve the request-
+// scoped pool without holding a direct reference.
+func PoolFromContext(ctx context.Context) (*pgxpool.Pool, error) {
+	return poolFromContext(ctx)
+}
+
 func poolFromContext(ctx context.Context) (*pgxpool.Pool, error) {
 	pool, ok := ctx.Value(poolContextKey{}).(*pgxpool.Pool)
 	if !ok || pool == nil {
