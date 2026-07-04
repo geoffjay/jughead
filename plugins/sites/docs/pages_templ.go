@@ -186,16 +186,16 @@ func pluginsPage() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "</div><p class=\"mb-4\">See <code>plugins/providers/example/</code> as a minimal starter, and <code>plugins/providers/github/</code> as a real provider.</p><h2 class=\"text-xl font-semibold mt-8 mb-2\">Building</h2><p class=\"mb-4\">Plugins require CGO and must be built with the same Go toolchain version and identical dependency versions as the host (a hard requirement of the <code>plugin</code> package; mismatches panic at load time). Use the Makefile targets, which build against the pinned <code>go.mod</code>:</p><div class=\"not-prose\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "</div><p class=\"mb-4\">See <code>plugins/providers/example/</code> as a minimal starter, and <code>plugins/providers/github/</code> as a real provider.</p><h2 class=\"text-xl font-semibold mt-8 mb-2\">Building</h2><p class=\"mb-4\">Plugins require CGO and must be built with the same Go toolchain version and identical dependency versions as the host (a hard requirement of the <code>plugin</code> package; mismatches panic at load time). Use the Taskfile targets, which build against the pinned <code>go.mod</code>:</p><div class=\"not-prose\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		templ_7745c5c3_Err = daisyui.Code(daisyui.CodeConfig{
 			Class: "w-full",
 			Lines: []daisyui.CodeLine{
-				{Prefix: "$", Text: "make plugin NAME=providers/github   # build one plugin"},
-				{Prefix: "$", Text: "make plugins                        # build every plugin"},
-				{Prefix: "$", Text: "make build-cgo                    # host binary that can load plugins"},
+				{Prefix: "$", Text: "task plugin NAME=providers/github   # build one plugin"},
+				{Prefix: "$", Text: "task plugins                       # build every plugin"},
+				{Prefix: "$", Text: "task build:plugins                 # host binary that can load plugins"},
 			},
 		}).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {

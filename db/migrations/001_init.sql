@@ -35,13 +35,12 @@ ALTER ROLE jughead_app NOSUPERUSER NOBYPASSRLS;
 -- Enumerations
 -- ============================================================================
 
-CREATE TYPE subscription_tier AS ENUM ('free', 'pro', 'enterprise');
-
-CREATE TYPE billing_status AS ENUM ('active', 'past_due', 'canceled', 'trialing');
-
-CREATE TYPE membership_role AS ENUM ('owner', 'admin', 'member');
-
-CREATE TYPE invitation_status AS ENUM ('pending', 'accepted', 'expired', 'revoked');
+-- Enums lack IF NOT EXISTS, so each is guarded by a DO block that catches the
+-- duplicate_object error. This makes the migration idempotent for `psql -f`.
+DO $$ BEGIN CREATE TYPE subscription_tier AS ENUM ('free', 'pro', 'enterprise'); EXCEPTION WHEN duplicate_object THEN NULL; END $$;
+DO $$ BEGIN CREATE TYPE billing_status AS ENUM ('active', 'past_due', 'canceled', 'trialing'); EXCEPTION WHEN duplicate_object THEN NULL; END $$;
+DO $$ BEGIN CREATE TYPE membership_role AS ENUM ('owner', 'admin', 'member'); EXCEPTION WHEN duplicate_object THEN NULL; END $$;
+DO $$ BEGIN CREATE TYPE invitation_status AS ENUM ('pending', 'accepted', 'expired', 'revoked'); EXCEPTION WHEN duplicate_object THEN NULL; END $$;
 
 -- ============================================================================
 -- users — authentication & identity

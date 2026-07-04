@@ -139,16 +139,16 @@ templ pluginsPage() {
 			Plugins require CGO and must be built with the same Go toolchain
 			version and identical dependency versions as the host (a hard
 			requirement of the <code>plugin</code> package; mismatches panic at
-			load time). Use the Makefile targets, which build against the pinned
+			load time). Use the Taskfile targets, which build against the pinned
 			<code>go.mod</code>:
 		</p>
 		<div class="not-prose">
 			@daisyui.Code(daisyui.CodeConfig{
 				Class: "w-full",
 				Lines: []daisyui.CodeLine{
-					{Prefix: "$", Text: "make plugin NAME=providers/github   # build one plugin"},
-					{Prefix: "$", Text: "make plugins                        # build every plugin"},
-					{Prefix: "$", Text: "make build-cgo                    # host binary that can load plugins"},
+					{Prefix: "$", Text: "task plugin NAME=providers/github   # build one plugin"},
+					{Prefix: "$", Text: "task plugins                       # build every plugin"},
+					{Prefix: "$", Text: "task build:plugins                 # host binary that can load plugins"},
 				},
 			})
 		</div>

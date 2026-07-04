@@ -8,6 +8,7 @@ import (
 	"strconv"
 	"time"
 
+	"github.com/geoffjay/jughead/db"
 	"github.com/geoffjay/jughead/middleware"
 	"github.com/geoffjay/jughead/plugin"
 	githubsvc "github.com/geoffjay/jughead/services/github"
@@ -19,6 +20,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/gin-gonic/gin/render"
 	gowebly "github.com/gowebly/helpers"
+	"github.com/jackc/pgx/v5/pgxpool"
 )
 
 // TemplRender implements the render.Render interface.
@@ -90,9 +92,34 @@ func runServer() error {
 		return err
 	}
 
+	// Database pool. Optional: when DATABASE_URL is unset the server runs
+	// without persistence (useful for tests and the legacy static-admin path).
+	// When set, the pool connects as the non-superuser jughead_app role so RLS
+	// policies apply at runtime.
+	var pool *pgxpool.Pool
+	if cfg, err := db.NewConfig(); err == nil {
+		pool, err = db.NewPool(context.Background(), cfg)
+		if err != nil {
+			return fmt.Errorf("init database: %w", err)
+		}
+		defer pool.Close()
+	} else {
+		slog.Info("DATABASE_URL unset — running without a database pool")
+	}
+
 	router := gin.Default()
 	store := sessions.NewStore()
 	sm := sites.GetSiteManager()
+
+	// Attach the DB pool to every request context so handlers can call
+	// db.WithOrgContext without holding a direct pool reference. No-op when
+	// the pool is nil (DB-disabled deployments).
+	if pool != nil {
+		router.Use(func(c *gin.Context) {
+			c.Request = c.Request.WithContext(db.WithPool(c.Request.Context(), pool))
+			c.Next()
+		})
+	}
 
 	// Reverse-proxy map derived from each loaded site's Url/Path so requests
 	// to a site's FQDN are forwarded to its localhost site-path upstream.

@@ -19,7 +19,7 @@ import (
 )
 
 // TestLoadAll_LoadsGithubPlugin loads the real plugins/github.so (built via
-// `make plugin NAME=github`) and verifies the GitHub provider registers into
+// `task plugin NAME=providers/github`) and verifies the GitHub provider registers into
 // the auth registry. This is the end-to-end validation that:
 //   - plugin.Open succeeds on a .so built from the same module/toolchain
 //   - the "Plugin" symbol lookup yields *sdk.Plugin (same type identity)
@@ -31,7 +31,7 @@ import (
 func TestLoadAll_LoadsGithubPlugin(t *testing.T) {
 	so := filepath.Join("..", "plugins", "github.so")
 	if _, err := os.Stat(so); err != nil {
-		t.Skipf("plugin .so not built (%s); run `make plugin NAME=github` first: %v", so, err)
+		t.Skipf("plugin .so not built (%s); run `task plugin NAME=providers/github` first: %v", so, err)
 	}
 
 	auth.ResetForTest()
@@ -52,7 +52,7 @@ func TestLoadAll_LoadsGithubPlugin(t *testing.T) {
 }
 
 // TestLoadAll_LoadsDocsSitePlugin loads the real plugins/docs.so (built via
-// `make plugin NAME=docs`) and verifies the docs site registers into the
+// `task plugin NAME=sites/docs`) and verifies the docs site registers into the
 // SiteManager. This is the Phase 4 validation that a site's templ.Component
 // (Site.Template), its reverse-proxy fallback (Site.Proxy), and its route
 // registrar (Site.Routes, carrying a *gin.RouterGroup) all cross the .so
@@ -63,7 +63,7 @@ func TestLoadAll_LoadsGithubPlugin(t *testing.T) {
 func TestLoadAll_LoadsDocsSitePlugin(t *testing.T) {
 	so := filepath.Join("..", "plugins", "docs.so")
 	if _, err := os.Stat(so); err != nil {
-		t.Skipf("plugin .so not built (%s); run `make plugin NAME=docs` first: %v", so, err)
+		t.Skipf("plugin .so not built (%s); run `task plugin NAME=sites/docs` first: %v", so, err)
 	}
 
 	auth.ResetForTest()
@@ -183,7 +183,7 @@ func TestLoadAll_BadFileFailsStrict(t *testing.T) {
 func TestLoadAll_DocsSitePluginRendersPage(t *testing.T) {
 	so := filepath.Join("..", "plugins", "docs.so")
 	if _, err := os.Stat(so); err != nil {
-		t.Skipf("plugin .so not built (%s); run `make plugin NAME=docs` first: %v", so, err)
+		t.Skipf("plugin .so not built (%s); run `task plugin NAME=sites/docs` first: %v", so, err)
 	}
 
 	auth.ResetForTest()

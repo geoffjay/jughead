@@ -2,7 +2,7 @@
 //
 // Go `plugin` .so files must be built from a main package; this file and its
 // siblings in this directory form that main package. The package is built with
-// `go build -buildmode=plugin` (see the Makefile `plugin` target) and loaded
+// `go build -buildmode=plugin` (see the Taskfile `plugin` target) and loaded
 // at startup by the host's plugin loader. The plugin exports a package-level
 // `Plugin` variable of type *sdk.Plugin whose Providers slice contains the
 // GitHub provider. When loaded, the provider registers under the name
@@ -19,7 +19,7 @@
 //
 // Build (from the repo root):
 //
-//	make plugin NAME=github
+//	task plugin NAME=providers/github
 //
 // The resulting plugins/github.so is discovered when JUGHEAD_PLUGINS_DIR
 // points at the plugins directory.

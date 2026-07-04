@@ -10,7 +10,7 @@
 //
 // Build from the repo root:
 //
-//	make plugin NAME=example
+//	task plugin NAME=providers/example
 //
 // Then set JUGHEAD_PLUGINS_DIR to the directory containing example.so and
 // start jughead. The provider registers under Name() == "example"; a site

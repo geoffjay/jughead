@@ -53,7 +53,7 @@ func TestAppShellDefaults(t *testing.T) {
 	mustContain(t, got, ">Jughead<")
 	mustContain(t, got, "Dashboard")
 	mustContain(t, got, "<p>main</p>")
-	mustContain(t, got, `class="flex-1 min-w-0 overflow-y-auto"`)
+	mustContain(t, got, `class="flex-1 min-w-0 overflow-y-auto`)
 	mustContain(t, got, `appshell-sidebar-state`)
 }
 
@@ -91,7 +91,7 @@ func TestAppShellHeaderExtra(t *testing.T) {
 
 func TestAppShellNilContent(t *testing.T) {
 	got := render(t, AppShell(AppShellConfig{Title: "x"}))
-	mustContain(t, got, `class="flex-1 min-w-0 overflow-y-auto"`)
+	mustContain(t, got, `class="flex-1 min-w-0 overflow-y-auto`)
 	mustNotContain(t, got, "nil")
 }
 

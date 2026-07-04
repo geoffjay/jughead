@@ -1,0 +1,168 @@
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
+
+version: '3'
+
+vars:
+  DB_APP_USER: jughead_app
+  DB_APP_PASSWORD: jughead_app
+  DB_ADMIN_USER: jughead
+  DB_ADMIN_PASSWORD: jughead
+  DB_NAME: jughead
+  DB_HOST: localhost
+  DB_PORT: '5432'
+  MIGRATIONS_DIR: db/migrations
+
+  # Used by the Go db integration tests; matches the docker-compose app role.
+  DB_APP_URL: 'postgres://{{.DB_APP_USER}}:{{.DB_APP_PASSWORD}}@{{.DB_HOST}}:{{.DB_PORT}}/{{.DB_NAME}}?sslmode=disable'
+  DB_ADMIN_URL: 'postgres://{{.DB_ADMIN_USER}}:{{.DB_ADMIN_PASSWORD}}@{{.DB_HOST}}:{{.DB_PORT}}/{{.DB_NAME}}?sslmode=disable'
+
+# sh (the default interpreter) doesn't support $(...); bash does.
+shopt: [globstar]
+
+tasks:
+  default:
+    desc: Print available tasks
+    cmds:
+      - task --list
+    silent: true
+
+  # --------------------------------------------------------------------------
+  # Database
+  # --------------------------------------------------------------------------
+
+  db:up:
+    desc: Start the postgres container (waits for healthy)
+    cmds:
+      - docker compose up -d postgres
+      - cmd: echo "Waiting for postgres to accept connections..."
+        silent: true
+      - |
+        for i in $(seq 1 30); do
+          if docker compose exec -T postgres pg_isready -U {{.DB_ADMIN_USER}} -d {{.DB_NAME}} >/dev/null 2>&1; then
+            echo "postgres is ready (after ${i}s)"
+            exit 0
+          fi
+          sleep 1
+        done
+        echo "postgres did not become ready within 30s"
+        docker compose logs --tail=20 postgres
+        exit 1
+
+  db:down:
+    desc: Stop the postgres container (keeps the data volume)
+    cmds:
+      - docker compose stop postgres
+
+  db:down:volumes:
+    desc: Stop postgres and delete the data volume
+    cmds:
+      - docker compose down -v
+
+  db:create:
+    desc: Run all migrations against the dev database (idempotent)
+    cmds:
+      - cmd: echo "Applying migrations from {{.MIGRATIONS_DIR}}..."
+        silent: true
+      - |
+        for f in {{.MIGRATIONS_DIR}}/*.sql; do
+          [ -e "$f" ] || continue
+          echo "  -> $(basename "$f")"
+          docker compose exec -T postgres psql -v ON_ERROR_STOP=1 -U {{.DB_ADMIN_USER}} -d {{.DB_NAME}} -f "/docker-entrypoint-initdb.d/$(basename "$f")"
+        done
+      - cmd: echo "Migrations applied."
+        silent: true
+
+  db:recreate:
+    desc: Drop the data volume and re-run migrations from scratch
+    cmds:
+      - task: db:down:volumes
+      - task: db:up
+      - task: db:create
+
+  db:psql:
+    desc: Open a psql session as the app role (RLS-active)
+    interactive: true
+    cmds:
+      - docker compose exec postgres psql -U {{.DB_APP_USER}} -d {{.DB_NAME}}
+
+  db:psql:admin:
+    desc: Open a psql session as the superuser (bypasses RLS)
+    interactive: true
+    cmds:
+      - docker compose exec postgres psql -U {{.DB_ADMIN_USER}} -d {{.DB_NAME}}
+
+  # --------------------------------------------------------------------------
+  # Seed (placeholder — real seed data lands here once the auth flow is wired)
+  # --------------------------------------------------------------------------
+
+  db:seed:
+    desc: Seed development data (placeholder)
+    cmds:
+      - cmd: echo "db:seed not implemented yet — add fixture rows once the auth flow is wired"
+        silent: true
+
+  # --------------------------------------------------------------------------
+  # Build & test
+  # --------------------------------------------------------------------------
+
+  build:
+    desc: Build the host binary (static, no CGO)
+    cmds:
+      - go build -ldflags="-s -w" -o jughead .
+
+  build:plugins:
+    desc: Build the host binary with CGO enabled for plugin loading
+    cmds:
+      - CGO_ENABLED=1 go build -ldflags="-s -w" -o jughead .
+
+  plugins:
+    desc: Build every plugin under plugins/providers/* and plugins/sites/*
+    cmds:
+      - |
+        mkdir -p plugins
+        for dir in plugins/providers/*/ plugins/sites/*/; do
+          [ -d "$dir" ] || continue
+          name=$(basename "$dir")
+          kind=$(basename $(dirname "$dir"))
+          echo "building plugin: $kind/$name -> $name.so"
+          CGO_ENABLED=1 go build -buildmode=plugin -o plugins/$name.so ./$dir || exit 1
+        done
+
+  plugin:
+    desc: Build a single plugin, e.g. task plugin NAME=providers/github
+    cmds:
+      - |
+        if [ -z "{{.NAME}}" ]; then
+          echo "usage: task plugin NAME=<providers|sites>/<name>"
+          exit 1
+        fi
+        mkdir -p plugins
+        name=$(basename "{{.NAME}}")
+        echo "building plugin: {{.NAME}} -> $name.so"
+        CGO_ENABLED=1 go build -buildmode=plugin -o plugins/$name.so ./plugins/{{.NAME}}
+
+  test:
+    desc: Run all Go tests (starts postgres and sets DATABASE_URL for db tests)
+    cmds:
+      - task: db:up
+      - env -u GITHUB_CLIENT_ID -u GITHUB_CLIENT_SECRET -u GITHUB_REDIRECT_URL -u GITHUB_ALLOWED_LOGIN DATABASE_URL={{.DB_APP_URL}} go test ./...
+
+  test:db:
+    desc: Run only the db package integration tests
+    cmds:
+      - task: db:up
+      - DATABASE_URL={{.DB_APP_URL}} go test ./db/... -v
+
+  test:short:
+    desc: Run tests excluding db integration tests (no DATABASE_URL set)
+    cmds:
+      - env -u GITHUB_CLIENT_ID -u GITHUB_CLIENT_SECRET -u GITHUB_REDIRECT_URL -u GITHUB_ALLOWED_LOGIN go test ./...
+
+  # --------------------------------------------------------------------------
+  # Misc
+  # --------------------------------------------------------------------------
+
+  clean-plugins:
+    desc: Remove built plugin binaries
+    cmds:
+      - rm -rf plugins/*.so plugins/*.dylib

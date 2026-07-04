@@ -17,7 +17,7 @@
 //
 // Build from the repo root:
 //
-//	make plugin NAME=docs
+//	task plugin NAME=sites/docs
 //
 // When JUGHEAD_PLUGINS_DIR points at the built docs.so, the loader registers
 // the site under Path "/sites/docs.jughead.geoffjay.com", supplanting the

@@ -17,7 +17,7 @@
 // and identical dependency versions; a mismatch causes plugin.Open to panic
 // with "plugin was built with a different version of package ...". This is a
 // hard requirement of the Go `plugin` package, not something the loader can
-// mitigate. Build plugins via the Makefile (`make plugins`) against the
+// mitigate. Build plugins via the Taskfile (`task plugins`) against the
 // pinned go.mod to keep them in lockstep with the host.
 package plugin
 
@@ -41,7 +41,7 @@ import (
 
 // pluginSuffix is the shared-object extension plugins use on every platform.
 // Go's `plugin` package accepts .so files on both Linux and macOS; we
-// standardize on .so so the Makefile target and the loader agree regardless
+// standardize on .so so the Taskfile target and the loader agree regardless
 // of host OS. (macOS's conventional .dylib extension is not required by the
 // `plugin` package; a file built with `go build -buildmode=plugin -o x.so`
 // loads fine on darwin.)
@@ -53,7 +53,7 @@ const pluginSuffix = ".so"
 // are logged and the loader continues to the next file.
 //
 // Files ending in .so are treated as plugins. (See the pluginSuffix const:
-// .so is used on every platform; the Makefile `plugin` target produces .so
+// .so is used on every platform; the Taskfile `plugin` target produces .so
 // files.)
 func LoadAll(dir string, strict bool) error {
 	return loadAll(dir, pluginSuffix, strict)

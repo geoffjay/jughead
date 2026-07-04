@@ -19,12 +19,19 @@ WORKDIR /build
 COPY go.mod go.sum ./
 RUN go mod download
 
-# Source (minus .dockerignore). Includes plugins/ source and the Makefile.
+# Source (minus .dockerignore). Includes plugins/ source.
 COPY . .
 
 # Build every plugin .so (providers + sites) flat into /build/plugins, then
-# build the CGO-enabled host binary that will load them at runtime.
-RUN make plugins PLUGINS_DIR=/build/plugins
+# build the CGO-enabled host binary that will load them at runtime. The loop
+# mirrors the `task plugins` Taskfile target.
+RUN mkdir -p /build/plugins && \
+    for dir in plugins/providers/*/ plugins/sites/*/; do \
+        [ -d "$$dir" ] || continue; \
+        name=$$(basename "$$dir"); \
+        echo "building plugin: $$name.so"; \
+        CGO_ENABLED=1 go build -buildmode=plugin -o /build/plugins/$$name.so ./$$dir || exit 1; \
+    done
 RUN CGO_ENABLED=1 GIN_MODE=release go build -ldflags="-s -w" -o jughead
 
 FROM debian:bookworm-slim

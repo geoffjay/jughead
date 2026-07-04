@@ -7,7 +7,7 @@
 //
 // The binary produced by a plain `go build` of this package is never intended
 // to be executed — it exists only to keep whole-repo build tooling green. The
-// canonical build is `make plugin NAME=example`.
+// canonical build is `task plugin NAME=providers/example`.
 package main
 
 func main() {}
