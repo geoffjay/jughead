@@ -176,6 +176,16 @@ func runServer() error {
 	return server.ListenAndServe()
 }
 
+// AdminDeps bundles the services the admin handlers need. When the DB pool is
+// nil (DB-disabled deployments), all fields are nil and the admin handlers
+// render empty placeholder states instead of querying the database.
+type AdminDeps struct {
+	Users   *services.UserService
+	Orgs    *services.OrganizationService
+	Mems    *services.MembershipService
+	Invites *services.InvitationService
+}
+
 func registerAdminRoutes(
 	router *gin.Engine,
 	store *sessions.Store,
@@ -184,16 +194,18 @@ func registerAdminRoutes(
 	memSvc *services.MembershipService,
 	inviteSvc *services.InvitationService,
 ) {
-	_ = userSvc // services are wired into handlers as the admin UI grows
-	_ = orgSvc
-	_ = memSvc
-	_ = inviteSvc
+	deps := &AdminDeps{
+		Users:   userSvc,
+		Orgs:    orgSvc,
+		Mems:    memSvc,
+		Invites: inviteSvc,
+	}
 
 	admin := router.Group("/admin", middleware.AuthRequired(store))
-	admin.GET("", adminViewHandler)
-	admin.GET("/", adminViewHandler)
+	admin.GET("", adminViewHandler(deps))
+	admin.GET("/", adminViewHandler(deps))
 	admin.GET("/sites", sitesViewHandler)
-	admin.GET("/users", usersViewHandler)
+	admin.GET("/users", usersViewHandler(deps))
 	admin.GET("/settings", settingsViewHandler)
 	admin.GET("/logs", logsViewHandler)
 }

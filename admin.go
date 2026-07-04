@@ -4,6 +4,7 @@ import (
 	"errors"
 	"net/http"
 
+	"github.com/geoffjay/jughead/db"
 	"github.com/geoffjay/jughead/services"
 	"github.com/geoffjay/jughead/sessions"
 	"github.com/geoffjay/jughead/templates"
@@ -55,12 +56,17 @@ func loginSubmitHandler(store *sessions.Store, userSvc *services.UserService) gi
 				}
 				return
 			}
-			// The user may belong to multiple organizations. The active org
-			// is uuid.Nil until a "switch organization" flow selects one;
-			// downstream RLS-gated calls will fail until then, which is the
-			// correct behavior for a freshly-authenticated user with no
-			// tenant context.
-			store.CreateWithUser(c.Writer, u.Email, u.ID, uuid.Nil)
+
+			// Auto-select the user's first organization so the admin UI has
+			// a tenant context. The memberships_visible RLS policy admits
+			// rows where user_id = current_user_id, so we scope to UserID.
+			var orgID uuid.UUID
+			mems, err := userSvc.ListMemberships(c.Request.Context(), db.Scope{UserID: u.ID})
+			if err == nil && len(mems) > 0 {
+				orgID = mems[0].OrganizationID
+			}
+
+			store.CreateWithUser(c.Writer, u.Email, u.ID, orgID)
 			c.Redirect(http.StatusFound, redirect)
 			return
 		}
@@ -84,19 +90,60 @@ func logoutHandler(store *sessions.Store) gin.HandlerFunc {
 	}
 }
 
-// adminViewHandler renders the (currently empty) admin overview page.
-func adminViewHandler(c *gin.Context) {
-	renderAdmin(c, "Admin", "Admin section", pages.AdminContent())
+// adminViewHandler renders the admin overview page with real org/user/member
+// stats when DB services are available, or a placeholder when they're not.
+func adminViewHandler(deps *AdminDeps) gin.HandlerFunc {
+	return func(c *gin.Context) {
+		if deps == nil || deps.Orgs == nil || deps.Users == nil {
+			renderAdmin(c, "Admin", "Admin section", pages.AdminContent(pages.AdminData{}))
+			return
+		}
+
+		scope := db.ScopeFromContext(c.Request.Context())
+		ctx := c.Request.Context()
+
+		orgs, _ := deps.Orgs.List(ctx, scope)
+		mems, _ := deps.Mems.ListByOrganization(ctx, scope, scope.OrganizationID)
+
+		data := pages.AdminData{
+			OrgName:       orgNameForScope(orgs, scope.OrganizationID),
+			OrgCount:      len(orgs),
+			MemberCount:   len(mems),
+			Organizations: orgs,
+		}
+		renderAdmin(c, "Admin", "Admin section", pages.AdminContent(data))
+	}
+}
+
+// usersViewHandler renders the admin users page with the org's member list
+// when DB services are available, or a placeholder when they're not.
+func usersViewHandler(deps *AdminDeps) gin.HandlerFunc {
+	return func(c *gin.Context) {
+		if deps == nil || deps.Mems == nil {
+			renderAdmin(c, "Admin · Users", "Manage user accounts", pages.UsersContent(nil))
+			return
+		}
+
+		scope := db.ScopeFromContext(c.Request.Context())
+		mems, _ := deps.Mems.ListByOrganization(c.Request.Context(), scope, scope.OrganizationID)
+		renderAdmin(c, "Admin · Users", "Manage user accounts", pages.UsersContent(mems))
+	}
+}
+
+// orgNameForScope returns the name of the org matching scope.OrganizationID,
+// or "—" when not found.
+func orgNameForScope(orgs []db.Organization, id uuid.UUID) string {
+	for _, o := range orgs {
+		if o.ID == id {
+			return o.Name
+		}
+	}
+	return "—"
 }
 
 // sitesViewHandler renders the admin sites page.
 func sitesViewHandler(c *gin.Context) {
 	renderAdmin(c, "Admin · Sites", "Manage configured sites", pages.SitesContent())
-}
-
-// usersViewHandler renders the admin users page.
-func usersViewHandler(c *gin.Context) {
-	renderAdmin(c, "Admin · Users", "Manage user accounts", pages.UsersContent())
 }
 
 // settingsViewHandler renders the admin settings page.

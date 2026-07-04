@@ -45,8 +45,8 @@ func newTestRouter(t *testing.T) *gin.Engine {
 	r.POST("/login", loginSubmitHandler(store, nil))
 	r.GET("/logout", logoutHandler(store))
 	admin := r.Group("/admin", middleware.AuthRequired(store))
-	admin.GET("", adminViewHandler)
-	admin.GET("/", adminViewHandler)
+	admin.GET("", adminViewHandler(nil))
+	admin.GET("/", adminViewHandler(nil))
 
 	return r
 }

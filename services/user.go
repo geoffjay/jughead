@@ -19,8 +19,9 @@ import (
 // and profile demographics. It is the only service that should mutate the users
 // or profiles tables.
 type UserService struct {
-	Users    UserRepo
-	Profiles ProfileRepo
+	Users       UserRepo
+	Profiles    ProfileRepo
+	Memberships MembershipRepo
 	// Pool is used for pre-auth lookups (FindByEmail/FindByID) that bypass RLS
 	// via SECURITY DEFINER functions and therefore do not run inside
 	// WithOrgContext. For scoped operations the pool attached to the request
@@ -32,9 +33,10 @@ type UserService struct {
 // shared connection pool.
 func NewUserService(pool *pgxpool.Pool) *UserService {
 	return &UserService{
-		Users:    db.NewUserRepository(),
-		Profiles: db.NewProfileRepository(),
-		Pool:     pool,
+		Users:       db.NewUserRepository(),
+		Profiles:    db.NewProfileRepository(),
+		Memberships: db.NewMembershipRepository(),
+		Pool:        pool,
 	}
 }
 
@@ -188,6 +190,23 @@ func (s *UserService) LoadByID(ctx context.Context, id uuid.UUID) (db.User, erro
 		return db.User{}, fmt.Errorf("load user by id: %w", err)
 	}
 	return u, nil
+}
+
+// ListMemberships returns all organization memberships for the user. Used by
+// the login flow to auto-select the user's first org, and by the admin UI to
+// show the user's tenant list. Requires the UserID scope (the memberships_visible
+// RLS policy admits rows where user_id = current_user_id).
+func (s *UserService) ListMemberships(ctx context.Context, scope db.Scope) ([]db.Membership, error) {
+	var mems []db.Membership
+	err := db.WithOrgContext(ctx, scope, func(ctx context.Context, tx pgx.Tx) error {
+		var err error
+		mems, err = s.Memberships.ListByUser(ctx, tx, scope.UserID)
+		return err
+	})
+	if err != nil {
+		return nil, fmt.Errorf("list user memberships: %w", err)
+	}
+	return mems, nil
 }
 
 // poolOrCtx returns the service's pool, or the pool attached to ctx if the
