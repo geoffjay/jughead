@@ -1,34 +1,111 @@
 package pages
 
+import (
+	"github.com/geoffjay/jughead/templates/components/daisyui"
+	"github.com/iota-uz/icons/phosphor"
+)
+
 // LoginContent renders the login form. `redirect` is the target to return to
-// after a successful login; `error` is shown when non-empty (e.g. bad creds).
+// after a successful login; `errorMessage` is shown when non-empty (e.g. bad
+// credentials).
+//
+// Uses daisyUI components from the jughead component library (InputLabel,
+// Button, Alert) and phosphor icons for the username/password fields and the
+// submit button, following the "Username text input with icon and validator"
+// pattern from input-field.templ.
 templ LoginContent(redirect, errorMessage string) {
-	<div id="login" class="card bg-base-200 shadow-md mx-auto mt-10 max-w-md">
-		<div class="card-body">
-			<h1 class="text-2xl font-semibold">Login</h1>
-			if errorMessage != "" {
-				<div role="alert" class="alert alert-error">
-					<span>{ errorMessage }</span>
-				</div>
-			}
-			<form method="POST" action="/login" class="flex flex-col gap-4">
-				if redirect != "" {
-					<input type="hidden" name="redirect" value={ redirect }/>
-				}
-				<label class="form-control">
-					<div class="label">
-						<span class="label-text">Username</span>
-					</div>
-					<input type="text" name="username" required autocomplete="username" class="input input-bordered"/>
-				</label>
-				<label class="form-control">
-					<div class="label">
-						<span class="label-text">Password</span>
-					</div>
-					<input type="password" name="password" required autocomplete="current-password" class="input input-bordered"/>
-				</label>
-				<button type="submit" class="btn btn-primary">Sign in</button>
-			</form>
-		</div>
+	<div id="login" class="flex min-h-screen items-center justify-center bg-base-200 px-4">
+		@daisyui.Card(daisyui.CardConfig{
+			Class: "bg-base-100 shadow-xl w-full max-w-md rounded-lg",
+			Body:  loginBody(redirect, errorMessage),
+		})
 	</div>
+}
+
+// loginBody renders the full card body: branded header, error alert (when
+// set), and the login form. Passed to daisyui.Card via the Body field so the
+// card wrapper and card-body div come from the component.
+templ loginBody(redirect, errorMessage string) {
+	<div class="flex flex-col gap-6">
+		<div class="flex flex-col items-center gap-2">
+			<div class="bg-primary/10 text-primary rounded-xl p-3">
+				@phosphor.LockKey(phosphor.Props{Size: "32", Variant: phosphor.Regular})
+			</div>
+			<h1 class="text-2xl font-bold">Sign in to Jughead</h1>
+			<p class="text-base-content/60 text-sm">Enter your credentials to continue</p>
+		</div>
+		if errorMessage != "" {
+			@daisyui.Alert(daisyui.AlertConfig{
+				Color:   "error",
+				Style:   "soft",
+				Icon:    phosphor.WarningCircle(phosphor.Props{Size: "20", Variant: phosphor.Regular}),
+				Message: errorMessage,
+			})
+		}
+		<form method="POST" action="/login" class="flex flex-col gap-4">
+			if redirect != "" {
+				<input type="hidden" name="redirect" value={ redirect }/>
+			}
+			<div class="form-control gap-1">
+				<label class="label" for="username">
+					<span class="label-text font-medium">Email</span>
+				</label>
+				@daisyui.InputLabel(daisyui.InputLabelConfig{
+					Color:     "primary",
+					Validator: true,
+					Class:     "w-full",
+				}, usernameInput())
+			</div>
+			<div class="form-control gap-1">
+				<label class="label" for="password">
+					<span class="label-text font-medium">Password</span>
+				</label>
+				@daisyui.InputLabel(daisyui.InputLabelConfig{
+					Color:     "primary",
+					Validator: true,
+					Class:     "w-full",
+				}, passwordInput())
+			</div>
+			@daisyui.Button(daisyui.ButtonConfig{
+				Label:    "Sign in",
+				Color:    "primary",
+				Modifier: "block",
+				Type:     "submit",
+				Class:    "mt-2",
+				Children: phosphor.SignIn(phosphor.Props{Size: "20", Variant: phosphor.Regular}),
+			})
+		</form>
+	</div>
+}
+
+// usernameInput renders the inner <input> for the email field, preceded by a
+// phosphor User icon. Meant to be passed as children to daisyui.InputLabel so
+// the icon and input share the daisyUI label-with-icon pattern.
+templ usernameInput() {
+	@phosphor.User(phosphor.Props{Size: "20", Variant: phosphor.Regular})
+	<input
+		type="email"
+		name="username"
+		id="username"
+		placeholder="you@example.com"
+		autocomplete="username"
+		required
+		class="grow"
+	/>
+}
+
+// passwordInput renders the inner <input> for the password field, preceded by a
+// phosphor Lock icon. Meant to be passed as children to daisyui.InputLabel so
+// the icon and input share the daisyUI label-with-icon pattern.
+templ passwordInput() {
+	@phosphor.Lock(phosphor.Props{Size: "20", Variant: phosphor.Regular})
+	<input
+		type="password"
+		name="password"
+		id="password"
+		placeholder="Enter your password"
+		autocomplete="current-password"
+		required
+		class="grow"
+	/>
 }

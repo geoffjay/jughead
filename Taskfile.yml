@@ -92,13 +92,16 @@ tasks:
       - docker compose exec postgres psql -U {{.DB_ADMIN_USER}} -d {{.DB_NAME}}
 
   # --------------------------------------------------------------------------
-  # Seed (placeholder — real seed data lands here once the auth flow is wired)
+  # Seed (development only)
   # --------------------------------------------------------------------------
 
   db:seed:
-    desc: Seed development data (placeholder)
+    desc: Seed development data (admin + jughead users, jughead org)
     cmds:
-      - cmd: echo "db:seed not implemented yet — add fixture rows once the auth flow is wired"
+      - cmd: echo "Seeding development data from db/seed/..."
+        silent: true
+      - docker compose exec -T postgres psql -v ON_ERROR_STOP=1 -U {{.DB_ADMIN_USER}} -d {{.DB_NAME}} -f /dev/stdin < db/seed/001_dev.sql
+      - cmd: echo "Seed complete. Login with admin@jughead / jughead or jughead@jughead / jughead."
         silent: true
 
   # --------------------------------------------------------------------------
