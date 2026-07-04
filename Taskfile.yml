@@ -111,12 +111,12 @@ tasks:
   build:
     desc: Build the host binary (static, no CGO)
     cmds:
-      - go build -ldflags="-s -w" -o jughead .
+      - go build -ldflags="-s -w -X github.com/geoffjay/jughead/cmd/jughead/version.Version=dev" -o jughead .
 
   build:plugins:
     desc: Build the host binary with CGO enabled for plugin loading
     cmds:
-      - CGO_ENABLED=1 go build -ldflags="-s -w" -o jughead .
+      - CGO_ENABLED=1 go build -ldflags="-s -w -X github.com/geoffjay/jughead/cmd/jughead/version.Version=dev" -o jughead .
 
   plugins:
     desc: Build every plugin under plugins/providers/* and plugins/sites/*
