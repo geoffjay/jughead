@@ -8,14 +8,12 @@ require (
 	github.com/gin-gonic/gin v1.12.0
 	github.com/google/uuid v1.6.0
 	github.com/gowebly/helpers v0.4.0
-	github.com/iota-uz/icons v0.0.0-20260205211420-98e1019072b8
+	github.com/iota-uz/icons v0.0.3
 	github.com/jackc/pgx/v5 v5.10.0
 	github.com/joho/godotenv v1.5.1
 	github.com/spf13/cobra v1.10.2
 	golang.org/x/crypto v0.53.0
 )
-
-replace github.com/iota-uz/icons => github.com/geoffjay/go-icons v0.0.0-20260205211420-98e1019072b8
 
 require (
 	github.com/bytedance/gopkg v0.1.3 // indirect

@@ -10,7 +10,7 @@ running the host and for scaffolding new plugins.
 Install the `jughead` CLI with `go install`:
 
 ```
-go install github.com/geoffjay/jughead@v0.1.0
+go install github.com/geoffjay/jughead@v0.1.1
 ```
 
 This builds the `jughead` binary and places it in your `$GOBIN` directory
