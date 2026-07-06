@@ -36,6 +36,13 @@ import (
 	"github.com/spf13/cobra"
 )
 
+// defaultJugheadVersion is the jughead module version written into the
+// generated go.mod's require directive when the host doesn't override it. It
+// is bumped alongside each tagged release so freshly scaffolded plugins pin a
+// real version instead of "dev". The binary's own version (printed by
+// `jughead version`) is still set via -ldflags at build time.
+const defaultJugheadVersion = "v0.1.0"
+
 // pluginKind is the set of plugin templates supported by `jughead init`.
 type pluginKind string
 
@@ -74,8 +81,8 @@ type templateData struct {
 	GoVersion string
 
 	// JugheadVersion is the jughead module version written into the rendered
-	// go.mod's require directive (e.g. "v0.1.0" or "dev"). Plugins must be
-	// built against the same jughead version as the host.
+	// go.mod's require directive (e.g. "v0.1.0"). Plugins must be built
+	// against the same jughead version as the host.
 	JugheadVersion string
 }
 
@@ -138,7 +145,7 @@ func run(_ *cobra.Command, args []string) error {
 		SitePath:       "/sites/" + name,
 		TitleName:      pascalize(name),
 		GoVersion:      goVersion(),
-		JugheadVersion: "dev",
+		JugheadVersion: defaultJugheadVersion,
 	}
 
 	if err := renderTree(tmplRoot, kind, dest, &data); err != nil {
