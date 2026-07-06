@@ -10,7 +10,7 @@ running the host and for scaffolding new plugins.
 Install the `jughead` CLI with `go install`:
 
 ```
-go install github.com/geoffjay/jughead@v0.1.1
+go install github.com/geoffjay/jughead@v0.1.2
 ```
 
 This builds the `jughead` binary and places it in your `$GOBIN` directory
@@ -22,6 +22,14 @@ Verify the install:
 ```
 jughead version
 ```
+
+This prints the version (e.g. `jughead v0.1.2`), the commit, and the build
+date. The version is the tagged module version the binary was installed from,
+read from Go's build info — so a `go install github.com/geoffjay/jughead@vX.Y.Z`
+binary reports `vX.Y.Z`, and a binary built locally with `task build` reports a
+git-derived version (e.g. `v0.1.2-dirty`). Plugin authors should use this to
+confirm the host version before building a plugin, since the host and plugin
+must be built against the same Go toolchain and jughead module version.
 
 ## Usage
 

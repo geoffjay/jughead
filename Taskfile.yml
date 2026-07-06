@@ -16,6 +16,19 @@ vars:
   DB_APP_URL: 'postgres://{{.DB_APP_USER}}:{{.DB_APP_PASSWORD}}@{{.DB_HOST}}:{{.DB_PORT}}/{{.DB_NAME}}?sslmode=disable'
   DB_ADMIN_URL: 'postgres://{{.DB_ADMIN_USER}}:{{.DB_ADMIN_PASSWORD}}@{{.DB_HOST}}:{{.DB_PORT}}/{{.DB_NAME}}?sslmode=disable'
 
+  # Version metadata injected via -ldflags into the version subcommand. The
+  # version subcommand also reads runtime/debug.ReadBuildInfo, so a binary
+  # installed via `go install <module>@<version>` reports its tagged version
+  # without these ldflags. For local `task build`/`task build:plugins` builds,
+  # we stamp git-derived values so `jughead version` is informative even
+  # outside the proxy flow.
+  VERSION:
+    sh: git describe --tags --always --dirty 2>/dev/null || echo dev
+  COMMIT:
+    sh: git rev-parse --short HEAD 2>/dev/null || echo unknown
+  BUILD_DATE:
+    sh: date -u +%Y-%m-%dT%H:%M:%SZ
+
 # sh (the default interpreter) doesn't support $(...); bash does.
 shopt: [globstar]
 
@@ -111,12 +124,22 @@ tasks:
   build:
     desc: Build the host binary (static, no CGO)
     cmds:
-      - go build -ldflags="-s -w -X github.com/geoffjay/jughead/cmd/jughead/version.Version=dev" -o jughead .
+      - >-
+        go build -trimpath -ldflags="-s -w
+        -X github.com/geoffjay/jughead/cmd/jughead/version.Version={{.VERSION}}
+        -X github.com/geoffjay/jughead/cmd/jughead/version.Commit={{.COMMIT}}
+        -X github.com/geoffjay/jughead/cmd/jughead/version.BuildDate={{.BUILD_DATE}}"
+        -o jughead .
 
   build:plugins:
     desc: Build the host binary with CGO enabled for plugin loading
     cmds:
-      - CGO_ENABLED=1 go build -ldflags="-s -w -X github.com/geoffjay/jughead/cmd/jughead/version.Version=dev" -o jughead .
+      - >-
+        CGO_ENABLED=1 go build -trimpath -ldflags="-s -w
+        -X github.com/geoffjay/jughead/cmd/jughead/version.Version={{.VERSION}}
+        -X github.com/geoffjay/jughead/cmd/jughead/version.Commit={{.COMMIT}}
+        -X github.com/geoffjay/jughead/cmd/jughead/version.BuildDate={{.BUILD_DATE}}"
+        -o jughead .
 
   plugins:
     desc: Build every plugin under plugins/providers/* and plugins/sites/*

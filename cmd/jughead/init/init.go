@@ -41,7 +41,7 @@ import (
 // is bumped alongside each tagged release so freshly scaffolded plugins pin a
 // real version instead of "dev". The binary's own version (printed by
 // `jughead version`) is still set via -ldflags at build time.
-const defaultJugheadVersion = "v0.1.1"
+const defaultJugheadVersion = "v0.1.2"
 
 // pluginKind is the set of plugin templates supported by `jughead init`.
 type pluginKind string
