@@ -5,6 +5,7 @@ import (
 	"log/slog"
 	"os"
 
+	initcmd "github.com/geoffjay/jughead/cmd/jughead/init"
 	"github.com/geoffjay/jughead/cmd/jughead/serve"
 	"github.com/geoffjay/jughead/cmd/jughead/version"
 
@@ -26,7 +27,10 @@ auth, built-in sites, and plugins from JUGHEAD_PLUGINS_DIR).
 
 The 'serve' subcommand loads a single site plugin (.so) and runs it standalone,
 which is useful for site developers who want to iterate without running the
-entire jughead system.`,
+entire jughead system.
+
+The 'init' subcommand bootstraps a minimal site or provider plugin from a
+template, which is useful for starting a new plugin.`,
 	RunE: func(_ *cobra.Command, _ []string) error {
 		return runServer()
 	},
@@ -42,8 +46,10 @@ func main() {
 	}
 
 	rootCmd.AddCommand(serve.Cmd)
+	rootCmd.AddCommand(initcmd.Cmd)
 	rootCmd.AddCommand(version.Cmd)
 	serve.SetupFlags()
+	initcmd.SetupFlags()
 
 	if err := rootCmd.Execute(); err != nil {
 		fmt.Fprintln(os.Stderr, err)
