@@ -1,5 +1,10 @@
 {
   "$schema": "https://opencode.ai/config.json",
+  // Deterministically inject the agent policy + KB map, independent of AGENTS.md/CLAUDE.md pickup.
+  "instructions": [
+    "AGENTS.md",
+    "docs/knowledgebase/index.md"
+  ],
   "model": "glm-5.2:cloud",
   "lsp": {
     "markdown": {
