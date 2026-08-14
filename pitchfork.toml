@@ -1,0 +1,43 @@
+#:schema https://pitchfork.jdx.dev/schema.json
+#
+# pitchfork.toml — process management for jughead development.
+#
+# Replaces the Procfile + overmind setup. Start everything with:
+#   pitchfork start
+# Or individually:
+#   pitchfork start jughead
+# Status / logs / TUI:
+#   pitchfork list
+#   pitchfork logs jughead --tail
+#   pitchfork tui
+
+# --- Go host (hot-reload via air) ---------------------------------------------
+[daemons.jughead]
+run = "exec air"
+# air builds plugins (pre_cmd) then the host binary and watches .go/.templ.
+# The server listens on BACKEND_PORT (default 9000).
+ready_port = 9000
+auto = ["start", "stop"]
+retry = 3
+
+# --- Frontend asset watchers ---------------------------------------------------
+[daemons.web]
+run = "exec bun run watch"
+auto = ["start", "stop"]
+ready_delay = 3
+
+[daemons.shiki]
+run = "exec bun run watch:shiki"
+auto = ["start", "stop"]
+ready_delay = 3
+
+[daemons.css]
+run = "exec bun run css"
+auto = ["start", "stop"]
+ready_delay = 3
+
+# --- Templ code generation -----------------------------------------------------
+[daemons.templ]
+run = "exec templ generate -watch"
+auto = ["start", "stop"]
+ready_delay = 3

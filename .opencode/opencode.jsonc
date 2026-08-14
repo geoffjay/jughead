@@ -14,14 +14,9 @@
     }
   },
   "mcp": {
-    "overmind": {
+    "pitchfork": {
       "type": "local",
-      "command": [
-        "uvx",
-        "--from",
-        "git+https://github.com/geoffjay/mcp-servers#subdirectory=overmind",
-        "mcp-server-overmind"
-      ],
+      "command": ["pitchfork", "mcp"],
       "enabled": true
     },
     "daisyui-gitmcp": {

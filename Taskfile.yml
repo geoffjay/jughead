@@ -171,7 +171,7 @@ tasks:
     desc: Run all Go tests (starts postgres and sets DATABASE_URL for db tests)
     cmds:
       - task: db:up
-      - env -u GITHUB_CLIENT_ID -u GITHUB_CLIENT_SECRET -u GITHUB_REDIRECT_URL -u GITHUB_ALLOWED_LOGIN DATABASE_URL={{.DB_APP_URL}} go test ./...
+      - env -u GITHUB_CLIENT_ID -u GITHUB_CLIENT_SECRET -u GITHUB_REDIRECT_URL -u GITHUB_ALLOWED_LOGIN -u GOOGLE_CLIENT_ID -u GOOGLE_CLIENT_SECRET -u GOOGLE_REDIRECT_URL -u GOOGLE_ALLOWED_LOGIN DATABASE_URL={{.DB_APP_URL}} go test ./...
 
   test:db:
     desc: Run only the db package integration tests
@@ -182,7 +182,7 @@ tasks:
   test:short:
     desc: Run tests excluding db integration tests (no DATABASE_URL set)
     cmds:
-      - env -u GITHUB_CLIENT_ID -u GITHUB_CLIENT_SECRET -u GITHUB_REDIRECT_URL -u GITHUB_ALLOWED_LOGIN go test ./...
+      - env -u GITHUB_CLIENT_ID -u GITHUB_CLIENT_SECRET -u GITHUB_REDIRECT_URL -u GITHUB_ALLOWED_LOGIN -u GOOGLE_CLIENT_ID -u GOOGLE_CLIENT_SECRET -u GOOGLE_REDIRECT_URL -u GOOGLE_ALLOWED_LOGIN go test ./...
 
   # --------------------------------------------------------------------------
   # Misc

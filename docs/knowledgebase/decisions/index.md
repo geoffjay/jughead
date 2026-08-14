@@ -1,5 +1,4 @@
 # Decisions
 
-decisions for the jughead project.
+* [pitchfork for process management](pitchfork-process-management.md) — replaced Procfile + overmind with pitchfork.toml.
 
-* _(empty — add decisions docs here)_
