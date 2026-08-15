@@ -1,0 +1,67 @@
+package chat
+
+import (
+	"github.com/geoffjay/jughead/sites/links"
+	"github.com/geoffjay/jughead/templates/components/daisyui"
+)
+
+// SignInPrompt renders the fallback view shown when the chat site is accessed
+// without Google OAuth configured (e.g. missing GOOGLE_CLIENT_ID). It's the
+// Template on the Site struct, rendered by the host's siteViewHandler when
+// auth is incomplete. It mirrors the quux site's SignInPrompt pattern but
+// points to the Google login route.
+templ SignInPrompt() {
+	<div class="min-h-screen bg-base-200 text-base-content flex flex-col">
+		<div class="flex-1 grid place-content-center p-8">
+			<div class="card bg-base-100 shadow-lg max-w-lg">
+				<div class="card-body">
+					<h2 class="text-xl font-semibold mb-2">Sign in to chat</h2>
+					<p class="text-base-content/70 mb-4">
+						chat.geoffjay.com is a demo site for jughead's Google OAuth
+						authentication. Connect your Google account to continue.
+					</p>
+					<a href="/auth/google/login" class="btn btn-primary">Sign in with Google</a>
+				</div>
+			</div>
+		</div>
+	</div>
+}
+
+// ChatPage renders the authenticated chat landing page: a navbar showing the
+// signed-in user's email and a sign-out link, plus a placeholder chat panel.
+// r resolves site-relative links so the page works both under the site path
+// and via the FQDN reverse proxy.
+templ ChatPage(r links.LinkResolver, email, avatarURL string) {
+	<div class="min-h-screen bg-base-200 text-base-content flex flex-col">
+		@daisyui.Navbar(daisyui.NavbarData{
+			Title:     "chat.geoffjay.com",
+			TitleHref: string(r.SafeURL("")),
+			End: []daisyui.NavItem{
+				{Label: email},
+				{Label: "Sign out", Href: "/auth/google/logout"},
+			},
+		})
+		<main class="flex-1 p-8 max-w-3xl mx-auto w-full">
+			<div class="card bg-base-100 shadow-lg">
+				<div class="card-body">
+					<h2 class="text-xl font-semibold mb-2">Welcome, { email }</h2>
+					<p class="text-base-content/70 mb-4">
+						You're signed in via Google OAuth. This demo page confirms
+						authentication is working. The chat UI will go here.
+					</p>
+					if avatarURL != "" {
+						<div class="flex items-center gap-3">
+							@daisyui.Avatar(daisyui.AvatarConfig{
+								Src:   avatarURL,
+								Alt:   email,
+								Size:  "w-10",
+								Shape: "rounded-full",
+							})
+							<span class="text-sm text-base-content/60">{ email }</span>
+						</div>
+					}
+				</div>
+			</div>
+		</main>
+	</div>
+}

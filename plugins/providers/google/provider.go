@@ -100,6 +100,7 @@ func (g *googleInstance) AuthMiddleware(store *sessions.Store) gin.HandlerFunc {
 			c.Set("username", sess.Login)
 			c.Set("google_token", sess.AccessToken)
 			c.Set("google_email", sess.Login)
+			c.Set("google_avatar", sess.AvatarURL)
 			c.Next()
 			return
 		}
