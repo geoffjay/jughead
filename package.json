@@ -18,8 +18,8 @@
     "dev": "parcel build --no-optimize",
     "build": "parcel build && bun run build:shiki",
     "build:shiki": "esbuild assets/shiki.js --bundle --format=esm --target=es2022 --outfile=static/shiki.js",
-    "watch:shiki": "esbuild assets/shiki.js --bundle --format=esm --target=es2022 --outfile=static/shiki.js --watch",
-    "css": "tailwindcss -i ./assets/styles.css -o ./static/styles.css --watch"
+    "watch:shiki": "esbuild assets/shiki.js --bundle --format=esm --target=es2022 --outfile=static/shiki.js --watch=forever",
+    "css": "tailwindcss -i ./assets/styles.css -o ./static/styles.css --watch=always"
   },
   "dependencies": {
     "@tailwindcss/cli": "4.3.1",

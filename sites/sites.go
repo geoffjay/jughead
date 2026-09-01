@@ -4,6 +4,7 @@ import (
 	"log/slog"
 
 	"github.com/geoffjay/jughead/sites/auth"
+	"github.com/geoffjay/jughead/sites/com/geoffjay/chat"
 	"github.com/geoffjay/jughead/sites/com/geoffjay/quux"
 	"github.com/geoffjay/jughead/sites/links"
 	"github.com/geoffjay/jughead/sites/tld/domain1"
@@ -70,6 +71,16 @@ var sites = map[string]*Site{
 		Proxy:     quux.Proxy,
 		Routes:    quux.Routes,
 		Auth:      &auth.AuthConfig{Provider: "github"},
+	},
+	"/sites/chat.geoffjay.com": {
+		Path:      "/sites/chat.geoffjay.com",
+		Url:       "https://chat.geoffjay.com",
+		Published: false,
+		Theme:     "nord",
+		Template:  chat.SignInPrompt(),
+		Proxy:     chat.Proxy,
+		Routes:    chat.Routes,
+		Auth:      &auth.AuthConfig{Provider: "google"},
 	},
 }
 

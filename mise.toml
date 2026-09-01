@@ -1,0 +1,6 @@
+[tools]
+go = "1.27.0"
+gofumpt = "0.10"
+golangci-lint = "2.13.1"
+hk = "1.54.1"
+pitchfork = "2.21.0"

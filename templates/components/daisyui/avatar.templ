@@ -40,7 +40,7 @@ templ Avatar(cfg AvatarConfig) {
 			if cfg.Placeholder {
 				<span class={ cfg.PlaceholderClass }>{ cfg.PlaceholderText }</span>
 			} else {
-				<img src={ templ.SafeURL(cfg.Src) } alt={ cfg.Alt }/>
+				<img src={ templ.SafeURL(cfg.Src) } alt={ cfg.Alt } crossorigin="anonymous"/>
 			}
 		</div>
 	</div>
