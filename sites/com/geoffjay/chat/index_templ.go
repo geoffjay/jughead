@@ -13,6 +13,8 @@ import (
 import (
 	"github.com/geoffjay/jughead/sites/links"
 	"github.com/geoffjay/jughead/templates/components/daisyui"
+	"github.com/geoffjay/jughead/templates/containers"
+	"github.com/iota-uz/icons/phosphor"
 )
 
 // SignInPrompt renders the fallback view shown when the chat site is accessed
@@ -49,11 +51,71 @@ func SignInPrompt() templ.Component {
 	})
 }
 
-// ChatPage renders the authenticated chat landing page: a navbar showing the
-// signed-in user's email and a sign-out link, plus a placeholder chat panel.
+// menuIcons maps each sidebar menu item to its phosphor icon component.
+func menuIcons() map[string]templ.Component {
+	return map[string]templ.Component{
+		"Chat":     phosphor.ChatsCircle(phosphor.Props{Size: "20", Variant: phosphor.Regular}),
+		"Contacts": phosphor.Users(phosphor.Props{Size: "20", Variant: phosphor.Regular}),
+		"Settings": phosphor.Gear(phosphor.Props{Size: "20", Variant: phosphor.Regular}),
+	}
+}
+
+// menuItems builds the sidebar navigation items, attaching the matching icon
+// to each entry. Href is empty for placeholder items that are not yet wired to
+// routes; the AppShell renders them as buttons (no navigation).
+func menuItems() []daisyui.MenuItem {
+	entries := []struct {
+		Label string
+		Href  string
+	}{
+		{"Chat", ""},
+		{"Contacts", ""},
+		{"Settings", ""},
+	}
+	icons := menuIcons()
+	items := make([]daisyui.MenuItem, 0, len(entries))
+	for _, e := range entries {
+		items = append(items, daisyui.MenuItem{
+			Label: e.Label,
+			Href:  e.Href,
+			Icon:  icons[e.Label],
+		})
+	}
+	return items
+}
+
+// ChatPage renders the authenticated chat landing page using the AppShell
+// container: a fixed navbar with the sidebar toggle, brand, and an avatar
+// dropdown (Account + Sign out); a collapsible left sidebar with
+// Chat/Contacts/Settings menu items; and the welcome card filling the main
+// content region. A light/dark theme toggle is configured so the user can
+// switch between "nord" (light) and "dim" (dark) themes, persisted to
+// localStorage.
+//
 // r resolves site-relative links so the page works both under the site path
 // and via the FQDN reverse proxy.
 func ChatPage(r links.LinkResolver, email, avatarURL string) templ.Component {
+	return containers.AppShell(containers.AppShellConfig{
+		Title:        "Chat",
+		TitleHref:    string(r.SafeURL("")),
+		MenuItems:    menuItems(),
+		Content:      chatContent(email, avatarURL),
+		HeaderExtra:  avatarDropdown(email, avatarURL),
+		SidebarState: containers.SidebarOpen,
+		Theme: containers.ThemeConfig{
+			LightTheme: "nord",
+			DarkTheme:  "dim",
+			StorageKey: "chat-geoffjay-theme",
+		},
+	})
+}
+
+// avatarDropdown renders the signed-in user's avatar as a daisyUI dropdown
+// trigger in the navbar-end. Clicking the avatar opens a dropdown menu with
+// Account and Sign out items. The dropdown uses the CSS-focus pattern
+// (tabindex) so it works without JavaScript. The avatar uses the daisyui
+// Avatar component; the menu items use daisyui.Menu.
+func avatarDropdown(email, avatarURL string) templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -74,40 +136,136 @@ func ChatPage(r links.LinkResolver, email, avatarURL string) templ.Component {
 			templ_7745c5c3_Var2 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "<div class=\"min-h-screen bg-base-200 text-base-content flex flex-col\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "<div class=\"dropdown dropdown-end\"><div tabindex=\"0\" role=\"button\" class=\"btn btn-ghost btn-circle avatar\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = daisyui.Navbar(daisyui.NavbarData{
-			Title:     "chat.geoffjay.com",
-			TitleHref: string(r.SafeURL("")),
-			End: []daisyui.NavItem{
-				{Label: email},
-				{Label: "Sign out", Href: "/auth/google/logout"},
+		templ_7745c5c3_Err = avatarInner(email, avatarURL).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "</div><div tabindex=\"-1\" class=\"dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = daisyui.Menu(daisyui.MenuConfig{
+			Items: []daisyui.MenuItem{
+				{
+					Label: "Account",
+					Icon:  phosphor.UserCircle(phosphor.Props{Size: "20", Variant: phosphor.Regular}),
+				},
+				{
+					Label: "Sign out",
+					Href:  "/auth/google/logout",
+					Icon:  phosphor.SignOut(phosphor.Props{Size: "20", Variant: phosphor.Regular}),
+				},
 			},
 		}).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "<main class=\"flex-1 p-8 max-w-3xl mx-auto w-full\"><div class=\"card bg-base-100 shadow-lg\"><div class=\"card-body\"><h2 class=\"text-xl font-semibold mb-2\">Welcome, ")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "</div></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		var templ_7745c5c3_Var3 string
-		templ_7745c5c3_Var3, templ_7745c5c3_Err = templ.JoinStringErrs(email)
-		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/com/geoffjay/chat/index.templ`, Line: 47, Col: 60}
+		return nil
+	})
+}
+
+// avatarInner renders the avatar image or a placeholder with the first letter
+// of the email when no avatar URL is available. Used as the dropdown trigger
+// content.
+func avatarInner(email, avatarURL string) templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var3))
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var3 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var3 == nil {
+			templ_7745c5c3_Var3 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		if avatarURL != "" {
+			templ_7745c5c3_Err = daisyui.Avatar(daisyui.AvatarConfig{
+				Src:   avatarURL,
+				Alt:   email,
+				Size:  "w-8",
+				Shape: "rounded-full",
+			}).Render(ctx, templ_7745c5c3_Buffer)
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+		} else {
+			templ_7745c5c3_Err = daisyui.Avatar(daisyui.AvatarConfig{
+				Placeholder:      true,
+				PlaceholderText:  string(email[0]),
+				PlaceholderClass: "text-xs",
+				Size:             "w-8",
+				Shape:            "rounded-full",
+				InnerClass:       "bg-neutral text-neutral-content",
+			}).Render(ctx, templ_7745c5c3_Buffer)
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+		}
+		return nil
+	})
+}
+
+// chatContent is the main region rendered inside the AppShell. It shows a
+// welcome card confirming Google OAuth is working, with the user's avatar and
+// email.
+func chatContent(email, avatarURL string) templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var4 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var4 == nil {
+			templ_7745c5c3_Var4 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "<div class=\"w-full p-8\"><div class=\"mx-auto max-w-2xl space-y-6\"><h1 class=\"text-3xl font-bold\">Welcome, ")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "</h2><p class=\"text-base-content/70 mb-4\">You're signed in via Google OAuth. This demo page confirms authentication is working. The chat UI will go here.</p>")
+		var templ_7745c5c3_Var5 string
+		templ_7745c5c3_Var5, templ_7745c5c3_Err = templ.JoinStringErrs(email)
+		if templ_7745c5c3_Err != nil {
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/com/geoffjay/chat/index.templ`, Line: 148, Col: 50}
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var5))
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "</h1><div class=\"card bg-base-100 shadow-lg border border-base-300\"><div class=\"card-body\"><h2 class=\"card-title\">Google OAuth confirmed</h2><p class=\"text-base-content/70\">You're signed in via Google OAuth. This demo page confirms authentication is working. The chat UI will go here.</p>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		if avatarURL != "" {
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "<div class=\"flex items-center gap-3\">")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "<div class=\"flex items-center gap-3 pt-2\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -120,25 +278,25 @@ func ChatPage(r links.LinkResolver, email, avatarURL string) templ.Component {
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "<span class=\"text-sm text-base-content/60\">")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 8, "<span class=\"text-sm text-base-content/60\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			var templ_7745c5c3_Var4 string
-			templ_7745c5c3_Var4, templ_7745c5c3_Err = templ.JoinStringErrs(email)
+			var templ_7745c5c3_Var6 string
+			templ_7745c5c3_Var6, templ_7745c5c3_Err = templ.JoinStringErrs(email)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/com/geoffjay/chat/index.templ`, Line: 60, Col: 57}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `sites/com/geoffjay/chat/index.templ`, Line: 164, Col: 57}
 			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var4))
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var6))
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "</span></div>")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 9, "</span></div>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 8, "</div></div></main></div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 10, "</div></div></div></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
