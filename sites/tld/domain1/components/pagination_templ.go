@@ -14,7 +14,7 @@ import (
 	"strconv"
 
 	"github.com/geoffjay/jughead/sites/links"
-	"github.com/geoffjay/jughead/templates/components/daisyui"
+	"github.com/geoffjay/templ-ui/daisyui"
 )
 
 func PaginationPage(r links.LinkResolver) templ.Component {

@@ -11,7 +11,7 @@ import (
 )
 
 import (
-	"github.com/geoffjay/jughead/templates/components/daisyui"
+	"github.com/geoffjay/templ-ui/daisyui"
 	"github.com/iota-uz/icons/phosphor"
 )
 

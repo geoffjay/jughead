@@ -3,7 +3,7 @@ package quux
 import (
 	"github.com/geoffjay/jughead/sites/com/geoffjay/quux/data"
 	"github.com/geoffjay/jughead/sites/links"
-	"github.com/geoffjay/jughead/templates/components/daisyui"
+	"github.com/geoffjay/templ-ui/daisyui"
 )
 
 // navbarData builds the quux navbar. The "Items" dropdown is replaced with a

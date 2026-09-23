@@ -10,7 +10,7 @@ import (
 	templruntime "github.com/a-h/templ/runtime"
 )
 
-import "github.com/geoffjay/jughead/templates/components/daisyui"
+import "github.com/geoffjay/templ-ui/daisyui"
 
 // introPage renders the Introduction page body. It is injected into the
 // documentation layout's main region via the Page.Body factory.

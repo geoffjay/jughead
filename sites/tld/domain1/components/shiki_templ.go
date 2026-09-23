@@ -14,7 +14,7 @@ import (
 	"fmt"
 
 	"github.com/geoffjay/jughead/sites/links"
-	"github.com/geoffjay/jughead/templates/components/shiki"
+	"github.com/geoffjay/templ-ui/shiki"
 )
 
 func ShikiPage(r links.LinkResolver) templ.Component {

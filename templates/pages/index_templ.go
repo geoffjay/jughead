@@ -10,7 +10,7 @@ import (
 	templruntime "github.com/a-h/templ/runtime"
 )
 
-import "github.com/geoffjay/jughead/templates/components/daisyui"
+import "github.com/geoffjay/templ-ui/daisyui"
 
 // MetaTags defines meta tags.
 func MetaTags(keywords, description string) templ.Component {

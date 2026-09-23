@@ -20,9 +20,9 @@
 package doc
 
 import (
-	"github.com/geoffjay/jughead/templates/components/daisyui"
-	"github.com/geoffjay/jughead/templates/containers"
 	"github.com/geoffjay/jughead/templates/layouts"
+	"github.com/geoffjay/templ-ui/containers"
+	"github.com/geoffjay/templ-ui/daisyui"
 
 	"github.com/a-h/templ"
 	"github.com/iota-uz/icons/phosphor"

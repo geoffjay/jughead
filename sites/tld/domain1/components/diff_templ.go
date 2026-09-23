@@ -12,7 +12,7 @@ import (
 
 import (
 	"github.com/geoffjay/jughead/sites/links"
-	"github.com/geoffjay/jughead/templates/components/daisyui"
+	"github.com/geoffjay/templ-ui/daisyui"
 )
 
 func DiffPage(r links.LinkResolver) templ.Component {
