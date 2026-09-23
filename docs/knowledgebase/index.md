@@ -52,7 +52,7 @@ to touch the KB on every edit.
 
 ## Decisions
 
-* _(empty — add decision docs here)_
+* [UI components extracted to the templ-ui module](decisions/templ-ui-extraction.md) - daisyui/shiki/containers now consumed from the public templ-ui repo.
 
 ## Patterns
 
@@ -64,4 +64,4 @@ to touch the KB on every edit.
 
 ## References
 
-* [OKF spec](references/okf-spec.md) - pointer to the Open Knowledge Format v0.2 specification.
+* [templ-ui component library](references/templ-ui.md) - public module holding jughead's extracted UI components.
