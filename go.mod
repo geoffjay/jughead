@@ -5,7 +5,7 @@ go 1.25.0
 require (
 	github.com/a-h/templ v0.3.1020
 	github.com/angelofallars/htmx-go v0.5.0
-	github.com/geoffjay/templ-ui v0.0.0-20260924000248-4cc214fd39b1
+	github.com/geoffjay/templ-ui v0.0.0-20260924001306-ce0c0720ef58
 	github.com/gin-gonic/gin v1.12.0
 	github.com/google/uuid v1.6.0
 	github.com/gowebly/helpers v0.4.0

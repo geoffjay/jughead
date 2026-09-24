@@ -18,3 +18,9 @@ date: 2026-09-23
   templ-ui repo) — the same pattern jughead uses overmind for.
 - Version floor: `go 1.25.0`, matching jughead's `go.mod` floor; the two
   must be bumped together.
+- CSS safelist: Tailwind never scans the Go module cache and many daisyUI
+  modifiers are built at runtime, so component classes must come from
+  templ-ui's safelist. `bun run safelist` (first step of `bun run css`) runs
+  `go run github.com/geoffjay/templ-ui/cmd/templ-ui safelist` at the go.mod
+  version into `assets/vendor/templ-ui/safelist.css` (gitignored), which
+  `assets/styles.css` imports. Bumping templ-ui needs no manual copy.
