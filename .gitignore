@@ -23,7 +23,7 @@ plugins/*.dylib
 node_modules/
 
 # Vendor folders.
-vendor/
+/vendor/
 
 # Temp folders.
 .parcel-cache/

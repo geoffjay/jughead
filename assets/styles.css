@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* Classes templ-ui components can render; refresh after bumping templ-ui (see its docs/USAGE.md). */
+@import "./vendor/templ-ui/safelist.css";
+
 @plugin "@tailwindcss/typography";
 
 @plugin "daisyui" {
